@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开源到 on </title>
+    <link>/</link>
+    <description>Recent content in 开源到 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2022 OSCOME</copyright>
+    <lastBuildDate>Tue, 06 Oct 2020 08:47:36 +0000</lastBuildDate>
+    
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Versions</title>
+      <link>/docs/versions/</link>
+      <pubDate>Fri, 24 Sep 2021 08:50:23 +0200</pubDate>
+      
+      <guid>/docs/versions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>/blog/</link>
+      <pubDate>Tue, 06 Oct 2020 08:49:55 +0000</pubDate>
+      
+      <guid>/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docs</title>
+      <link>/docs/</link>
+      <pubDate>Tue, 06 Oct 2020 08:48:23 +0000</pubDate>
+      
+      <guid>/docs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oscome -- 小小欧</title>
+      <link>/about/</link>
+      <pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate>
+      
+      <guid>/about/</guid>
+      <description>项目起源 #起初是在自己工作学习中，苦于没有资源和实践项目来提升技术，便有了这个想法，去搜集有趣的项目，供大家实践参考。
+后续考虑到也可以分享更多，比如技术资讯、开源书籍、业内动态等等。
+目前网站处于初期建设状态，欢迎各位开发者添砖加瓦。
+小小欧其人 #七年后端开发经验，目前带在某三线城市。
+联系方式 # email：oscome@163.com 公众号：开源到  </description>
+    </item>
+    
+  </channel>
+</rss>
