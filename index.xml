@@ -13,25 +13,16 @@
     
     
     <item>
-      <title>Versions</title>
-      <link>/docs/versions/</link>
-      <pubDate>Fri, 24 Sep 2021 08:50:23 +0200</pubDate>
+      <title>程序语言排行榜</title>
+      <link>/lang/</link>
+      <pubDate>Tue, 06 Oct 2020 08:48:45 +0000</pubDate>
       
-      <guid>/docs/versions/</guid>
+      <guid>/lang/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Blog</title>
-      <link>/blog/</link>
-      <pubDate>Tue, 06 Oct 2020 08:49:55 +0000</pubDate>
-      
-      <guid>/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docs</title>
+      <title>开源到</title>
       <link>/docs/</link>
       <pubDate>Tue, 06 Oct 2020 08:48:23 +0000</pubDate>
       
@@ -45,11 +36,11 @@
       <pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate>
       
       <guid>/about/</guid>
-      <description>项目起源 #起初是在自己工作学习中，苦于没有资源和实践项目来提升技术，便有了这个想法，去搜集有趣的项目，供大家实践参考。
+      <description>项目起源 # 起初是在自己工作学习中，苦于没有资源和实践项目来提升技术，便有了这个想法，去搜集有趣的项目，供大家实践参考。
 后续考虑到也可以分享更多，比如技术资讯、开源书籍、业内动态等等。
 目前网站处于初期建设状态，欢迎各位开发者添砖加瓦。
-小小欧其人 #七年后端开发经验，目前带在某三线城市。
-联系方式 # email：oscome@163.com 公众号：开源到  </description>
+小小欧其人 # 七年后端开发经验，目前带在某三线城市。
+联系方式 #  email：oscome@163.com 公众号：开源到  </description>
     </item>
     
   </channel>
