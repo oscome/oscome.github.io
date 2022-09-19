@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  </urlset>
+  
+    <url>
+      <loc>/docs/vscode/</loc>
+      <lastmod>2022-09-06T08:48:23+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</loc>
+        <lastmod>2022-09-06T08:48:23+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>/docs/vscode/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/</loc>
+        <lastmod>2022-09-12T08:48:23+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>/docs/vscode/git%E6%8F%92%E4%BB%B6/</loc>
+        <lastmod>2022-09-06T08:48:23+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      </urlset>
