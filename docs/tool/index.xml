@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>软件工具篇 on </title>
+    <link>/docs/tool/</link>
+    <description>Recent content in 软件工具篇 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Sep 2022 08:48:23 +0000</lastBuildDate><atom:link href="/docs/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown 编辑器</title>
+      <link>/docs/tool/markdown/</link>
+      <pubDate>Mon, 12 Sep 2022 08:48:23 +0000</pubDate>
+      
+      <guid>/docs/tool/markdown/</guid>
+      <description>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。 它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。
+Typora # 相信在收费之前， Typora 的用户应该大有人在，小欧周边就有很多人在使用。
+我也曾是重度用户，文档基本都是 Typora + Github，使用感受相当舒适。
+优点：
+ 主题多，界面清爽 支持 pdf、html、image 导出（话说小欧的简历就是通过 Typora 的 Orangeheart 主题修改后制作的） 支持插入图片保存特定目录  缺点：
+ 开始收费  Obsdian #  项目地址：https://obsidian.md/
+ Obsdian 是去年同事推荐给我的，功能十分强大，但是语法稍微有点不一样，可以通过配置去修改。
+优点：
+ 双链强大炫酷 免费 社区开放  缺点：
+ 每个项目都要单独设置外观主题，繁琐  有道云笔记 #  项目地址： https://note.youdao.com/
+ 有道云笔记在很早的时候就支持 Markdown 了，而且支持多端，这个非常好，在前几年使用频率较高，但是windows版本软件时常出现卡死情况，一度只使用网页版本。
+优点：
+ 多端云存储 依托有道云，功能不仅限于Markdown 可直接分享网页给朋友  缺点：
+ 不开会员有广告 卡顿（曾经，近期使用频率不高）  作业部落 #  项目地址： https://www.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/docs/tool/tool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/tool/tool/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
