@@ -7,6 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 06 Sep 2022 08:48:23 +0000</lastBuildDate><atom:link href="/docs/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>不会 Debug 还做什么开发</title>
+      <link>/docs/vscode/debug/</link>
+      <pubDate>Tue, 20 Sep 2022 00:28:23 +0000</pubDate>
+      
+      <guid>/docs/vscode/debug/</guid>
+      <description>本期给大家推荐几个通用型的插件，无关乎语言层面，希望能提升你的工作效率，增进你的视觉体验。
+vscode-icons # 地址： https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
+这个插件会根据文件后缀、名称显示不同的 icons，颜值颇高，设置后看着各种小图标心情舒畅，颜值党值得一试，如下图。（也可以自己设置喜欢的图标主题，扩展栏搜索 tag:icon-theme 安装你喜欢的即可）
+Code Runner # 地址: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner
+这是小欧近期学习C++时发现的，可运行多种语言的代码片段，如 C, C++, Java, JavaScript, PHP, Python,, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH,, Visual Basic .NET, Clojure, Haxe, Objective-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart&amp;hellip;&amp;hellip;
+使用方法非常简单，光标在需要 debug 的文件中，然后 control+option+N，就可以 run code 啦！效果如图：（PS：你也可以自行定义命令。没错， &amp;ndash;std=c++11 就是小欧自定义的）
+Project Manager # 地址： https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
+不知道大家在实际工作中，是否像小欧一样需要在多个项目间反复横跳。如果是这样，并觉得 VSCode 的下方历史项目操作起来略显繁琐，那么 project manager 绝对值得一试。
+安装完成后，左侧会有快捷选项卡，方便！！！可以点击上方修改图标自行配置，比如我的:​
+[ { &amp;quot;name&amp;quot;: &amp;quot;go-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;go-example&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-example&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;rust-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/rust-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;cpp-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/cpp-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;imgo&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/imgo&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true } ]  不仅如此，你还可以设置tag，方便不同标记查看。</description>
+    </item>
+    
+    <item>
       <title>摸 🐟 ？不存在的</title>
       <link>/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</link>
       <pubDate>Fri, 16 Sep 2022 08:48:23 +0000</pubDate>
