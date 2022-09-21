@@ -10,14 +10,7 @@
     
     <url>
       <loc>/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</loc>
-      <lastmod>2022-09-06T08:48:23+00:00</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-    </url>
-    
-    <url>
-      <loc>/docs/vscode/%E7%BE%8E%E5%8C%96/</loc>
-      <lastmod>2022-09-12T08:48:23+00:00</lastmod>
+      <lastmod>2022-09-16T08:48:18+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
     </url>
@@ -37,8 +30,15 @@
     </url>
     
     <url>
+      <loc>/docs/vscode/%E7%BE%8E%E5%8C%96/</loc>
+      <lastmod>2022-09-12T08:48:23+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
       <loc>/docs/vscode/git%E6%8F%92%E4%BB%B6/</loc>
-      <lastmod>2022-09-06T08:48:23+00:00</lastmod>
+      <lastmod>2022-09-10T08:48:23+00:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
     </url>

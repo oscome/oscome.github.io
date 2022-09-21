@@ -13,33 +13,42 @@
     
     
     <item>
+      <title>项目分享</title>
+      <link>/project/</link>
+      <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
+      
+      <guid>/project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>程序语言排行榜</title>
       <link>/lang/</link>
-      <pubDate>Tue, 06 Oct 2020 08:48:45 +0000</pubDate>
+      <pubDate>Sat, 17 Sep 2022 16:23:18 +0800</pubDate>
       
       <guid>/lang/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>开源到</title>
+      <title>vscode扩展</title>
       <link>/docs/</link>
       <pubDate>Tue, 06 Oct 2020 08:48:23 +0000</pubDate>
       
       <guid>/docs/</guid>
-      <description></description>
+      <description>如果您正在使用 VSCode ，那么不妨试试下面这些扩展，有趣又有效。如果你有其他的扩展推荐，也欢迎在评论区分享。</description>
     </item>
     
     <item>
-      <title>oscome -- 小小欧</title>
+      <title>oscome from 小欧</title>
       <link>/about/</link>
       <pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate>
       
       <guid>/about/</guid>
-      <description>项目起源 # 起初是在自己工作学习中，苦于没有资源和实践项目来提升技术，便有了这个想法，去搜集有趣的项目，供大家实践参考。
-后续考虑到也可以分享更多，比如效率工具、技术资讯、开源书籍、业内动态等等。
-目前网站处于初期建设状态，欢迎各位开发者添砖加瓦。
-小小欧其人 # 七年后端开发经验，目前带在某三线城市。
+      <description>项目起源 # 起初是在自己工作学习中，苦于没有资源和实践项目来提升技术，便有了这个想法，搜集一些有趣的有实用项目，供大家参考。
+后续考虑到也可以分享更多，比如扩展工具、技术资讯、开源书籍等等。
+目前网站处于初期建设状态，欢迎各位开发者提出建议。
+小欧其人 # 七年后端开发经验，目前在扬州，自由职业中。
 联系方式 #  公众号：开源到  </description>
     </item>
     

@@ -12,51 +12,32 @@
       <pubDate>Tue, 20 Sep 2022 00:28:23 +0000</pubDate>
       
       <guid>/docs/vscode/debug/</guid>
-      <description>本期给大家推荐几个通用型的插件，无关乎语言层面，希望能提升你的工作效率，增进你的视觉体验。
-vscode-icons # 地址： https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
-这个插件会根据文件后缀、名称显示不同的 icons，颜值颇高，设置后看着各种小图标心情舒畅，颜值党值得一试，如下图。（也可以自己设置喜欢的图标主题，扩展栏搜索 tag:icon-theme 安装你喜欢的即可）
-Code Runner # 地址: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner
-这是小欧近期学习C++时发现的，可运行多种语言的代码片段，如 C, C++, Java, JavaScript, PHP, Python,, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH,, Visual Basic .NET, Clojure, Haxe, Objective-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart&amp;hellip;&amp;hellip;
-使用方法非常简单，光标在需要 debug 的文件中，然后 control+option+N，就可以 run code 啦！效果如图：（PS：你也可以自行定义命令。没错， &amp;ndash;std=c++11 就是小欧自定义的）
-Project Manager # 地址： https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
-不知道大家在实际工作中，是否像小欧一样需要在多个项目间反复横跳。如果是这样，并觉得 VSCode 的下方历史项目操作起来略显繁琐，那么 project manager 绝对值得一试。
-安装完成后，左侧会有快捷选项卡，方便！！！可以点击上方修改图标自行配置，比如我的:​
-[ { &amp;quot;name&amp;quot;: &amp;quot;go-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;go-example&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-example&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;rust-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/rust-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;cpp-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/cpp-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;imgo&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/imgo&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true } ]  不仅如此，你还可以设置tag，方便不同标记查看。</description>
+      <description>不会 Debug 还做什么开发，试试下面几个 Debug 神器。
+Code Runner #  项目地址: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner
+ 这是小欧近期学习C++时发现的，可运行多种语言的代码片段，如 C, C++, Java, JavaScript, PHP, Python,, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH,, Visual Basic .NET, Clojure, Haxe, Objective-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart&amp;hellip;&amp;hellip;
+使用方法非常简单，光标在需要 debug 的文件中，然后 control+option+N，就可以 run code 啦！效果如图：（PS：你也可以自行定义命令。没错， &amp;ndash;std=c++11 就是小欧自定义的）</description>
     </item>
     
     <item>
-      <title>摸 🐟 ？不存在的</title>
+      <title>摸 🐟 鱼？不存在的</title>
       <link>/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</link>
-      <pubDate>Fri, 16 Sep 2022 08:48:23 +0000</pubDate>
+      <pubDate>Fri, 16 Sep 2022 08:48:18 +0000</pubDate>
       
       <guid>/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</guid>
-      <description>本期推荐 VSCode 放（摸）松（🐟）神器，上班和学习一样，要劳逸结合的哦。
-小霸王 # 地址： https://marketplace.visualstudio.com/items?itemName=gamedilong.anes
-小霸王是一款基于vscode的nes游戏插件，能让你在紧张的开发之余在vscode里放松身心。选择想要玩的游戏，右键菜单下载。下载完成后，会加载到local菜单。点击即可完。 小霸王&amp;mdash;&amp;ndash;其乐无穷！！！但要记得戴耳机或者关闭外音哦！别问我是怎么知道的。。。
-韭菜盒子 # 地址： https://marketplace.visualstudio.com/items?itemName=giscafer.leek-fund
-VSCode 里也可以看股票 &amp;amp; 基金 &amp;amp; 期货实时数据，投资有风险，入市需谨慎！
-小欧并不建议初入股市的朋友打开实时查看，会三心二意的。
-Cloudmusic # 网易云音乐插件，功能还蛮丰富的，直接登录账号即可，会同步歌单播客等信息，效果如图。（代码和音乐很配哦）
-z-reader # 地址： https://marketplace.visualstudio.com/items?itemName=aooiu.z-reader
-用来摸鱼或学习的小说阅读插件，支持在线搜索笔趣阁起点等，也支持本地阅读，支持 txt 和 epub 格式，效果如图。
-NBA real-time score # 地址： https://marketplace.visualstudio.com/items?itemName=liyangjj.NBARealTimeScore
-实时获取当天NBA比赛比分，并显示在vscode下方状态栏左侧；更可以观看实时文字直播，以及赛后数据统计。让你实现边 coding 边关注NBA。
+      <description>本期推荐 VSCode 放（摸）松（🐟）神器，上班和学习一样，要劳逸结合的哦 👍
+小霸王 #  项目地址: https://marketplace.visualstudio.com/items?itemName=gamedilong.anes
+ 小霸王是一款基于vscode的nes游戏插件，能让你在紧张的开发之余在vscode里放松身心。选择想要玩的游戏，右键菜单下载。下载完成后，会加载到local菜单。点击即可完。 小霸王&amp;mdash;&amp;ndash;其乐无穷！！！但要记得戴耳机或者关闭外音哦！别问我是怎么知道的。。。
+韭菜盒子 #  项目地址: https://marketplace.visualstudio.com/items?itemName=giscafer.leek-fund
+ VSCode 里也可以看股票 &amp;amp; 基金 &amp;amp; 期货实时数据，投资有风险，入市需谨慎！ ⏰s
+小欧并不建议初入股市的朋友打开实时查看，会三心二意的，bug连篇的。。。。。。
+Cloudmusic #  项目地址: https://marketplace.visualstudio.com/items?itemName=yxl.cloudmusic
+ 网易云音乐插件，功能还蛮丰富的，直接登录账号即可，会同步歌单播客等信息，效果如图。（代码和音乐真的很配哦 💯 ）
+z-reader #  项目地址:https://marketplace.visualstudio.com/items?itemName=aooiu.z-reader
+ 用来摸鱼或学习的小说阅读插件，支持在线搜索笔趣阁起点等，也支持本地阅读，支持 txt 和 epub 格式，效果如图。
+NBA real-time score #  项目地址: https://marketplace.visualstudio.com/items?itemName=liyangjj.NBARealTimeScore
+ 实时获取当天NBA比赛比分，并显示在vscode下方状态栏左侧；更可以观看实时文字直播，以及赛后数据统计。让你实现边 coding 边关注NBA。
 鼓励师系列 # 这个不过多介绍，可自行搜索。
- 本期主要介绍了几个延年益寿的插件，coding 之余也要放松哈，摸鱼不可耻，但要适当哈!</description>
-    </item>
-    
-    <item>
-      <title>IDE也要颜值，好看使我开心</title>
-      <link>/docs/vscode/%E7%BE%8E%E5%8C%96/</link>
-      <pubDate>Mon, 12 Sep 2022 08:48:23 +0000</pubDate>
-      
-      <guid>/docs/vscode/%E7%BE%8E%E5%8C%96/</guid>
-      <description>本期给大家推荐几个颜值党扩展，无关乎语言层面，IDE 看得舒适，coding 更快。
-vscode-icons # 地址： https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
-这个插件会根据文件后缀、名称显示不同的 icons，颜值颇高，设置后看着各种小图标心情舒畅，颜值党值得一试，如下图。（也可以自己设置喜欢的图标主题，扩展栏搜索 tag:icon-theme 安装你喜欢的即可）
-Better Comments # 地址： https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
-美化注释必选，可以通过第一个字符区分不同的注释，也可以自定义，@和diy都是小欧自定义的，不同颜色也更方便区分不同级别的注释，好看又实用。
- 颜值党的你有没有其他扩展推荐呢？不妨在评论区留言，分享给大家吧！</description>
+ 摸鱼不可耻，但要适当哈! 🧑</description>
     </item>
     
     <item>
@@ -65,11 +46,12 @@ Better Comments # 地址： https://marketplace.visualstudio.com/items?itemName=
       <pubDate>Mon, 12 Sep 2022 08:48:23 +0000</pubDate>
       
       <guid>/docs/vscode/%E5%A4%9A%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</guid>
-      <description>如果你经常需要多项目切换，那么不妨试试下面几个扩展。
-Project Manager # 地址： https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
-不知道大家在实际工作中，是否像小欧一样需要在多个项目间反复横跳。如果是这样，并觉得 VSCode 的下方历史项目操作起来略显繁琐，那么 project manager 绝对值得一试。
+      <description>项目多了，需要经常切换，但自带的历史记录操作繁琐怎么办？
+不妨试试下面这几个扩展。
+Project Manager #  项目地址: https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
+ 不知道大家在实际工作中，是否像小欧一样需要在多个项目间反复横跳。如果是这样，并觉得 VSCode 的下方历史项目操作起来略显繁琐，那么 project manager 绝对值得一试。
 安装完成后，左侧会有快捷选项卡，方便！！！可以点击上方修改图标自行配置，比如我的:​
-[ { &amp;quot;name&amp;quot;: &amp;quot;go-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;go-example&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-example&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;rust-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/rust-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;cpp-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/cpp-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;imgo&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/imgo&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true } ]  不仅如此，你还可以设置tag，方便不同标记查看。</description>
+[ { &amp;quot;name&amp;quot;: &amp;quot;go-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;go-example&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/go-example&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;rust-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/rust-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;cpp-learning&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/cpp-learning&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true }, { &amp;quot;name&amp;quot;: &amp;quot;imgo&amp;quot;, &amp;quot;rootPath&amp;quot;: &amp;quot;/Users/sai/Documents/github/imgo&amp;quot;, &amp;quot;paths&amp;quot;: [], &amp;quot;tags&amp;quot;: [], &amp;quot;enabled&amp;quot;: true } ]  不仅如此，你还可以设置tag，项目太多时方便不同标记查看。</description>
     </item>
     
     <item>
@@ -84,22 +66,41 @@ TODO Tree 可以很方便地显示当前项目中所有的TODO所在的文件及
     </item>
     
     <item>
+      <title>颜值扩展</title>
+      <link>/docs/vscode/%E7%BE%8E%E5%8C%96/</link>
+      <pubDate>Mon, 12 Sep 2022 08:48:23 +0000</pubDate>
+      
+      <guid>/docs/vscode/%E7%BE%8E%E5%8C%96/</guid>
+      <description>本期推荐几个颜值扩展，无关乎语言层面，IDE 看得舒适，coding 更快。
+vscode-icons #  项目地址: https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
+ 这个插件会根据文件后缀、名称显示不同的 icons，颜值颇高，设置后看着各种小图标心情舒畅，颜值党值得一试，如下图。（也可以自己设置喜欢的图标主题，扩展栏搜索 tag:icon-theme 安装你喜欢的即可）
+Better Comments #  项目地址: https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
+ 美化注释必选，可以通过第一个字符区分不同的注释，也可以自定义，@和diy都是小欧自定义的，不同颜色也更方便区分不同级别的注释，好看又实用。
+indent-rainbow #  项目地址: https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
+ 让缩进不再冰冷，项彩虹🌈一样绚烂。
+我的颜色配置如下，效果
+{ ... &amp;quot;indentRainbow.colorOnWhiteSpaceOnly&amp;quot;: false, &amp;quot;indentRainbow.colors&amp;quot;: [ &amp;quot;rgba(255,255,60,0.7)&amp;quot;, &amp;quot;rgba(127,255,127,0.7)&amp;quot;, &amp;quot;rgba(255,127,255,0.7)&amp;quot;, &amp;quot;rgba(60 90 170,0.4)&amp;quot; ], &amp;quot;indentRainbow.ignoreErrorLanguages&amp;quot;: [ &amp;quot;markdown&amp;quot; ], &amp;quot;indentRainbow.excludedLanguages&amp;quot;: [ &amp;quot;plaintext&amp;quot; ], &amp;quot;indentRainbow.includedLanguages&amp;quot;: [ ], &amp;quot;indentRainbow.indicatorStyle&amp;quot;: &amp;quot;light&amp;quot;, .... }  效果如图: 简体中文 #  项目地址: https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans
+ 适用于 VS Code 的中文（简体）语言包，无需多言。
+Better Align #  项目地址: https://marketplace.</description>
+    </item>
+    
+    <item>
       <title>Git 插件</title>
       <link>/docs/vscode/git%E6%8F%92%E4%BB%B6/</link>
-      <pubDate>Tue, 06 Sep 2022 08:48:23 +0000</pubDate>
+      <pubDate>Sat, 10 Sep 2022 08:48:23 +0000</pubDate>
       
       <guid>/docs/vscode/git%E6%8F%92%E4%BB%B6/</guid>
       <description>Git 想必在大家伙的日常开发中是必不可少的，本期给大家推荐几个 git 相关插件，希望能提高你的开发效率。
-gitigone # 地址： https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore
-如果你觉得写 gitigone 是个烦人的事情，那么你可以试试，安装后command+shift+P打开，就贸易选择 add gitigone 了。
-选择后具体语言后就会生成gitignore 文件啦。 Git History # 地址： https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory
-在某个文件里直接点击右键，就可以查看当前你文件的 git 历史了，相当方便。
-Git Graph # 地址： https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
-安装完成后左下角有快捷菜单，点击后看查看自己的 git 提交，如图：
+gitigone #  项目地址: https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore
+ 如果你觉得写 gitigone 是个烦人的事情，那么你可以试试，安装后command+shift+P打开，就贸易选择 add gitigone 了。
+选择后具体语言后就会生成gitignore 文件啦。 Git History #  项目地址: https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory
+ 在某个文件里直接点击右键，就可以查看当前你文件的 git 历史了，相当方便。
+Git Graph #  项目地址: https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
+ 安装完成后左下角有快捷菜单，点击后看查看自己的 git 提交，如图：
 可点击查看单词 commit 的明细：
-github # 地址： https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
-这个算是针对 github 的扩展，可以快捷的插件 github PR，操作课件如下图。  我目前用到比较多的是 git history 和 git graph，像其他的 gitlens 等插件使用不多，就不推荐了。
-如果有其他 git 插件推荐，欢迎在评论区留言分享，感谢您的阅读。</description>
+github #  项目地址: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
+ 这个算是针对 github 的扩展，可以快捷的插件 github PR，操作课件如下图。  目前小欧用到比较多的是 git history 和 git graph，像其他的 gitlens 等插件使用不多，就不推荐了。
+如果您有其他 git 插件推荐，欢迎在评论区留言分享，感谢您的阅读。</description>
     </item>
     
   </channel>

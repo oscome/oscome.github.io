@@ -9,8 +9,8 @@
 <link rel="preload" as="font" href="/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
 
   <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
-
-  <link rel="stylesheet" href="/main.638fb460b0c6bb1ce0f1c53be017dec72321d0d579b842f9e34ece7f4456e259a9716ffdf067012eca3f4a8cfe990bef4f42ee27dcb75284f164d71382f115cc.css" integrity="sha512-Y4&#43;0YLDGuxzg8cU74BfexyMh0NV5uEL5407Of0RW4lmpcW/98GcBLso/Soz&#43;mQvvT0LuJ9y3UoTxZNcTgvEVzA==" crossorigin="anonymous">
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="/main.15674bcd3eebf2bc1fc733a34c3086384315449680f9584271ea7daacadb79e5b6e7897c97c9d0c3ae5224846fcba84198ba4b75e733407776ca61043b0faf8b.css" integrity="sha512-FWdLzT7r8rwfxzOjTDCGOEMVRJaA&#43;VhCcep9qsrbeeW254l8l8nQw65SJIRvy6hBmLpLdeczQHd2ymEEOw&#43;viw==" crossorigin="anonymous">
 <noscript><style>img.lazyload { display: none; }</style></noscript>
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -148,7 +148,12 @@
 </head>
 
   <body class="docs list">
-    <div class="sticky-top">
+    <div id="announcement" data-id="global-alert-bb46aa8f466ec380d4482d7748a271a3" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，会陆续完善各个模块的文档，感谢支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
 <div class="header-bar"></div>
 
 <header class="navbar navbar-expand-lg navbar-light doks-navbar">
@@ -170,7 +175,17 @@
       <div class="offcanvas-body p-4 p-lg-0">
         <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
               <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目</a>
+              </li>
+            
+          
+              <li class="nav-item">
                 <a class="nav-link ps-0 py-1 active" href="/docs/">Docs</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
               </li>
             
           </ul>
@@ -183,7 +198,7 @@
         <hr class="text-black-50 my-4 d-lg-none">
         <ul class="nav flex-column flex-lg-row">
           <li class="nav-item">
-              <a class="nav-link social-link" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
             </li>
           </ul>
 
@@ -221,12 +236,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 ？不存在的</a></li>
-              
-            
-              
-                
-                <li><a class="docs-link rounded" href="/docs/vscode/%E7%BE%8E%E5%8C%96/">IDE也要颜值，好看使我开心</a></li>
+                <li><a class="docs-link rounded" href="/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 鱼？不存在的</a></li>
               
             
               
@@ -237,6 +247,11 @@
               
                 
                 <li><a class="docs-link rounded" href="/docs/vscode/tips/">记得备注，回来修改</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="/docs/vscode/%E7%BE%8E%E5%8C%96/">颜值扩展</a></li>
               
             
               
@@ -299,14 +314,6 @@
 					
 				
 					
-						<div class="card my-3">
-							<div class="card-body">
-								<a class="stretched-link" href="/docs/vscode/%E7%BE%8E%E5%8C%96/">IDE也要颜值，好看使我开心 &rarr;</a>
-							</div>
-						</div>
-					
-				
-					
 				
 					
 						<div class="card my-3">
@@ -329,7 +336,7 @@
 					
 						<div class="card my-3">
 							<div class="card-body">
-								<a class="stretched-link" href="/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 ？不存在的 &rarr;</a>
+								<a class="stretched-link" href="/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 鱼？不存在的 &rarr;</a>
 							</div>
 						</div>
 					
@@ -338,6 +345,14 @@
 						<div class="card my-3">
 							<div class="card-body">
 								<a class="stretched-link" href="/docs/vscode/tips/">记得备注，回来修改 &rarr;</a>
+							</div>
+						</div>
+					
+				
+					
+						<div class="card my-3">
+							<div class="card-body">
+								<a class="stretched-link" href="/docs/vscode/%E7%BE%8E%E5%8C%96/">颜值扩展 &rarr;</a>
 							</div>
 						</div>
 					
@@ -371,8 +386,8 @@
 
 <script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
   <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
-  <script src="/main.min.7f21fde90b8f0ed6b81d2a39b888f4584abcc728566b21039d94beee8cda9188cc42ef8d37d34911caca3fcb244d7d3112e35e5168eb09dca4e6ad12eee8cd4d.js" integrity="sha512-fyH96QuPDta4HSo5uIj0WEq8xyhWayEDnZS&#43;7ozakYjMQu&#43;NN9NJEcrKP8skTX0xEuNeUWjrCdyk5q0S7ujNTQ==" crossorigin="anonymous" defer></script>
-  <script src="/index.min.48d09ac7f77d99c83097d8a8967d651c80b745a13c8b64cd9ceee4a6f973212a63d7583152179d9afaebb2ccc55c6baa87625df98fe8485c3e692cf699d60bd7.js" integrity="sha512-SNCax/d9mcgwl9ioln1lHIC3RaE8i2TNnO7kpvlzISpj11gxUhedmvrrsszFXGuqh2Jd&#43;Y/oSFw&#43;aSz2mdYL1w==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="/index.min.588255d4bd7066895088fcd9d10d0ca9ec41d04581dfbd9ffdc14d7ffabd8c2bdd4e8c401a85ff8746b65900d99b094b75b32cd2472c3decd93be097f40cad35.js" integrity="sha512-WIJV1L1wZolQiPzZ0Q0MqexB0EWB372f/cFNf/q9jCvdToxAGoX/h0a2WQDZmwlLdbMs0kcsPezZO&#43;CX9AytNQ==" crossorigin="anonymous" defer></script>
   
     
     <script>
