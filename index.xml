@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>工具分享</title>
+      <link>/tool/</link>
+      <pubDate>Thu, 22 Sep 2022 09:28:23 +0000</pubDate>
+      
+      <guid>/tool/</guid>
+      <description>常用工具 json格式化   时间戳转换   文本比较   常见加密md5、hmac等     </description>
+    </item>
+    
+    <item>
       <title>项目分享</title>
       <link>/project/</link>
       <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
@@ -31,12 +40,21 @@
     </item>
     
     <item>
-      <title>vscode扩展</title>
+      <title>软件扩展</title>
       <link>/docs/</link>
-      <pubDate>Tue, 06 Oct 2020 08:48:23 +0000</pubDate>
+      <pubDate>Fri, 16 Sep 2022 18:48:23 +0000</pubDate>
       
       <guid>/docs/</guid>
-      <description>如果您正在使用 VSCode ，那么不妨试试下面这些扩展，有趣又有效。如果你有其他的扩展推荐，也欢迎在评论区分享。</description>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>开源到</title>
+      <link>/weeks/</link>
+      <pubDate>Tue, 06 Oct 2020 08:47:36 +0000</pubDate>
+      
+      <guid>/weeks/</guid>
+      <description></description>
     </item>
     
     <item>
