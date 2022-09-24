@@ -10,13 +10,6 @@
   </url>
   
   <url>
-    <loc>/project/go/</loc>
-    <lastmod>2022-09-21T10:48:18+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>/project/go/learining/</loc>
     <lastmod>2022-09-21T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -89,6 +82,20 @@
   <url>
     <loc>/docs/tool/</loc>
     <lastmod>2022-09-06T08:48:23+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>/project/go/</loc>
+    <lastmod>2022-09-06T08:48:18+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>/project/php/</loc>
+    <lastmod>2022-09-04T08:48:18+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
