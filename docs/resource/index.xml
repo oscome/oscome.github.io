@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开源资源 on </title>
+    <link>/docs/resource/</link>
+    <description>Recent content in 开源资源 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="/docs/resource/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang</title>
+      <link>/docs/resource/go/</link>
+      <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>/docs/resource/go/</guid>
+      <description>【基础】go 指南 # https://tour.go-zh.org/list 
+熟悉语法，可以直接 web 中运行。
+【基础】Effective Go # https://golang.google.cn/doc/effective_go
+可以理解为 go 指南的拓展，新手必备。如果习惯中文，可以看 https://learnku.com/docs/effective-go/2020
+【基础】gin docs # https://gin-gonic.com/zh-cn/docs/ 
+gin 应该目前golang web api 领域使用者最多的了，docs提供了很多基础的例子，如果需要更多功能，可以基于业务和经验拓展。
+【进阶】go设计模式 # https://lailin.xyz/post/go-design-pattern.html
+Go 设计模式实现，作者很用心，适合学习语法后练习。
+【进阶】gorm # https://gorm.io/zh_CN/docs/
+应该是golang最火热的orm库了，使用者众多，相信你迟早会用上的。
+【进阶】geektutu 的七天系列 # https://github.com/geektutu/7days-golang
+geektutu 的七天系列，质量很高。有一定难度，但有编程基础的go初学者跟着多练习会提升很多的，强烈推荐。
+【进阶】go-kit 微服务 # https://www.hwholiday.com/categories/go-kit/
+适合学习 go-kit，设计知识面很广，jwt、etcd、hystrix。。。
+【底层逻辑】go 语言设计与实现 # https://draveness.me/golang/ 
+draveness 的这本书相当硬核，偏底层实现，为了深入了解go，值得多读几次。如果是为了面试，我也推荐你读读。
+【底层逻辑】go语言原本 # https://golang.design/under-the-hood/zh-cn/preface/
+也是大牛，也很硬核解析，
+优质博客 #  飞雪无情 峰云就她了  </description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>/docs/resource/rust/</link>
+      <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>/docs/resource/rust/</guid>
+      <description>rust 正在学习中，如有好的学习资源，会继续更新。
+基础教程 # rust 程序设计 # https://doc.rust-lang.org/book/
+官网教程，也有中文版本https://kaisery.github.io/trpl-zh-cn/title-page.html
+rust 语言圣经 # https://course.rs/about-book.html</description>
+    </item>
+    
+    <item>
+      <title>php</title>
+      <link>/docs/resource/php/</link>
+      <pubDate>Tue, 20 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>/docs/resource/php/</guid>
+      <description>php 的学习一般可以从语法学起，然后是搭建环境，然后是框架，然后就可以搭建项目了，一般会涉及前端知识，也可以学习下。
+几年前觉得搭建环境是个麻烦事，如今docker、宝塔兴起后，搭建不费事。
+教程手册 # php教程 # https://www.runoob.com/php/php-tutorial.html
+熟悉语法使用，小欧个人还比较喜欢菜鸟的各个系列教程。w3school的也不错，https://www.w3school.com.cn/php/index.asp
+php手册 # http://www.php.net/manual/zh/ 
+phper必备，适合作为手册使用，各种例子，新特性都有点。
+pecl # http://pecl.php.net/
+php 扩展仓库，相信你肯定用得到。
+PSR # https://www.php-fig.org/psr/
+非常建议以此为php编码标准，但很多phper不知道，强烈建议看看。
+composer中文文档 # https://docs.phpcomposer.com/
+Composer 是 PHP 的一个依赖管理工具，现在的项目中几乎是必不可少的了。
+框架 # Laravel 中文文档 # https://learnku.com/docs/laravel/9.x
+Laravel 无需多言，功能十分强大。这个剖析文档也值得看看，https://learnku.com/docs/laravel-core-concept/5.5
+ThinkPHP文档 # https://www.kancloud.cn/manual/thinkphp6_0/1037479
+ThinkPHP 也无需多言，国内使用者众。
+workerman # https://www.workerman.net/doc/workerman/
+更底层更通用的服务框架，你可以用它开发tcp代理、梯子代理、做游戏服务器、邮件服务器、ftp服务器、甚至开发一个php版本的redis、php版本的数据库、php版本的nginx、php版本的php-fpm等等。
+如果想用php做个im，我推荐这个，曾经使用 workerman 成功运行。
+yii中文文档 # https://www.yiichina.com/doc
+yii 也非常强大，插件式框架，国内使用者也非常多。
+swoole 文档 # https://wiki.swoole.com/#/
+swoole 性能强大，如果遇到php瓶颈，可以尝试一下。
+hyperf 文档 # https://hyperf.wiki/2.2/
+近几年很火的 swoole 框架。
+优质博客 # 风雪之隅 # https://www.</description>
+    </item>
+    
+  </channel>
+</rss>
