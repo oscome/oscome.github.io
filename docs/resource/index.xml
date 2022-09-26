@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>开源资源 on </title>
-    <link>/docs/resource/</link>
+    <link>http://oscome.com/docs/resource/</link>
     <description>Recent content in 开源资源 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="/docs/resource/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="http://oscome.com/docs/resource/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>golang</title>
-      <link>/docs/resource/go/</link>
+      <link>http://oscome.com/docs/resource/go/</link>
       <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>/docs/resource/go/</guid>
+      <guid>http://oscome.com/docs/resource/go/</guid>
       <description>【基础】go 指南 # https://tour.go-zh.org/list 
 熟悉语法，可以直接 web 中运行。
 【基础】Effective Go # https://golang.google.cn/doc/effective_go
@@ -35,10 +35,10 @@ draveness 的这本书相当硬核，偏底层实现，为了深入了解go，�
     
     <item>
       <title>rust</title>
-      <link>/docs/resource/rust/</link>
+      <link>http://oscome.com/docs/resource/rust/</link>
       <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>/docs/resource/rust/</guid>
+      <guid>http://oscome.com/docs/resource/rust/</guid>
       <description>rust 正在学习中，如有好的学习资源，会继续更新。
 基础教程 # rust 程序设计 # https://doc.rust-lang.org/book/
 官网教程，也有中文版本https://kaisery.github.io/trpl-zh-cn/title-page.html
@@ -47,10 +47,10 @@ rust 语言圣经 # https://course.rs/about-book.html</description>
     
     <item>
       <title>php</title>
-      <link>/docs/resource/php/</link>
+      <link>http://oscome.com/docs/resource/php/</link>
       <pubDate>Tue, 20 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>/docs/resource/php/</guid>
+      <guid>http://oscome.com/docs/resource/php/</guid>
       <description>php 的学习一般可以从语法学起，然后是搭建环境，然后是框架，然后就可以搭建项目了，一般会涉及前端知识，也可以学习下。
 几年前觉得搭建环境是个麻烦事，如今docker、宝塔兴起后，搭建不费事。
 教程手册 # php教程 # https://www.runoob.com/php/php-tutorial.html

@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>php 项目分享 on </title>
-    <link>/project/php/</link>
+    <link>http://oscome.com/project/php/</link>
     <description>Recent content in php 项目分享 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 04 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="/project/php/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="http://oscome.com/project/php/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

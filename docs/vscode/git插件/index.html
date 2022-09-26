@@ -4,30 +4,30 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="preload" as="font" href="/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="font" href="/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="font" href="/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="http://oscome.com/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="http://oscome.com/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="http://oscome.com/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
 
   <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
 <script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
-  <link rel="stylesheet" href="/main.626666c658ef195cd6d83bc276043a394b9577f69e11afecdad9cceb2e60de9bc164a47a49919ff81022eefa9f6d612316a17a7a798be92e8af92ab56097c282.css" integrity="sha512-YmZmxljvGVzW2DvCdgQ6OUuVd/aeEa/s2tnM6y5g3pvBZKR6SZGf&#43;BAi7vqfbWEjFqF6enmL6S6K&#43;Sq1YJfCgg==" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://oscome.com/main.3bcb5f004c969d50199a9f0fe28747fb605c8cdbcc1b2a6d24a348934f78f061d88efc05740bd7be4aa09ea2e21102ce7fa14fa45939288f377579bd93a9137e.css" integrity="sha512-O8tfAEyWnVAZmp8P4odH&#43;2BcjNvMGyptJKNIk0948GHYjvwFdAvXvkqgnqLiEQLOf6FPpFk5KI83dXm9k6kTfg==" crossorigin="anonymous">
 <noscript><style>img.lazyload { display: none; }</style></noscript>
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <title>Git 插件 | 开源到</title>
 <meta name="description" content="VSCode 扩展分享，VSCode Git 插件">
-<link rel="canonical" href="/docs/vscode/git%E6%8F%92%E4%BB%B6/">
+<link rel="canonical" href="http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 插件">
 <meta property="og:description" content="VSCode 扩展分享，VSCode Git 插件">
-<meta property="og:url" content="/docs/vscode/git%E6%8F%92%E4%BB%B6/">
+<meta property="og:url" content="http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/">
 <meta property="og:site_name" content="开源到">
 <meta property="article:published_time" content="2022-09-10T08:48:28+08:00">
   <meta property="article:modified_time" content="2022-09-10T08:48:28+08:00">
   
-  <meta property="og:image" content="/oscome.png"/>
+  <meta property="og:image" content="http://oscome.com/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
     
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
 <meta name="twitter:creator" content="@henkverlinde">
 <meta name="twitter:title" content="Git 插件">
 <meta name="twitter:description" content="VSCode 扩展分享，VSCode Git 插件">
-<meta name="twitter:image" content="/oscome.png">
+<meta name="twitter:image" content="http://oscome.com/oscome.png">
     <meta name="twitter:image:alt" content="Git 插件">
 
 <script type="application/ld+json">
@@ -44,9 +44,9 @@
   "@graph": [
     {
       "@type": "Person",
-        "@id": "/#/schema/person/1",
+        "@id": "http://oscome.com/#/schema/person/1",
       "name": "oscome",
-      "url": "/",
+      "url": "http://oscome.com/",
       "sameAs": [
         "1"
         , "1"
@@ -54,8 +54,8 @@
         ],
       "image": {
           "@type": "ImageObject",
-          "@id": "/#/schema/image/1",
-          "url": "/oscome.png",
+          "@id": "http://oscome.com/#/schema/image/1",
+          "url": "http://oscome.com/oscome.png",
           "width":  1280 ,
           "height":  640 ,
           "caption": "oscome"
@@ -63,57 +63,75 @@
       },
     {
       "@type": "WebSite",
-      "@id": "/#/schema/website/1",
-      "url": "/",
+      "@id": "http://oscome.com/#/schema/website/1",
+      "url": "http://oscome.com/",
       "name": "开源到",
       "description": "分享开源项目，技术资讯",
       "publisher": {
-          "@id": "/#/schema/person/1"
+          "@id": "http://oscome.com/#/schema/person/1"
         }
       },
     {
       "@type": "WebPage",
-      "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/",
-      "url": "/docs/vscode/git%E6%8F%92%E4%BB%B6/",
+      "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/",
+      "url": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/",
       "name": "Git 插件",
       "description": "VSCode 扩展分享，VSCode Git 插件",
       "isPartOf": {
-        "@id": "/#/schema/website/1"
+        "@id": "http://oscome.com/#/schema/website/1"
       },
       "about": {
-          "@id": "/#/schema/person/1"
+          "@id": "http://oscome.com/#/schema/person/1"
         },
       "datePublished": "2022-09-10T08:48:28CET",
       "dateModified": "2022-09-10T08:48:28CET",
       "breadcrumb": {
-        "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/breadcrumb/1"
+        "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2"
+        "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["/docs/vscode/git%E6%8F%92%E4%BB%B6/"]
+        "@type": "ReadAction", "target": ["http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/breadcrumb/1",
+      "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
         "position":  1 ,
         "item": {
           "@type": "WebPage",
-          "@id": "/",
-          "url": "/",
+          "@id": "http://oscome.com/",
+          "url": "http://oscome.com/",
           "name": "Home"
           }
         },{
         "@type": "ListItem",
         "position":  2 ,
         "item": {
-          "@id": "/docsvscodegit%E6%8F%92%E4%BB%B6/"
+          "@type": "WebPage",
+          "@id": "http://oscome.com/docs/",
+          "url": "http://oscome.com/docs/",
+          "name": "Docs"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "http://oscome.com/docs/vscode/",
+          "url": "http://oscome.com/docs/vscode/",
+          "name": "Vscode"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/"
           }
         }]
     },
@@ -123,25 +141,25 @@
       "@graph": [
         {
           "@type": "Article",
-          "@id": "/#/schema/article/1",
+          "@id": "http://oscome.com/#/schema/article/1",
           "headline": "Git 插件",
           "description": "VSCode 扩展分享，VSCode Git 插件",
           "isPartOf": {
-            "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/"
+            "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/"
           },
           "mainEntityOfPage": {
-            "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/"
+            "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/"
           },
           "datePublished": "2022-09-10T08:48:28CET",
           "dateModified": "2022-09-10T08:48:28CET",
           "author": {
-            "@id": "/#/schema/person/2"
+            "@id": "http://oscome.com/#/schema/person/2"
           },
           "publisher": {
-              "@id": "/#/schema/person/1"
+              "@id": "http://oscome.com/#/schema/person/1"
             },
           "image": {
-            "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2"
+            "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2"
           }
         }
       ]
@@ -151,7 +169,7 @@
       "@graph": [
         {
           "@type": "Person",
-          "@id": "/#/schema/person/2",
+          "@id": "http://oscome.com/#/schema/person/2",
           "name": "oscome",
           "sameAs": [
             , "https://github.com/oscome"
@@ -164,9 +182,9 @@
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2",
-          "url": "/oscome.png",
-          "contentUrl": "/oscome.png",
+          "@id": "http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2",
+          "url": "http://oscome.com/oscome.png",
+          "contentUrl": "http://oscome.com/oscome.png",
           "caption": "Git 插件"
         }
       ]
@@ -177,7 +195,7 @@
 </script>
 
   <meta name="theme-color" content="#fff">
-<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="http://oscome.com/favicon.ico" sizes="any">
 
   
 
@@ -273,17 +291,17 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 鱼？不存在的</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 鱼？不存在的</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/vscode/%E7%BE%8E%E5%8C%96/">颜值扩展</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/vscode/%E7%BE%8E%E5%8C%96/">颜值扩展</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded active" href="/docs/vscode/git%E6%8F%92%E4%BB%B6/">Git 插件</a></li>
+                <li><a class="docs-link rounded active" href="http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/">Git 插件</a></li>
               
             
           </ul>
@@ -300,7 +318,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/tool/markdown/">Markdown 编辑器</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/tool/markdown/">Markdown 编辑器</a></li>
               
             
           </ul>
@@ -317,17 +335,17 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/resource/go/">golang</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/resource/go/">golang</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/resource/rust/">rust</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/resource/rust/">rust</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/resource/php/">php</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/resource/php/">php</a></li>
               
             
           </ul>
@@ -362,17 +380,17 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 鱼？不存在的</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/">摸 🐟 鱼？不存在的</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/vscode/%E7%BE%8E%E5%8C%96/">颜值扩展</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/vscode/%E7%BE%8E%E5%8C%96/">颜值扩展</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded active" href="/docs/vscode/git%E6%8F%92%E4%BB%B6/">Git 插件</a></li>
+                <li><a class="docs-link rounded active" href="http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/">Git 插件</a></li>
               
             
           </ul>
@@ -389,7 +407,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/tool/markdown/">Markdown 编辑器</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/tool/markdown/">Markdown 编辑器</a></li>
               
             
           </ul>
@@ -406,17 +424,17 @@
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/resource/go/">golang</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/resource/go/">golang</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/resource/rust/">rust</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/resource/rust/">rust</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="/docs/resource/php/">php</a></li>
+                <li><a class="docs-link rounded" href="http://oscome.com/docs/resource/php/">php</a></li>
               
             
           </ul>
@@ -593,7 +611,7 @@
 <script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
   <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
   <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
-  <script src="/index.min.e60a53fd408fb6647d4568000b102e9761b1e67a1f6b32e1d37b4eb78992f4e2fa93633b409c889d7c829ca3b266f367981590510cbf5f6f61e5831931efb811.js" integrity="sha512-5gpT/UCPtmR9RWgACxAul2Gx5nofazLh03tOt4mS9OL6k2M7QJyInXyCnKOyZvNnmBWQUQy/X29h5YMZMe&#43;4EQ==" crossorigin="anonymous" defer></script>
+  <script src="http://oscome.com/index.min.d9817e828ccd0147a7ae27cbd85056acc3aa27a7e5349f64cc4ca3f6a626a934c02d4dcd6a84ce9883fd95601aad2f8cecfc4fd2710b2e73a017d77d3fd635e8.js" integrity="sha512-2YF&#43;gozNAUenrifL2FBWrMOqJ6flNJ9kzEyj9qYmqTTALU3NaoTOmIP9lWAarS&#43;M7PxP0nELLnOgF9d9P9Y16A==" crossorigin="anonymous" defer></script>
   
     
     <script>

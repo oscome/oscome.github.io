@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>程序语言排行榜 on </title>
-    <link>/lang/</link>
+    <link>http://oscome.com/lang/</link>
     <description>Recent content in 程序语言排行榜 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 17 Sep 2022 16:23:18 +0800</lastBuildDate><atom:link href="/lang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Sep 2022 16:23:18 +0800</lastBuildDate><atom:link href="http://oscome.com/lang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2022年9月TIOBE指数</title>
-      <link>/lang/202209/</link>
+      <link>http://oscome.com/lang/202209/</link>
       <pubDate>Sat, 17 Sep 2022 16:23:18 +0800</pubDate>
       
-      <guid>/lang/202209/</guid>
+      <guid>http://oscome.com/lang/202209/</guid>
       <description>Julia 距离前 20 名仅差 0.05%。Julia 专为数值分析和计算科学而设计。该领域有许多相互竞争的语言。那么是什么让 Julia 脱颖而出？Julia 击败了 Matlab，因为它更现代并且可以免费使用。此外，Julia 击败了 Python 和 R，因为它更快。由于数字运算和建模领域的需求巨大，Julia 在不久的将来有很大的机会进入前 20 名。请注意，Rust 语言也敲响了前 20 名的大门已经有一段时间了，但到目前为止还没有成功。时间会证明 Julia 是否会遭受同样的命运。</description>
     </item>
     
