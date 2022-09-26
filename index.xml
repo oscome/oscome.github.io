@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>开源到 on</title><link>/</link><description>Recent content in 开源到 on</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>Copyright (c) 2022 开源到 oscome.cn</copyright><lastBuildDate>Tue, 06 Oct 2020 08:47:36 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>项目分享</title><link>/topic/</link><pubDate>Mon, 26 Sep 2022 08:48:18 +0800</pubDate><guid>/topic/</guid><description/></item><item><title>工具分享</title><link>/tool/</link><pubDate>Thu, 22 Sep 2022 09:28:28 +0800</pubDate><guid>/tool/</guid><description> 集合工具 工具箱 刘明野的工具箱 常用工具 json格式化 时间戳转换 文本比较 常见加密md5、hmac等 golang sql2struct</description></item><item><title>项目分享</title><link>/project/</link><pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate><guid>/project/</guid><description/></item><item><title>程序语言排行榜</title><link>/lang/</link><pubDate>Sat, 17 Sep 2022 16:23:18 +0800</pubDate><guid>/lang/</guid><description/></item><item><title>软件扩展</title><link>/docs/</link><pubDate>Fri, 16 Sep 2022 18:48:28 +0800</pubDate><guid>/docs/</guid><description/></item><item><title>开源到</title><link>/weeks/</link><pubDate>Tue, 06 Oct 2020 08:47:36 +0800</pubDate><guid>/weeks/</guid><description/></item><item><title>oscome from 小欧</title><link>/about/</link><pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate><guid>/about/</guid><description>项目起源 # 起初是在自己学习过程中，会去搜集一些项目、软件去练习提升，如今尝试把这个搜集做成可持续的，分享出来，供大家参考，希望能对你有那么一丁点帮助。
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开源到 on </title>
+    <link>/</link>
+    <description>Recent content in 开源到 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2022 开源到 oscome.cn</copyright>
+    <lastBuildDate>Tue, 06 Oct 2020 08:47:36 +0800</lastBuildDate>
+    
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>项目分享</title>
+      <link>/topic/</link>
+      <pubDate>Mon, 26 Sep 2022 08:48:18 +0800</pubDate>
+      
+      <guid>/topic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工具分享</title>
+      <link>/tool/</link>
+      <pubDate>Thu, 22 Sep 2022 09:28:28 +0800</pubDate>
+      
+      <guid>/tool/</guid>
+      <description>集合工具 工具箱   刘明野的工具箱    常用工具 json格式化   时间戳转换   文本比较   常见加密md5、hmac等    golang sql2struct      </description>
+    </item>
+    
+    <item>
+      <title>项目分享</title>
+      <link>/project/</link>
+      <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
+      
+      <guid>/project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>程序语言排行榜</title>
+      <link>/lang/</link>
+      <pubDate>Sat, 17 Sep 2022 16:23:18 +0800</pubDate>
+      
+      <guid>/lang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>软件扩展</title>
+      <link>/docs/</link>
+      <pubDate>Fri, 16 Sep 2022 18:48:28 +0800</pubDate>
+      
+      <guid>/docs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>开源到</title>
+      <link>/weeks/</link>
+      <pubDate>Tue, 06 Oct 2020 08:47:36 +0800</pubDate>
+      
+      <guid>/weeks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oscome from 小欧</title>
+      <link>/about/</link>
+      <pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate>
+      
+      <guid>/about/</guid>
+      <description>项目起源 # 起初是在自己学习过程中，会去搜集一些项目、软件去练习提升，如今尝试把这个搜集做成可持续的，分享出来，供大家参考，希望能对你有那么一丁点帮助。
 目前网站处于初期建设状态，会陆续增加，感谢各位关注。
 小欧其人 # 七年开发经验（PHP+GO+VUE），目前在扬州，寻找远程工作中。
-联系方式 # 公众号：开源到（菜单项有个人微信，备注oscome就行）</description></item></channel></rss>
+联系方式 #  公众号：开源到（菜单项有个人微信，备注oscome就行）  </description>
+    </item>
+    
+  </channel>
+</rss>
