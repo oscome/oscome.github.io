@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>go 项目分享 on </title>
-    <link>http://oscome.com/project/go/</link>
+    <link>https://oscome.cn/project/go/</link>
     <description>Recent content in go 项目分享 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="http://oscome.com/project/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="https://oscome.cn/project/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>golang 学习推荐</title>
-      <link>http://oscome.com/project/go/learining/</link>
+      <link>https://oscome.cn/project/go/learining/</link>
       <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
       
-      <guid>http://oscome.com/project/go/learining/</guid>
+      <guid>https://oscome.cn/project/go/learining/</guid>
       <description>语法：
  go指南 effective go  练习：
  基于 Go 语言构建企业级的 RESTful API 服务 设计模式 7天用Go从零实现Web框架Gee教程  框架：

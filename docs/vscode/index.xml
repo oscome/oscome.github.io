@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VSCode 扩展 on </title>
-    <link>http://oscome.com/docs/vscode/</link>
+    <link>https://oscome.cn/docs/vscode/</link>
     <description>Recent content in VSCode 扩展 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="http://oscome.com/docs/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/docs/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>摸 🐟 鱼？不存在的</title>
-      <link>http://oscome.com/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</link>
+      <link>https://oscome.cn/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</link>
       <pubDate>Fri, 16 Sep 2022 08:48:18 +0800</pubDate>
       
-      <guid>http://oscome.com/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</guid>
+      <guid>https://oscome.cn/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</guid>
       <description>本期推荐 VSCode 放（摸）松（🐟）神器，上班和学习一样，要劳逸结合的哦 👍
 小霸王 #  项目地址: https://marketplace.visualstudio.com/items?itemName=gamedilong.anes
  小霸王是一款基于vscode的nes游戏插件，能让你在紧张的开发之余在vscode里放松身心。选择想要玩的游戏，右键菜单下载。下载完成后，会加载到local菜单。点击即可完。 小霸王&amp;mdash;&amp;ndash;其乐无穷！！！但要记得戴耳机或者关闭外音哦！别问我是怎么知道的。。。
@@ -30,10 +30,10 @@ NBA real-time score #  项目地址: https://marketplace.visualstudio.com/items?
     
     <item>
       <title>颜值扩展</title>
-      <link>http://oscome.com/docs/vscode/%E7%BE%8E%E5%8C%96/</link>
+      <link>https://oscome.cn/docs/vscode/%E7%BE%8E%E5%8C%96/</link>
       <pubDate>Mon, 12 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>http://oscome.com/docs/vscode/%E7%BE%8E%E5%8C%96/</guid>
+      <guid>https://oscome.cn/docs/vscode/%E7%BE%8E%E5%8C%96/</guid>
       <description>本期推荐几个颜值扩展，无关乎语言层面，IDE 看得舒适，coding 更快。
 vscode-icons #  项目地址: https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
  这个插件会根据文件后缀、名称显示不同的 icons，颜值颇高，设置后看着各种小图标心情舒畅，颜值党值得一试，如下图。（也可以自己设置喜欢的图标主题，扩展栏搜索 tag:icon-theme 安装你喜欢的即可）
@@ -49,10 +49,10 @@ Better Align #  项目地址: https://marketplace.</description>
     
     <item>
       <title>Git 插件</title>
-      <link>http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/</link>
+      <link>https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/</link>
       <pubDate>Sat, 10 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>http://oscome.com/docs/vscode/git%E6%8F%92%E4%BB%B6/</guid>
+      <guid>https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/</guid>
       <description>Git 想必在大家伙的日常开发中是必不可少的，本期给大家推荐几个 git 相关插件，希望能提高你的开发效率。
 gitigone #  项目地址: https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore
  如果你觉得写 gitigone 是个烦人的事情，那么你可以试试，安装后command+shift+P打开，就贸易选择 add gitigone 了。

@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>软件扩展 on </title>
-    <link>http://oscome.com/docs/</link>
+    <link>https://oscome.cn/docs/</link>
     <description>Recent content in 软件扩展 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 16 Sep 2022 18:48:28 +0800</lastBuildDate><atom:link href="http://oscome.com/docs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Sep 2022 18:48:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/docs/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

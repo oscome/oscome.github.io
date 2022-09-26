@@ -2,76 +2,76 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>开源到 on </title>
-    <link>http://oscome.com/</link>
+    <link>https://oscome.cn/</link>
     <description>Recent content in 开源到 on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2022 开源到 oscome.cn</copyright>
     <lastBuildDate>Tue, 06 Oct 2020 08:47:36 +0800</lastBuildDate>
     
-        <atom:link href="http://oscome.com/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://oscome.cn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>项目分享</title>
-      <link>http://oscome.com/topic/</link>
+      <link>https://oscome.cn/topic/</link>
       <pubDate>Mon, 26 Sep 2022 08:48:18 +0800</pubDate>
       
-      <guid>http://oscome.com/topic/</guid>
+      <guid>https://oscome.cn/topic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>工具分享</title>
-      <link>http://oscome.com/tool/</link>
+      <link>https://oscome.cn/tool/</link>
       <pubDate>Thu, 22 Sep 2022 09:28:28 +0800</pubDate>
       
-      <guid>http://oscome.com/tool/</guid>
+      <guid>https://oscome.cn/tool/</guid>
       <description>集合工具 工具箱   刘明野的工具箱    常用工具 json格式化   时间戳转换   文本比较   常见加密md5、hmac等    golang sql2struct      </description>
     </item>
     
     <item>
       <title>项目分享</title>
-      <link>http://oscome.com/project/</link>
+      <link>https://oscome.cn/project/</link>
       <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
       
-      <guid>http://oscome.com/project/</guid>
+      <guid>https://oscome.cn/project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>程序语言排行榜</title>
-      <link>http://oscome.com/lang/</link>
+      <link>https://oscome.cn/lang/</link>
       <pubDate>Sat, 17 Sep 2022 16:23:18 +0800</pubDate>
       
-      <guid>http://oscome.com/lang/</guid>
+      <guid>https://oscome.cn/lang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>软件扩展</title>
-      <link>http://oscome.com/docs/</link>
+      <link>https://oscome.cn/docs/</link>
       <pubDate>Fri, 16 Sep 2022 18:48:28 +0800</pubDate>
       
-      <guid>http://oscome.com/docs/</guid>
+      <guid>https://oscome.cn/docs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>开源到</title>
-      <link>http://oscome.com/weeks/</link>
+      <link>https://oscome.cn/weeks/</link>
       <pubDate>Tue, 06 Oct 2020 08:47:36 +0800</pubDate>
       
-      <guid>http://oscome.com/weeks/</guid>
+      <guid>https://oscome.cn/weeks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>oscome from 小欧</title>
-      <link>http://oscome.com/about/</link>
+      <link>https://oscome.cn/about/</link>
       <pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate>
       
-      <guid>http://oscome.com/about/</guid>
+      <guid>https://oscome.cn/about/</guid>
       <description>项目起源 # 起初是在自己学习过程中，会去搜集一些项目、软件去练习提升，如今尝试把这个搜集做成可持续的，分享出来，供大家参考，希望能对你有那么一丁点帮助。
 目前网站处于初期建设状态，会陆续增加，感谢各位关注。
 小欧其人 # 七年开发经验（PHP+GO+VUE），目前在扬州，寻找远程工作中。
