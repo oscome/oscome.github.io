@@ -42,7 +42,9 @@ Better Comments #  项目地址: https://marketplace.visualstudio.com/items?item
 indent-rainbow #  项目地址: https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
  让缩进不再冰冷，项彩虹🌈一样绚烂。
 我的颜色配置如下，效果
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  { ... &amp;#34;indentRainbow.colorOnWhiteSpaceOnly&amp;#34;: false, &amp;#34;indentRainbow.colors&amp;#34;: [ &amp;#34;rgba(255,255,60,0.7)&amp;#34;, &amp;#34;rgba(127,255,127,0.7)&amp;#34;, &amp;#34;rgba(255,127,255,0.7)&amp;#34;, &amp;#34;rgba(60 90 170,0.4)&amp;#34; ], &amp;#34;indentRainbow.ignoreErrorLanguages&amp;#34;: [ &amp;#34;markdown&amp;#34; ], &amp;#34;indentRainbow.excludedLanguages&amp;#34;: [ &amp;#34;plaintext&amp;#34; ], &amp;#34;indentRainbow.</description>
+{ ... &amp;quot;indentRainbow.colorOnWhiteSpaceOnly&amp;quot;: false, &amp;quot;indentRainbow.colors&amp;quot;: [ &amp;quot;rgba(255,255,60,0.7)&amp;quot;, &amp;quot;rgba(127,255,127,0.7)&amp;quot;, &amp;quot;rgba(255,127,255,0.7)&amp;quot;, &amp;quot;rgba(60 90 170,0.4)&amp;quot; ], &amp;quot;indentRainbow.ignoreErrorLanguages&amp;quot;: [ &amp;quot;markdown&amp;quot; ], &amp;quot;indentRainbow.excludedLanguages&amp;quot;: [ &amp;quot;plaintext&amp;quot; ], &amp;quot;indentRainbow.includedLanguages&amp;quot;: [ ], &amp;quot;indentRainbow.indicatorStyle&amp;quot;: &amp;quot;light&amp;quot;, .... }  效果如图: 简体中文 #  项目地址: https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans
+ 适用于 VS Code 的中文（简体）语言包，无需多言。
+Better Align #  项目地址: https://marketplace.</description>
     </item>
     
     <item>

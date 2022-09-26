@@ -401,94 +401,48 @@
 <p>项目地址： <a href="https://github.com/spf13/cast">https://github.com/spf13/cast</a></p>
 </blockquote>
 <h2 id="例子">例子 <a href="#%e4%be%8b%e5%ad%90" class="anchor" aria-hidden="true">#</a></h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> day001
+<pre><code class="language-go">package day001
 
-<span style="color:#ff79c6">import</span> (
-	<span style="color:#f1fa8c">&#34;testing&#34;</span>
+import (
+	&quot;testing&quot;
 
-	<span style="color:#f1fa8c">&#34;github.com/spf13/cast&#34;</span>
+	&quot;github.com/spf13/cast&quot;
 )
 
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">TestCast</span>(t <span style="color:#ff79c6">*</span>testing.T) {
-	t.<span style="color:#50fa7b">Log</span>(<span style="color:#f1fa8c">&#34;cast.ToString&#34;</span>)
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToString</span>(<span style="color:#f1fa8c">&#34;https://oscome.cn&#34;</span>))
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToString</span>(<span style="color:#bd93f9">8.88</span>))
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToString</span>([]<span style="color:#8be9fd;font-style:italic">byte</span>(<span style="color:#f1fa8c">&#34;https://oscome.cn&#34;</span>)))
-	<span style="color:#8be9fd;font-style:italic">var</span> abc <span style="color:#8be9fd;font-style:italic">interface</span>{} = <span style="color:#f1fa8c">&#34;https://oscome.cn&#34;</span>
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToString</span>(abc))
+func TestCast(t *testing.T) {
+	t.Log(&quot;cast.ToString&quot;)
+	t.Log(cast.ToString(&quot;https://oscome.cn&quot;))
+	t.Log(cast.ToString(8.88))
+	t.Log(cast.ToString([]byte(&quot;https://oscome.cn&quot;)))
+	var abc interface{} = &quot;https://oscome.cn&quot;
+	t.Log(cast.ToString(abc))
 
-	t.<span style="color:#50fa7b">Log</span>(<span style="color:#f1fa8c">&#34;cast.ToInt&#34;</span>)
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToInt</span>(<span style="color:#f1fa8c">&#34;8&#34;</span>))
+	t.Log(&quot;cast.ToInt&quot;)
+	t.Log(cast.ToInt(&quot;8&quot;))
 
-    <span style="color:#6272a4">// 后面+E 可以多返回一个 error 参数
-</span><span style="color:#6272a4"></span>	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToInt64E</span>(<span style="color:#f1fa8c">&#34;8.99&#34;</span>))
+    // 后面+E 可以多返回一个 error 参数
+	t.Log(cast.ToInt64E(&quot;8.99&quot;))
 
-	t.<span style="color:#50fa7b">Log</span>(<span style="color:#f1fa8c">&#34;cast.ToInt&#34;</span>)
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToBool</span>(<span style="color:#f1fa8c">&#34;1&#34;</span>))
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToBool</span>(<span style="color:#f1fa8c">&#34;8.99&#34;</span>))
+	t.Log(&quot;cast.ToInt&quot;)
+	t.Log(cast.ToBool(&quot;1&quot;))
+	t.Log(cast.ToBool(&quot;8.99&quot;))
 }
-</code></pre></td></tr></table>
-</div>
-</div><p>效果如下：
+</code></pre>
+<p>效果如下：
 <img class="lazyload blur-up radius shadow" src="/images/godaily-day001.png" alt="cast"></p>
 <p>cast不止如此，除了常见类型，还提供了时间类方法 ToTime、ToDuration，甚至还有切片类转换 ToStringSlice、ToStringMap，强大又好用。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">TestCastMore</span>(t <span style="color:#ff79c6">*</span>testing.T) {
-	t.<span style="color:#50fa7b">Log</span>(<span style="color:#f1fa8c">&#34;cast.ToTime&#34;</span>)
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToTime</span>(<span style="color:#f1fa8c">&#34;2022-01-02 01:01:01 +0000 UTC&#34;</span>))
+<pre><code class="language-go">func TestCastMore(t *testing.T) {
+	t.Log(&quot;cast.ToTime&quot;)
+	t.Log(cast.ToTime(&quot;2022-01-02 01:01:01 +0000 UTC&quot;))
 
-	t.<span style="color:#50fa7b">Log</span>(<span style="color:#f1fa8c">&#34;cast.ToDuration&#34;</span>)
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToDuration</span>(<span style="color:#bd93f9">1e9</span>))
+	t.Log(&quot;cast.ToDuration&quot;)
+	t.Log(cast.ToDuration(1e9))
 
-	t.<span style="color:#50fa7b">Log</span>(<span style="color:#f1fa8c">&#34;cast.ToStringSlice&#34;</span>)
-	t.<span style="color:#50fa7b">Log</span>(cast.<span style="color:#50fa7b">ToStringSlice</span>([]<span style="color:#8be9fd">int</span>{<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">3</span>}))
+	t.Log(&quot;cast.ToStringSlice&quot;)
+	t.Log(cast.ToStringSlice([]int{1, 3}))
 }
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="tips">tips <a href="#tips" class="anchor" aria-hidden="true">#</a></h3>
+</code></pre>
+<h3 id="tips">tips <a href="#tips" class="anchor" aria-hidden="true">#</a></h3>
 <ol>
 <li>部分字符转换可能不如意，比如 cast.ToInt64E(&ldquo;8.99&rdquo;) 得出的是0，而不是8or9，原因可以尝试读一下源码，也不复杂。</li>
 <li>方法后+E，可以多返回一个参数 error，比如 ToIntE。</li>
@@ -540,7 +494,7 @@
 <script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
   <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
   <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
-  <script src="http://oscome.com/index.min.d9817e828ccd0147a7ae27cbd85056acc3aa27a7e5349f64cc4ca3f6a626a934c02d4dcd6a84ce9883fd95601aad2f8cecfc4fd2710b2e73a017d77d3fd635e8.js" integrity="sha512-2YF&#43;gozNAUenrifL2FBWrMOqJ6flNJ9kzEyj9qYmqTTALU3NaoTOmIP9lWAarS&#43;M7PxP0nELLnOgF9d9P9Y16A==" crossorigin="anonymous" defer></script>
+  <script src="http://oscome.com/index.min.e60a53fd408fb6647d4568000b102e9761b1e67a1f6b32e1d37b4eb78992f4e2fa93633b409c889d7c829ca3b266f367981590510cbf5f6f61e5831931efb811.js" integrity="sha512-5gpT/UCPtmR9RWgACxAul2Gx5nofazLh03tOt4mS9OL6k2M7QJyInXyCnKOyZvNnmBWQUQy/X29h5YMZMe&#43;4EQ==" crossorigin="anonymous" defer></script>
   
     
     <script>
