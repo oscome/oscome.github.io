@@ -20,5 +20,19 @@
 func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(cast.ToTime(&amp;quot;2022-01-02 01:01:01 +0000 UTC&amp;quot;)) t.</description>
     </item>
     
+    <item>
+      <title>viper配置读取</title>
+      <link>https://oscome.cn/topic/go/viper/</link>
+      <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/go/viper/</guid>
+      <description>引言 # viper 是一个用于读取配置文件的库。如果你需要读取配置文件，那么 viper 足够好用。
+项目地址 #  项目地址： https://github.com/spf13/viper [star:20.7k]
+ 安装 #  go get github.com/spf13/viper
+ 例子 # 我们可以增加一个文件
+# oscome.yaml name: oscome mode: debug log: level: debug  我们可以使用 viper 读取这个配置文件，并且配合 fsnotify 监听配置，监听的好处就在于运行中配置几乎实时生效，无需重启服务。
+package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/fsnotify/fsnotify&amp;quot; &amp;quot;github.com/spf13/viper&amp;quot; ) func read() { viper.AddConfigPath(&amp;quot;.&amp;quot;) // 还可以在工作目录中查找配置 viper.SetConfigFile(&amp;quot;oscome.yaml&amp;quot;) // 指定配置文件路径(这一句跟下面两行合起来表达的是一个意思) // viper.SetConfigName(&amp;quot;oscome&amp;quot;) // 配置文件名称(无扩展名) // viper.SetConfigType(&amp;quot;yaml&amp;quot;) // 如果配置文件的名称中没有扩展名，则需要配置此项 err := viper.ReadInConfig() // 配置文件 if err !</description>
+    </item>
+    
   </channel>
 </rss>
