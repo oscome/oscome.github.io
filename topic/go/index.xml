@@ -7,16 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 26 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="https://oscome.cn/topic/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>类型转换cast</title>
+      <title>cast类型转换</title>
       <link>https://oscome.cn/topic/go/cast/</link>
       <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/go/cast/</guid>
       <description>引言 # 是否还在为golang麻烦的类型转换烦恼？
 尝试一下 spf13 大神的 cast 吧。
-项目地址 #  项目地址： https://github.com/spf13/cast
+项目地址 #  项目地址： https://github.com/spf13/cast[star:2.5k]
+ 安装 #  go get github.com/spf13/cast
  例子 # package day001 import ( &amp;quot;testing&amp;quot; &amp;quot;github.com/spf13/cast&amp;quot; ) func TestCast(t *testing.T) { t.Log(&amp;quot;cast.ToString&amp;quot;) t.Log(cast.ToString(&amp;quot;https://oscome.cn&amp;quot;)) t.Log(cast.ToString(8.88)) t.Log(cast.ToString([]byte(&amp;quot;https://oscome.cn&amp;quot;))) var abc interface{} = &amp;quot;https://oscome.cn&amp;quot; t.Log(cast.ToString(abc)) t.Log(&amp;quot;cast.ToInt&amp;quot;) t.Log(cast.ToInt(&amp;quot;8&amp;quot;)) // 后面+E 可以多返回一个 error 参数 t.Log(cast.ToInt64E(&amp;quot;8.99&amp;quot;)) t.Log(&amp;quot;cast.ToInt&amp;quot;) t.Log(cast.ToBool(&amp;quot;1&amp;quot;)) t.Log(cast.ToBool(&amp;quot;8.99&amp;quot;)) }  效果如下： cast不止如此，除了常见类型，还提供了时间类方法 ToTime、ToDuration，甚至还有切片类转换 ToStringSlice、ToStringMap，强大又好用。
-func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(cast.ToTime(&amp;quot;2022-01-02 01:01:01 +0000 UTC&amp;quot;)) t.Log(&amp;quot;cast.ToDuration&amp;quot;) t.Log(cast.ToDuration(1e9)) t.Log(&amp;quot;cast.ToStringSlice&amp;quot;) t.Log(cast.ToStringSlice([]int{1, 3})) }  tips #  部分字符转换可能不如意，比如 cast.</description>
+func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(cast.ToTime(&amp;quot;2022-01-02 01:01:01 +0000 UTC&amp;quot;)) t.</description>
     </item>
     
   </channel>

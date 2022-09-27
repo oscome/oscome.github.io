@@ -15,13 +15,13 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>类型转换cast | 开源到</title>
-<meta name="description" content="类型转换cast，开源到">
+  <title>cast类型转换 | 开源到</title>
+<meta name="description" content="cast类型转换">
 <link rel="canonical" href="https://oscome.cn/topic/go/cast/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类型转换cast">
-<meta property="og:description" content="类型转换cast，开源到">
+<meta property="og:title" content="cast类型转换">
+<meta property="og:description" content="cast类型转换">
 <meta property="og:url" content="https://oscome.cn/topic/go/cast/">
 <meta property="og:site_name" content="开源到">
 <meta property="article:published_time" content="2022-09-21T10:48:18+08:00">
@@ -33,10 +33,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="类型转换cast">
-<meta name="twitter:description" content="类型转换cast，开源到">
+<meta name="twitter:title" content="cast类型转换">
+<meta name="twitter:description" content="cast类型转换">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="类型转换cast">
+    <meta name="twitter:image:alt" content="cast类型转换">
 
 <script type="application/ld+json">
 {
@@ -75,8 +75,8 @@
       "@type": "WebPage",
       "@id": "https://oscome.cn/topic/go/cast/",
       "url": "https://oscome.cn/topic/go/cast/",
-      "name": "类型转换cast",
-      "description": "类型转换cast，开源到",
+      "name": "cast类型转换",
+      "description": "cast类型转换",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
@@ -144,7 +144,7 @@
           "@id": "https://oscome.cn/topic/go/cast/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": "类型转换cast"
+          "caption": "cast类型转换"
         }
       ]
     }
@@ -189,7 +189,12 @@
       <div class="offcanvas-body p-4 p-lg-0">
         <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
               <li class="nav-item">
-                <a class="nav-link ps-0 py-1" href="/project/">项目</a>
+                <a class="nav-link ps-0 py-1" href="/topic/">专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
               </li>
             
           
@@ -252,7 +257,7 @@
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/go/cast/">类型转换cast</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/go/cast/">cast类型转换</a></li>
               
             
           </ul>
@@ -286,7 +291,7 @@
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/go/cast/">类型转换cast</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/go/cast/">cast类型转换</a></li>
               
             
           </ul>
@@ -314,6 +319,7 @@
   <ul>
     <li><a href="#引言">引言</a></li>
     <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#安装">安装</a></li>
     <li><a href="#例子">例子</a>
       <ul>
         <li><a href="#tips">tips</a></li>
@@ -332,6 +338,7 @@
   <ul>
     <li><a href="#引言">引言</a></li>
     <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#安装">安装</a></li>
     <li><a href="#例子">例子</a>
       <ul>
         <li><a href="#tips">tips</a></li>
@@ -345,7 +352,7 @@
 		</nav>
 		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
 		
-			<h1>类型转换cast</h1>
+			<h1>cast类型转换</h1>
 			<time>Sep 21 2022, Wed </time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
@@ -364,6 +371,7 @@
   <ul>
     <li><a href="#引言">引言</a></li>
     <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#安装">安装</a></li>
     <li><a href="#例子">例子</a>
       <ul>
         <li><a href="#tips">tips</a></li>
@@ -382,6 +390,7 @@
   <ul>
     <li><a href="#引言">引言</a></li>
     <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#安装">安装</a></li>
     <li><a href="#例子">例子</a>
       <ul>
         <li><a href="#tips">tips</a></li>
@@ -398,7 +407,11 @@
 <p>尝试一下 spf13 大神的 cast 吧。</p>
 <h2 id="项目地址">项目地址 <a href="#%e9%a1%b9%e7%9b%ae%e5%9c%b0%e5%9d%80" class="anchor" aria-hidden="true">#</a></h2>
 <blockquote>
-<p>项目地址： <a href="https://github.com/spf13/cast">https://github.com/spf13/cast</a></p>
+<p>项目地址： <a href="https://github.com/spf13/cast">https://github.com/spf13/cast</a>[star:2.5k]</p>
+</blockquote>
+<h2 id="安装">安装 <a href="#%e5%ae%89%e8%a3%85" class="anchor" aria-hidden="true">#</a></h2>
+<blockquote>
+<p>go get github.com/spf13/cast</p>
 </blockquote>
 <h2 id="例子">例子 <a href="#%e4%be%8b%e5%ad%90" class="anchor" aria-hidden="true">#</a></h2>
 <pre><code class="language-go">package day001
