@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/docs/tool/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>说明</title>
+      <link>https://oscome.cn/docs/tool/tool/</link>
+      <pubDate>Mon, 26 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/tool/tool/</guid>
+      <description>小欧在学习与工作中使用过的软件、工具推荐，观点来源于使用感受，如果你觉得不对，或者用什么不足的，欢迎指出讨论。</description>
+    </item>
+    
+    <item>
       <title>Markdown 编辑器</title>
       <link>https://oscome.cn/docs/tool/markdown/</link>
       <pubDate>Mon, 12 Sep 2022 08:48:28 +0800</pubDate>

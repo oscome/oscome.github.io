@@ -7,34 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/docs/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>摸 🐟 鱼？不存在的</title>
-      <link>https://oscome.cn/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</link>
-      <pubDate>Fri, 16 Sep 2022 08:48:18 +0800</pubDate>
+      <title>说明</title>
+      <link>https://oscome.cn/docs/vscode/vscode/</link>
+      <pubDate>Mon, 12 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>https://oscome.cn/docs/vscode/%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8/</guid>
-      <description>本期推荐 VSCode 放（摸）松（🐟）神器，上班和学习一样，要劳逸结合的哦 👍
-小霸王 #  项目地址: https://marketplace.visualstudio.com/items?itemName=gamedilong.anes
- 小霸王是一款基于vscode的nes游戏插件，能让你在紧张的开发之余在vscode里放松身心。选择想要玩的游戏，右键菜单下载。下载完成后，会加载到local菜单。点击即可完。 小霸王&amp;mdash;&amp;ndash;其乐无穷！！！但要记得戴耳机或者关闭外音哦！别问我是怎么知道的。。。
-韭菜盒子 #  项目地址: https://marketplace.visualstudio.com/items?itemName=giscafer.leek-fund
- VSCode 里也可以看股票 &amp;amp; 基金 &amp;amp; 期货实时数据，投资有风险，入市需谨慎！ ⏰s
-小欧并不建议初入股市的朋友打开实时查看，会三心二意的，bug连篇的。。。。。。
-Cloudmusic #  项目地址: https://marketplace.visualstudio.com/items?itemName=yxl.cloudmusic
- 网易云音乐插件，功能还蛮丰富的，直接登录账号即可，会同步歌单播客等信息，效果如图。（代码和音乐真的很配哦 💯 ）
-z-reader #  项目地址:https://marketplace.visualstudio.com/items?itemName=aooiu.z-reader
- 用来摸鱼或学习的小说阅读插件，支持在线搜索笔趣阁起点等，也支持本地阅读，支持 txt 和 epub 格式，效果如图。
-NBA real-time score #  项目地址: https://marketplace.visualstudio.com/items?itemName=liyangjj.NBARealTimeScore
- 实时获取当天NBA比赛比分，并显示在vscode下方状态栏左侧；更可以观看实时文字直播，以及赛后数据统计。让你实现边 coding 边关注NBA。
-鼓励师系列 # 这个不过多介绍，可自行搜索。
- 摸鱼不可耻，但要适当哈! 🧑</description>
+      <guid>https://oscome.cn/docs/vscode/vscode/</guid>
+      <description>VSCode 是小欧目前正在使用的IDE，近几年使用人数增长很快。这些扩展是小欧工作中使用过的，分享给诸位，希望能给你提升一点效率。
+扩展不在多，在于适用。
+部分扩展十分耗费资源，容易造成 VSCode 卡顿，另外很多扩展（如Bracket Pair Colorizer2）已被新版本 VSCode 内置，无需安装。</description>
     </item>
     
     <item>
       <title>颜值扩展</title>
-      <link>https://oscome.cn/docs/vscode/%E7%BE%8E%E5%8C%96/</link>
+      <link>https://oscome.cn/docs/vscode/yanzhi/</link>
       <pubDate>Mon, 12 Sep 2022 08:48:28 +0800</pubDate>
       
-      <guid>https://oscome.cn/docs/vscode/%E7%BE%8E%E5%8C%96/</guid>
-      <description>本期推荐几个颜值扩展，无关乎语言层面，IDE 看得舒适，coding 更快。
+      <guid>https://oscome.cn/docs/vscode/yanzhi/</guid>
+      <description>本期推荐几个颜值扩展，无关乎语言层面，IDE 看得舒适，coding 更自如。
 vscode-icons #  项目地址: https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
  这个插件会根据文件后缀、名称显示不同的 icons，颜值颇高，设置后看着各种小图标心情舒畅，颜值党值得一试，如下图。（也可以自己设置喜欢的图标主题，扩展栏搜索 tag:icon-theme 安装你喜欢的即可）
 Better Comments #  项目地址: https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
@@ -64,6 +53,45 @@ Git Graph #  项目地址: https://marketplace.visualstudio.com/items?itemName=m
 github #  项目地址: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
  这个算是针对 github 的扩展，可以快捷的插件 github PR，操作课件如下图。  目前小欧用到比较多的是 git history 和 git graph，像其他的 gitlens 等插件使用不多，就不推荐了。
 如果您有其他 git 插件推荐，欢迎在评论区留言分享，感谢您的阅读。</description>
+    </item>
+    
+    <item>
+      <title>效率提升</title>
+      <link>https://oscome.cn/docs/vscode/tips/</link>
+      <pubDate>Mon, 12 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/vscode/tips/</guid>
+      <description>coding # Tabnine #  项目地址: https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode
+ 这是个 AI 辅助插件，会根据你的 coding 却估计，我使用了一下，根据提示，使用tab键即可，确实很香。
+change-case #  项目地址: https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
+ 命名是个头疼的问题，change-case可以快速切换命名格式，比如驼峰、大小写切换、常量等。 debug # Code Runner #  项目地址: https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner
+ 这是小欧近期学习C++时发现的，可运行多种语言的代码片段，如 C, C++, Java, JavaScript, PHP, Python,, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH,, Visual Basic .NET, Clojure, Haxe, Objective-C, Rust, Racket, Scheme, AutoHotkey, AutoIt, Kotlin, Dart&amp;hellip;&amp;hellip;
+使用方法非常简单，光标在需要 debug 的文件中，然后 control+option+N，就可以 run code 啦！效果如图：（PS：你也可以自行定义命令。没错， &amp;ndash;std=c++11 就是小欧自定义的）
+多项目管理 # Project Manager #  项目地址: https://marketplace.</description>
+    </item>
+    
+    <item>
+      <title>摸 🐟 鱼？不存在的</title>
+      <link>https://oscome.cn/docs/vscode/huashui/</link>
+      <pubDate>Fri, 16 Sep 2022 08:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/vscode/huashui/</guid>
+      <description>本期推荐 VSCode 放（摸）松（🐟）神器，上班和学习一样，要劳逸结合的哦 👍
+小霸王 #  项目地址: https://marketplace.visualstudio.com/items?itemName=gamedilong.anes
+ 小霸王是一款基于vscode的nes游戏插件，能让你在紧张的开发之余在vscode里放松身心。选择想要玩的游戏，右键菜单下载。下载完成后，会加载到local菜单。点击即可完。 小霸王&amp;mdash;&amp;ndash;其乐无穷！！！但要记得戴耳机或者关闭外音哦！别问我是怎么知道的。。。
+韭菜盒子 #  项目地址: https://marketplace.visualstudio.com/items?itemName=giscafer.leek-fund
+ VSCode 里也可以看股票 &amp;amp; 基金 &amp;amp; 期货实时数据，投资有风险，入市需谨慎！ ⏰s
+小欧并不建议初入股市的朋友打开实时查看，会三心二意的，bug连篇的。。。。。。
+Zhihu On VSCode #  项目地址: https://marketplace.visualstudio.com/items?itemName=niudai.vscode-zhihu
+ 基于 VSCode 的知乎客户端，提供包括阅读，搜索，创作，发布等一站式服务。
+但不得不说，就我体验来说，有点儿卡，速度不快。
+Cloudmusic #  项目地址: https://marketplace.visualstudio.com/items?itemName=yxl.cloudmusic
+ 网易云音乐插件，功能还蛮丰富的，直接登录账号即可，会同步歌单播客等信息，效果如图。（代码和音乐真的很配哦 💯 ）
+z-reader #  项目地址:https://marketplace.visualstudio.com/items?itemName=aooiu.z-reader
+ 用来摸鱼或学习的小说阅读插件，支持在线搜索笔趣阁起点等，也支持本地阅读，支持 txt 和 epub 格式，效果如图。
+NBA real-time score #  项目地址: https://marketplace.visualstudio.com/items?itemName=liyangjj.NBARealTimeScore
+ 实时获取当天NBA比赛比分，并显示在vscode下方状态栏左侧；更可以观看实时文字直播，以及赛后数据统计。让你实现边 coding 边关注NBA。
+鼓励师系列 # 这个不过多介绍，可自行搜索。</description>
     </item>
     
   </channel>

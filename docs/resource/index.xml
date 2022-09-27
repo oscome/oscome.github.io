@@ -7,42 +7,39 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 06 Sep 2022 08:48:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/docs/resource/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>golang</title>
+      <title>说明</title>
+      <link>https://oscome.cn/docs/resource/resource/</link>
+      <pubDate>Mon, 26 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/resource/resource/</guid>
+      <description>小欧在网上搜集的一些开源资源，希望能给你一些帮助。</description>
+    </item>
+    
+    <item>
+      <title>go</title>
       <link>https://oscome.cn/docs/resource/go/</link>
       <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
       
       <guid>https://oscome.cn/docs/resource/go/</guid>
-      <description>【基础】go 指南 # https://tour.go-zh.org/list 
+      <description>基础 # go 指南 # https://tour.go-zh.org/list 
 熟悉语法，可以直接 web 中运行。
-【基础】Effective Go # https://golang.google.cn/doc/effective_go
+Effective Go # https://golang.google.cn/doc/effective_go
 可以理解为 go 指南的拓展，新手必备。如果习惯中文，可以看 https://learnku.com/docs/effective-go/2020
-【基础】gin docs # https://gin-gonic.com/zh-cn/docs/ 
+gin docs # https://gin-gonic.com/zh-cn/docs/ 
 gin 应该目前golang web api 领域使用者最多的了，docs提供了很多基础的例子，如果需要更多功能，可以基于业务和经验拓展。
-【进阶】go设计模式 # https://lailin.xyz/post/go-design-pattern.html
+进阶 # go设计模式 # https://lailin.xyz/post/go-design-pattern.html
 Go 设计模式实现，作者很用心，适合学习语法后练习。
-【进阶】gorm # https://gorm.io/zh_CN/docs/
+gorm # https://gorm.io/zh_CN/docs/
 应该是golang最火热的orm库了，使用者众多，相信你迟早会用上的。
-【进阶】geektutu 的七天系列 # https://github.com/geektutu/7days-golang
+geektutu 的七天系列 # https://github.com/geektutu/7days-golang
 geektutu 的七天系列，质量很高。有一定难度，但有编程基础的go初学者跟着多练习会提升很多的，强烈推荐。
-【进阶】go-kit 微服务 # https://www.hwholiday.com/categories/go-kit/
+go-kit 微服务 # https://www.hwholiday.com/categories/go-kit/
 适合学习 go-kit，设计知识面很广，jwt、etcd、hystrix。。。
-【底层逻辑】go 语言设计与实现 # https://draveness.me/golang/ 
+底层逻辑 # go 语言设计与实现 # https://draveness.me/golang/ 
 draveness 的这本书相当硬核，偏底层实现，为了深入了解go，值得多读几次。如果是为了面试，我也推荐你读读。
-【底层逻辑】go语言原本 # https://golang.design/under-the-hood/zh-cn/preface/
+go语言原本 # https://golang.design/under-the-hood/zh-cn/preface/
 也是大牛，也很硬核解析，
 优质博客 #  飞雪无情 峰云就她了  </description>
-    </item>
-    
-    <item>
-      <title>rust</title>
-      <link>https://oscome.cn/docs/resource/rust/</link>
-      <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
-      
-      <guid>https://oscome.cn/docs/resource/rust/</guid>
-      <description>rust 正在学习中，如有好的学习资源，会继续更新。
-基础教程 # rust 程序设计 # https://doc.rust-lang.org/book/
-官网教程，也有中文版本https://kaisery.github.io/trpl-zh-cn/title-page.html
-rust 语言圣经 # https://course.rs/about-book.html</description>
     </item>
     
     <item>
@@ -77,6 +74,18 @@ swoole 性能强大，如果遇到php瓶颈，可以尝试一下。
 hyperf 文档 # https://hyperf.wiki/2.2/
 近几年很火的 swoole 框架。
 优质博客 # 风雪之隅 # https://www.</description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://oscome.cn/docs/resource/rust/</link>
+      <pubDate>Sun, 25 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/resource/rust/</guid>
+      <description>rust 正在学习中，如有好的学习资源，会继续更新。
+基础教程 # rust 程序设计 # https://doc.rust-lang.org/book/
+官网教程，也有中文版本https://kaisery.github.io/trpl-zh-cn/title-page.html
+rust 语言圣经 # https://course.rs/about-book.html</description>
     </item>
     
   </channel>
