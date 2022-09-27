@@ -54,8 +54,8 @@ Better Align #  项目地址: https://marketplace.</description>
       
       <guid>https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/</guid>
       <description>Git 想必在大家伙的日常开发中是必不可少的，本期给大家推荐几个 git 相关插件，希望能提高你的开发效率。
-gitigone #  项目地址: https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore
- 如果你觉得写 gitigone 是个烦人的事情，那么你可以试试，安装后command+shift+P打开，就贸易选择 add gitigone 了。
+gitignore #  项目地址: https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore
+ 如果你觉得写 gitignore 是个烦人的事情，那么你可以试试，安装后command+shift+P打开，就贸易选择 add gitignore 了。
 选择后具体语言后就会生成gitignore 文件啦。 Git History #  项目地址: https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory
  在某个文件里直接点击右键，就可以查看当前你文件的 git 历史了，相当方便。
 Git Graph #  项目地址: https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
