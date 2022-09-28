@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>每日一库 on </title>
-    <link>https://oscome.cn/topic/go/</link>
-    <description>Recent content in 每日一库 on </description>
+    <title>godaily 每日一库 on </title>
+    <link>https://oscome.cn/topic/godaily/</link>
+    <description>Recent content in godaily 每日一库 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 26 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="https://oscome.cn/topic/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Sep 2022 08:48:18 +0800</lastBuildDate><atom:link href="https://oscome.cn/topic/godaily/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>cast类型转换</title>
-      <link>https://oscome.cn/topic/go/cast/</link>
+      <title>godaily 每日一库</title>
+      <link>https://oscome.cn/topic/godaily/godaily/</link>
+      <pubDate>Mon, 26 Sep 2022 08:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/godaily/godaily/</guid>
+      <description>一天更新一个 golang 库，每天练习，不断进步。</description>
+    </item>
+    
+    <item>
+      <title>day1-cast类型转换</title>
+      <link>https://oscome.cn/topic/godaily/cast/</link>
       <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
       
-      <guid>https://oscome.cn/topic/go/cast/</guid>
+      <guid>https://oscome.cn/topic/godaily/cast/</guid>
       <description>引言 # 是否还在为golang麻烦的类型转换烦恼？
 尝试一下 spf13 大神的 cast 吧。
 项目地址 #  项目地址： https://github.com/spf13/cast[star:2.5k]
@@ -21,11 +30,11 @@ func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(c
     </item>
     
     <item>
-      <title>viper配置读取</title>
-      <link>https://oscome.cn/topic/go/viper/</link>
+      <title>day2-viper配置读取</title>
+      <link>https://oscome.cn/topic/godaily/viper/</link>
       <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
       
-      <guid>https://oscome.cn/topic/go/viper/</guid>
+      <guid>https://oscome.cn/topic/godaily/viper/</guid>
       <description>引言 # viper 是一个用于读取配置文件的库。如果你需要读取配置文件，那么 viper 足够好用。
 项目地址 #  项目地址： https://github.com/spf13/viper [star:20.7k]
  安装 #  go get github.com/spf13/viper

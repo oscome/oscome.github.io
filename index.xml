@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>go</title>
+      <title>专栏</title>
       <link>https://oscome.cn/topic/</link>
       <pubDate>Mon, 26 Sep 2022 08:48:18 +0800</pubDate>
       
@@ -72,10 +72,10 @@
       <pubDate>Thu, 27 Aug 2020 19:23:18 +0200</pubDate>
       
       <guid>https://oscome.cn/about/</guid>
-      <description>项目起源 # 起初是在自己学习过程中，会去搜集一些项目、软件去练习提升，如今尝试把这个搜集做成可持续的，分享出来，供大家参考，希望能对你有那么一丁点帮助。
-目前网站处于初期建设状态，会陆续增加，感谢各位关注。
+      <description>项目起源 # 起初是在自己学习过程中，会去搜集一些项目、软件去练习、提升。如今尝试把这个项目、软件的搜集做成可持续的，分享出来，供大家参考。希望能对你有那么一丁点帮助。
+目前网站处于初期建设状态，会陆续增加分享，感谢各位关注。
 小欧其人 # 七年开发经验（PHP+GO+VUE），目前在扬州，寻找远程工作中。
-联系方式 #  公众号：开源到（菜单项有个人微信，备注oscome就行）  </description>
+联系方式 # </description>
     </item>
     
   </channel>

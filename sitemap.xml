@@ -17,8 +17,8 @@
   </url>
   
   <url>
-    <loc>https://oscome.cn/topic/go/cast/</loc>
-    <lastmod>2022-09-21T10:48:18+08:00</lastmod>
+    <loc>https://oscome.cn/topic/godaily/godaily/</loc>
+    <lastmod>2022-09-26T08:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -40,6 +40,20 @@
   <url>
     <loc>https://oscome.cn/docs/vscode/</loc>
     <lastmod>2022-09-06T08:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/topic/godaily/cast/</loc>
+    <lastmod>2022-09-21T10:48:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/topic/godaily/viper/</loc>
+    <lastmod>2022-09-21T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -108,14 +122,14 @@
   </url>
   
   <url>
-    <loc>https://oscome.cn/topic/</loc>
+    <loc>https://oscome.cn/topic/godaily/</loc>
     <lastmod>2022-09-26T08:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://oscome.cn/topic/go/</loc>
+    <loc>https://oscome.cn/topic/</loc>
     <lastmod>2022-09-26T08:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -130,13 +144,6 @@
   
   <url>
     <loc>https://oscome.cn/project/go/learining/</loc>
-    <lastmod>2022-09-21T10:48:18+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://oscome.cn/topic/go/viper/</loc>
     <lastmod>2022-09-21T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
