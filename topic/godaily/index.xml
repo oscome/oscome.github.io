@@ -18,7 +18,7 @@
     <item>
       <title>day1-cast类型转换</title>
       <link>https://oscome.cn/topic/godaily/cast/</link>
-      <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
+      <pubDate>Mon, 26 Sep 2022 10:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/godaily/cast/</guid>
       <description>引言 # 是否还在为golang麻烦的类型转换烦恼？
@@ -32,7 +32,7 @@ func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(c
     <item>
       <title>day2-viper配置读取</title>
       <link>https://oscome.cn/topic/godaily/viper/</link>
-      <pubDate>Wed, 21 Sep 2022 10:48:18 +0800</pubDate>
+      <pubDate>Tue, 27 Sep 2022 10:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/godaily/viper/</guid>
       <description>引言 # viper 是一个用于读取配置文件的库。如果你需要读取配置文件，那么 viper 足够好用。
