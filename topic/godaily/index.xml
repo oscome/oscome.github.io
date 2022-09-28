@@ -43,5 +43,19 @@ func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(c
 package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/fsnotify/fsnotify&amp;quot; &amp;quot;github.com/spf13/viper&amp;quot; ) func read() { viper.AddConfigPath(&amp;quot;.&amp;quot;) // 还可以在工作目录中查找配置 viper.SetConfigFile(&amp;quot;oscome.yaml&amp;quot;) // 指定配置文件路径(这一句跟下面两行合起来表达的是一个意思) // viper.SetConfigName(&amp;quot;oscome&amp;quot;) // 配置文件名称(无扩展名) // viper.SetConfigType(&amp;quot;yaml&amp;quot;) // 如果配置文件的名称中没有扩展名，则需要配置此项 err := viper.ReadInConfig() // 配置文件 if err !</description>
     </item>
     
+    <item>
+      <title>day3-urfave/cli</title>
+      <link>https://oscome.cn/topic/godaily/urfavecli/</link>
+      <pubDate>Wed, 28 Sep 2022 10:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/godaily/urfavecli/</guid>
+      <description>引言 # urfave/cli是一个简单、快速、有趣的包，用于在 Go 中构建命令行应用程序。目标是使开发人员能够以富有表现力的方式编写快速且可分发的命令行应用程序。
+项目地址 #  项目地址： https://github.com/urfave/cli [star:19k]
+ 安装 #  go get github.com/urfave/cli/v2
+ 例子 # 作为一个命令行工具，urfave/cli 足够好用，你可以自定义参数、版本、说明&amp;hellip;&amp;hellip;
+我们来个 🌰 ，参数说明可看备注。
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/urfave/cli/v2&amp;quot; ) func main() { var language string app := &amp;amp;cli.App{ Name: &amp;quot;godaily day003&amp;quot;, // cli name Version: &amp;quot;v13&amp;quot;, // cli version Usage: &amp;quot;godaily day003 test&amp;quot;, // usage Flags: []cli.Flag{ // 接受的 flag &amp;amp;cli.StringFlag{ // string Name: &amp;quot;lang&amp;quot;, // flag 名称 Aliases: []string{&amp;quot;l&amp;quot;}, // 别名 Value: &amp;quot;english&amp;quot;, // 默认值 Usage: &amp;quot;language for the greeting&amp;quot;, Destination: &amp;amp;language, // 指定地址，如果没有可以通过 *cli.</description>
+    </item>
+    
   </channel>
 </rss>
