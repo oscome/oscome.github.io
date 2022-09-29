@@ -16,7 +16,7 @@
     </item>
     
     <item>
-      <title>day1-cast类型转换</title>
+      <title>day1-cast 类型转换</title>
       <link>https://oscome.cn/topic/godaily/cast/</link>
       <pubDate>Mon, 26 Sep 2022 10:48:18 +0800</pubDate>
       
@@ -30,7 +30,7 @@ func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(c
     </item>
     
     <item>
-      <title>day2-viper配置读取</title>
+      <title>day2-viper 配置读取</title>
       <link>https://oscome.cn/topic/godaily/viper/</link>
       <pubDate>Tue, 27 Sep 2022 10:48:18 +0800</pubDate>
       
@@ -44,7 +44,7 @@ package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp
     </item>
     
     <item>
-      <title>day3-urfave/cli</title>
+      <title>day3-urfave/cli 命令行</title>
       <link>https://oscome.cn/topic/godaily/urfavecli/</link>
       <pubDate>Wed, 28 Sep 2022 10:48:18 +0800</pubDate>
       
@@ -55,6 +55,19 @@ package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp
  例子 # 作为一个命令行工具，urfave/cli 足够好用，你可以自定义参数、版本、说明&amp;hellip;&amp;hellip;
 我们来个 🌰 ，参数说明可看备注。
 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/urfave/cli/v2&amp;quot; ) func main() { var language string app := &amp;amp;cli.App{ Name: &amp;quot;godaily day003&amp;quot;, // cli name Version: &amp;quot;v13&amp;quot;, // cli version Usage: &amp;quot;godaily day003 test&amp;quot;, // usage Flags: []cli.Flag{ // 接受的 flag &amp;amp;cli.StringFlag{ // string Name: &amp;quot;lang&amp;quot;, // flag 名称 Aliases: []string{&amp;quot;l&amp;quot;}, // 别名 Value: &amp;quot;english&amp;quot;, // 默认值 Usage: &amp;quot;language for the greeting&amp;quot;, Destination: &amp;amp;language, // 指定地址，如果没有可以通过 *cli.</description>
+    </item>
+    
+    <item>
+      <title>day5-内存 cache2go</title>
+      <link>https://oscome.cn/topic/godaily/cache2go/</link>
+      <pubDate>Thu, 29 Sep 2022 12:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/godaily/cache2go/</guid>
+      <description>引言 # cache2go 是个并发安全的续期式的缓存库，适合存储少量常驻内存变量。
+项目地址 #  项目地址： &amp;lt;a ta&amp;rsquo;r&amp;rsquo;ge&amp;quot;https://github.com/muesli/cache2go&amp;quot;&amp;gt;https://github.com/muesli/cache2go [star:1.8k]
+ 安装 #  go get github.com/muesli/cache2go
+ 例子 # 具体方法可见注释
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/muesli/cache2go&amp;quot; ) type myStruct struct { title string content interface{} } func main() { table := &amp;quot;test&amp;quot; key := &amp;quot;oscome&amp;quot; // 新建 CacheTable cache := cache2go.Cache(table) setDataLoader(table) Callback(table, key) val := myStruct{&amp;quot;what&amp;quot;, &amp;quot;hello oscome&amp;quot;} // 添加一个kv，过期时间 2s cache.Add(key, 2*time.Second, &amp;amp;val) // 获取value res, err := cache.</description>
     </item>
     
   </channel>

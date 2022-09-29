@@ -87,6 +87,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/topic/godaily/cache2go/</loc>
+    <lastmod>2022-09-29T12:48:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/docs/resource/go/</loc>
     <lastmod>2022-09-25T08:48:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -130,7 +137,7 @@
   
   <url>
     <loc>https://oscome.cn/topic/</loc>
-    <lastmod>2022-09-28T10:48:18+08:00</lastmod>
+    <lastmod>2022-09-29T12:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
