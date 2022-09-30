@@ -21,12 +21,11 @@
       <pubDate>Mon, 26 Sep 2022 10:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/godaily/cast/</guid>
-      <description>引言 # 是否还在为golang麻烦的类型转换烦恼？
-尝试一下 spf13 大神的 cast 吧。
-项目地址 #  项目地址： https://github.com/spf13/cast[star:2.5k]
- 安装 #  go get github.com/spf13/cast
- 例子 # package day001 import ( &amp;quot;testing&amp;quot; &amp;quot;github.com/spf13/cast&amp;quot; ) func TestCast(t *testing.T) { t.Log(&amp;quot;cast.ToString&amp;quot;) t.Log(cast.ToString(&amp;quot;https://oscome.cn&amp;quot;)) t.Log(cast.ToString(8.88)) t.Log(cast.ToString([]byte(&amp;quot;https://oscome.cn&amp;quot;))) var abc interface{} = &amp;quot;https://oscome.cn&amp;quot; t.Log(cast.ToString(abc)) t.Log(&amp;quot;cast.ToInt&amp;quot;) t.Log(cast.ToInt(&amp;quot;8&amp;quot;)) // 后面+E 可以多返回一个 error 参数 t.Log(cast.ToInt64E(&amp;quot;8.99&amp;quot;)) t.Log(&amp;quot;cast.ToInt&amp;quot;) t.Log(cast.ToBool(&amp;quot;1&amp;quot;)) t.Log(cast.ToBool(&amp;quot;8.99&amp;quot;)) }  效果如下： cast不止如此，除了常见类型，还提供了时间类方法 ToTime、ToDuration，甚至还有切片类转换 ToStringSlice、ToStringMap，强大又好用。
-func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(cast.ToTime(&amp;quot;2022-01-02 01:01:01 +0000 UTC&amp;quot;)) t.</description>
+      <description>引言  还在为golang麻烦的类型转换烦恼吗？
+不妨试下 spf13 大神的 cast 吧。
+项目地址   项目地址： https://github.com/spf13/cast[star:2.5k]
+ 使用场景   类型转换  安装   go get github.com/spf13/cast
+ 常用方法   ToString 转换为字符串 ToInt 转换为 int ToBool 转换为布尔值 ToTime 转换为 time.Time ToStringE 转换为字符串，返回字符串和error  例子  package day001 import ( &amp;quot;testing&amp;quot; &amp;quot;github.com/spf13/cast&amp;quot; ) func TestCast(t *testing.T) { t.Log(&amp;quot;cast.ToString&amp;quot;) t.Log(cast.ToString(&amp;quot;https://oscome.cn&amp;quot;)) t.Log(cast.ToString(8.88)) t.Log(cast.ToString([]byte(&amp;quot;https://oscome.cn&amp;quot;))) var abc interface{} = &amp;quot;https://oscome.cn&amp;quot; t.Log(cast.ToString(abc)) t.Log(&amp;quot;cast.ToInt&amp;quot;) t.Log(cast.ToInt(&amp;quot;8&amp;quot;)) // 后面+E 可以多返回一个 error 参数 t.</description>
     </item>
     
     <item>
@@ -35,12 +34,12 @@ func TestCastMore(t *testing.T) { t.Log(&amp;quot;cast.ToTime&amp;quot;) t.Log(c
       <pubDate>Tue, 27 Sep 2022 10:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/godaily/viper/</guid>
-      <description>引言 # viper 是一个用于读取配置文件的库。如果你需要读取配置文件，那么 viper 足够好用。
-项目地址 #  项目地址： https://github.com/spf13/viper [star:20.7k]
- 安装 #  go get github.com/spf13/viper
- 例子 # 我们可以增加一个文件
+      <description>引言  viper 是一个用于读取配置文件的库。如果你需要读取配置文件，那么 viper 足够好用。
+项目地址   项目地址： https://github.com/spf13/viper [star:20.7k]
+ 使用场景   读取配置  安装   go get github.com/spf13/viper
+ 常用方法   SetConfigFile 定义配置文件 ReadInConfig 读取配置文件 GetString 获取某个key的配置 WatchConfig 监听配置 OnConfigChange 定义配置改变对应的操作  例子  我们可以增加一个文件
 # oscome.yaml name: oscome mode: debug log: level: debug  我们可以使用 viper 读取这个配置文件，并且配合 fsnotify 监听配置，监听的好处就在于运行中配置几乎实时生效，无需重启服务。
-package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/fsnotify/fsnotify&amp;quot; &amp;quot;github.com/spf13/viper&amp;quot; ) func read() { viper.AddConfigPath(&amp;quot;.&amp;quot;) // 还可以在工作目录中查找配置 viper.SetConfigFile(&amp;quot;oscome.yaml&amp;quot;) // 指定配置文件路径(这一句跟下面两行合起来表达的是一个意思) // viper.SetConfigName(&amp;quot;oscome&amp;quot;) // 配置文件名称(无扩展名) // viper.SetConfigType(&amp;quot;yaml&amp;quot;) // 如果配置文件的名称中没有扩展名，则需要配置此项 err := viper.ReadInConfig() // 配置文件 if err !</description>
+package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/fsnotify/fsnotify&amp;quot; &amp;quot;github.com/spf13/viper&amp;quot; ) func read() { viper.</description>
     </item>
     
     <item>
@@ -49,12 +48,24 @@ package day002 import ( &amp;quot;fmt&amp;quot; &amp;quot;testing&amp;quot; &amp
       <pubDate>Wed, 28 Sep 2022 10:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/godaily/urfavecli/</guid>
-      <description>引言 # urfave/cli是一个简单、快速、有趣的包，用于在 Go 中构建命令行应用程序。目标是使开发人员能够以富有表现力的方式编写快速且可分发的命令行应用程序。
-项目地址 #  项目地址： https://github.com/urfave/cli [star:19k]
- 安装 #  go get github.com/urfave/cli/v2
- 例子 # 作为一个命令行工具，urfave/cli 足够好用，你可以自定义参数、版本、说明&amp;hellip;&amp;hellip;
+      <description>引言  urfave/cli是一个简单、快速、有趣的包，用于在 Go 中构建命令行应用程序。目标是使开发人员能够以富有表现力的方式编写快速且可分发的命令行应用程序。
+项目地址   项目地址： https://github.com/urfave/cli [star:19k]
+ 使用场景   构建命令行应用程序  安装   go get github.com/urfave/cli/v2
+ 常用方法   Run 运行  例子  作为一个命令行工具，urfave/cli 足够好用，你可以自定义参数、版本、说明&amp;hellip;&amp;hellip;
 我们来个 🌰 ，参数说明可看备注。
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/urfave/cli/v2&amp;quot; ) func main() { var language string app := &amp;amp;cli.App{ Name: &amp;quot;godaily day003&amp;quot;, // cli name Version: &amp;quot;v13&amp;quot;, // cli version Usage: &amp;quot;godaily day003 test&amp;quot;, // usage Flags: []cli.Flag{ // 接受的 flag &amp;amp;cli.StringFlag{ // string Name: &amp;quot;lang&amp;quot;, // flag 名称 Aliases: []string{&amp;quot;l&amp;quot;}, // 别名 Value: &amp;quot;english&amp;quot;, // 默认值 Usage: &amp;quot;language for the greeting&amp;quot;, Destination: &amp;amp;language, // 指定地址，如果没有可以通过 *cli.</description>
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; &amp;quot;github.com/urfave/cli/v2&amp;quot; ) func main() { var language string app := &amp;amp;cli.App{ Name: &amp;quot;godaily day003&amp;quot;, // cli name Version: &amp;quot;v13&amp;quot;, // cli version Usage: &amp;quot;godaily day003 test&amp;quot;, // usage Flags: []cli.</description>
+    </item>
+    
+    <item>
+      <title>day4-logrus 日志</title>
+      <link>https://oscome.cn/topic/godaily/logrus/</link>
+      <pubDate>Thu, 29 Sep 2022 10:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/godaily/logrus/</guid>
+      <description>引言  作为 github 上 golang star 最多的库，logrus值得练习。
+项目地址   项目地址： https://github.com/sirupsen/logrus [star:21.4k]
+ 使用场景   日志打印、格式化日志  安装   go get github.com/sirupsen/logrus
+ 常用方法   Info 打印 info 级别的日志 SetFormatter 设置日志格式 SetLevel 设置打印的级别，此级别以上显示 SetReportCaller 设置是否将调用方法作为字段包含在打印的日志内。  例子  package main import &amp;quot;github.com/sirupsen/logrus&amp;quot; func main() { logrus.Info(&amp;quot;------TextFormatter--------&amp;quot;) // 默认格式 logrus.SetFormatter(&amp;amp;logrus.TextFormatter{ TimestampFormat: &amp;quot;2006-01-02 15:04:05&amp;quot;, // 定义日期时间格式 FullTimestamp: true, DisableColors: true, }) logrus.Info(&amp;quot;oscome info log&amp;quot;) logrus.Debug(&amp;quot;oscome debug log&amp;quot;) logrus.</description>
     </item>
     
     <item>
@@ -63,11 +74,23 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;
       <pubDate>Thu, 29 Sep 2022 12:48:18 +0800</pubDate>
       
       <guid>https://oscome.cn/topic/godaily/cache2go/</guid>
-      <description>引言 # cache2go 是个并发安全的续期式的缓存库，适合存储少量常驻内存变量。
-项目地址 #  项目地址： &amp;lt;a ta&amp;rsquo;r&amp;rsquo;ge&amp;quot;https://github.com/muesli/cache2go&amp;quot;&amp;gt;https://github.com/muesli/cache2go [star:1.8k]
- 安装 #  go get github.com/muesli/cache2go
- 例子 # 具体方法可见注释
-package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/muesli/cache2go&amp;quot; ) type myStruct struct { title string content interface{} } func main() { table := &amp;quot;test&amp;quot; key := &amp;quot;oscome&amp;quot; // 新建 CacheTable cache := cache2go.Cache(table) setDataLoader(table) Callback(table, key) val := myStruct{&amp;quot;what&amp;quot;, &amp;quot;hello oscome&amp;quot;} // 添加一个kv，过期时间 2s cache.Add(key, 2*time.Second, &amp;amp;val) // 获取value res, err := cache.</description>
+      <description>引言  cache2go 是个并发安全的续期式的缓存库，适合存储少量常驻内存变量。
+项目地址   项目地址： &amp;lt;a ta&amp;rsquo;r&amp;rsquo;ge&amp;quot;https://github.com/muesli/cache2go&amp;quot;&amp;gt;https://github.com/muesli/cache2go [star:1.8k]
+ 使用场景   本地轻量缓存  安装   go get github.com/muesli/cache2go
+ 例子  具体方法可见注释
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/muesli/cache2go&amp;quot; ) type myStruct struct { title string content interface{} } func main() { table := &amp;quot;test&amp;quot; key := &amp;quot;oscome&amp;quot; // 新建 CacheTable cache := cache2go.Cache(table) setDataLoader(table) Callback(table, key) val := myStruct{&amp;quot;what&amp;quot;, &amp;quot;hello oscome&amp;quot;} // 添加一个kv，过期时间 2s cache.</description>
+    </item>
+    
+    <item>
+      <title>day6-cron定时任务</title>
+      <link>https://oscome.cn/topic/godaily/cron/</link>
+      <pubDate>Mon, 26 Sep 2022 10:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/godaily/cron/</guid>
+      <description>引言  如果你熟悉linux，你肯定知道crontab，cron就是这样一个定时器，可以定时执行你定义的任务。
+项目地址   项目地址： https://github.com/robfig/cron [star:10.3k]
+ 使用场景   构建命令行应用程序  安装   go get github.com/robfig/cron/v3@v3.0.0
+ 常用方法   New 新建一个cron AddFunc 添加一个任务 Stop 停止 cron 任务（不会体质进行中的任务) Start 开始 cron 任务计划（但是不会立即执行，根据配置的周期执行）  例子  package main import ( &amp;quot;fmt&amp;quot; &amp;quot;os&amp;quot; &amp;quot;os/signal&amp;quot; &amp;quot;syscall&amp;quot; &amp;quot;time&amp;quot; &amp;quot;github.com/robfig/cron/v3&amp;quot; &amp;quot;github.com/sirupsen/logrus&amp;quot; ) func main() { cron := cron.New() cron.AddFunc(&amp;quot;* * * * *&amp;quot;, func() { fmt.Println(time.Now().Format(&amp;quot;2006-01-02 15:04:05&amp;quot;)) }) cron.Start() sig := make(chan os.</description>
     </item>
     
   </channel>

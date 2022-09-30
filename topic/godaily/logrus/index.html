@@ -15,17 +15,17 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>Git 插件 | 开源到</title>
-<meta name="description" content="VSCode 扩展分享，VSCode Git 插件">
-<link rel="canonical" href="https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/">
+  <title>day4-logrus 日志 | 开源到</title>
+<meta name="description" content="logrus 日志">
+<link rel="canonical" href="https://oscome.cn/topic/godaily/logrus/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 插件">
-<meta property="og:description" content="VSCode 扩展分享，VSCode Git 插件">
-<meta property="og:url" content="https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/">
+<meta property="og:title" content="day4-logrus 日志">
+<meta property="og:description" content="logrus 日志">
+<meta property="og:url" content="https://oscome.cn/topic/godaily/logrus/">
 <meta property="og:site_name" content="开源到">
-<meta property="article:published_time" content="2022-09-10T08:48:28+08:00">
-  <meta property="article:modified_time" content="2022-09-10T08:48:28+08:00">
+<meta property="article:published_time" content="2022-09-29T10:48:18+08:00">
+  <meta property="article:modified_time" content="2022-09-29T10:48:18+08:00">
   
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
@@ -33,10 +33,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="Git 插件">
-<meta name="twitter:description" content="VSCode 扩展分享，VSCode Git 插件">
+<meta name="twitter:title" content="day4-logrus 日志">
+<meta name="twitter:description" content="logrus 日志">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="Git 插件">
+    <meta name="twitter:image:alt" content="day4-logrus 日志">
 
 <script type="application/ld+json">
 {
@@ -73,32 +73,32 @@
       },
     {
       "@type": "WebPage",
-      "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/",
-      "url": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/",
-      "name": "Git 插件",
-      "description": "VSCode 扩展分享，VSCode Git 插件",
+      "@id": "https://oscome.cn/topic/godaily/logrus/",
+      "url": "https://oscome.cn/topic/godaily/logrus/",
+      "name": "day4-logrus 日志",
+      "description": "logrus 日志",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "2022-09-10T08:48:28CET",
-      "dateModified": "2022-09-10T08:48:28CET",
+      "datePublished": "2022-09-29T10:48:18CET",
+      "dateModified": "2022-09-29T10:48:18CET",
       "breadcrumb": {
-        "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/breadcrumb/1"
+        "@id": "https://oscome.cn/topic/godaily/logrus/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2"
+        "@id": "https://oscome.cn/topic/godaily/logrus/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/"]
+        "@type": "ReadAction", "target": ["https://oscome.cn/topic/godaily/logrus/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/breadcrumb/1",
+      "@id": "https://oscome.cn/topic/godaily/logrus/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
@@ -114,24 +114,24 @@
         "position":  2 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/docs/",
-          "url": "https://oscome.cn/docs/",
-          "name": "Docs"
+          "@id": "https://oscome.cn/topic/",
+          "url": "https://oscome.cn/topic/",
+          "name": "Topic"
           }
         },{
         "@type": "ListItem",
         "position":  3 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/docs/vscode/",
-          "url": "https://oscome.cn/docs/vscode/",
-          "name": "Vscode"
+          "@id": "https://oscome.cn/topic/godaily/",
+          "url": "https://oscome.cn/topic/godaily/",
+          "name": "Godaily"
           }
         },{
         "@type": "ListItem",
         "position":  4 ,
         "item": {
-          "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/"
+          "@id": "https://oscome.cn/topic/godaily/logrus/"
           }
         }]
     },
@@ -140,52 +140,11 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Article",
-          "@id": "https://oscome.cn/#/schema/article/1",
-          "headline": "Git 插件",
-          "description": "VSCode 扩展分享，VSCode Git 插件",
-          "isPartOf": {
-            "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/"
-          },
-          "mainEntityOfPage": {
-            "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/"
-          },
-          "datePublished": "2022-09-10T08:48:28CET",
-          "dateModified": "2022-09-10T08:48:28CET",
-          "author": {
-            "@id": "https://oscome.cn/#/schema/person/2"
-          },
-          "publisher": {
-              "@id": "https://oscome.cn/#/schema/person/1"
-            },
-          "image": {
-            "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2"
-          }
-        }
-      ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://oscome.cn/#/schema/person/2",
-          "name": "oscome",
-          "sameAs": [
-            , "https://github.com/oscome"
-            ]
-        }
-      ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
           "@type": "ImageObject",
-          "@id": "https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/#/schema/image/2",
+          "@id": "https://oscome.cn/topic/godaily/logrus/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": "Git 插件"
+          "caption": "day4-logrus 日志"
         }
       ]
     }
@@ -201,7 +160,7 @@
 
 </head>
 
-  <body class="docs single">
+  <body class="topic single">
     <div id="announcement" data-id="global-alert-a5bfd6744a93cd97a3a24d055f0c4fff" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
     网站目前处于初期建设中，每日更新，感谢支持
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -278,6 +237,8 @@
 
 
 </div>
+
+
 <div class="container-xxl">
   <aside class="doks-sidebar">
     <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
@@ -287,89 +248,45 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-73c5cb4c903bf7a92f0279d5ac2e7e41" aria-expanded="true">
-          VSCode 扩展
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62c0c00ac498601d2eb2e129227db072" aria-expanded="true">
+          godaily 每日一库
         </button>
-        <div class="collapse show" id="section-73c5cb4c903bf7a92f0279d5ac2e7e41">
+        <div class="collapse show" id="section-62c0c00ac498601d2eb2e129227db072">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/vscode/">说明</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/godaily/">godaily 每日一库</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/yanzhi/">颜值扩展</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cast/">day1-cast 类型转换</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/">Git 插件</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/viper/">day2-viper 配置读取</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/tips/">效率提升</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/urfavecli/">day3-urfave/cli 命令行</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/huashui/">摸 🐟 鱼？不存在的</a></li>
-              
-            
-          </ul>
-        </div>
-      </li>
-    
-      
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-b4a83da38d404a2dc1ddf0a6784a430a" aria-expanded="false">
-          工具篇
-        </button>
-        <div class="collapse" id="section-b4a83da38d404a2dc1ddf0a6784a430a">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/tool/tool/">说明</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/godaily/logrus/">day4-logrus 日志</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/tool/markdown/">Markdown 编辑器</a></li>
-              
-            
-          </ul>
-        </div>
-      </li>
-    
-      
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-c7bb27fd35b1328687457214c539da58" aria-expanded="false">
-          开源资源
-        </button>
-        <div class="collapse" id="section-c7bb27fd35b1328687457214c539da58">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/resource/">说明</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cache2go/">day5-内存 cache2go</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/go/">go</a></li>
-              
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/php/">php</a></li>
-              
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/rust/">rust</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cron/">day6-cron定时任务</a></li>
               
             
           </ul>
@@ -383,7 +300,6 @@
   </aside>
 </div>
 
-
     <div class="wrap container-xxl" role="document">
       <div class="content">
         
@@ -396,89 +312,45 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-73c5cb4c903bf7a92f0279d5ac2e7e41" aria-expanded="true">
-          VSCode 扩展
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62c0c00ac498601d2eb2e129227db072" aria-expanded="true">
+          godaily 每日一库
         </button>
-        <div class="collapse show" id="section-73c5cb4c903bf7a92f0279d5ac2e7e41">
+        <div class="collapse show" id="section-62c0c00ac498601d2eb2e129227db072">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/vscode/">说明</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/godaily/">godaily 每日一库</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/yanzhi/">颜值扩展</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cast/">day1-cast 类型转换</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/docs/vscode/git%E6%8F%92%E4%BB%B6/">Git 插件</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/viper/">day2-viper 配置读取</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/tips/">效率提升</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/urfavecli/">day3-urfave/cli 命令行</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/vscode/huashui/">摸 🐟 鱼？不存在的</a></li>
-              
-            
-          </ul>
-        </div>
-      </li>
-    
-      
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-b4a83da38d404a2dc1ddf0a6784a430a" aria-expanded="false">
-          工具篇
-        </button>
-        <div class="collapse" id="section-b4a83da38d404a2dc1ddf0a6784a430a">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/tool/tool/">说明</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/godaily/logrus/">day4-logrus 日志</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/tool/markdown/">Markdown 编辑器</a></li>
-              
-            
-          </ul>
-        </div>
-      </li>
-    
-      
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-c7bb27fd35b1328687457214c539da58" aria-expanded="false">
-          开源资源
-        </button>
-        <div class="collapse" id="section-c7bb27fd35b1328687457214c539da58">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/resource/">说明</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cache2go/">day5-内存 cache2go</a></li>
               
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/go/">go</a></li>
-              
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/php/">php</a></li>
-              
-            
-              
-                
-                <li><a class="docs-link rounded" href="https://oscome.cn/docs/resource/rust/">rust</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cron/">day6-cron定时任务</a></li>
               
             
           </ul>
@@ -504,10 +376,17 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#gitignore">gitignore</a></li>
-    <li><a href="#git-history">Git History</a></li>
-    <li><a href="#git-graph">Git Graph</a></li>
-    <li><a href="#github">github</a></li>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#使用场景">使用场景</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#常用方法">常用方法</a></li>
+    <li><a href="#例子">例子</a>
+      <ul>
+        <li><a href="#实例源码">实例源码</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">tips</a></li>
   </ul>
 </nav>
       </div>
@@ -518,10 +397,17 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#gitignore">gitignore</a></li>
-    <li><a href="#git-history">Git History</a></li>
-    <li><a href="#git-graph">Git Graph</a></li>
-    <li><a href="#github">github</a></li>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#使用场景">使用场景</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#常用方法">常用方法</a></li>
+    <li><a href="#例子">例子</a>
+      <ul>
+        <li><a href="#实例源码">实例源码</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">tips</a></li>
   </ul>
 </nav>
   </div>
@@ -529,8 +415,8 @@
 		</nav>
 		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
 		
-			<h1>Git 插件</h1>
-			<time>2022-09-10, Saturday</time>
+			<h1>day4-logrus 日志</h1>
+			<time>Sep 29 2022, Thu </time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				<div class="d-xl-none">
@@ -546,10 +432,17 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#gitignore">gitignore</a></li>
-    <li><a href="#git-history">Git History</a></li>
-    <li><a href="#git-graph">Git Graph</a></li>
-    <li><a href="#github">github</a></li>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#使用场景">使用场景</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#常用方法">常用方法</a></li>
+    <li><a href="#例子">例子</a>
+      <ul>
+        <li><a href="#实例源码">实例源码</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">tips</a></li>
   </ul>
 </nav>
       </div>
@@ -560,83 +453,114 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#gitignore">gitignore</a></li>
-    <li><a href="#git-history">Git History</a></li>
-    <li><a href="#git-graph">Git Graph</a></li>
-    <li><a href="#github">github</a></li>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#使用场景">使用场景</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#常用方法">常用方法</a></li>
+    <li><a href="#例子">例子</a>
+      <ul>
+        <li><a href="#实例源码">实例源码</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">tips</a></li>
   </ul>
 </nav>
   </div>
 
 			</nav>
-			<p>Git 想必在大家伙的日常开发中是必不可少的，本期给大家推荐几个 git 相关插件，希望能提高你的开发效率。</p>
-<h2 id="gitignore">gitignore </h2>
+			<h2 id="引言">引言 </h2>
+<p>作为 github 上 golang star 最多的库，logrus值得练习。</p>
+<h2 id="项目地址">项目地址 </h2>
 <blockquote>
-<p>项目地址: <a href="https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore">https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore</a></p>
+<p>项目地址： <a href="https://github.com/sirupsen/logrus">https://github.com/sirupsen/logrus</a> [star:21.4k]</p>
 </blockquote>
-<p>如果你觉得写 gitignore 是个烦人的事情，那么你可以试试，安装后command+shift+P打开，就贸易选择 add gitignore 了。</p>
-<p><img class="lazyload blur-up radius shadow" src="/images/vscode-git-addignore-cmd.png" alt="gitignore"></p>
-<p>选择后具体语言后就会生成gitignore 文件啦。
-<img class="lazyload blur-up radius shadow" src="/images/vscode-add-gitignore.png" alt="gitigonre文件"></p>
-<h2 id="git-history">Git History </h2>
+<h2 id="使用场景">使用场景 </h2>
+<ul>
+<li>日志打印、格式化日志</li>
+</ul>
+<h2 id="安装">安装 </h2>
 <blockquote>
-<p>项目地址: <a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory">https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory</a></p>
+<p>go get github.com/sirupsen/logrus</p>
 </blockquote>
-<p>在某个文件里直接点击右键，就可以查看当前你文件的 git 历史了，相当方便。</p>
-<p><img class="lazyload blur-up radius shadow" src="/images/vscode-git-history.png" alt="git-history"></p>
-<h2 id="git-graph">Git Graph </h2>
-<blockquote>
-<p>项目地址: <a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph</a></p>
-</blockquote>
-<p>安装完成后左下角有快捷菜单，点击后看查看自己的 git 提交，如图：</p>
-<p><img class="lazyload blur-up radius shadow" src="/images/vscode-git-graph.png" alt="git graph"></p>
-<p>可点击查看单词 commit 的明细：</p>
-<p><img class="lazyload blur-up radius shadow" src="/images/vscode-git-graph2.png" alt="git graph detail"></p>
-<h2 id="github">github </h2>
-<blockquote>
-<p>项目地址: <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github">https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</a></p>
-</blockquote>
-<p>这个算是针对 github 的扩展，可以快捷的插件 github PR，操作课件如下图。
-<img class="lazyload blur-up radius shadow" src="/images/vscode-github.png" alt="github"></p>
-<p><img class="lazyload blur-up radius shadow" src="/images/vscode-github-pr.png" alt="github PR"></p>
-<hr>
-<p>目前小欧用到比较多的是 git history 和 git graph，像其他的 gitlens 等插件使用不多，就不推荐了。</p>
-<p>如果您有其他 git 插件推荐，欢迎在评论区留言分享，感谢您的阅读。</p>
+<h2 id="常用方法">常用方法 </h2>
+<ul>
+<li>Info 打印 info 级别的日志</li>
+<li>SetFormatter 设置日志格式</li>
+<li>SetLevel 设置打印的级别，此级别以上显示</li>
+<li>SetReportCaller 设置是否将调用方法作为字段包含在打印的日志内。</li>
+</ul>
+<h2 id="例子">例子 </h2>
+<pre><code class="language-go">package main
 
-			
-			
-<p class="zan my-3 text-center">
-    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
-    <br>
-    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
-</p>
+import &quot;github.com/sirupsen/logrus&quot;
+
+func main() {
+	logrus.Info(&quot;------TextFormatter--------&quot;) // 默认格式
+	logrus.SetFormatter(&amp;logrus.TextFormatter{
+		TimestampFormat: &quot;2006-01-02 15:04:05&quot;, // 定义日期时间格式
+		FullTimestamp:   true,
+		DisableColors:   true,
+	})
+	logrus.Info(&quot;oscome info log&quot;)
+	logrus.Debug(&quot;oscome debug log&quot;)
+
+	logrus.WithFields(logrus.Fields{
+		&quot;name&quot;: &quot;test&quot;,
+	}).Infof(&quot;to do %v&quot;, &quot;log&quot;)
+
+	logrus.Info(&quot;------JSONFormatter--------&quot;)
+
+	formatter := &amp;logrus.JSONFormatter{
+		TimestampFormat: &quot;2006-01-02 15:04:05&quot;, // 定义日期时间格式
+		DataKey:         &quot;test&quot;,                // key
+		FieldMap: logrus.FieldMap{
+			logrus.FieldKeyTime:  &quot;timestamp&quot;,
+			logrus.FieldKeyLevel: &quot;level&quot;,
+			logrus.FieldKeyMsg:   &quot;message&quot;,
+			logrus.FieldKeyFunc:  &quot;caller&quot;,
+		},
+	}
+	logrus.SetFormatter(formatter)
+	logrus.SetReportCaller(true)      // 打印 log 产生的位置
+	logrus.SetLevel(logrus.InfoLevel) // debug
+	logrus.Info(&quot;oscome info log&quot;)
+	logrus.Debug(&quot;oscome debug log&quot;)
+
+	logrus.WithFields(logrus.Fields{
+		&quot;name&quot;: &quot;test&quot;,
+	}).Infof(&quot;to do %v&quot;, &quot;log&quot;)
+}
+</code></pre>
+<h3 id="实例源码">实例源码 </h3>
+<p><a href="https://github.com/oscome/godaily/tree/main/day004">https://github.com/oscome/godaily/tree/main/day004</a></p>
+<h2 id="tips">tips </h2>
+<ol>
+<li>建议全局统一格式，如果需要收集建议设置为 json 格式，方便收集到 ES 等日志系统</li>
+<li>可以配合 file-rotatelogs 或者 shell 去分割</li>
+</ol>
+
+			<p class="my-3">
+				<img class="shadow radius ls-is-cached lazyloaded" src="/images/wechat.png" alt="微信公众号-开源到">
+			</p>
 			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
 				</div>
-			
-			<script src="https://utteranc.es/client.js"
-repo="oscome/oscome.github.io"
-issue-term="og:title"
-theme="github-light"
-crossorigin="anonymous"
-async>
-</script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/docs/vscode/yanzhi/">
+	<a href="/topic/godaily/urfavecli/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; 颜值扩展
+					&larr; day3-urfave/cli 命令行
 				</div>
 			</div>
 		</a>
-	<a class="ms-auto" href="/docs/vscode/tips/">
+	<a class="ms-auto" href="/topic/godaily/cache2go/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					效率提升 &rarr;
+					day5-内存 cache2go &rarr;
 				</div>
 			</div>
 		</a>
 	</div>
-
 
 		</main>
 	</div>
