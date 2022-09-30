@@ -384,7 +384,12 @@
     <li><a href="#例子">例子</a></li>
     <li><a href="#实例源码">实例源码</a></li>
     <li><a href="#tips">tips</a></li>
-    <li><a href="#源码解读">源码解读</a></li>
+    <li><a href="#源码解读">源码解读</a>
+      <ul>
+        <li><a href="#readinconfig">ReadInConfig</a></li>
+        <li><a href="#watchconfig">WatchConfig</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
       </div>
@@ -403,7 +408,12 @@
     <li><a href="#例子">例子</a></li>
     <li><a href="#实例源码">实例源码</a></li>
     <li><a href="#tips">tips</a></li>
-    <li><a href="#源码解读">源码解读</a></li>
+    <li><a href="#源码解读">源码解读</a>
+      <ul>
+        <li><a href="#readinconfig">ReadInConfig</a></li>
+        <li><a href="#watchconfig">WatchConfig</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -436,7 +446,12 @@
     <li><a href="#例子">例子</a></li>
     <li><a href="#实例源码">实例源码</a></li>
     <li><a href="#tips">tips</a></li>
-    <li><a href="#源码解读">源码解读</a></li>
+    <li><a href="#源码解读">源码解读</a>
+      <ul>
+        <li><a href="#readinconfig">ReadInConfig</a></li>
+        <li><a href="#watchconfig">WatchConfig</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
       </div>
@@ -455,7 +470,12 @@
     <li><a href="#例子">例子</a></li>
     <li><a href="#实例源码">实例源码</a></li>
     <li><a href="#tips">tips</a></li>
-    <li><a href="#源码解读">源码解读</a></li>
+    <li><a href="#源码解读">源码解读</a>
+      <ul>
+        <li><a href="#readinconfig">ReadInConfig</a></li>
+        <li><a href="#watchconfig">WatchConfig</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -544,6 +564,123 @@ func TestWatch(t *testing.T) {
 <li>除了yaml，还支持 json、toml、ini等，新版本还支持 etcd，如果感兴趣，可以尝试一下。</li>
 </ol>
 <h2 id="源码解读">源码解读 </h2>
+<p>相对 cast 而言，viper 的代码要稍微复杂一点，我们重点看 ReadInConfig 和 WatchConfig。</p>
+<h3 id="readinconfig">ReadInConfig </h3>
+<pre><code class="language-go">func (v *Viper) ReadInConfig() error {
+	v.logger.Info(&quot;attempting to read in config file&quot;)
+
+	// 读取配置文件
+	filename, err := v.getConfigFile()
+	if err != nil {
+		return err
+	}
+
+	// 文件类型判断，支持 &quot;json&quot;, &quot;toml&quot;, &quot;yaml&quot;, &quot;yml&quot;, &quot;properties&quot;, &quot;props&quot;, &quot;prop&quot;, &quot;hcl&quot;, &quot;tfvars&quot;, &quot;dotenv&quot;, &quot;env&quot;, &quot;ini&quot;
+	if !stringInSlice(v.getConfigType(), SupportedExts) {
+		return UnsupportedConfigError(v.getConfigType())
+	}
+
+	v.logger.Debug(&quot;reading file&quot;, &quot;file&quot;, filename)
+
+	// 涉及另一个库 afero，这里可以简单看成读取文件，返回 []byte 和 error
+	file, err := afero.ReadFile(v.fs, filename)
+	if err != nil {
+		return err
+	}
+
+	config := make(map[string]interface{})
+
+	// 解析文件内容
+	err = v.unmarshalReader(bytes.NewReader(file), config)
+	if err != nil {
+		return err
+	}
+
+	v.config = config
+	return nil
+}
+</code></pre>
+<h3 id="watchconfig">WatchConfig </h3>
+<pre><code class="language-go">func (v *Viper) WatchConfig() {
+	// 这里使用了 sync 包
+	initWG := sync.WaitGroup{}
+	initWG.Add(1)
+	go func() {
+		// fsnotify.NewWatcher()
+		watcher, err := newWatcher()
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer watcher.Close()
+		
+		filename, err := v.getConfigFile()
+		if err != nil {
+			log.Printf(&quot;error: %v\n&quot;, err)
+			initWG.Done()
+			return
+		}
+
+		configFile := filepath.Clean(filename)
+
+		// 获取配置文件所在目录，以便于后续监听
+		configDir, _ := filepath.Split(configFile)
+		realConfigFile, _ := filepath.EvalSymlinks(filename)
+
+		eventsWG := sync.WaitGroup{}
+		eventsWG.Add(1)
+		go func() {
+			for {
+				select {
+				case event, ok := &lt;-watcher.Events:
+					// watcher.Events 这个通道关闭，注意 channel 两个返回值的写法哦
+					if !ok { 
+						eventsWG.Done()
+						return
+					}
+					currentConfigFile, _ := filepath.EvalSymlinks(filename)
+					// 这里关心两种情况
+					// 1. 配置文件创建或修改
+					// 2. 配置文件的真实路径发生了变化(例如:k8s ConfigMap replacement)
+					const writeOrCreateMask = fsnotify.Write | fsnotify.Create
+					if (filepath.Clean(event.Name) == configFile &amp;&amp;
+						event.Op&amp;writeOrCreateMask != 0) ||
+						(currentConfigFile != &quot;&quot; &amp;&amp; currentConfigFile != realConfigFile) {
+						realConfigFile = currentConfigFile
+						err := v.ReadInConfig()
+						if err != nil {
+							log.Printf(&quot;error reading config file: %v\n&quot;, err)
+						}
+
+						// 调用自定义的 OnConfigChange
+						if v.onConfigChange != nil {
+							v.onConfigChange(event)
+						}
+					} else if filepath.Clean(event.Name) == configFile &amp;&amp;
+						event.Op&amp;fsnotify.Remove != 0 {
+						eventsWG.Done()
+						return
+					}
+
+				case err, ok := &lt;-watcher.Errors:
+					if ok { // 'Errors' channel is not closed
+						log.Printf(&quot;watcher error: %v\n&quot;, err)
+					}
+					eventsWG.Done()
+					return
+				}
+			}
+		}()
+		// 监听整个目录
+		watcher.Add(configDir)
+		initWG.Done()
+		// 等待下面一个 go routine 完成
+		eventsWG.Wait()
+	}()
+	// 确保上面的 go routine 在返回之前完全结束
+	initWG.Wait()
+}
+</code></pre>
+<p>PS: viper 里面的代码还是有很多值得参考的，我觉得感兴趣可以深入看一下。</p>
 
 			<p class="my-3">
 				<img class="shadow radius ls-is-cached lazyloaded" src="/images/wechat.png" alt="微信公众号-开源到">
