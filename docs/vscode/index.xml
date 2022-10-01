@@ -72,6 +72,28 @@ change-case   项目地址: https://marketplace.visualstudio.com/items?itemName=
     </item>
     
     <item>
+      <title>拓展工具</title>
+      <link>https://oscome.cn/docs/vscode/tool/</link>
+      <pubDate>Tue, 27 Sep 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/vscode/tool/</guid>
+      <description>VSCode 可不仅仅能编码，美化截图、制作流程图、数据库连接、emoji样样能干。
+CodeSnap   项目地址: https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap
+ CodeSnap 可以快速地生成代码快照，你看到的很多文章里的代码图片就是使用它生成的。使用简单，如图所见
+drawio   项目地址: https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
+ 不知道你有没有使用过 draw.io，安装这个插件你就可以在vscode使用 draw.io，可以制作流程图、思维导图，我新建了 oscome.drawio
+插件还支持这些文件 .drawio, .dio, .drawio.svg or .drawio.png
+MySQL   项目地址: https://marketplace.visualstudio.com/items?itemName=formulahendry.vscode-mysql
+ MySQL 管理工具。
+emojisense   项目地址: https://marketplace.visualstudio.com/items?itemName=bierner.emojisense
+ emojisense 支持快速添加 emoji 表情，增加 emoji ，让你的代码、文章更有趣。🐱 📡
+Docker   项目地址: https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker
+ Docker 扩展使从 Visual Studio Code 构建、管理和部署容器化应用程序变得容易，甚至还提供容器内 Node.js、Python 的一键式调试。
+ 除此之外，VSCode 还能跟 kubernetes、ElasticSearch 等进行交互操作。
+但不得不说的是，像 MySQL 这种扩展，我更建议使用专用的客户端，这些扩展纯查看还可以，但使用体验一般般而且如果开启了同步配置等功能，数据库、kubernetes 这类敏感还是要小心为上。</description>
+    </item>
+    
+    <item>
       <title>摸 🐟 鱼？不存在的</title>
       <link>https://oscome.cn/docs/vscode/huashui/</link>
       <pubDate>Fri, 16 Sep 2022 08:48:18 +0800</pubDate>

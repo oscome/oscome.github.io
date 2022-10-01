@@ -65,7 +65,7 @@ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;
       <description>引言  作为 github 上 golang star 最多的库，logrus值得练习。
 项目地址   项目地址： https://github.com/sirupsen/logrus [star:21.4k]
  使用场景   日志打印、格式化日志  安装   go get github.com/sirupsen/logrus
- 常用方法   Info 打印 info 级别的日志 SetFormatter 设置日志格式 SetLevel 设置打印的级别，此级别以上显示 SetReportCaller 设置是否将调用方法作为字段包含在打印的日志内。  例子  package main import &amp;quot;github.com/sirupsen/logrus&amp;quot; func main() { logrus.Info(&amp;quot;------TextFormatter--------&amp;quot;) // 默认格式 logrus.SetFormatter(&amp;amp;logrus.TextFormatter{ TimestampFormat: &amp;quot;2006-01-02 15:04:05&amp;quot;, // 定义日期时间格式 FullTimestamp: true, DisableColors: true, }) logrus.Info(&amp;quot;oscome info log&amp;quot;) logrus.Debug(&amp;quot;oscome debug log&amp;quot;) logrus.</description>
+ 常用方法   Info 打印 info 级别的日志 SetFormatter 设置日志格式 SetLevel 设置打印的级别，此级别以上显示 SetReportCaller 设置是否将调用方法作为字段包含在打印的日志内。  例子  package main import &amp;quot;github.com/sirupsen/logrus&amp;quot; func main() { log := logrus.New() log.Info(&amp;quot;------TextFormatter--------&amp;quot;) // 默认格式 log.SetFormatter(&amp;amp;logrus.TextFormatter{ TimestampFormat: &amp;quot;2006-01-02 15:04:05&amp;quot;, // 定义日期时间格式 FullTimestamp: true, DisableColors: true, }) log.Info(&amp;quot;oscome info log&amp;quot;) log.</description>
     </item>
     
     <item>

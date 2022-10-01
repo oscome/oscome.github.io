@@ -46,6 +46,12 @@
         <priority>0.5</priority>
       </url>
       <url>
+        <loc>https://oscome.cn/docs/vscode/tool/</loc>
+        <lastmod>2022-09-27T08:48:28+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
         <loc>https://oscome.cn/docs/vscode/huashui/</loc>
         <lastmod>2022-09-16T08:48:18+08:00</lastmod>
         <changefreq>weekly</changefreq>

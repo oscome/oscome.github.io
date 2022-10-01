@@ -87,6 +87,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/docs/vscode/tool/</loc>
+    <lastmod>2022-09-27T08:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/docs/tool/</loc>
     <lastmod>2022-09-06T08:48:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
