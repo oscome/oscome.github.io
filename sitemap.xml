@@ -10,13 +10,6 @@
   </url>
   
   <url>
-    <loc>https://oscome.cn/docs/tool/tool/</loc>
-    <lastmod>2022-09-26T08:48:28+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://oscome.cn/topic/godaily/godaily/</loc>
     <lastmod>2022-09-26T08:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -164,8 +157,22 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/docs/tool/tool/</loc>
+    <lastmod>2022-09-26T08:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/docs/tool/markdown/</loc>
     <lastmod>2022-09-12T08:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/docs/tool/mindmapping/</loc>
+    <lastmod>2022-10-03T08:48:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
