@@ -2,15 +2,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
-      <loc>https://oscome.cn/topic/goalgorithm/1/</loc>
-      <lastmod>2022-10-01T12:48:18+08:00</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-    </url>
-    
-    <url>
-      <loc>https://oscome.cn/topic/goalgorithm/2/</loc>
-      <lastmod>2022-10-01T16:48:18+08:00</lastmod>
+      <loc>https://oscome.cn/topic/goalgorithm/</loc>
+      <lastmod>2022-09-26T08:48:18+08:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
     </url>
@@ -22,7 +15,37 @@
       <priority>0.5</priority>
     </url>
     <url>
+        <loc>https://oscome.cn/topic/goalgorithm/start/</loc>
+        <lastmod>2022-09-26T08:48:18+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>https://oscome.cn/topic/goalgorithm/1/</loc>
+        <lastmod>2022-10-01T12:48:18+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>https://oscome.cn/topic/goalgorithm/2/</loc>
+        <lastmod>2022-10-02T16:48:18+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>https://oscome.cn/topic/goalgorithm/3/</loc>
+        <lastmod>2022-10-03T11:48:18+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
         <loc>https://oscome.cn/topic/godaily/godaily/</loc>
+        <lastmod>2022-09-26T08:48:18+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+      <url>
+        <loc>https://oscome.cn/topic/godaily/start/</loc>
         <lastmod>2022-09-26T08:48:18+08:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>

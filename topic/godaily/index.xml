@@ -16,6 +16,16 @@
     </item>
     
     <item>
+      <title>说明</title>
+      <link>https://oscome.cn/topic/godaily/start/</link>
+      <pubDate>Mon, 26 Sep 2022 08:48:18 +0800</pubDate>
+      
+      <guid>https://oscome.cn/topic/godaily/start/</guid>
+      <description>go 每日一库，介绍golang 常用的库，别光看，多练习，或者应用到项目中。
+增加了源码解读模块，对库的源码做一些简单探索。</description>
+    </item>
+    
+    <item>
       <title>day1-cast 类型转换</title>
       <link>https://oscome.cn/topic/godaily/cast/</link>
       <pubDate>Mon, 26 Sep 2022 10:48:18 +0800</pubDate>

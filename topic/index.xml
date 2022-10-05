@@ -5,25 +5,6 @@
     <link>https://oscome.cn/topic/</link>
     <description>Recent content in 专栏 on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 01 Oct 2022 16:48:18 +0800</lastBuildDate><atom:link href="https://oscome.cn/topic/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>day1-为什么要学习算法与数据结构</title>
-      <link>https://oscome.cn/topic/goalgorithm/1/</link>
-      <pubDate>Sat, 01 Oct 2022 12:48:18 +0800</pubDate>
-      
-      <guid>https://oscome.cn/topic/goalgorithm/1/</guid>
-      <description>算法和数据结构的学习目的   编程的内功修炼，实用“有趣” 应付各种面试算法题  有效学习   不同结构，各个击破 刻意练习  针对单个知识点 针对弱点、缺陷 枯燥，不舒适，那就对了   反馈  即时反馈 主动反馈，review    tips   coding!!! 尝试多种方案，寻找最优解  练习平台   力扣   </description>
-    </item>
-    
-    <item>
-      <title>day2 算法复杂度</title>
-      <link>https://oscome.cn/topic/goalgorithm/2/</link>
-      <pubDate>Sat, 01 Oct 2022 16:48:18 +0800</pubDate>
-      
-      <guid>https://oscome.cn/topic/goalgorithm/2/</guid>
-      <description>常见的时间复杂度量级有：
- 常数阶O(1) 对数阶O(logN) 线性阶O(n) 线性对数阶O(nlogN) 平方阶O(n²) 立方阶O(n³) K次方阶O(n^k) 指数阶(2^n)  Master Theorem  </description>
-    </item>
-    
+    <lastBuildDate>Mon, 03 Oct 2022 11:48:18 +0800</lastBuildDate><atom:link href="https://oscome.cn/topic/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
