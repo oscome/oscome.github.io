@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.1e352684b4e85c2413666827cbad7780d59d1f2642b3999ead670334e5a9902050e9515e8523657095e67df93a80f59c8b2bb3772ac255878765f266905c94d5.css" integrity="sha512-HjUmhLToXCQTZmgny613gNWdHyZCs5merWcDNOWpkCBQ6VFehSNlcJXmffk6gPWciyuzdyrCVYeHZfJmkFyU1Q==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title>kubectl | 开源到</title>
+<meta name="description" content="kubectl">
+<link rel="canonical" href="https://oscome.cn/topic/kubernetes/kubectl/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubectl">
+<meta property="og:description" content="kubectl">
+<meta property="og:url" content="https://oscome.cn/topic/kubernetes/kubectl/">
+<meta property="og:site_name" content="开源到">
+<meta property="article:published_time" content="2022-09-08T08:48:18+08:00">
+  <meta property="article:modified_time" content="2022-09-08T08:48:18+08:00">
+  
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="kubectl">
+<meta name="twitter:description" content="kubectl">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="kubectl">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/topic/kubernetes/kubectl/",
+      "url": "https://oscome.cn/topic/kubernetes/kubectl/",
+      "name": "kubectl",
+      "description": "kubectl",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "2022-09-08T08:48:18CET",
+      "dateModified": "2022-09-08T08:48:18CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/topic/kubernetes/kubectl/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/topic/kubernetes/kubectl/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/topic/kubernetes/kubectl/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/topic/kubernetes/kubectl/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/topic/",
+          "url": "https://oscome.cn/topic/",
+          "name": "Topic"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/topic/kubernetes/",
+          "url": "https://oscome.cn/topic/kubernetes/",
+          "name": "Kubernetes"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "https://oscome.cn/topic/kubernetes/kubectl/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/topic/kubernetes/kubectl/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": "kubectl"
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="topic single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-83cc906066e3327e35d6eed966bf9eeb" aria-expanded="false">
+          小欧的算法笔记
+        </button>
+        <div class="collapse" id="section-83cc906066e3327e35d6eed966bf9eeb">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/start/">说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/1/">day1 为什么要学习算法与数据结构</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/2/">day2 算法复杂度</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/3/">day3 数组</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-53a7e3f7d71bc6f802044ffb3fce86dd" aria-expanded="true">
+          小欧的 kubernetes 笔记
+        </button>
+        <div class="collapse show" id="section-53a7e3f7d71bc6f802044ffb3fce86dd">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/start/">说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/kubernetes%E6%98%AF%E4%B8%AA%E5%95%A5/">Kubernetes是个啥</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/kubernetes%E7%BB%84%E4%BB%B6/">Kubernetes组件</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/kubernetes/kubectl/">kubectl</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/%E9%95%9C%E5%83%8F/">镜像</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/%E5%85%AC%E5%B8%83%E5%BA%94%E7%94%A8/">公布应用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/%E9%83%A8%E7%BD%B2deployment/">部署Deployment</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/service/">Service</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/cronjob/">CronJob</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/pvc/">PVC</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-dd21bb18d8ef18e2022fd3557b13058b" aria-expanded="false">
+          Solidity 笔记
+        </button>
+        <div class="collapse" id="section-dd21bb18d8ef18e2022fd3557b13058b">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/solidity/start/">Solidity 笔记</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62c0c00ac498601d2eb2e129227db072" aria-expanded="false">
+          godaily 每日一库
+        </button>
+        <div class="collapse" id="section-62c0c00ac498601d2eb2e129227db072">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/godaily/">godaily 每日一库</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/start/">说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cast/">day1-cast 类型转换</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/viper/">day2-viper 配置读取</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/urfavecli/">day3-urfave/cli 命令行</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/logrus/">day4-logrus 日志</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cache2go/">day5-内存 cache2go</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cron/">day6-cron定时任务</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-83cc906066e3327e35d6eed966bf9eeb" aria-expanded="false">
+          小欧的算法笔记
+        </button>
+        <div class="collapse" id="section-83cc906066e3327e35d6eed966bf9eeb">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/start/">说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/1/">day1 为什么要学习算法与数据结构</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/2/">day2 算法复杂度</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/goalgorithm/3/">day3 数组</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-53a7e3f7d71bc6f802044ffb3fce86dd" aria-expanded="true">
+          小欧的 kubernetes 笔记
+        </button>
+        <div class="collapse show" id="section-53a7e3f7d71bc6f802044ffb3fce86dd">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/start/">说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/kubernetes%E6%98%AF%E4%B8%AA%E5%95%A5/">Kubernetes是个啥</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/kubernetes%E7%BB%84%E4%BB%B6/">Kubernetes组件</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/topic/kubernetes/kubectl/">kubectl</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/%E9%95%9C%E5%83%8F/">镜像</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/%E5%85%AC%E5%B8%83%E5%BA%94%E7%94%A8/">公布应用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/%E9%83%A8%E7%BD%B2deployment/">部署Deployment</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/service/">Service</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/cronjob/">CronJob</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/kubernetes/pvc/">PVC</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-dd21bb18d8ef18e2022fd3557b13058b" aria-expanded="false">
+          Solidity 笔记
+        </button>
+        <div class="collapse" id="section-dd21bb18d8ef18e2022fd3557b13058b">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/solidity/start/">Solidity 笔记</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62c0c00ac498601d2eb2e129227db072" aria-expanded="false">
+          godaily 每日一库
+        </button>
+        <div class="collapse" id="section-62c0c00ac498601d2eb2e129227db072">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/godaily/">godaily 每日一库</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/start/">说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cast/">day1-cast 类型转换</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/viper/">day2-viper 配置读取</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/urfavecli/">day3-urfave/cli 命令行</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/logrus/">day4-logrus 日志</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cache2go/">day5-内存 cache2go</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/topic/godaily/cron/">day6-cron定时任务</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kubectl">kubectl</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#语法">语法</a></li>
+        <li><a href="#示例常用操作">示例：常用操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kubectl">kubectl</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#语法">语法</a></li>
+        <li><a href="#示例常用操作">示例：常用操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/topic/">Topic</a></li>
+<li class="breadcrumb-item"><a href="/topic/kubernetes/">小欧的 kubernetes 笔记</a></li>
+<li class="breadcrumb-item active" aria-current="page">kubectl</li>
+					</ol>
+				</nav>
+			
+			<h1>kubectl</h1>
+			<time>Sep 08 2022, Thu </time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kubectl">kubectl</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#语法">语法</a></li>
+        <li><a href="#示例常用操作">示例：常用操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kubectl">kubectl</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#语法">语法</a></li>
+        <li><a href="#示例常用操作">示例：常用操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<h2 id="kubectl">kubectl </h2>
+<p>Kubectl 命令行工具管理 Kubernetes 集群。 kubectl 在 $HOME/.kube 目录中查找一个名为 config 的配置文件。 你可以通过设置 KUBECONFIG 环境变量或设置 &ndash;kubeconfig 参数来指定其它 kubeconfig 文件。</p>
+<h3 id="安装">安装 </h3>
+<h4 id="macos">macOS </h4>
+<pre><code class="language-sh"># install
+brew install kubectl 
+
+# test
+kubectl version --client
+
+# 自动补全工具
+echo source &lt;(kubectl completion zsh) &gt;&gt; ~/.zshrc
+</code></pre>
+<h3 id="语法">语法 </h3>
+<p>使用以下语法 <code>kubectl</code> 从终端窗口运行命令：</p>
+<pre><code class="language-shell">kubectl [command] [TYPE] [NAME] [flags]
+</code></pre>
+<p>其中 <code>command</code>、<code>TYPE</code>、<code>NAME</code> 和 <code>flags</code> 分别是：</p>
+<ul>
+<li>
+<p><code>command</code>：指定要对一个或多个资源执行的操作，例如 <code>create</code>、<code>get</code>、<code>describe</code>、<code>delete</code>。</p>
+</li>
+<li>
+<p><code>TYPE</code>：指定<a href="https://kubernetes.io/zh/docs/reference/kubectl/overview/#%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B">资源类型</a>。资源类型不区分大小写， 可以指定单数、复数或缩写形式。例如，以下命令输出相同的结果:</p>
+<pre><code class="language-shell">kubectl get pod pod1
+kubectl get pods pod1
+kubectl get po pod1
+</code></pre>
+</li>
+<li>
+<p><code>NAME</code>：指定资源的名称。名称区分大小写。 如果省略名称，则显示所有资源的详细信息 <code>kubectl get pods</code>。</p>
+<p>在对多个资源执行操作时，你可以按类型和名称指定每个资源，或指定一个或多个文件：</p>
+<ul>
+<li>
+<p>要按类型和名称指定资源：</p>
+<ul>
+<li>
+<p>要对所有类型相同的资源进行分组，请执行以下操作：<code>TYPE1 name1 name2 name&lt;#&gt;</code>。</p>
+<p>例子：<code>kubectl get pod example-pod1 example-pod2</code></p>
+</li>
+<li>
+<p>分别指定多个资源类型：<code>TYPE1/name1 TYPE1/name2 TYPE2/name3 TYPE&lt;#&gt;/name&lt;#&gt;</code>。</p>
+<p>例子：<code>kubectl get pod/example-pod1 replicationcontroller/example-rc1</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>用一个或多个文件指定资源：<code>-f file1 -f file2 -f file&lt;#&gt;</code></p>
+<ul>
+<li><a href="https://kubernetes.io/zh/docs/concepts/configuration/overview/#general-configuration-tips">使用 YAML 而不是 JSON</a> 因为 YAML 更容易使用，特别是用于配置文件时。 例子：<code>kubectl get -f ./pod.yaml</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>flags</code>: 指定可选的参数。例如，可以使用 <code>-s</code> 或 <code>-server</code> 参数指定 Kubernetes API 服务器的地址和端口。</p>
+</li>
+</ul>
+<p><strong>PS:</strong></p>
+<p>从命令行指定的参数会覆盖默认值和任何相应的环境变量。</p>
+<p>如果你需要帮助，从终端窗口运行 <code>kubectl help</code> 。</p>
+<p><a href="https://kubernetes.io/zh/docs/reference/kubectl/overview/#%E6%93%8D%E4%BD%9C">查看更多操作</a></p>
+<h3 id="示例常用操作">示例：常用操作 </h3>
+<p>使用以下示例集来帮助你熟悉运行常用 kubectl 操作：</p>
+<p><code>kubectl apply</code> - 以文件或标准输入为准应用或更新资源。</p>
+<pre><code class="language-shell"># 使用 example-service.yaml 中的定义创建服务。
+kubectl apply -f example-service.yaml
+
+# 使用 example-controller.yaml 中的定义创建 replication controller。
+kubectl apply -f example-controller.yaml
+
+# 使用 &lt;directory&gt; 路径下的任意 .yaml, .yml, 或 .json 文件 创建对象。
+kubectl apply -f &lt;directory&gt;
+</code></pre>
+<p><code>kubectl get</code> - 列出一个或多个资源。</p>
+<pre><code class="language-shell"># 以纯文本输出格式列出所有 pod。
+kubectl get pods
+
+# 以纯文本输出格式列出所有 pod，并包含附加信息(如节点名)。
+kubectl get pods -o wide
+
+# 以纯文本输出格式列出具有指定名称的副本控制器。提示：你可以使用别名 'rc' 缩短和替换 'replicationcontroller' 资源类型。
+kubectl get replicationcontroller &lt;rc-name&gt;
+
+# 以纯文本输出格式列出所有副本控制器和服务。
+kubectl get rc,services
+
+# 以纯文本输出格式列出所有守护程序集，包括未初始化的守护程序集。
+kubectl get ds --include-uninitialized
+
+# 列出在节点 server01 上运行的所有 pod
+kubectl get pods --field-selector=spec.nodeName=server01
+</code></pre>
+<p><code>kubectl describe</code> - 显示一个或多个资源的详细状态，默认情况下包括未初始化的资源。</p>
+<pre><code class="language-shell"># 显示名称为 &lt;node-name&gt; 的节点的详细信息。
+kubectl describe nodes &lt;node-name&gt;
+
+# 显示名为 &lt;pod-name&gt; 的 pod 的详细信息。
+kubectl describe pods/&lt;pod-name&gt;
+
+# 显示由名为 &lt;rc-name&gt; 的副本控制器管理的所有 pod 的详细信息。
+# 记住：副本控制器创建的任何 pod 都以复制控制器的名称为前缀。
+kubectl describe pods &lt;rc-name&gt;
+
+# 描述所有的 pod，不包括未初始化的 pod
+kubectl describe pods
+</code></pre>
+<p><strong>Note:</strong></p>
+<p><code>kubectl get</code> 命令通常用于检索同一资源类型的一个或多个资源。 它具有丰富的参数，允许你使用 <code>-o</code> 或 <code>--output</code> 参数自定义输出格式。你可以指定 <code>-w</code> 或 <code>--watch</code> 参数以开始观察特定对象的更新。 <code>kubectl describe</code> 命令更侧重于描述指定资源的许多相关方面。它可以调用对 <code>API 服务器</code> 的多个 API 调用来为用户构建视图。 例如，该 <code>kubectl describe node</code> 命令不仅检索有关节点的信息，还检索在其上运行的 pod 的摘要，为节点生成的事件等。</p>
+<p><code>kubectl delete</code> - 从文件、stdin 或指定标签选择器、名称、资源选择器或资源中删除资源。</p>
+<pre><code class="language-shell"># 使用 pod.yaml 文件中指定的类型和名称删除 pod。
+kubectl delete -f pod.yaml
+
+# 删除所有带有 '&lt;label-key&gt;=&lt;label-value&gt;' 标签的 Pod 和服务。
+kubectl delete pods,services -l &lt;label-key&gt;=&lt;label-value&gt;
+
+# 删除所有 pod，包括未初始化的 pod。
+kubectl delete pods --all
+</code></pre>
+<p><code>kubectl exec</code> - 对 pod 中的容器执行命令。</p>
+<pre><code class="language-shell"># 从 pod &lt;pod-name&gt; 中获取运行 'date' 的输出。默认情况下，输出来自第一个容器。
+kubectl exec &lt;pod-name&gt; -- date
+
+# 运行输出 'date' 获取在容器的 &lt;container-name&gt; 中 pod &lt;pod-name&gt; 的输出。
+kubectl exec &lt;pod-name&gt; -c &lt;container-name&gt; -- date
+
+# 获取一个交互 TTY 并运行 /bin/bash &lt;pod-name &gt;。默认情况下，输出来自第一个容器。
+kubectl exec -ti &lt;pod-name&gt; -- /bin/bash
+</code></pre>
+<p><code>kubectl logs</code> - 打印 Pod 中容器的日志。</p>
+<pre><code class="language-shell"># 从 pod 返回日志快照。
+kubectl logs &lt;pod-name&gt;
+
+# 从 pod &lt;pod-name&gt; 开始流式传输日志。这类似于 'tail -f' Linux 命令。
+kubectl logs -f &lt;pod-name&gt;
+</code></pre>
+
+			
+			
+<p class="zan my-3 text-center">
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+    <br>
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+</p>
+			
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/topic/goalgorithm/3/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; day3 数组
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/topic/kubernetes/%E9%95%9C%E5%83%8F/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					镜像 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.df33dbff621def780cc6054e90bdb848d6ba7b02f58da27024d0c7aeee0c27257b70d7fdf18f2378cfb5287e67f56b70f375198b407ae26d190e1fea293cab94.js" integrity="sha512-3zPb/2Id73gMxgVOkL24SNa6ewL1jaJwJNDHru4MJyV7cNf98Y8jeM&#43;1KH5n9Wtw83UZi0B64m0ZDh/qKTyrlA==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>
