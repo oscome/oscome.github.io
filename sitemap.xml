@@ -213,6 +213,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/topic/goalgorithm/4/</loc>
+    <lastmod>2022-10-01T17:48:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/topic/kubernetes/%E9%95%9C%E5%83%8F/</loc>
     <lastmod>2022-09-08T18:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
