@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.c701ea1312889706f6946b830c951677ca6bbf457d70fa517f8d86ae951bd50a4db6a664549e3259333eaad1588e2d86dfa96b2684a240f29d0c6a00f2f19202.css" integrity="sha512-xwHqExKIlwb2lGuDDJUWd8prv0V9cPpRf42GrpUb1QpNtqZkVJ4yWTM&#43;qtFYji2G36lrJoSiQPKdDGoA8vGSAg==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title>为什么能这么快 | 开源到</title>
+<meta name="description" content="redis为什么这么快">
+<link rel="canonical" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么能这么快">
+<meta property="og:description" content="redis为什么这么快">
+<meta property="og:url" content="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">
+<meta property="og:site_name" content="开源到">
+<meta property="article:published_time" content="2019-10-20T10:28:28+08:00">
+  <meta property="article:modified_time" content="2019-10-20T10:28:28+08:00">
+  
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="为什么能这么快">
+<meta name="twitter:description" content="redis为什么这么快">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="为什么能这么快">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/",
+      "url": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/",
+      "name": "为什么能这么快",
+      "description": "redis为什么这么快",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "2019-10-20T10:28:28CET",
+      "dateModified": "2019-10-20T10:28:28CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/",
+          "url": "https://oscome.cn/book/",
+          "name": "Book"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/redis/",
+          "url": "https://oscome.cn/book/redis/",
+          "name": "Redis"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": "为什么能这么快"
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="book single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">技术专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/book/readme/">知识合集</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="true">
+          Redis
+        </button>
+        <div class="collapse show" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="true">
+          Redis
+        </button>
+        <div class="collapse show" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要原因">主要原因</a></li>
+    <li><a href="#多路-io-复用模型">多路 I/O 复用模型</a></li>
+    <li><a href="#单进程单线程好处">单进程单线程好处</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要原因">主要原因</a></li>
+    <li><a href="#多路-io-复用模型">多路 I/O 复用模型</a></li>
+    <li><a href="#单进程单线程好处">单进程单线程好处</a></li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/book/">Book</a></li>
+<li class="breadcrumb-item"><a href="/book/redis/">Redis</a></li>
+<li class="breadcrumb-item active" aria-current="page">为什么能这么快</li>
+					</ol>
+				</nav>
+			
+			<h1>为什么能这么快</h1>
+			<time>2019-10-20, Sunday</time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要原因">主要原因</a></li>
+    <li><a href="#多路-io-复用模型">多路 I/O 复用模型</a></li>
+    <li><a href="#单进程单线程好处">单进程单线程好处</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要原因">主要原因</a></li>
+    <li><a href="#多路-io-复用模型">多路 I/O 复用模型</a></li>
+    <li><a href="#单进程单线程好处">单进程单线程好处</a></li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<blockquote>
+<p>Redis6.0引入了多线程。实际上多线程只是用来处理网络数据的读写和协议解析，执行命令仍然是单一工作线程。</p>
+</blockquote>
+<p>Redis 采用的是基于内存的采用的是单进程单线程模型的 KV 数据库，由 C 语言编写。官方提供的数据是可以达到100k+的qps。这个数据不比采用单进程多线程的同样基于内存的 KV 数据库 Memcached 差。</p>
+<h2 id="主要原因">主要原因 </h2>
+<ol>
+<li>基于内存</li>
+<li>数据结构简单，对数据操作也简单</li>
+<li>使用多路 I/O 复用模型,非阻塞IO</li>
+<li>采用单线程，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗CPU，不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗</li>
+<li>使用底层模型不同，它们之间底层实现方式以及与客户端之间通信的应用协议不一样，Redis直接自己构建了VM机制，因为一般的系统调用系统函数的话，会浪费一定的时间去移动和请求</li>
+</ol>
+<h2 id="多路-io-复用模型">多路 I/O 复用模型 </h2>
+<p>多路 I/O 复用模型是利用 select、poll、epoll 可以同时监察多个流的 I/O 事件的能力，在空闲的时候，会把当前线程阻塞掉，当有一个或多个流有 I/O 事件时，就从阻塞态中唤醒，于是程序就会轮询一遍所有的流（epoll 是只轮询那些真正发出了事件的流），并且只依次顺序的处理就绪的流，这种做法就避免了大量的无用操作。这里“多路”指的是多个网络连接，“复用”指的是复用同一个线程。采用多路 I/O 复用技术可以让单个线程高效的处理多个连接请求（尽量减少网络 IO 的时间消耗），且 Redis 在内存中操作数据的速度非常快（内存内的操作不会成为这里的性能瓶颈），主要以上两点造就了 Redis 具有很高的吞吐量。</p>
+<p>和 Memcached 不同，Redis 并没有直接使用 Libevent，而是自己完成了一个非常轻量级的对 select、epoll、evport、kqueue 这些通用的接口的实现。在不同的系统调用选用适合的接口，linux 下默认是 epoll。因为 Libevent 比较重，更通用，代码量也就很庞大，拥有很多 Redis 用不上的功能，Redis 为了追求“轻巧”并且去除依赖，就选择自己去封装了一套。</p>
+<h2 id="单进程单线程好处">单进程单线程好处 </h2>
+<ol>
+<li>代码清晰，处理逻辑相对简单</li>
+<li>不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗</li>
+<li>不存在多进程或者多线程导致的切换而消耗 CPU</li>
+</ol>
+
+			
+			
+<p class="zan my-3 text-center">
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+    <br>
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+</p>
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			
+			<script src="https://utteranc.es/client.js"
+repo="oscome/oscome.github.io"
+issue-term="og:title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/book/redis/%E5%9F%BA%E7%A1%80/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; 基础知识
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					持久化 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.ada26c3e649226c1883dbefe362a804b30098fa864e24a774460676edc1c904bc5d5a570ee0177c23ac99ec826df10987bbd509a22c9bb7712ba6a20177f00ce.js" integrity="sha512-raJsPmSSJsGIPb7&#43;NiqASzAJj6hk4kp3RGBnbtwckEvF1aVw7gF3wjrJnsgm3xCYe71QmiLJu3cSumogF38Azg==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>

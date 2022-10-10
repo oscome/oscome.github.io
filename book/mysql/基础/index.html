@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.c701ea1312889706f6946b830c951677ca6bbf457d70fa517f8d86ae951bd50a4db6a664549e3259333eaad1588e2d86dfa96b2684a240f29d0c6a00f2f19202.css" integrity="sha512-xwHqExKIlwb2lGuDDJUWd8prv0V9cPpRf42GrpUb1QpNtqZkVJ4yWTM&#43;qtFYji2G36lrJoSiQPKdDGoA8vGSAg==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title>基础知识 | 开源到</title>
+<meta name="description" content="面试知识合集，MySQL基础知识">
+<link rel="canonical" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础知识">
+<meta property="og:description" content="面试知识合集，MySQL基础知识">
+<meta property="og:url" content="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">
+<meta property="og:site_name" content="开源到">
+<meta property="article:published_time" content="2021-10-10T10:28:28+08:00">
+  <meta property="article:modified_time" content="2021-10-10T10:28:28+08:00">
+  
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="基础知识">
+<meta name="twitter:description" content="面试知识合集，MySQL基础知识">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="基础知识">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/",
+      "url": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/",
+      "name": "基础知识",
+      "description": "面试知识合集，MySQL基础知识",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "2021-10-10T10:28:28CET",
+      "dateModified": "2021-10-10T10:28:28CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/",
+          "url": "https://oscome.cn/book/",
+          "name": "Book"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/mysql/",
+          "url": "https://oscome.cn/book/mysql/",
+          "name": "Mysql"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": "基础知识"
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="book single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">技术专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/book/readme/">知识合集</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="true">
+          MySQL
+        </button>
+        <div class="collapse show" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="true">
+          MySQL
+        </button>
+        <div class="collapse show" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#事务相关命令">事务相关命令</a></li>
+    <li><a href="#acid">ACID</a></li>
+    <li><a href="#隔离级别">隔离级别</a></li>
+    <li><a href="#mysql-的执行流程">MySQL 的执行流程</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#索引">索引</a>
+      <ul>
+        <li><a href="#b树的特点">B树的特点</a></li>
+        <li><a href="#索引优点">索引优点</a></li>
+        <li><a href="#索引缺点">索引缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#explain出来的各种item的意义">explain出来的各种item的意义</a></li>
+    <li><a href="#锁">锁</a>
+      <ul>
+        <li><a href="#全局锁">全局锁</a></li>
+        <li><a href="#表锁">表锁</a></li>
+        <li><a href="#行锁">行锁</a></li>
+        <li><a href="#间隙锁">间隙锁</a></li>
+        <li><a href="#死锁">死锁</a></li>
+      </ul>
+    </li>
+    <li><a href="#sql注入">SQL注入</a>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#预防方法">预防方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#事务相关命令">事务相关命令</a></li>
+    <li><a href="#acid">ACID</a></li>
+    <li><a href="#隔离级别">隔离级别</a></li>
+    <li><a href="#mysql-的执行流程">MySQL 的执行流程</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#索引">索引</a>
+      <ul>
+        <li><a href="#b树的特点">B树的特点</a></li>
+        <li><a href="#索引优点">索引优点</a></li>
+        <li><a href="#索引缺点">索引缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#explain出来的各种item的意义">explain出来的各种item的意义</a></li>
+    <li><a href="#锁">锁</a>
+      <ul>
+        <li><a href="#全局锁">全局锁</a></li>
+        <li><a href="#表锁">表锁</a></li>
+        <li><a href="#行锁">行锁</a></li>
+        <li><a href="#间隙锁">间隙锁</a></li>
+        <li><a href="#死锁">死锁</a></li>
+      </ul>
+    </li>
+    <li><a href="#sql注入">SQL注入</a>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#预防方法">预防方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/book/">Book</a></li>
+<li class="breadcrumb-item"><a href="/book/mysql/">MySQL</a></li>
+<li class="breadcrumb-item active" aria-current="page">基础知识</li>
+					</ol>
+				</nav>
+			
+			<h1>基础知识</h1>
+			<time>2021-10-10, Sunday</time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#事务相关命令">事务相关命令</a></li>
+    <li><a href="#acid">ACID</a></li>
+    <li><a href="#隔离级别">隔离级别</a></li>
+    <li><a href="#mysql-的执行流程">MySQL 的执行流程</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#索引">索引</a>
+      <ul>
+        <li><a href="#b树的特点">B树的特点</a></li>
+        <li><a href="#索引优点">索引优点</a></li>
+        <li><a href="#索引缺点">索引缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#explain出来的各种item的意义">explain出来的各种item的意义</a></li>
+    <li><a href="#锁">锁</a>
+      <ul>
+        <li><a href="#全局锁">全局锁</a></li>
+        <li><a href="#表锁">表锁</a></li>
+        <li><a href="#行锁">行锁</a></li>
+        <li><a href="#间隙锁">间隙锁</a></li>
+        <li><a href="#死锁">死锁</a></li>
+      </ul>
+    </li>
+    <li><a href="#sql注入">SQL注入</a>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#预防方法">预防方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#事务相关命令">事务相关命令</a></li>
+    <li><a href="#acid">ACID</a></li>
+    <li><a href="#隔离级别">隔离级别</a></li>
+    <li><a href="#mysql-的执行流程">MySQL 的执行流程</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#索引">索引</a>
+      <ul>
+        <li><a href="#b树的特点">B树的特点</a></li>
+        <li><a href="#索引优点">索引优点</a></li>
+        <li><a href="#索引缺点">索引缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#explain出来的各种item的意义">explain出来的各种item的意义</a></li>
+    <li><a href="#锁">锁</a>
+      <ul>
+        <li><a href="#全局锁">全局锁</a></li>
+        <li><a href="#表锁">表锁</a></li>
+        <li><a href="#行锁">行锁</a></li>
+        <li><a href="#间隙锁">间隙锁</a></li>
+        <li><a href="#死锁">死锁</a></li>
+      </ul>
+    </li>
+    <li><a href="#sql注入">SQL注入</a>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#预防方法">预防方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<h1 id="数据库范式">数据库范式 </h1>
+<ol>
+<li>第一范式（1NF）：原子性，不可再分解</li>
+<li>第二范式（2NF）：唯一性，在第一范式基础上，非主键列完全依赖于主键</li>
+<li>第三范式（3NF）：独立性，在第二范式的基础上，非主键列依赖于主键，不依赖于其他非主键，消除传递依赖</li>
+<li>其他：巴斯-科德范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）</li>
+</ol>
+<h1 id="语句类别">语句类别 </h1>
+<ul>
+<li>DDL(Database Defination Language):create、alter等</li>
+<li>DML(Database Manipulation Language):insert、update、delete等</li>
+<li>DCL(Database Control Language):grant、revoke等</li>
+<li>DQL(Database Query Language):select</li>
+</ul>
+<h1 id="事务">事务 </h1>
+<h2 id="事务相关命令">事务相关命令 </h2>
+<blockquote>
+<p>显式启动事务语句，begin 或 start transaction。配套的提交语句是commit，回滚语句是rollback。</p>
+</blockquote>
+<p>建议总是使用set autocommit=1, 通过显式语句的方式来启动事务。</p>
+<h2 id="acid">ACID </h2>
+<ul>
+<li><strong>A (Atomicity) 原子性</strong>：整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样</li>
+<li><strong>C (Consistency) 一致性</strong>：在事务开始之前和事务结束以后，数据库的完整性约束没有被破坏</li>
+<li><strong>I (Isolation) 隔离性</strong>：一个事务的执行不能其它事务干扰。即一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务之间不能互相干扰</li>
+<li><strong>D (Durability) 持久性</strong>：在事务完成以后，该事务所对数据库所作的更改便持久的保存在数据库之中，并不会被回滚</li>
+</ul>
+<h2 id="隔离级别">隔离级别 </h2>
+<ul>
+<li>读未提交，一个事务还没提交时，它做的变更就能被别的事务看到。</li>
+<li>读提交，一个事务提交之后，它做的变更才会被其他事务看到。</li>
+<li>可重复读，一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。</li>
+<li>串行化，顾名思义，对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行。</li>
+</ul>
+<p>数据库隔离级别不够时容易出现3种情况：</p>
+<ul>
+<li>脏读：即事务A读取到了事务B未提交的数据。该数据可能不是最终数据而是中间变量，因此会导致事务A读取到错误的数据。</li>
+<li>不可重复读：即事务A多次访问同一个数据，获得结果不相同。在访问间隔时，事务A访问数据被事务B修改，导致事务A多次读取到不一样的数据值。</li>
+<li>幻读：即事务A在读取某些数据时，事务B通过插入或删除等方式对数据集进行了修改，导致事务A读取到了事务B执行后的结果。</li>
+</ul>
+<p>下面是个级别可能发生的情况：</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/mysql-isolate.png" alt="隔离级别和可能出现的情况"></p>
+<h2 id="mysql-的执行流程">MySQL 的执行流程 </h2>
+<p>大体来说，MySQL可以分为Server层和存储引擎层两部分。Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
+<p>查询执行流程如下：</p>
+<ol>
+<li>
+<p>连接到数据库，这时候接待你的就是连接器。连接器负责跟客户端建立连接、获取权限、维持和管理连接。</p>
+</li>
+<li>
+<p>查询缓存。MySQL拿到一个查询请求后，会先到查询缓存看看，如果命中，那么这个value就会被直接返回给客户端，这里也会做一个权限验证。</p>
+</li>
+<li>
+<p>如果没有命中查询缓存，就要开始真正执行语句了。分析器先会做“词法分析”。你输入的是由多个字符串和空格组成的一条SQL语句，MySQL需要识别出里面的字符串分别是什么，代表什么。</p>
+</li>
+<li>
+<p>根据词法分析的结果，语法分析器会根据语法规则，判断你输入的这个SQL语句是否满足MySQL语法。</p>
+<p>如果你的语句不对，就会收到“You have an error in your SQL syntax”的错误提醒。</p>
+</li>
+<li>
+<p>经过了分析器，MySQL就知道你要做什么了。在开始执行之前，还要先经过优化器的处理。</p>
+<p>优化器是在表里面有多个索引的时候，决定使用哪个索引；或者在一个语句有多表关联（join）的时候，决定各个表的连接顺序。</p>
+</li>
+<li>
+<p>MySQL通过分析器知道了你要做什么，通过优化器知道了该怎么做，于是就进入了执行器阶段，开始执行语句返回结果。</p>
+<p>开始执行的时候，要先判断一下你对这个表有没有执行查询的权限，如果没有，就会返回没有权限的错误。如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去使用这个引擎提供的接口。</p>
+</li>
+</ol>
+<p>需要注意：</p>
+<ul>
+<li>MySQL 8.0版本直接将查询缓存的整块功能删掉了<a href="https://mysqlserverteam.com/mysql-8-0-retiring-support-for-the-query-cache/">MySQL 8.0：不再支持查询缓存</a></li>
+<li>虽然优化器会自动使用索引，但有时候选取的索引未必正确</li>
+</ul>
+<h1 id="存储引擎对比">存储引擎对比 </h1>
+<p>常见：InnoDB、MyISAM；其他：Archive、CSV、Memory等</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>MyISAM</th>
+<th>InnoDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外键</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>事务</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>锁</td>
+<td>表锁</td>
+<td>行锁</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>只缓存索引，不缓存真实数据</td>
+<td>不仅缓存索引还要缓存真实数据，对内存要求较高，而且内存大小对性能有决定性的影响</td>
+</tr>
+<tr>
+<td>关注点</td>
+<td>节省资源，消耗少，简单业务，性能</td>
+<td>并发写，事务，更大资源</td>
+</tr>
+<tr>
+<td>默认安装</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>默认使用</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>自动系统表使用</td>
+<td>是</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>应用场景：</p>
+<ul>
+<li>
+<p>MyISAM管理非事务表，提供高速存储和检索以及全文搜索能力，如果再应用中执行大量select操作，应该选择MyISAM</p>
+</li>
+<li>
+<p>InnoDB用于事务处理，具有ACID事务支持等特性，如果在应用中执行大量insert和update操作，应该选择InnoDB</p>
+</li>
+</ul>
+<h2 id="索引">索引 </h2>
+<p>从底层实现来说，索引类型包括 B-Tree（InnoDB引擎）、哈希索引（Memory引擎）、空间数据索引(R-Tree， MyISAM引擎支持)、全文索引等。</p>
+<p>从索引的实现上，我们可以将其分为聚集索引与非聚集索引，或称辅助索引或二级索引。</p>
+<p>从索引的实际应用中，又可以细分为普通索引、唯一索引、主键索引、联合索引、外键索引、全文索引这几种。</p>
+<p>建议看以下文章了解索引使用和底层实现：</p>
+<p><a href="http://www.fordba.com/spend-10-min-to-understand-how-mysql-use-index.html">10分钟让你明白MySQL是如何利用索引的</a></p>
+<p><a href="https://juejin.im/post/5d4d82caf265da039c6360ff#heading-12">详解Mysql索引原理及其优化</a></p>
+<p><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html">MySQL索引背后的数据结构及算法原理</a></p>
+<p><a href="https://www.cnblogs.com/boothsun/p/8970952.html">MySQL索引底层实现原理</a></p>
+<h3 id="b树的特点">B树的特点 </h3>
+<p>1个 m 阶的B树满足以下条件：</p>
+<ol>
+<li>每个结点至多拥有m棵子树；</li>
+<li>根结点至少拥有两颗子树（存在子树的情况下），根结点至少有一个关键字；</li>
+<li>除了根结点以外，其余每个分支结点至少拥有 m/2 棵子树；</li>
+<li>所有的叶结点都在同一层上，B树的叶子结点可以看成是一种外部节点，不包含任何信息；</li>
+<li>有 k 棵子树的分支结点则存在 k-1 个关键码，关键码按照递增次序进行排列；</li>
+<li>关键字数量需要满足ceil(m/2)-1 &lt;= n &lt;= m-1；</li>
+</ol>
+<p>更多请看这篇： <a href="https://www.cnblogs.com/George1994/p/7008732.html">B树和B+树的总结</a></p>
+<h4 id="b树和b树的区别">B树和B+树的区别 </h4>
+<p>这都是由于B+树和B树具有不同的存储结构所造成的区别，以一个m阶树为例。</p>
+<ol>
+<li>关键字的数量不同；B+树中分支结点有m个关键字，其叶子结点也有m个，其关键字只是起到了一个索引的作用，虽然B树也有m个子结点，但是其只拥有m-1个关键字。</li>
+<li>存储的位置不同；B+树中的数据都存储在叶子结点上，也就是其所有叶子结点的数据组合起来就是完整的数据，但是B树的数据存储在每一个结点中，并不仅仅存储在叶子结点上。</li>
+<li>分支结点的构造不同；B+树的分支结点存储着关键字信息和儿子的指针（这里的指针指的是磁盘块的偏移量），也就是说内部结点仅仅包含着索引信息。</li>
+<li>查询不同；B树在找到具体的数值以后就结束，而B+树则需要通过索引找到叶子结点中的数据才结束，也就是说B+树的搜索过程中走了一条从根结点到叶子结点的路径，其高度是相同的，相对来说更加的稳定；</li>
+<li>区间访问：B+树的叶子结点会按照顺序建立起链状指针，可以进行区间访问；</li>
+</ol>
+<h4 id="索引类型">索引类型 </h4>
+<ul>
+<li>前缀索引: 在对一个比较长的字符串进行索引时,可以仅索引开始的一部分字符,这样可以大大的节约索引空间,从而提高索引效率。但是这样也会降低索引的选择性。</li>
+<li>索引的选择性: 不重复的值/所有的值（区分度）</li>
+<li>联合索引</li>
+<li>聚簇索引:不是一种索引类型，而是一种存储数据的方式。InnoDB的聚簇索引是在同一个数据结构中保存了索引和数据。默认是主键，如果表中没有定义主键，InnoDB会选择一个唯一的非空索引代替。如果没有这样的索引，InnoDB会隐式定义一个主键作为聚簇索引</li>
+<li>覆盖索引:当一个索引包含(或者说是覆盖)需要查询的所有字段的值时,我们称之为覆盖索引</li>
+</ul>
+<h3 id="索引优点">索引优点 </h3>
+<ul>
+<li>减少查询需要扫描的数据量，加快了查询速度</li>
+<li>减少服务器的排序操作和创建临时表的操作(加快了groupby和orderby等操作)</li>
+<li>将服务器的随机IO变为顺序IO(加快查询速度).</li>
+</ul>
+<h3 id="索引缺点">索引缺点 </h3>
+<ul>
+<li>索引占用磁盘或者内存空间</li>
+<li>减慢了插入更新操作的速度</li>
+</ul>
+<blockquote>
+<p>实际上，在一定数据范围内(索引没有超级多的情况下),建立索引带来的开销是远远小于它带来的好处的，但是我们仍然要防止索引的滥用。</p>
+</blockquote>
+<h2 id="explain出来的各种item的意义">explain出来的各种item的意义 </h2>
+<ul>
+<li>id:每个被独立执行的操作的标志，表示对象被操作的顺序。一般来说， id 值大，先被执行；如果 id 值相同，则顺序从上到下。</li>
+<li>select_type：查询中每个 select 子句的类型。</li>
+<li>table:名字，被操作的对象名称，通常的表名(或者别名)，但是也有其他格式。</li>
+<li>partitions:匹配的分区信息。</li>
+<li>type:join 类型。</li>
+<li>possible_keys：列出可能会用到的索引。</li>
+<li>key:实际用到的索引。</li>
+<li>key_len:用到的索引键的平均长度，单位为字节。</li>
+<li>ref:表示本行被操作的对象的参照对象，可能是一个常量用 const 表示，也可能是其他表的key 指向的对象，比如说驱动表的连接列。</li>
+<li>rows:估计每次需要扫描的行数。</li>
+<li>filtered:rows*filtered/100 表示该步骤最后得到的行数(估计值)。</li>
+<li>extra:重要的补充信息。</li>
+</ul>
+<h2 id="锁">锁 </h2>
+<blockquote>
+<p>根据加锁的范围，MySQL里面的锁大致可以分成全局锁、表锁和行锁三类。</p>
+</blockquote>
+<h3 id="全局锁">全局锁 </h3>
+<p>顾名思义，全局锁就是对整个数据库实例加锁。</p>
+<p>MySQL提供了一个加全局读锁的方法，命令是</p>
+<blockquote>
+<p>Flush tables with read lock (FTWRL)。</p>
+</blockquote>
+<p>当你需要让整个库处于只读状态的时候，可以使用这个命令，之后其他线程的以下语句会被阻塞：数据更新语句（数据的增删改）、数据定义语句（包括建表、修改表结构等）和更新类事务的提交语句。</p>
+<blockquote>
+<p>典型使用场景是，做全库逻辑备份。</p>
+</blockquote>
+<p>官方自带的逻辑备份工具是mysqldump。当mysqldump使用参数–single-transaction的时候，导数据之前就会启动一个事务，来确保拿到一致性视图。而由于MVCC的支持，这个过程中数据是可以正常更新的。</p>
+<h3 id="表锁">表锁 </h3>
+<p>MySQL里面表级别的锁有两种：一种是表锁，一种是元数据锁（meta data lock，MDL)。</p>
+<p>表锁的语法是</p>
+<blockquote>
+<p>lock tables … read/write</p>
+</blockquote>
+<p>与FTWRL类似，可以用unlock tables主动释放锁，也可以在客户端断开的时候自动释放。需要注意，lock tables语法除了会限制别的线程的读写外，也限定了本线程接下来的操作对象。</p>
+<p>举个例子, 如果在某个线程A中执行</p>
+<blockquote>
+<p>lock tables t1 read, t2 write</p>
+</blockquote>
+<p>这个语句，则其他线程写t1、读写t2的语句都会被阻塞。同时，线程A在执行unlock tables之前，也只能执行读t1、读写t2的操作。连写t1都不允许，自然也不能访问其他表。</p>
+<p>在还没有出现更细粒度的锁的时候，表锁是最常用的处理并发的方式。而对于InnoDB这种支持行锁的引擎，一般不使用lock tables命令来控制并发，毕竟锁住整个表的影响面还是太大。</p>
+<p>另一类表级的锁是MDL（metadata lock)。</p>
+<p>MDL不需要显式使用，在访问一个表的时候会被自动加上。</p>
+<blockquote>
+<p>MDL的作用是，保证读写的正确性。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
+</blockquote>
+<p>因此，在MySQL 5.5版本中引入了MDL，当对一个表做增删改查操作的时候，加MDL读锁；当要对表做结构变更操作的时候，加MDL写锁。读锁之间不互斥，因此你可以有多个线程同时对一张表增删改查。读写锁之间、写锁之间是互斥的，用来保证变更表结构操作的安全性。因此，如果有两个线程要同时给一个表加字段，其中一个要等另一个执行完才能开始执行。</p>
+<p>虽然MDL锁是系统默认会加的，但却是你不能忽略的一个机制。比如有人掉到这个坑里：给一个小表加个字段，导致整个库挂了。</p>
+<h3 id="行锁">行锁 </h3>
+<p>MySQL的行锁是在引擎层由各个引擎自己实现的。但并不是所有的引擎都支持行锁，如MyISAM引擎就不支持行锁。不支持行锁意味着并发控制只能使用表锁，对于这种引擎的表，同一张表上任何时刻只能有一个更新在执行，这就会影响到业务并发度。InnoDB是支持行锁的，这也是MyISAM被InnoDB替代的重要原因之一。</p>
+<blockquote>
+<p>在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是要等到事务结束时才释放。这个就是两阶段锁协议</p>
+</blockquote>
+<h3 id="间隙锁">间隙锁 </h3>
+<p>gap lock，也就是间隙锁，是innodb行级锁的一种，其他的还有record lock, Next-KeyLocks。</p>
+<ul>
+<li>行锁（Record Lock）：锁直接加在索引记录上面。</li>
+<li>间隙锁（Gap Lock）：锁加在不存在的空闲空间，可以是两个索引记录之间，也可能是第一个索引记录之前或最后一个索引之后的空间。</li>
+<li>Next-Key Lock：行锁与间隙锁组合起来用就叫做Next-Key Lock。</li>
+</ul>
+<pre><code class="language-sql">mysql&gt; begin;
+Query OK, 0 rows affected (0.00 sec)
+mysql&gt; insert into tb2 values(9,4);
+Query OK, 1 row affected (0.00 sec)
+mysql&gt; insert into tb2 values(10,4);
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+mysql&gt; insert into tb2 values(19,4);
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+mysql&gt; insert into tb2 values(20,4);
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+mysql&gt; insert into tb2 values(21,4);
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+mysql&gt; insert into tb2 values(29,4);
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+mysql&gt; insert into tb2 values(30,4);
+Query OK, 1 row affected (0.01 sec)
+</code></pre>
+<h4 id="什么时候会取得gap-lock">什么时候会取得gap lock </h4>
+<p>这和隔离级别有关,只在REPEATABLE READ或以上的隔离级别下的特定操作才会取得gap lock或next-key lock。
+locking reads，UPDATE和DELETE时，除了对唯一索引的唯一搜索外都会获取gap锁或next-key锁。即锁住其扫描的范围。</p>
+<h4 id="如何防止间隙锁">如何防止间隙锁？ </h4>
+<ul>
+<li>
+<p>尽量采用乐观锁，乐观锁是在php等代码层面的锁，就不会锁住数据库资源</p>
+</li>
+<li>
+<p>事务中update，where后面的字段尽量带上索引，不然间隙锁的范围很大</p>
+</li>
+<li>
+<p>尽量不要出现长事务，否则事务中更新订单时间隙锁会被锁很久，另一事务插入订单就会执行很久</p>
+</li>
+<li>
+<p>update表，begin和commit之间的时间不要太长，之间不要写一些慢代码，比如请求第三方接口 5 分表能防止不分表情况下整张表被锁住。分表后是锁住众多表中的其中一张</p>
+</li>
+</ul>
+<h3 id="死锁">死锁 </h3>
+<p>所谓死锁: 是指两个或两个以上的进程在执行过程中, 因争夺资源而造成的一种互相等待的现象,若无外力作用,它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。表级锁不会产生死锁.所以解决死锁主要还是针对于最常用的InnoDB。</p>
+<p>当出现死锁以后，有两种策略：</p>
+<ul>
+<li>策略1是，直接进入等待，直到超时。这个超时时间可以通过参数innodb_lock_wait_timeout来设置。</li>
+<li>策略2是，发起死锁检测，发现死锁后，主动回滚死锁链条中的某一个事务，让其他事务得以继续执行。将参数innodb_deadlock_detect设置为on，表示开启这个逻辑。</li>
+</ul>
+<p>如何避免死锁？</p>
+<ol>
+<li>操作完之后立即提交事务，特别是在交互式命令行中。比如中途不要去请求第三方接口或者执行一些慢逻辑， 能不放到事务里面的php代码， 就别放到事务里面</li>
+<li>资源一次性分配</li>
+</ol>
+<blockquote>
+<p>一次性锁协议，事务开始时，即一次性申请所有的锁，之后不会再申请任何锁，如果其中某个锁不可用，则整个申请就不成功，事务就不会执行，在事务尾端，一次性释放所有的锁。一次性锁协议不会产生死锁的问题，但事务的并发度不高。</p>
+</blockquote>
+<ol start="3">
+<li>尽量采用乐观锁，因为悲观锁都是要求mysql锁资源，而乐观锁不是</li>
+<li>采用超时设置，时间越短，锁等待时间越短。到点就会自动超时，不会继续等待锁释放
+锁超时设置:</li>
+</ol>
+<blockquote>
+<p>SHOW VARIABLES LIKE &lsquo;innodb_lock_wait_timeout&rsquo;; SET innodb_lock_wait_timeout=10;</p>
+</blockquote>
+<ol start="5">
+<li>保证没有长事务，长事务尽量拆分成短事务，以为2个短事务很难重合到一起。就是说，如果一个事务瞬间执行 完毕了，就很好，如果一直没执行完毕， 就很可能另外一个事务冲进来二者重合。就加大死锁几率</li>
+<li>修改多个表或者多个行的时候，将修改的顺序保持一致。死锁是因为锁定资源的顺序刚好相反。如果顺序是一 样的，就不会产生死锁。</li>
+<li>创建索引，可以使创建的锁关联到的数据更少。如果where后面的字段没有索引，哪怕只操作一行数据， 也会 锁整张表， 因为锁是基于索引的。</li>
+</ol>
+<h2 id="sql注入">SQL注入 </h2>
+<h3 id="原理">原理 </h3>
+<p>sql注入的原理是将sql代码伪装到输入参数中，传递到服务器解析并执行的一种攻击手法。也就是说，在一些对server端发起的请求参数中植入一些sql代码，server端在执行sql操作时，会拼接对应参数，同时也将一些sql注入攻击的“sql”拼接起来，导致会执行一些预期之外的操作。</p>
+<p>如：</p>
+<pre><code class="language-sql">SELECT USERNAME,PASSWORD FROM USER WHERE USERNAME='123456' AND PASSWORD=&quot;aaa' or '1'='1&quot;;
+</code></pre>
+<h3 id="预防方法">预防方法 </h3>
+<ul>
+<li>sql预编译</li>
+<li>严格校验</li>
+<li>权限管理</li>
+</ul>
+<h4 id="gorm-的-sql-预编译">Gorm 的 SQL 预编译 </h4>
+<p>在 Gorm 中，就为我们封装了 SQL 预编译技术，可以供我们使用。</p>
+<pre><code class="language-cgo">db = db.Where(&quot;merchant_id = ?&quot;, merchantId)
+</code></pre>
+<p>在执行这样的语句的时候实际上我们就用到了 SQL 预编译技术，其中预编译的 SQL 语句merchant_id = ?和 SQL 查询的数据merchantId将被分开传输至 DB 后端进行处理。</p>
+<pre><code class="language-cgo">db = db.Where(fmt.Sprintf(&quot;merchant_id = %s&quot;, merchantId))
+</code></pre>
+<p>而当你使用这种写法时，即表示 SQL 由用户来进行拼装，而不使用预编译技术，随之可能带来的，就是 SQL 注入的风险。</p>
+<h4 id="mysql-端的sql-预编译">Mysql 端的SQL 预编译 </h4>
+<p>在MySQL中是如何实现预编译的，MySQL在4.1后支持了预编译，其中涉及预编译的指令实例如下</p>
+<p>可以通过PREPARE预编译指令，SET传入数据，通过EXECUTE执行命令</p>
+<pre><code class="language-bash">mysql&gt; PREPARE stmt1 FROM 'SELECT SQRT(POW(?,2) + POW(?,2)) AS hypotenuse';
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+mysql&gt; SET @a = 3;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; SET @b = 4;                                                   
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; EXECUTE stmt1 USING @a, @b;
++------------+
+| hypotenuse |
++------------+
+|          5 |
++------------+
+1 row in set (0.00 sec)
+
+mysql&gt; DEALLOCATE PREPARE stmt1;                                     
+Query OK, 0 rows affected (0.00 sec)
+</code></pre>
+<p>首先我们先简单回顾下客户端使用 Prepare 请求过程：</p>
+<ol>
+<li>客户端发起 Prepare 命令将带 “?” 参数占位符的 SQL 语句发送到数据库，成功后返回 stmtID。</li>
+<li>具体执行 SQL 时，客户端使用之前返回的 stmtID，并带上请求参数发起 Execute 命令来执行 SQL。</li>
+<li>不再需要 Prepare 的语句时，关闭 stmtID 对应的 Prepare 语句。</li>
+</ol>
+<p>这里展示不使用 sql 预编译和使用 sql 预编译时的 Mysql 的日志。</p>
+<pre><code class="language-bash">2020-06-30T08:14:02.430089Z           10 Query        COMMIT
+2020-06-30T08:14:02.432995Z           10 Query        select * from user where merchant_id='123456'
+
+2020-06-30T08:15:10.581287Z           12 Query        COMMIT
+2020-06-30T08:15:10.584109Z           12 Prepare        select * from user where merchant_id =?
+2020-06-30T08:15:10.584725Z           12 Execute        select * from user where merchant_id ='123456'
+</code></pre>
+<h2 id="参考">参考 </h2>
+<ul>
+<li><a href="https://www.it610.com/article/1305957299646402560.htm">https://www.it610.com/article/1305957299646402560.htm</a></li>
+<li><a href="https://www.cnblogs.com/George1994/p/7008732.html">B树和B+树的总结</a></li>
+<li><a href="https://mysqlserverteam.com/mysql-8-0-retiring-support-for-the-query-cache/">MySQL 8.0：不再支持查询缓存</a></li>
+</ul>
+
+			
+			
+<p class="zan my-3 text-center">
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+    <br>
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+</p>
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			
+			<script src="https://utteranc.es/client.js"
+repo="oscome/oscome.github.io"
+issue-term="og:title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/book/readme/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; 说明
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/redis/%E7%BC%93%E5%AD%98/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					缓存知识 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.ada26c3e649226c1883dbefe362a804b30098fa864e24a774460676edc1c904bc5d5a570ee0177c23ac99ec826df10987bbd509a22c9bb7712ba6a20177f00ce.js" integrity="sha512-raJsPmSSJsGIPb7&#43;NiqASzAJj6hk4kp3RGBnbtwckEvF1aVw7gF3wjrJnsgm3xCYe71QmiLJu3cSumogF38Azg==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>

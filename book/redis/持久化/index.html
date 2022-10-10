@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.c701ea1312889706f6946b830c951677ca6bbf457d70fa517f8d86ae951bd50a4db6a664549e3259333eaad1588e2d86dfa96b2684a240f29d0c6a00f2f19202.css" integrity="sha512-xwHqExKIlwb2lGuDDJUWd8prv0V9cPpRf42GrpUb1QpNtqZkVJ4yWTM&#43;qtFYji2G36lrJoSiQPKdDGoA8vGSAg==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title>持久化 | 开源到</title>
+<meta name="description" content="Redis面试知识合集，Redis持久化">
+<link rel="canonical" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="持久化">
+<meta property="og:description" content="Redis面试知识合集，Redis持久化">
+<meta property="og:url" content="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">
+<meta property="og:site_name" content="开源到">
+<meta property="article:published_time" content="2022-10-10T10:28:28+08:00">
+  <meta property="article:modified_time" content="2022-10-10T10:28:28+08:00">
+  
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="持久化">
+<meta name="twitter:description" content="Redis面试知识合集，Redis持久化">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="持久化">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/",
+      "url": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/",
+      "name": "持久化",
+      "description": "Redis面试知识合集，Redis持久化",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "2022-10-10T10:28:28CET",
+      "dateModified": "2022-10-10T10:28:28CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/",
+          "url": "https://oscome.cn/book/",
+          "name": "Book"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/redis/",
+          "url": "https://oscome.cn/book/redis/",
+          "name": "Redis"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": "持久化"
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="book single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">技术专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/book/readme/">知识合集</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="true">
+          Redis
+        </button>
+        <div class="collapse show" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="true">
+          Redis
+        </button>
+        <div class="collapse show" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要持久化">为什么要持久化</a></li>
+    <li><a href="#rdb">RDB</a>
+      <ul>
+        <li><a href="#触发机制">触发机制</a></li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#rdb方式的优点">RDB方式的优点</a></li>
+        <li><a href="#rdb方式的缺点">RDB方式的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#aof">AOF</a>
+      <ul>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#流程">流程</a></li>
+        <li><a href="#异常处理">异常处理</a></li>
+        <li><a href="#aof的缺点">AOF的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置汇总">配置汇总</a></li>
+    <li><a href="#more">more</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要持久化">为什么要持久化</a></li>
+    <li><a href="#rdb">RDB</a>
+      <ul>
+        <li><a href="#触发机制">触发机制</a></li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#rdb方式的优点">RDB方式的优点</a></li>
+        <li><a href="#rdb方式的缺点">RDB方式的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#aof">AOF</a>
+      <ul>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#流程">流程</a></li>
+        <li><a href="#异常处理">异常处理</a></li>
+        <li><a href="#aof的缺点">AOF的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置汇总">配置汇总</a></li>
+    <li><a href="#more">more</a></li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/book/">Book</a></li>
+<li class="breadcrumb-item"><a href="/book/redis/">Redis</a></li>
+<li class="breadcrumb-item active" aria-current="page">持久化</li>
+					</ol>
+				</nav>
+			
+			<h1>持久化</h1>
+			<time>2022-10-10, Monday</time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要持久化">为什么要持久化</a></li>
+    <li><a href="#rdb">RDB</a>
+      <ul>
+        <li><a href="#触发机制">触发机制</a></li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#rdb方式的优点">RDB方式的优点</a></li>
+        <li><a href="#rdb方式的缺点">RDB方式的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#aof">AOF</a>
+      <ul>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#流程">流程</a></li>
+        <li><a href="#异常处理">异常处理</a></li>
+        <li><a href="#aof的缺点">AOF的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置汇总">配置汇总</a></li>
+    <li><a href="#more">more</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要持久化">为什么要持久化</a></li>
+    <li><a href="#rdb">RDB</a>
+      <ul>
+        <li><a href="#触发机制">触发机制</a></li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#rdb方式的优点">RDB方式的优点</a></li>
+        <li><a href="#rdb方式的缺点">RDB方式的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#aof">AOF</a>
+      <ul>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#流程">流程</a></li>
+        <li><a href="#异常处理">异常处理</a></li>
+        <li><a href="#aof的缺点">AOF的缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置汇总">配置汇总</a></li>
+    <li><a href="#more">more</a></li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<h2 id="为什么要持久化">为什么要持久化 </h2>
+<p>Redis是内存数据库，数据都是存储在内存中，为了避免进程退出导致数据的永久丢失，需要定期将Redis中的数据以某种形式从内存保存到硬盘。当下次Redis重启时，利用持久化文件实现数据恢复。除此之外，为了进行灾难备份，可以将持久化文件拷贝到一个远程位置。</p>
+<p>Redis持久化分为RDB和AOF，前者将当前数据保存到硬盘，后者则是将执行的<strong>写命令</strong>保存到硬盘。</p>
+<h2 id="rdb">RDB </h2>
+<blockquote>
+<p>RDB是一种快照存储持久化方式。具体来说就是将Redis某一时刻的内存数据保存到硬盘的文件当中，默认保存的文件名为dump.rdb。而在Redis服务器启动时，会加载dump.rdb文件的数据到内存当中恢复数据。</p>
+</blockquote>
+<h3 id="触发机制">触发机制 </h3>
+<p>触发 RDB 持久化过程分为手动触发和自动触发。</p>
+<h4 id="手动触发命令">手动触发命令 </h4>
+<ul>
+<li>save 命令</li>
+</ul>
+<blockquote>
+<p>阻塞当前 Redis 进程，直到 RDB 过程完成为止（内存比较大的实例会造成长时间阻塞，线上环境不建议使用）</p>
+</blockquote>
+<ul>
+<li>bgsave 命令</li>
+</ul>
+<blockquote>
+<p>Redis 进程执行 fork 操作创建子进程，RDB 持久化过程由子进程负责，完成后自动结束。（阻塞只发生在 fork 阶段，时间很短）</p>
+</blockquote>
+<p>bgsave 命令是针对 save 阻塞问题做的优化。</p>
+<p>除了执行命令手动触发之外，Redis 内部存在自动触发 RDB 的持久化机制，例如:</p>
+<ul>
+<li>使用 save 相关配置，如“save m n”。表示 m 秒内数据集存在 n 次修改时，自动触发 bgsave。</li>
+<li>如果从节点执行全量复制操作，主节点自动执行 bgsave 生成 RDB 文件并发送给从节点。</li>
+<li>默认情况下执行 shutdown 命令时，如果没有开启 AOF 持久化功能则自动执行 bgsave。</li>
+</ul>
+<h4 id="bgsave流程">bgsave流程 </h4>
+<p><img class="lazyload blur-up radius shadow" src="/images/redis-bgsave.jpeg" alt="bgsave流程"></p>
+<ol>
+<li>执行 bgsave 命令，Redis 父进程判断当前是否存在正在执行的子进程，如 RDB/AOF 子进程，如果存在 bgsave 命令直接返回。</li>
+<li>父进程执行 fork 操作创建子进程，fork操作过程中父进程会阻塞。</li>
+<li>fork 完成后，bgsave 命令返回“Background saving started”信息并不再阻塞父进程，父进程可以继续响应其他命令。</li>
+<li>子进程会共享一部分主进程的数据空间，并且把共享的数据置为read-only的状态，子进程创建 RDB 文件，根据父进程内存生成临时快照文件，完成后对原有文件进行<strong>原子替换</strong>。在持久化的过程中是避免不了有新的数据写入的，因为我们有一部分的数据是共享的，两个进程同时拥有一块数据，肯定会导致数据不一致的问题， 但是依赖于操作系统的fork机制，在修改的时候一定是修改部分内存页的数据，这个时候会触发对应内存页的copyonwrite的操作</li>
+<li>进程发送信号给父进程表示完成，父进程更新信息。</li>
+</ol>
+<h3 id="配置文件">配置文件 </h3>
+<pre><code># 900s内至少达到一条写命令 
+save 900 1
+
+# 300s内至少达至10条写命令 
+save 300 10
+
+# 60s内至少达到10000条写命令 
+save 60 10000
+</code></pre>
+<h4 id="rdb-文件的处理">RDB 文件的处理 </h4>
+<ol>
+<li>保存</li>
+</ol>
+<p>RDB 文件保存在 dir 配置指定的目录下，文件名通过 dbfilename 配置指定。可以通过执行 config set dir{newDir}和 config set
+dbfilename{newFileName}运行期动态执行，当下次运行时 RDB 文件会保存到新目录。
+当遇到坏盘或磁盘写满等情况时，可以通过 config set dir{newDir}在线修改文件路径到可用的磁盘路径，之后执行 bgsave 进行磁盘切换，同样适用于 AOF 持久化文件。</p>
+<ol start="2">
+<li>压缩</li>
+</ol>
+<p>Redis 默认采用 LZF 算法对生成的 RDB 文件做压缩处理，压缩后的文件远远小于内存大小，默认开启，可以通过参数 config set rdbcompression{yes|no}动态修改。
+虽然压缩 RDB 会消耗 CPU，但可大幅降低文件的体积，方便保存到硬盘或通过网络发送给从节点，因此线上建议开启。</p>
+<h3 id="rdb方式的优点">RDB方式的优点 </h3>
+<ol>
+<li>RDB 是一个非常紧凑的文件，它保存了 Redis 在某个时间点上的数据集。这种文件非常适合用于进行备份: 比如说，你可以在最近的 24小时内，每小时备份一次 RDB文件，并且在每个月的每一天，也备份一个 RDB 文件。 这样的话，即使遇上问题，也可以随时将数据集还原到不同的版本。</li>
+<li>RDB 可以最大化 Redis 的性能:父进程在保存 RDB 文件时唯一要做的就是 fork 出一个子进程，然后这个子进程就会处理接下来的所有保存 工作，父进程无须执行任何磁盘 I/O 操作。</li>
+<li>RDB 在恢复大数据集时的速度比 AOF 的恢复速度要快。</li>
+</ol>
+<h3 id="rdb方式的缺点">RDB方式的缺点 </h3>
+<ol>
+<li>RDB 方式数据没办法做到实时持久化/秒级持久化。 如果服务器宕机的话，采用RDB的方式会造成某个时段内数据的丢失，比如我们设置10分钟同步一次或5分钟达到1000次写入就同步一次，那么如果还没达到触发条件服务器就死机了，那么这个时间段的数据会丢失。</li>
+<li>使用bgsave命令在forks子进程时，如果数据量太大，forks的过程也会发生阻塞，另外，forks子进程会耗费内存。</li>
+</ol>
+<h2 id="aof">AOF </h2>
+<blockquote>
+<p>记录客户端对服务器的每一次写操作命令到日志当中，并将这些写操作以Redis协议追加保存到以后缀为aof文件末尾</p>
+</blockquote>
+<h3 id="配置">配置 </h3>
+<p>redis.conf</p>
+<pre><code>appendonly yes 
+#启用aof持久化方式 
+
+appendfsync always/no/everysec
+设置为always时，会极大消弱Redis的性能，因为这种模式下每次write后都会调用fsync（Linux为调用fdatasync）。
+
+如果设置为no，则write后不会有fsync调用，由操作系统自动调度刷磁盘，性能是最好的。
+
+everysec为最多每秒调用一次fsync，这种模式性能并不是很糟糕，一般也不会产生毛刺，这归功于Redis引入了BIO线程，所有fsync操作都异步交给了BIO线程。
+</code></pre>
+<h3 id="流程">流程 </h3>
+<p><img class="lazyload blur-up radius shadow" src="/images/redis-aof.png" alt="image"></p>
+<ol>
+<li>所有的写入命令会追加到 aof_buf(缓冲区)中。（Redis使用单线程响应命令，如果每次AOF文件命令都追加到磁盘，会极大的影响处理性能）</li>
+<li>AOF 缓冲区根据对应的策略向硬盘做同步操作。</li>
+<li>随着 AOF 文件越来越大，需要定期对 AOF 文件进行重写，达到压缩的目的。</li>
+<li>Redis 服务器重启时，加载 AOF 文件进行数据恢复。</li>
+</ol>
+<h4 id="重写机制">重写机制 </h4>
+<blockquote>
+<p>AOF将客户端的每一个写操作都追加到aof文件末尾，随着命令不断写入 AOF，文件会越来越大，为了解决这个问题，Redis 引入了AOF 重写机制压缩文件体积。AOF 文件重写是把 Redis 进程内的数据转化为写命令同步到新 AOF 文件的过程。 比如:
+多条写命令可以合并为一个，如:lpush list a、lpush list b、lpush list c 可以转化为:lpush list a b c。</p>
+<p>AOF 重写降低了文件占用空间，除此之外，另一个目的是:更小的 AOF 文件可以更快地被 Redis 加载。</p>
+</blockquote>
+<h4 id="重写流程">重写流程 </h4>
+<p><img class="lazyload blur-up radius shadow" src="/images/redis-aof-rewrite.png" alt="重写机制"></p>
+<ol>
+<li>执行 AOF 重写请求。 如果当前进程正在执行 AOF 重写，请求不执行并返回如下响应: ERR Background append only file rewriting already in progress</li>
+<li>父进程 fork 创建子进程，并拿到 fork 时的 AOF 文件数据写到一个临时AOF文件中。</li>
+<li>主进程 fork 操作完成后，继续响应其他命令。所有修改命令依然写入 AOF 缓冲区并根据 appendfsync 策略同步到硬盘，保证原有 AOF 机制正确 性。</li>
+<li>由于 fork 操作运用写时复制技术，子进程只能共享 fork 操作时的内存数据。由于父进程依然响应命令，Redis 使用“AOF 重写缓冲区”保存这部分新数据，防止新 AOF 文件生成期间丢失这部分数据。</li>
+<li>子进程根据内存快照，按照命令合并规则写入到新的 AOF 文件。每次批量写入硬盘数据量由配置 aof-rewrite-incremental-fsync 控制，默认为 32MB，防止单 次刷盘数据过多造成硬盘阻塞。
+<ul>
+<li>新 AOF 文件写入完成后，子进程发送信号给父进程，父进程更新统计信息。</li>
+<li>父进程把 AOF 重写缓冲区的数据写入到新的 AOF 文件。</li>
+<li>使用新 AOF 文件替换老文件，完成 AOF 重写。</li>
+</ul>
+</li>
+</ol>
+<h4 id="触发重写">触发重写 </h4>
+<ol>
+<li>
+<p>手动触发: 直接调用 bgrewriteaof 命令。</p>
+</li>
+<li>
+<p>自动触发: 根据 auto-aof-rewrite-min-size和auto-aof-rewrite-percentage 参数确定自动触发时机。</p>
+</li>
+</ol>
+<pre><code>auto-aof-rewrite-min-size:表示运行 AOF 重写时文件最小体积，默认为 64MB。
+auto-aof-rewrite-percentage:代表当前 AOF 文件空间(aof_current_size)和上一次重写后 AOF 文件空间(aof_base_size)的比值。
+示例:
+auto-aof-rewrite-percentage:100 auto-aof-rewrite-min-size:64mb
+默认配置是当AOF文件大小是上次rewrite后大小的一倍且文件大于64M时触发
+</code></pre>
+<h3 id="异常处理">异常处理 </h3>
+<p>AOF文件损坏
+在写入aof日志文件时，如果Redis服务器宕机，则aof日志文件文件会出格式错误，在重启Redis服务器时，Redis服务器会拒绝载入这个aof文件， 可以通过命令修复aof并恢复数据</p>
+<blockquote>
+<p>redis-check-aof -fix file.aof</p>
+</blockquote>
+<h4 id="aof的优点">AOF的优点 </h4>
+<ol>
+<li>AOF可以设置 完全不同步、每秒同步、每次操作同，默认是每秒同步。因为AOF是操作指令的追加，所以可以频繁的大量的同步。</li>
+<li>AOF文件是一个值追加日志的文件，即使服务宕机为写入完整的命令，也可以通过redis-check-aof工具修复这些问题。</li>
+<li>如果AOF文件过大，Redis会在后台自动地重写AOF文件。重写后会使AOF文件压缩到最小所需的指令集。</li>
+<li>AOF文件是有序保存数据库的所有写入操作，易读，易分析。即使如果不小心误操作数据库，也很容易找出错误指令，恢复到某个数据节点。例如不小心FLUSHALL，可以非常容易恢复到执行命令之前。</li>
+</ol>
+<h3 id="aof的缺点">AOF的缺点 </h3>
+<ol>
+<li>相同数据量下，AOF的文件通常体积会比RDB大。因为AOF是存指令的，而RDB是所有指令的结果快照。但AOF在日志重写后会压缩一些空间。</li>
+<li>在大量写入和载入的时候，AOF的效率会比RDB低。因为大量写入，AOF会执行更多的保存命令，载入的时候也需要大量的重执行命令来得到最后的结果。RDB对此更有优势。</li>
+</ol>
+<h2 id="配置汇总">配置汇总 </h2>
+<pre><code>save 60 100:60s内至少达到100条写命令
+appendonly yes:是否开启AOF
+appendfilename &quot;appendonly.aof&quot;:AOF文件名
+dir ./:RDB文件和AOF文件所在目录
+appendfsync everysec:fsync持久化策略
+no-appendfsync-on-rewrite no:AOF重写期间是否禁止fsync;如果开启该选项，可以减轻文件重写时CPU和硬盘的负载(尤其是硬盘)，但是可能会丢 失AOF重写期间的数据;需要在负载和安全性之间进行平衡
+auto-aof-rewrite-percentage 100:文件重写触发条件之一
+auto-aof-rewrite-min-size 64mb:文件重写触发提交之一
+aof-load-truncated yes:如果AOF文件结尾损坏，Redis启动时是否仍载入AOF文件
+</code></pre>
+<h2 id="more">more </h2>
+<ol>
+<li>一般情况，为了可靠性， rdb 和 aof 都是一起开的，aof 设置为 1s</li>
+<li>当然，也有特殊，为了性能，也有主库不开启持久化，从库做持久化，但重启需要注意，防止主库重启后直接把从库刷空了，建议先断开主从连接，导入主库后再开启主从连接</li>
+</ol>
+
+			
+			
+<p class="zan my-3 text-center">
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+    <br>
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+</p>
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			
+			<script src="https://utteranc.es/client.js"
+repo="oscome/oscome.github.io"
+issue-term="og:title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; 为什么能这么快
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					高可用 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.ada26c3e649226c1883dbefe362a804b30098fa864e24a774460676edc1c904bc5d5a570ee0177c23ac99ec826df10987bbd509a22c9bb7712ba6a20177f00ce.js" integrity="sha512-raJsPmSSJsGIPb7&#43;NiqASzAJj6hk4kp3RGBnbtwckEvF1aVw7gF3wjrJnsgm3xCYe71QmiLJu3cSumogF38Azg==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>

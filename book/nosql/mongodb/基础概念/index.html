@@ -1,0 +1,1398 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.c701ea1312889706f6946b830c951677ca6bbf457d70fa517f8d86ae951bd50a4db6a664549e3259333eaad1588e2d86dfa96b2684a240f29d0c6a00f2f19202.css" integrity="sha512-xwHqExKIlwb2lGuDDJUWd8prv0V9cPpRf42GrpUb1QpNtqZkVJ4yWTM&#43;qtFYji2G36lrJoSiQPKdDGoA8vGSAg==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title> | 开源到</title>
+<meta name="description" content="From: 小白必须懂的MongoDB的十大总结
+一、MongoDB的认识  1、什么是MongoDB？  MongoDB 是一个介于关系数据库和非关系数据库之间的开源产品，是最接近于关系型数据库的 NoSQL 数据库。它在轻量级JSON 交换基础之上进行了扩展，即称为 BSON 的方式来描述其无结构化的数据类型。尽管如此它同样可以存储较为复杂的数据类型。它和Redis有异曲同工之妙。虽然两者均为 NoSQL ，但是 MongoDB 相对于 Redis 而言，MongoDB 更像是传统的数据库。早些年我们是先有了 Relation Database (关系型数据库)，然后出现了很多很复杂的query ，里面用到了很多嵌套，很多 join 操作。所以在设计数据库的时候，我们也考虑到了如何应用他们的关系，使得写 query 可以使 database 效率达到最高。后来人们发现，不是每个系统，都需要如此复杂的关系型数据库。有些简单的网站，比如博客，比如社交网站，完全可以斩断数据库之间的一切关系。这样做带来的好处是，设计数据库变得更加简单，写 query 也变得更加简单。然后，query 消耗的时间可能也会变少。因为 query 简单了，少了许多消耗资源的 join 操作，速度自然会上去。正如所说的， query 简单了，很有以前 MySQL 可以找到的东西，现在关系没了，通过 Mongo 找不到了。我们只能将几组数据都抓到本地，然后在本地做 join ，所以在这点上可能会消耗很多资源。这里我们可以发现。如何选择数据库，完全取决于你所需要处理的数据的模型，即 Data Model 。如果它们之间，关系错综复杂，千丝万缕，这个时候 MySQL 一定是首选。如果他们的关系并不是那么密切，那么， NoSQL 将会是利器。
+MongoDB 和 Redis 一样均为 key-value 存储系统，它具有以下特点：
+ 面向集合存储，易存储对象类型的数据。 模式自由。 支持动态查询。 支持完全索引，包含内部对象。 支持查询。 支持复制和故障恢复。 使用高效的二进制数据存储，包括大型对象(如视频等)。 自动处理碎片，以支持云计算层次的扩展性 支持 Python ， PHP ， Ruby ， Java ， C ， C# ， Javascript ，Perl 及 C&#43;&#43; 语言的驱动程序，社区中也提供了对 Erlang 及 .">
+  <link rel="canonical" href="https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="">
+<meta property="og:description" content="From: 小白必须懂的MongoDB的十大总结
+一、MongoDB的认识  1、什么是MongoDB？  MongoDB 是一个介于关系数据库和非关系数据库之间的开源产品，是最接近于关系型数据库的 NoSQL 数据库。它在轻量级JSON 交换基础之上进行了扩展，即称为 BSON 的方式来描述其无结构化的数据类型。尽管如此它同样可以存储较为复杂的数据类型。它和Redis有异曲同工之妙。虽然两者均为 NoSQL ，但是 MongoDB 相对于 Redis 而言，MongoDB 更像是传统的数据库。早些年我们是先有了 Relation Database (关系型数据库)，然后出现了很多很复杂的query ，里面用到了很多嵌套，很多 join 操作。所以在设计数据库的时候，我们也考虑到了如何应用他们的关系，使得写 query 可以使 database 效率达到最高。后来人们发现，不是每个系统，都需要如此复杂的关系型数据库。有些简单的网站，比如博客，比如社交网站，完全可以斩断数据库之间的一切关系。这样做带来的好处是，设计数据库变得更加简单，写 query 也变得更加简单。然后，query 消耗的时间可能也会变少。因为 query 简单了，少了许多消耗资源的 join 操作，速度自然会上去。正如所说的， query 简单了，很有以前 MySQL 可以找到的东西，现在关系没了，通过 Mongo 找不到了。我们只能将几组数据都抓到本地，然后在本地做 join ，所以在这点上可能会消耗很多资源。这里我们可以发现。如何选择数据库，完全取决于你所需要处理的数据的模型，即 Data Model 。如果它们之间，关系错综复杂，千丝万缕，这个时候 MySQL 一定是首选。如果他们的关系并不是那么密切，那么， NoSQL 将会是利器。
+MongoDB 和 Redis 一样均为 key-value 存储系统，它具有以下特点：
+ 面向集合存储，易存储对象类型的数据。 模式自由。 支持动态查询。 支持完全索引，包含内部对象。 支持查询。 支持复制和故障恢复。 使用高效的二进制数据存储，包括大型对象(如视频等)。 自动处理碎片，以支持云计算层次的扩展性 支持 Python ， PHP ， Ruby ， Java ， C ， C# ， Javascript ，Perl 及 C&#43;&#43; 语言的驱动程序，社区中也提供了对 Erlang 及 .">
+<meta property="og:url" content="https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+<meta property="og:site_name" content="开源到">
+
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/",
+      "url": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/",
+      "name": "",
+      "description": "",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "0001-01-01T00:00:00CET",
+      "dateModified": "0001-01-01T00:00:00CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/",
+          "url": "https://oscome.cn/book/",
+          "name": "Book"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/nosql/",
+          "url": "https://oscome.cn/book/nosql/",
+          "name": "Nosql"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/nosql/mongodb/",
+          "url": "https://oscome.cn/book/nosql/mongodb/",
+          "name": "Mongodb"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  5 ,
+        "item": {
+          "@id": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/book/nosql/mongodb/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": ""
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="book single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">技术专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/book/readme/">知识合集</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一mongodb的认识">一、MongoDB的认识</a></li>
+        <li><a href="#二mongodb的安装">二、MongoDB的安装</a></li>
+        <li><a href="#三mongodb数据类型及常用命令讲解">三、MongoDB数据类型及常用命令讲解</a></li>
+        <li><a href="#四增删改查操作">四、增删改查操作</a></li>
+        <li><a href="#五用户管理权限控制">五、用户管理(权限控制)</a></li>
+        <li><a href="#六mongodb中的索引">六、MongoDB中的索引</a></li>
+        <li><a href="#八mongodb中的数据导出与导出">八、MongoDB中的数据导出与导出</a></li>
+        <li><a href="#九主从复制读写分离">九、主从复制(读写分离)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一mongodb的认识">一、MongoDB的认识</a></li>
+        <li><a href="#二mongodb的安装">二、MongoDB的安装</a></li>
+        <li><a href="#三mongodb数据类型及常用命令讲解">三、MongoDB数据类型及常用命令讲解</a></li>
+        <li><a href="#四增删改查操作">四、增删改查操作</a></li>
+        <li><a href="#五用户管理权限控制">五、用户管理(权限控制)</a></li>
+        <li><a href="#六mongodb中的索引">六、MongoDB中的索引</a></li>
+        <li><a href="#八mongodb中的数据导出与导出">八、MongoDB中的数据导出与导出</a></li>
+        <li><a href="#九主从复制读写分离">九、主从复制(读写分离)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/book/">Book</a></li>
+<li class="breadcrumb-item active" aria-current="page"></li>
+					</ol>
+				</nav>
+			
+			<h1></h1>
+			<time>0001-01-01, Monday</time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一mongodb的认识">一、MongoDB的认识</a></li>
+        <li><a href="#二mongodb的安装">二、MongoDB的安装</a></li>
+        <li><a href="#三mongodb数据类型及常用命令讲解">三、MongoDB数据类型及常用命令讲解</a></li>
+        <li><a href="#四增删改查操作">四、增删改查操作</a></li>
+        <li><a href="#五用户管理权限控制">五、用户管理(权限控制)</a></li>
+        <li><a href="#六mongodb中的索引">六、MongoDB中的索引</a></li>
+        <li><a href="#八mongodb中的数据导出与导出">八、MongoDB中的数据导出与导出</a></li>
+        <li><a href="#九主从复制读写分离">九、主从复制(读写分离)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一mongodb的认识">一、MongoDB的认识</a></li>
+        <li><a href="#二mongodb的安装">二、MongoDB的安装</a></li>
+        <li><a href="#三mongodb数据类型及常用命令讲解">三、MongoDB数据类型及常用命令讲解</a></li>
+        <li><a href="#四增删改查操作">四、增删改查操作</a></li>
+        <li><a href="#五用户管理权限控制">五、用户管理(权限控制)</a></li>
+        <li><a href="#六mongodb中的索引">六、MongoDB中的索引</a></li>
+        <li><a href="#八mongodb中的数据导出与导出">八、MongoDB中的数据导出与导出</a></li>
+        <li><a href="#九主从复制读写分离">九、主从复制(读写分离)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<p>From: <a href="https://www.cnblogs.com/ECJTUACM-873284962/p/9613236.html">小白必须懂的MongoDB的十大总结</a></p>
+<h3 id="一mongodb的认识">一、MongoDB的认识 </h3>
+<h4 id="1什么是mongodb">1、什么是MongoDB？ </h4>
+<p><code>MongoDB</code> 是一个介于关系数据库和非关系数据库之间的开源产品，是最接近于关系型数据库的 <code>NoSQL</code> 数据库。它在轻量级<code>JSON</code> 交换基础之上进行了扩展，即称为 <code>BSON</code> 的方式来描述其无结构化的数据类型。尽管如此它同样可以存储较为复杂的数据类型。它和Redis有异曲同工之妙。虽然两者均为 <code>NoSQL</code> ，但是 <code>MongoDB</code> 相对于 <code>Redis</code> 而言，<code>MongoDB</code> 更像是传统的数据库。早些年我们是先有了 <code>Relation Database</code> (关系型数据库)，然后出现了很多很复杂的<code>query</code> ，里面用到了很多嵌套，很多 <code>join</code> 操作。所以在设计数据库的时候，我们也考虑到了如何应用他们的关系，使得写 <code>query</code> 可以使 <code>database</code> 效率达到最高。后来人们发现，不是每个系统，都需要如此复杂的关系型数据库。有些简单的网站，比如博客，比如社交网站，完全可以斩断数据库之间的一切关系。这样做带来的好处是，设计数据库变得更加简单，写 <code>query</code> 也变得更加简单。然后，<code>query</code> 消耗的时间可能也会变少。因为 <code>query</code> 简单了，少了许多消耗资源的 <code>join</code> 操作，速度自然会上去。正如所说的， <code>query</code> 简单了，很有以前 <code>MySQL</code> 可以找到的东西，现在关系没了，通过 <code>Mongo</code> 找不到了。我们只能将几组数据都抓到本地，然后在本地做 <code>join</code> ，所以在这点上可能会消耗很多资源。这里我们可以发现。如何选择数据库，完全取决于你所需要处理的数据的模型，即 <code>Data Model</code> 。如果它们之间，关系错综复杂，千丝万缕，这个时候 <code>MySQL</code> 一定是首选。如果他们的关系并不是那么密切，那么， <code>NoSQL</code> 将会是利器。</p>
+<p><code>MongoDB</code> 和 <code>Redis</code> 一样均为 <code>key-value</code> 存储系统，它具有以下特点：</p>
+<ul>
+<li>面向集合存储，易存储对象类型的数据。</li>
+<li>模式自由。</li>
+<li>支持动态查询。</li>
+<li>支持完全索引，包含内部对象。</li>
+<li>支持查询。</li>
+<li>支持复制和故障恢复。</li>
+<li>使用高效的二进制数据存储，包括大型对象(如视频等)。</li>
+<li>自动处理碎片，以支持云计算层次的扩展性</li>
+<li>支持 <code>Python</code> ， <code>PHP</code> ， <code>Ruby</code> ， <code>Java</code> ， <code>C</code> ， <code>C#</code> ， <code>Javascript</code> ，<code>Perl</code> 及 <code>C++</code> 语言的驱动程序，社区中也提供了对 <code>Erlang</code> 及 <code>.NET</code> 等平台的驱动程序。</li>
+<li>文件存储格式为 <code>BSON</code> (一种 <code>JSON</code> 的扩展)。</li>
+<li>可通过网络访问。</li>
+</ul>
+<h4 id="2mongodb与mysql性能比较">2、MongoDB与MySQL性能比较 </h4>
+<p>像 <code>MySQL</code> 一样， <code>MongoDB</code> 提供了丰富的远远超出了简单的键值存储中提供的功能和功能。 <code>MongoDB</code> 具有查询语言，功能强大的辅助索引(包括文本搜索和地理空间)，数据分析功能强大的聚合框架等。相比使用关系数据库而言，使用<code>MongoDB</code> ，您还可以使用如下表所示的这些功能，跨越更多样化的数据类型和数据规模。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>MySQL</code></th>
+<th><code>MongoDB</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丰富的数据模型</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>动态 <code>Schema</code></td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>数据类型</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>数据本地化</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>字段更新</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>易于编程</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>复杂事务</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>自动分片</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p><code>MySQL</code> 中的许多概念在 <code>MongoDB</code> 中具有相近的类比。本表概述了每个系统中的一些常见概念。</p>
+<table>
+<thead>
+<tr>
+<th><code>MySQL</code></th>
+<th><code>MongoDB</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表</td>
+<td>集合</td>
+</tr>
+<tr>
+<td>行</td>
+<td>文档</td>
+</tr>
+<tr>
+<td>列</td>
+<td>字段</td>
+</tr>
+<tr>
+<td><code>joins</code></td>
+<td>嵌入文档或者链接</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3应用范围和限制">3、应用范围和限制 </h4>
+<p><code>MongoDB</code> 的主要目标是在 <code>key-value</code> (键/值)存储方式(提供了高性能和高度伸缩性)以及传统的 <code>RDBMS</code> 系统(丰富的功能)架起一座桥梁，集两者的优势于一身。 <code>MongoDB</code> 适用范围如下：</p>
+<ul>
+<li><strong>网站数据：</strong> <code>Mongo</code> 非常适合实时的插入，更新与查询，并具备网站实时数据存储所需的复制及高度伸缩性。</li>
+<li>**缓存：**由于性能很高， <code>Mongo</code> 也适合作为信息基础设施的缓存层。在系统重启之后，由 <code>Mongo</code> 搭建的持久化缓存层可以避免下层的数据源过载。</li>
+<li>**大尺寸，低价值的数据：**使用传统的关系型数据库存储一些数据时可能会比较昂贵，在此之前，很多时候程序员往往会选择传统的文件进行存储。</li>
+<li><strong>高伸缩性的场景：</strong> <code>Mongo</code> 非常适合由数十或数百台服务器组成的数据库。 <code>Mongo</code> 的路线图中已经包含对 <code>MapReduce</code> 引擎的内置支持。</li>
+<li><strong>用于对象及 JSON 数据的存储：</strong> <code>Mongo</code> 的 <code>BSON</code> 数据格式非常适合文档化格式的存储及查询。</li>
+</ul>
+<p><code>MongoDB</code> 当然也会有以下场景的限制：</p>
+<ul>
+<li>高度事物性的系统：例如银行或会计系统。传统的关系型数据库目前还是更适用于需要大量原子性复杂事务的应用程序。</li>
+<li>传统的商业智能应用：针对特定问题的 <code>BI</code> 数据库会对产生高度优化的查询方式。对于此类应用，数据仓库可能是更合适的选择。</li>
+<li>需要 <code>SQL</code> 的问题。</li>
+</ul>
+<h3 id="二mongodb的安装">二、MongoDB的安装 </h3>
+<h4 id="环境准备"><strong>环境准备</strong> </h4>
+<ul>
+<li>CentOS7</li>
+<li><a href="https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.6/x86_64/">MongoDB 3.6</a></li>
+</ul>
+<h4 id="安装步骤"><strong>安装步骤</strong> </h4>
+<h5 id="1创建一个-mongodb-org-36repo-文件">1、创建一个 <code>mongodb-org-3.6.repo</code> 文件 </h5>
+<pre><code>vi /etc/yum.repos.d/mongodb-org-3.6.repo
+</code></pre>
+<p>在文件中加入如下内容：</p>
+<pre><code>[mongodb-org-3.6]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.6/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
+</code></pre>
+<p>退出编辑模式，直接输入如下命令安装即可：</p>
+<pre><code>sudo yum install -y mongodb-org
+</code></pre>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114306285-1771114626.png" alt="MongoDB"></p>
+<p>若要安装特定版本的 <code>MongoDB</code> ，请分别指定每个组件包并将版本号附加到包名称，如下所示：</p>
+<pre><code>sudo yum install -y mongodb-org-3.6.3 mongodb-org-server-3.6.3 mongodb-org-shell-3.6.3 mongodb-org-mongos-3.6.3 mongodb-org-tools-3.6.3
+</code></pre>
+<p>你可以指定任何可用的 <code>MongoDB</code> 版本。然而， <code>yum</code> 会在新版本可用时升级软件包。为防止意外升级，请钉住包装。要固定软件包，请将以下 <code>exclude</code> 指令添加到 <code>/etc/yum.conf</code> 文件中：</p>
+<pre><code>exclude=mongodb-org,mongodb-org-server,mongodb-org-shell,mongodb-org-mongos,mongodb-org-tools
+</code></pre>
+<p>我们直接运行如下命令：</p>
+<pre><code>mongod -repair
+</code></pre>
+<p>看到如下字样，说明我们安装成功！</p>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114306050-1415358397.png" alt="MongoDB_3"></p>
+<p>我们创建一个 <code>db</code> ，并查看下 <code>mongo</code> 的安装位置：</p>
+<pre><code>mkdir db
+whereis mongod
+</code></pre>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114305680-1029309229.png" alt="MongoDB_2"></p>
+<p>安装完成后启动 <code>mongodb</code> ，并查看下 <code>mongob</code> 启动状态：</p>
+<pre><code>systemctl start mongod.service
+systemctl status mongod.service
+</code></pre>
+<p>如果出现如下字样，说明启动成功！</p>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114305409-450104353.png" alt="MongoDB_4"></p>
+<p>成功启动 <code>MongoDB</code> 后，新建一个命令行输入 <code>mongo</code> 进行登录操作，即可进行数据库的一些操作了。</p>
+<pre><code>mongo
+</code></pre>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114305192-1179456160.png" alt="MongoDB_5"></p>
+<h3 id="三mongodb数据类型及常用命令讲解">三、MongoDB数据类型及常用命令讲解 </h3>
+<p><code>MongoDB</code> 的数据类型大致有下列几种：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td>字符串。存储数据常用的数据类型。在 <code>MongoDB</code> 中，<code>UTF-8</code> 编码的字符串才是合法的。</td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td>整型数值。用于存储数值。根据你所采用的服务器，可分为 <code>32</code> 位或 <code>64</code> 位。</td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td>布尔值。用于存储布尔值（真/假）。</td>
+</tr>
+<tr>
+<td><code>Double</code></td>
+<td>双精度浮点值。用于存储浮点值。</td>
+</tr>
+<tr>
+<td><code>Min/Max keys</code></td>
+<td>将一个值与 <code>BSON</code> (二进制的 <code>JSON</code>)元素的最低值和最高值相对比。</td>
+</tr>
+<tr>
+<td><code>Arrays</code></td>
+<td>用于将数组或列表或多个值存储为一个键。</td>
+</tr>
+<tr>
+<td><code>Timestamp</code></td>
+<td>时间戳。记录文档修改或添加的具体时间。</td>
+</tr>
+<tr>
+<td><code>Object</code></td>
+<td>用于内嵌文档。</td>
+</tr>
+<tr>
+<td><code>Null</code></td>
+<td>用于创建空值。</td>
+</tr>
+<tr>
+<td><code>Symbol</code></td>
+<td>符号。该数据类型基本上等同于字符串类型，但不同的是，它一般用于采用特殊符号类型的语言。</td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td>日期时间。用 <code>UNIX</code> 时间格式来存储当前日期或时间。你可以指定自己的日期时间：创建 <code>Date</code> 对象，传入年月日信息。</td>
+</tr>
+<tr>
+<td><code>Object ID</code></td>
+<td>对象 <code>ID</code>。用于创建文档的 <code>ID</code>。</td>
+</tr>
+<tr>
+<td><code>Binary Data</code></td>
+<td>二进制数据。用于存储二进制数据。</td>
+</tr>
+<tr>
+<td><code>Code</code></td>
+<td>代码类型。用于在文档中存储 <code>JavaScript</code> 代码。</td>
+</tr>
+<tr>
+<td><code>Regular expression</code></td>
+<td>正则表达式类型。用于存储正则表达式。</td>
+</tr>
+</tbody>
+</table>
+<p>下面我们将介绍一些 <code>MongoDB</code> 的常用命令！</p>
+<h5 id="1创建数据库">1、创建数据库 </h5>
+<p><code>use 数据库名称</code> ：创建一个新的数据库。注意：如果该数据库不存在，则创建，如果该数据库存在，则是切换
+如果创建了数据库，没有任何的操作，则会自动删除该数据库</p>
+<p>example：</p>
+<pre><code>&gt; use stu
+switched to db stu
+</code></pre>
+<h5 id="2查看数据库">2、查看数据库 </h5>
+<p><code>show dbs</code> ：查看当前有多少个数据库</p>
+<p>example：</p>
+<pre><code>&gt; show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+</code></pre>
+<h5 id="3创建集合">3、创建集合 </h5>
+<p><code>db.集合名.insert({})</code> ：向集合里面，添加文档。<code>{}</code> 里面是 <code>json</code> 的文档。注意： <code>mongodb</code> 里面的集合是隐式创建，就是无需创建，直接使用。 <code>db</code> 表示显示当前所在的数据库。</p>
+<p>example：</p>
+<pre><code>&gt; db.php.insert({&quot;name&quot;:&quot;xiaoming&quot;,&quot;age&quot;:20,&quot;email&quot;:&quot;xiaoming@gmail.com&quot;})
+WriteResult({ &quot;nInserted&quot; : 1 })
+&gt; db.php.insert({&quot;name&quot;:&quot;xiaohong&quot;,&quot;age&quot;:18,&quot;email&quot;:&quot;xiaohong@gmail.com&quot;})
+WriteResult({ &quot;nInserted&quot; : 1 })
+</code></pre>
+<h5 id="4查看集合">4、查看集合 </h5>
+<p><code>show tables</code> ：查看当前数据库中的集合</p>
+<p>example：</p>
+<pre><code>&gt; show tables
+php
+</code></pre>
+<h5 id="5查询集合里面的文档">5、查询集合里面的文档 </h5>
+<p><code>db.集合名.find()</code> ：查询当前数据库中该集合下的所有文档</p>
+<p>example：</p>
+<pre><code>&gt; db.php.find()
+{ &quot;_id&quot; : ObjectId(&quot;5b9318ac487b851e62879578&quot;), &quot;name&quot; : &quot;xiaoming&quot;, &quot;age&quot; : 20, &quot;email&quot; : &quot;xiaoming@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b9319a2487b851e62879579&quot;), &quot;name&quot; : &quot;xiaohong&quot;, &quot;age&quot; : 18, &quot;email&quot; : &quot;xiaohong@gmail.com&quot; }
+</code></pre>
+<p><code>db.集合名.find</code> ：查询当前数据库中该集合下的第一个文档</p>
+<p>example：</p>
+<pre><code>&gt; db.php.find
+function (query, fields, limit, skip, batchSize, options) {
+    var cursor = new DBQuery(this._mongo,
+                             this._db,
+                             this,
+                             this._fullName,
+                             this._massageObject(query),
+                             fields,
+                             limit,
+                             skip,
+                             batchSize,
+                             options || this.getQueryOptions());
+
+    {
+        const session = this.getDB().getSession();
+
+        const readPreference = session._serverSession.client.getReadPreference(session);
+        if (readPreference !== null) {
+            cursor.readPref(readPreference.mode, readPreference.tags);
+        }
+
+        const readConcern = session._serverSession.client.getReadConcern(session);
+        if (readConcern !== null) {
+            cursor.readConcern(readConcern.level);
+        }
+    }
+
+    return cursor;
+}
+</code></pre>
+<h5 id="6删除集合">6、删除集合 </h5>
+<p><code>db.集合名.drop()</code> ：删除当前数据库中的集合</p>
+<p>example：</p>
+<pre><code>&gt; db.php.drop()
+true
+</code></pre>
+<h5 id="7删除数据库">7、删除数据库 </h5>
+<p><code>db.dropDatabase()</code> ：删除当前的数据库</p>
+<pre><code>&gt; db.dropDatabase()
+{ &quot;dropped&quot; : &quot;stu&quot;, &quot;ok&quot; : 1 }
+</code></pre>
+<h5 id="8帮助命令">8、帮助命令 </h5>
+<p><code>help</code> ：全局帮助命令</p>
+<pre><code>&gt; help
+    db.help()                    help on db methods
+    db.mycoll.help()             help on collection methods
+    sh.help()                    sharding helpers
+    rs.help()                    replica set helpers
+    help admin                   administrative help
+    help connect                 connecting to a db help
+    help keys                    key shortcuts
+    help misc                    misc things to know
+    help mr                      mapreduce
+
+    show dbs                     show database names
+    show collections             show collections in current database
+    show users                   show users in current database
+    show profile                 show most recent system.profile entries with time &gt;= 1ms
+    show logs                    show the accessible logger names
+    show log [name]              prints out the last segment of log in memory, 'global' is default
+    use                 set current database
+    db.foo.find()                list objects in collection foo
+    db.foo.find( { a : 1 } )     list objects in foo where a == 1
+    it                           result of the last line evaluated; use to further iterate
+    DBQuery.shellBatchSize = x   set default number of items to display on shell
+    exit                         quit the mongo shell
+</code></pre>
+<p><code>db.help()</code> ：数据库相关的帮助命令</p>
+<p>example：</p>
+<pre><code>&gt; db.help()
+DB methods:
+    db.adminCommand(nameOrDocument) - switches to 'admin' db, and runs command [just calls db.runCommand(...)]
+    db.aggregate([pipeline], {options}) - performs a collectionless aggregation on this database; returns a cursor
+    db.auth(username, password)
+    db.cloneDatabase(fromhost)
+    db.commandHelp(name) returns the help for the command
+    db.copyDatabase(fromdb, todb, fromhost)
+    db.createCollection(name, {size: ..., capped: ..., max: ...})
+    db.createView(name, viewOn, [{$operator: {...}}, ...], {viewOptions})
+    db.createUser(userDocument)
+    db.currentOp() displays currently executing operations in the db
+    db.dropDatabase()
+    db.eval() - deprecated
+    db.fsyncLock() flush data to disk and lock server for backups
+    db.fsyncUnlock() unlocks server following a db.fsyncLock()
+    db.getCollection(cname) same as db['cname'] or db.cname
+    db.getCollectionInfos([filter]) - returns a list that contains the names and options of the db's collections
+    db.getCollectionNames()
+    db.getLastError() - just returns the err msg string
+    db.getLastErrorObj() - return full status object
+    db.getLogComponents()
+    db.getMongo() get the server connection object
+    db.getMongo().setSlaveOk() allow queries on a replication slave server
+    db.getName()
+    db.getPrevError()
+    db.getProfilingLevel() - deprecated
+    db.getProfilingStatus() - returns if profiling is on and slow threshold
+    db.getReplicationInfo()
+    db.getSiblingDB(name) get the db at the same server as this one
+    db.getWriteConcern() - returns the write concern used for any operations on this db, inherited from server object if set
+    db.hostInfo() get details about the server's host
+    db.isMaster() check replica primary status
+    db.killOp(opid) kills the current operation in the db
+    db.listCommands() lists all the db commands
+    db.loadServerScripts() loads all the scripts in db.system.js
+    db.logout()
+    db.printCollectionStats()
+    db.printReplicationInfo()
+    db.printShardingStatus()
+    db.printSlaveReplicationInfo()
+    db.dropUser(username)
+    db.repairDatabase()
+    db.resetError()
+    db.runCommand(cmdObj) run a database command.  if cmdObj is a string, turns it into {cmdObj: 1}
+    db.serverStatus()
+    db.setLogLevel(level,)
+    db.setProfilingLevel(level,slowms) 0=off 1=slow 2=all
+    db.setWriteConcern() - sets the write concern for writes to the db
+    db.unsetWriteConcern() - unsets the write concern for writes to the db
+    db.setVerboseShell(flag) display extra information in shell output
+    db.shutdownServer()
+    db.stats()
+    db.version() current version of the server
+</code></pre>
+<p><code>db.集合名.help()</code> ：集合相关的帮助命令</p>
+<p>example：</p>
+<pre><code>&gt; db.php.help()
+DBCollection help
+    db.php.find().help() - show DBCursor help
+    db.php.bulkWrite( operations,  ) - bulk execute write operations, optional parameters are: w, wtimeout, j
+    db.php.count( query = {},  ) - count the number of documents that matches the query, optional parameters are: limit, skip, hint, maxTimeMS
+    db.php.copyTo(newColl) - duplicates collection by copying all documents to newColl; no indexes are copied.
+    db.php.convertToCapped(maxBytes) - calls {convertToCapped:'php', size:maxBytes}} command
+    db.php.createIndex(keypattern[,options])
+    db.php.createIndexes([keypatterns], )
+    db.php.dataSize()
+    db.php.deleteOne( filter,  ) - delete first matching document, optional parameters are: w, wtimeout, j
+    db.php.deleteMany( filter,  ) - delete all matching documents, optional parameters are: w, wtimeout, j
+    db.php.distinct( key, query,  ) - e.g. db.php.distinct( 'x' ), optional parameters are: maxTimeMS
+    db.php.drop() drop the collection
+    db.php.dropIndex(index) - e.g. db.php.dropIndex( &quot;indexName&quot; ) or db.php.dropIndex( { &quot;indexKey&quot; : 1 } )
+    db.php.dropIndexes()
+    db.php.ensureIndex(keypattern[,options]) - DEPRECATED, use createIndex() instead
+    db.php.explain().help() - show explain help
+    db.php.reIndex()
+    db.php.find([query],[fields]) - query is an optional query filter. fields is optional set of fields to return.
+                                                  e.g. db.php.find( {x:77} , {name:1, x:1} )
+    db.php.find(...).count()
+    db.php.find(...).limit(n)
+    db.php.find(...).skip(n)
+    db.php.find(...).sort(...)
+    db.php.findOne([query], [fields], [options], [readConcern])
+    db.php.findOneAndDelete( filter,  ) - delete first matching document, optional parameters are: projection, sort, maxTimeMS
+    db.php.findOneAndReplace( filter, replacement,  ) - replace first matching document, optional parameters are: projection, sort, maxTimeMS, upsert, returnNewDocument
+    db.php.findOneAndUpdate( filter, update,  ) - update first matching document, optional parameters are: projection, sort, maxTimeMS, upsert, returnNewDocument
+    db.php.getDB() get DB object associated with collection
+    db.php.getPlanCache() get query plan cache associated with collection
+    db.php.getIndexes()
+    db.php.group( { key : ..., initial: ..., reduce : ...[, cond: ...] } )
+    db.php.insert(obj)
+    db.php.insertOne( obj,  ) - insert a document, optional parameters are: w, wtimeout, j
+    db.php.insertMany( [objects],  ) - insert multiple documents, optional parameters are: w, wtimeout, j
+    db.php.mapReduce( mapFunction , reduceFunction ,  )
+    db.php.aggregate( [pipeline],  ) - performs an aggregation on a collection; returns a cursor
+    db.php.remove(query)
+    db.php.replaceOne( filter, replacement,  ) - replace the first matching document, optional parameters are: upsert, w, wtimeout, j
+    db.php.renameCollection( newName ,  ) renames the collection.
+    db.php.runCommand( name ,  ) runs a db command with the given name where the first param is the collection name
+    db.php.save(obj)
+    db.php.stats({scale: N, indexDetails: true/false, indexDetailsKey: , indexDetailsName: })
+    db.php.storageSize() - includes free space allocated to this collection
+    db.php.totalIndexSize() - size in bytes of all the indexes
+    db.php.totalSize() - storage allocated for all data and indexes
+    db.php.update( query, object[, upsert_bool, multi_bool] ) - instead of two flags, you can pass an object with fields: upsert, multi
+    db.php.updateOne( filter, update,  ) - update the first matching document, optional parameters are: upsert, w, wtimeout, j
+    db.php.updateMany( filter, update,  ) - update all matching documents, optional parameters are: upsert, w, wtimeout, j
+    db.php.validate(  ) - SLOW
+    db.php.getShardVersion() - only for use with sharding
+    db.php.getShardDistribution() - prints statistics about data distribution in the cluster
+    db.php.getSplitKeysForChunks(  ) - calculates split points over all chunks and returns splitter function
+    db.php.getWriteConcern() - returns the write concern used for any operations on this collection, inherited from server/db if set
+    db.php.setWriteConcern(  ) - sets the write concern for writes to the collection
+    db.php.unsetWriteConcern(  ) - unsets the write concern for writes to the collection
+    db.php.latencyStats() - display operation latency histograms for this collection
+</code></pre>
+<h3 id="四增删改查操作">四、增删改查操作 </h3>
+<h5 id="1添加文档">1、添加文档 </h5>
+<p><code>db.集合名.insert({k1:v1,k2:v2...})</code> ：向当前数据库的该集合下添加文档</p>
+<p>我们在添加文档的时候有如下注意点：</p>
+<p>a) 文档就是键值对，数据类型是 <code>BSON</code> 格式，支持的值更加丰富。 <code>BSON</code> 是 <code>JSON</code> 的扩展，新增了诸如日期，浮点等 <code>JSON</code> 不支持的数据类型。</p>
+<p>b) 在添加的文档里面，都有一个 <code>'_id'</code> 的键，值为对象类型 <code>ObjectID</code> ，在这里，我们解释下 <code>ObjectID</code> 类型：</p>
+<p>每个文档都有一个 <code>_id</code> 字段，并且同一集合中的 <code>_id</code> 值唯一，该字段可以是任意类型的数据，默认是一个 <code>ObjectID</code> 对象。
+<code>ObjectID</code> 对象数据组成：时间戳|机器码|PID|计数器
+<code>_id</code> 的键值我们可以自己输入，但是不能重复，但要注意的一点是在插入数据的时候，如果 <code>_id</code> 的值重复则会报错</p>
+<p>c) 可以使用 <code>js</code> 代码来完成批量插入文档</p>
+<p>example：</p>
+<pre><code>&gt; for(var i=1;i&lt;=10;i++){
+... db.php.insert({'name':'xiaobai'+i,'age':i,'email':'xiaobai'+i+'@gmail.com'})
+... }
+WriteResult({ &quot;nInserted&quot; : 1 })
+&gt; db.php.find()
+{ &quot;_id&quot; : ObjectId(&quot;5b931b74a39e4f4842ba36b3&quot;), &quot;name&quot; : &quot;xiaoming&quot;, &quot;age&quot; : 20, &quot;email&quot; : &quot;xiaoming@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaohong&quot;, &quot;age&quot; : 18, &quot;email&quot; : &quot;xiaohong@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36b5&quot;), &quot;name&quot; : &quot;xiaobai1&quot;, &quot;age&quot; : 1, &quot;email&quot; : &quot;xiaobai1@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36b6&quot;), &quot;name&quot; : &quot;xiaobai2&quot;, &quot;age&quot; : 2, &quot;email&quot; : &quot;xiaobai2@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36b7&quot;), &quot;name&quot; : &quot;xiaobai3&quot;, &quot;age&quot; : 3, &quot;email&quot; : &quot;xiaobai3@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36b8&quot;), &quot;name&quot; : &quot;xiaobai4&quot;, &quot;age&quot; : 4, &quot;email&quot; : &quot;xiaobai4@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36b9&quot;), &quot;name&quot; : &quot;xiaobai5&quot;, &quot;age&quot; : 5, &quot;email&quot; : &quot;xiaobai5@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36ba&quot;), &quot;name&quot; : &quot;xiaobai6&quot;, &quot;age&quot; : 6, &quot;email&quot; : &quot;xiaobai6@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bb&quot;), &quot;name&quot; : &quot;xiaobai7&quot;, &quot;age&quot; : 7, &quot;email&quot; : &quot;xiaobai7@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bc&quot;), &quot;name&quot; : &quot;xiaobai8&quot;, &quot;age&quot; : 8, &quot;email&quot; : &quot;xiaobai8@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bd&quot;), &quot;name&quot; : &quot;xiaobai9&quot;, &quot;age&quot; : 9, &quot;email&quot; : &quot;xiaobai9@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36be&quot;), &quot;name&quot; : &quot;xiaobai10&quot;, &quot;age&quot; : 10, &quot;email&quot; : &quot;xiaobai10@gmail.com&quot; }
+</code></pre>
+<h5 id="2删除文档">2、删除文档 </h5>
+<p><code>db.集合名.remove{(条件)}</code> ：删除当前数据库下指定集合中满足条件的文档(不写条件则删除所有的文档)</p>
+<p>example：</p>
+<pre><code>&gt; db.php.remove({age:20})
+WriteResult({ &quot;nRemoved&quot; : 1 })
+&gt; db.php.remove({age:{'$lt':6}})
+WriteResult({ &quot;nRemoved&quot; : 5 })
+&gt; db.php.find()
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaohong&quot;, &quot;age&quot; : 18, &quot;email&quot; : &quot;xiaohong@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36ba&quot;), &quot;name&quot; : &quot;xiaobai6&quot;, &quot;age&quot; : 6, &quot;email&quot; : &quot;xiaobai6@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bb&quot;), &quot;name&quot; : &quot;xiaobai7&quot;, &quot;age&quot; : 7, &quot;email&quot; : &quot;xiaobai7@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bc&quot;), &quot;name&quot; : &quot;xiaobai8&quot;, &quot;age&quot; : 8, &quot;email&quot; : &quot;xiaobai8@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bd&quot;), &quot;name&quot; : &quot;xiaobai9&quot;, &quot;age&quot; : 9, &quot;email&quot; : &quot;xiaobai9@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36be&quot;), &quot;name&quot; : &quot;xiaobai10&quot;, &quot;age&quot; : 10, &quot;email&quot; : &quot;xiaobai10@gmail.com&quot; }
+</code></pre>
+<p>这里我们在删除 <code>php</code> 集合中年龄小于6的文档时，我们使用了操作符来完成。</p>
+<p><strong>比较运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$gt</code></td>
+<td>大于</td>
+</tr>
+<tr>
+<td><code>$lt</code></td>
+<td>小于</td>
+</tr>
+<tr>
+<td><code>$gte</code></td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td><code>$lte</code></td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td><code>$exists</code></td>
+<td>存在与否</td>
+</tr>
+<tr>
+<td><code>$in</code></td>
+<td>包含</td>
+</tr>
+<tr>
+<td><code>$ne</code></td>
+<td>不等于</td>
+</tr>
+<tr>
+<td><code>$nin</code></td>
+<td>不包含</td>
+</tr>
+</tbody>
+</table>
+<p><strong>逻辑运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$exists</code></td>
+<td>存在与否</td>
+</tr>
+<tr>
+<td><code>$or</code></td>
+<td>或者</td>
+</tr>
+<tr>
+<td><code>$and</code></td>
+<td>并且</td>
+</tr>
+<tr>
+<td><code>$not</code></td>
+<td>不存在</td>
+</tr>
+<tr>
+<td><code>$mod</code></td>
+<td>求模</td>
+</tr>
+<tr>
+<td><code>$where</code></td>
+<td>位置</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>特别的 $exists: true 表示字段存在</p>
+</blockquote>
+<p><strong>排序 sort</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$asc</code></td>
+<td>升序</td>
+</tr>
+<tr>
+<td><code>$desc</code></td>
+<td>降序</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3更新文档">3、更新文档 </h5>
+<p>更新文档有两种方式进行修改</p>
+<p>方法一、直接修改</p>
+<p><code>db.集合名.update({条件},{新的文档})</code> ：修改当前数据库下指定集合中满足条件的文档信息</p>
+<p>example：</p>
+<pre><code>&gt; db.php.find()
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaohong&quot;, &quot;age&quot; : 18, &quot;email&quot; : &quot;xiaohong@gmail.com&quot; }
+&gt; db.php.update({age:18},{name:'xiaobai5'})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+&gt; db.php.find()
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaobai5&quot; }
+</code></pre>
+<p><code>db.集合.update(条件,新文档,是否新增,是否修改多条)</code> ：修改当前数据库下指定集合中满足条件的文档信息</p>
+<ul>
+<li>是否新增：如果值是1(true)则没有满足条件的 则添加</li>
+<li>是否修改多条：若值是1(true)，如果满足条件的有多个文档 则都要修改</li>
+</ul>
+<p>example：</p>
+<pre><code>&gt; db.php.update({age:10},{name:'xiaoli'},true,true)
+WriteResult({
+    &quot;nMatched&quot; : 0,
+    &quot;nUpserted&quot; : 0,
+    &quot;nModified&quot; : 0,
+    &quot;writeError&quot; : {
+        &quot;code&quot; : 9,
+        &quot;errmsg&quot; : &quot;multi update only works with $ operators&quot;
+    }
+})
+</code></pre>
+<p>方法二、使用修改器</p>
+<p>example：</p>
+<p>我们要修改 <code>age=6</code> 的文档名称为 <code>xiaosan</code> ，并且其他键值不能丢失</p>
+<p>我们可以使用修改器</p>
+<ul>
+<li><code>$inc</code> ：加上一个数字</li>
+<li><code>$set</code> ：修改某一个字段，如果该字段不存在就增这个字段</li>
+</ul>
+<p>语法：<code>db.集合名.update({条件},{修改器名称:{修改的键:修改的新值}})</code></p>
+<pre><code>&gt; db.php.update({age:6},{'$set':{name:'xiaosan'}})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</code></pre>
+<p>那如果我们要修改 <code>age=10</code> 的文档的年龄增加十岁，我们可以这样做：</p>
+<pre><code>&gt; db.php.update({age:10},{$inc:{age:10}})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</code></pre>
+<h5 id="4查询文档">4、查询文档 </h5>
+<p>语法： <code>db.集合名.find({条件})</code></p>
+<p>example：</p>
+<p>取出 <code>php</code> 集合里面的第一个文档</p>
+<pre><code>&gt; db.php.findOne()
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaobai5&quot; }
+</code></pre>
+<p>取出 <code>php</code> 集合里面 <code>age=6</code> 的文档</p>
+<pre><code>&gt; db.php.find({age:6})
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36ba&quot;), &quot;name&quot; : &quot;xiaosan&quot;, &quot;age&quot; : 6, &quot;email&quot; : &quot;xiaobai6@gmail.com&quot; }
+</code></pre>
+<p>取出 <code>php</code> 集合里面 <code>age&gt;8</code> 的文档</p>
+<pre><code>&gt; db.php.find({age:{'$gt':8}})
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bd&quot;), &quot;name&quot; : &quot;xiaobai9&quot;, &quot;age&quot; : 9, &quot;email&quot; : &quot;xiaobai9@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36be&quot;), &quot;name&quot; : &quot;xiaobai10&quot;, &quot;age&quot; : 20, &quot;email&quot; : &quot;xiaobai10@gmail.com&quot; }
+</code></pre>
+<p>取出 <code>php</code> 集合里面的文档，只显示 <code>name</code> 键</p>
+<pre><code>&gt; db.php.find({},{age:1})//1表示只显示age键值
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;) }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36ba&quot;), &quot;age&quot; : 6 }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bb&quot;), &quot;age&quot; : 7 }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bc&quot;), &quot;age&quot; : 8 }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bd&quot;), &quot;age&quot; : 9 }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36be&quot;), &quot;age&quot; : 20 }
+&gt; db.php.find({},{age:0})//1表示除了显示age键值，其他的都显示
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaobai5&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36ba&quot;), &quot;name&quot; : &quot;xiaosan&quot;, &quot;email&quot; : &quot;xiaobai6@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bb&quot;), &quot;name&quot; : &quot;xiaobai7&quot;, &quot;email&quot; : &quot;xiaobai7@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bc&quot;), &quot;name&quot; : &quot;xiaobai8&quot;, &quot;email&quot; : &quot;xiaobai8@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bd&quot;), &quot;name&quot; : &quot;xiaobai9&quot;, &quot;email&quot; : &quot;xiaobai9@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36be&quot;), &quot;name&quot; : &quot;xiaobai10&quot;, &quot;email&quot; : &quot;xiaobai10@gmail.com&quot; }
+</code></pre>
+<p>根据年龄的(降序|升序)来显示文档</p>
+<pre><code>db.集合名.find().sort({age:1})根据年龄升序
+db.集合名.find().sort({age:0})根据年龄降序
+</code></pre>
+<p>显示 <code>php</code> 集合中的前三个文档</p>
+<pre><code>&gt; db.php.find().limit(3)
+{ &quot;_id&quot; : ObjectId(&quot;5b931b7ca39e4f4842ba36b4&quot;), &quot;name&quot; : &quot;xiaobai5&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36ba&quot;), &quot;name&quot; : &quot;xiaosan&quot;, &quot;age&quot; : 6, &quot;email&quot; : &quot;xiaobai6@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bb&quot;), &quot;name&quot; : &quot;xiaobai7&quot;, &quot;age&quot; : 7, &quot;email&quot; : &quot;xiaobai7@gmail.com&quot; }
+</code></pre>
+<p>显示 <code>php</code> 集合中的第三个文档到第五个文档</p>
+<pre><code>&gt; db.php.find().skip(2).limit(3)
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bb&quot;), &quot;name&quot; : &quot;xiaobai7&quot;, &quot;age&quot; : 7, &quot;email&quot; : &quot;xiaobai7@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bc&quot;), &quot;name&quot; : &quot;xiaobai8&quot;, &quot;age&quot; : 8, &quot;email&quot; : &quot;xiaobai8@gmail.com&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b931dfba39e4f4842ba36bd&quot;), &quot;name&quot; : &quot;xiaobai9&quot;, &quot;age&quot; : 9, &quot;email&quot; : &quot;xiaobai9@gmail.com&quot; }
+</code></pre>
+<p>统计 <code>php</code> 集合中文档的个数</p>
+<pre><code>db.集合名.count():返回集合中有多少个文档
+</code></pre>
+<h3 id="五用户管理权限控制">五、用户管理(权限控制) </h3>
+<h5 id="1权限概述">1、权限概述 </h5>
+<p>在 <code>MongoDB</code> 里面的用户是属于数据库的，每个数据库都有自己的管理员。管理员登录后，只能操作所属的数据库。注意：在 <code>admin</code> 的数据库中创建的用户是超级管理员，登陆后可以操作任何的数据库</p>
+<h5 id="2创建用户">2、创建用户 </h5>
+<p>(1) 选择数据库</p>
+<pre><code>use 数据库的名称
+</code></pre>
+<p>(2) 添加用户</p>
+<pre><code>db.createUser(用户名,密码,是否只读)
+</code></pre>
+<p>第三个参数&quot;是否只读&quot;默认是 <code>false</code> ，创建的用户可以执行读写，如果是 <code>true</code> ，则创建的用户只能查询，不能修改。</p>
+<p>注意点：在创建用户之前，必须先创建一个超级管理员</p>
+<p>example：</p>
+<pre><code>&gt; use admin
+switched to db admin
+&gt; db.createUser({user:'user',
+...  pwd:'passwd', 
+...  roles:[
+...    {role:'userAdminAnyDatabase', db:'admin'}
+... ]
+... })
+Successfully added user: {
+    &quot;user&quot; : &quot;user&quot;,
+    &quot;roles&quot; : [
+        {
+            &quot;role&quot; : &quot;userAdminAnyDatabase&quot;,
+            &quot;db&quot; : &quot;admin&quot;
+        }
+    ]
+}
+</code></pre>
+<h5 id="3验证权限用户登录">3、验证权限(用户登录) </h5>
+<p>在添加完成管理员之后，我们做如下操作：</p>
+<p>(1) 如果你是安装成windows服务的方式安装的，则卸载服务，在安装时添加一个 <code>-auth</code> 选项，<code>auth</code> 表示要开启权限认证</p>
+<p>(2) 如果你是直接启动的方式，则停止服务，重新启动，在启动时也要添加 <code>--auth</code> 选项，<code>auth</code> 表示要开启权限认证</p>
+<p>如果没有通过权限验证，直接操作数据库，则报如下错误提示：</p>
+<pre><code>error: {
+       &quot;$err&quot; : &quot;unauthorized db:test lock type:-1 client:127.0.0.1&quot;,
+        &quot;code&quot; : 10057
+}
+</code></pre>
+<p>如何通过权限验证</p>
+<ol>
+<li>选择数据库</li>
+<li>执行<code>db.auth</code> (用户名,密码)</li>
+</ol>
+<h5 id="4删除用户和修改密码">4、删除用户和修改密码 </h5>
+<p>注意：创建的用户名和密码是存储在各自数据库里面的 <code>system.users</code> 集合里面的。想要删除用户，则直接删除 <code>system.users</code> 集合里面的文档即可</p>
+<h5 id="5总结说明">5、总结说明 </h5>
+<p>a) 非 <code>admin</code> 数据库的用户不能使用数据库命令，比如 <code>show dbs</code> 等</p>
+<p>(b) <code>admin</code> 数据库中的用户被视为超级用户(即管理员)，在认证之后，管理员可以读写所有数据库，执行特定的管理命令。</p>
+<p>(c) 在开启安全检查之前，一定要至少有个管理员账户。</p>
+<p>(d) 数据库的用户账号以文档的形式存储在 <code>system.users</code> 集合里面。可以在 <code>system.users</code> 集合中删除用户账号文档，就可以删除用户。</p>
+<h3 id="六mongodb中的索引">六、MongoDB中的索引 </h3>
+<p>1、普通单列索引</p>
+<p>我们用如下代码来测试：</p>
+<pre><code>for(var i=0;i&lt;200000;i++){
+    db.java.insert({name:'xiao'+i,age:i})
+}
+</code></pre>
+<p>第一、我们先检验一下查询性能</p>
+<pre><code>var start=new Date()
+db.java.find({name:'xiao156789'})
+var end=new Date()
+end-start
+17510
+</code></pre>
+<p>第二、为 <code>name</code> 创建索引</p>
+<pre><code>&gt; db.java.ensureIndex({name:1})
+{
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 1,
+    &quot;numIndexesAfter&quot; : 2,
+    &quot;ok&quot; : 1
+}
+</code></pre>
+<p>第三、再执行第一部分代码可以看出有数量级的性能提升</p>
+<p>语法：<code>db.集合名.ensureIndex({键名:1})</code> ：1是升序，-1是降序</p>
+<p>2、多列索引(复合索引)</p>
+<p>创建多列索引
+语法：<code>db.集合名.ensureIndex({field1:1/-1,field2:1/-1})</code>
+对 <code>name</code> 和 <code>age</code> 建立一个复合索引，可以使用 <code>db.集合名.getIndexes()</code> 查看创建的索引情况</p>
+<p>3、子文档索引</p>
+<p>语法： <code>db.集合名.ensureIndex({field.subfield:1/-1})</code>
+如下文档可以建立子文档索引</p>
+<pre><code>{name:'诺基亚手机1',price:12.34,spc:{weight:100,area:'纽约'}}
+{name:'诺基亚手机2',price:42.34,spc:{weight:200,area:'伦敦'}}
+</code></pre>
+<p>比如要查询 <code>weight=100</code> 的文档</p>
+<pre><code>db.goods.find({'spc.weight':100})
+</code></pre>
+<p>根据当前案例，我们建立子文档索引</p>
+<pre><code>db.net.ensureIndex({'spc.w':1})
+</code></pre>
+<p>4、唯一索引</p>
+<p>语法： <code>db.集合名.ensureIndex({name:-1},{unique:true})</code></p>
+<p>5、查看索引</p>
+<p>(1) 查看当前索引状态： <code>db.集合名.getIndexes()</code></p>
+<p>(2) 详情查看本次查询使用哪个索引和查询数据的状态信息： <code>db.集合名.find({name:''xiao}).explain()</code></p>
+<p>6、删除索引</p>
+<p>删除单个索引： <code>db.集合名.dropIndex({filed:1/-1})</code></p>
+<p>删除所有索引： <code>db.集合名.dropIndexes()</code></p>
+<p>7、重建索引</p>
+<p>一个表经过很多次修改后，导致表的文件产生空洞，索引文件也如此，可以通过索引的重建，减少索引文件碎片，并提高索引的效率，类似 <code>mysql</code> 中的 <code>optimize table</code> 。</p>
+<p><code>mysql</code> 里面使用 <code>optimize table</code> 语法： <code>optimize table</code> 表名</p>
+<p>语法： <code>db.集合名.reIndex()</code></p>
+<p>8、索引使用注意事项</p>
+<p>(1) 创建索引的时候，注意1是正序创建索引，-1是倒序创建索引</p>
+<p>(2) 索引的创建在提高查询性能的同时会影响插入性能，对于经常查询少插入</p>
+<p>(3) 复合索引要注意索引的先后顺序</p>
+<p>(4) 每个键全建立索引不一定就能提高性能，索引不是万能的。</p>
+<p>(5) 在做排序工作的时候如果是超大数据量也可以考虑加上索引用来提高排序的性能。</p>
+<h3 id="八mongodb中的数据导出与导出">八、MongoDB中的数据导出与导出 </h3>
+<p>利用mongoexport</p>
+<ul>
+<li>-h host主机</li>
+<li>-port 端口</li>
+<li>-d 指明使用的库</li>
+<li>-o 指明要导出的文件名</li>
+<li>-csv 指定导出的csv格式</li>
+<li>-q 过滤导出</li>
+<li>-f field1 field2 列名</li>
+<li>-u username 用户名</li>
+<li>-p password 密码</li>
+</ul>
+<p>注意：在使用用户名和密码是超级管理员的时候，如果端口是默认的可以不使用-port来指定端口</p>
+<p>(2) 导入数据</p>
+<ul>
+<li>-d 待导入的数据库</li>
+<li>-c 待导入的集合(不存在会自己创建)</li>
+<li>-type csv/json(默认)</li>
+<li>-file 备份文件路径</li>
+</ul>
+<p>例如：导入json</p>
+<pre><code>./bin/mongoimport -h -port 端口号 -d test -c goods -file ./goodsall.json
+</code></pre>
+<p>导入csv</p>
+<pre><code>./bin/mongoimport -h -port 端口号 -d test -c goods -type csv -f goods.id,goods.name -file ./goodsall.csv
+
+./bin/mongoimport -h -port 端口号 -d test -c goods -type csv -f -headline -f goods.id,goods.name -file ./goodsall.csv
+</code></pre>
+<h3 id="九主从复制读写分离">九、主从复制(读写分离) </h3>
+<p>主从复制是一个简单的数据库同步备份的集群技术，至少两台数据库服务器，可以分别设置主服务器和从服务器，对主服务器的任何操作都会同步到从服务器上。</p>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114304941-156604371.png" alt="主从1"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://img2018.cnblogs.com/blog/1100338/201809/1100338-20180909114303961-459207762.png" alt="主从2"></p>
+<p>实现的注意点</p>
+<p>1、在数据库集群中要明确的知道谁是主服务器，主服务器只有一台</p>
+<p>2、从服务器要知道自己的数据源 也就是对应的主服务是谁</p>
+<p>3、&ndash;master用来确定主服务器 &ndash;slave和&ndash;source来控制从服务器</p>
+<p>配置步骤</p>
+<p>(1) 启动主服务器</p>
+<p>(2) 启动从服务器</p>
+<p>(3) 客户端登录到主服务器</p>
+<p>添加一些数据，测试是否同步到从服务器，在主服务器里面，添加了一些文档：</p>
+<p>第一步，客户端登录到主服务器，添加一些文档</p>
+<p>第二步，登录到从服务器，查看是否有数据，如果有数据，则成功了！</p>
+
+			
+			
+<p class="zan my-3 text-center">
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+    <br>
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+</p>
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			
+			<script src="https://utteranc.es/client.js"
+repo="oscome/oscome.github.io"
+issue-term="og:title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; 
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/nosql/mongodb/%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.ada26c3e649226c1883dbefe362a804b30098fa864e24a774460676edc1c904bc5d5a570ee0177c23ac99ec826df10987bbd509a22c9bb7712ba6a20177f00ce.js" integrity="sha512-raJsPmSSJsGIPb7&#43;NiqASzAJj6hk4kp3RGBnbtwckEvF1aVw7gF3wjrJnsgm3xCYe71QmiLJu3cSumogF38Azg==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>

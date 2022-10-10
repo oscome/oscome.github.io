@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on </title>
+    <link>https://oscome.cn/book/redis/</link>
+    <description>Recent content in Redis on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 10 Oct 2022 10:28:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/book/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>缓存知识</title>
+      <link>https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Sun, 10 Jan 2021 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/</guid>
+      <description>缓存雪崩  缓存中数据大批量到过期时间，而查询数据量巨大，所有原本应该访问缓存的请求都去查询数据库了，而对数据库CPU和内存造成巨大压力，严重的会造成数据库宕机。从而形成一系列连锁反应，造成整个系统崩溃。
+解决方案   用加锁（最多的解决方案）或者队列的方式保证来保证不会有大量的线程对数据库一次性进行读写，从而避免失效时大量的并发请求落到底层存储系统上。 缓存失效时间分散开。 多级缓存。  缓存穿透  用户查询数据库没有的数据，自然缓存中也不会有。这样就导致用户查询的时候，在缓存中找不到，每次都要去数据库再查询一遍，然后返回空（相当于进行了两次无用的查询）。这些请求其实就绕过缓存直接查数据库，这也是经常提的缓存命中率问题。
+解决方案   布隆过滤器  将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。
+缓存空对象 如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。  缓存击穿  某个key非常热点，在不停的扛着大并发，大并发集中对这一个点进行访问，当这个key在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库，造成数据库压力。
+解决方案   热点数据永不过期 互斥锁请求，singleflight  缓存预热  缓存预热这个应该是一个比较常见的概念，相信很多小伙伴都应该可以很容易的理解，缓存预热就是系统上线后，将相关的缓存数据直接加载到缓存系统。这样就可以避免在用户请求的时候，先查询数据库，然后再将数据缓存的问题！用户直接查询事先被预热的缓存数据。
+方案   直接写个缓存刷新页面，上线时手工操作下； 数据量不大，可以在项目启动的时候自动进行加载； 定时任务刷新缓存；  缓存降级  当访问量剧增、服务出现问题或非核心服务影响到核心流程的性能时，仍然需要保证服务还是可用的，即使是有损服务。系统可以根据一些关键数据进行降级。（降级的同时建议加上通知和应对方案）</description>
+    </item>
+    
+    <item>
+      <title>基础知识</title>
+      <link>https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sat, 10 Oct 2020 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/</guid>
+      <description>主要类型   字符串（strings，bitmaps） 散列（hashes） 列表（lists） 集合（sets） 有序集合（sorted sets） hyperloglogs 发布订阅（pub/sub） 地理空间（geospatial） Stream（5.0版本新增）  关于命令我推荐看这两个：
+ http://doc.redisfans.com/ http://www.redis.cn/commands.html  应用场景  strings   缓存 分布式锁（setnx） 签到统计（setbit） 计数（incr）  hashes   缓存 用户标签  lists   队列  sets   交集并集 数据去重  zset   排行榜 延时任务 限流  hyperloglogs   uv统计（ip统计）  pub/sub   发布订阅（不是特别可靠）  geospatial   附近的人  Stream   队列 发布订阅  其他  利用事务实现秒杀  以php代码为例：</description>
+    </item>
+    
+    <item>
+      <title>为什么能这么快</title>
+      <link>https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/</link>
+      <pubDate>Sun, 20 Oct 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/</guid>
+      <description> Redis6.0引入了多线程。实际上多线程只是用来处理网络数据的读写和协议解析，执行命令仍然是单一工作线程。
+ Redis 采用的是基于内存的采用的是单进程单线程模型的 KV 数据库，由 C 语言编写。官方提供的数据是可以达到100k+的qps。这个数据不比采用单进程多线程的同样基于内存的 KV 数据库 Memcached 差。
+主要原因   基于内存 数据结构简单，对数据操作也简单 使用多路 I/O 复用模型,非阻塞IO 采用单线程，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗CPU，不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗 使用底层模型不同，它们之间底层实现方式以及与客户端之间通信的应用协议不一样，Redis直接自己构建了VM机制，因为一般的系统调用系统函数的话，会浪费一定的时间去移动和请求  多路 I/O 复用模型  多路 I/O 复用模型是利用 select、poll、epoll 可以同时监察多个流的 I/O 事件的能力，在空闲的时候，会把当前线程阻塞掉，当有一个或多个流有 I/O 事件时，就从阻塞态中唤醒，于是程序就会轮询一遍所有的流（epoll 是只轮询那些真正发出了事件的流），并且只依次顺序的处理就绪的流，这种做法就避免了大量的无用操作。这里“多路”指的是多个网络连接，“复用”指的是复用同一个线程。采用多路 I/O 复用技术可以让单个线程高效的处理多个连接请求（尽量减少网络 IO 的时间消耗），且 Redis 在内存中操作数据的速度非常快（内存内的操作不会成为这里的性能瓶颈），主要以上两点造就了 Redis 具有很高的吞吐量。
+和 Memcached 不同，Redis 并没有直接使用 Libevent，而是自己完成了一个非常轻量级的对 select、epoll、evport、kqueue 这些通用的接口的实现。在不同的系统调用选用适合的接口，linux 下默认是 epoll。因为 Libevent 比较重，更通用，代码量也就很庞大，拥有很多 Redis 用不上的功能，Redis 为了追求“轻巧”并且去除依赖，就选择自己去封装了一套。
+单进程单线程好处   代码清晰，处理逻辑相对简单 不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗 不存在多进程或者多线程导致的切换而消耗 CPU  </description>
+    </item>
+    
+    <item>
+      <title>持久化</title>
+      <link>https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
+      <description>为什么要持久化  Redis是内存数据库，数据都是存储在内存中，为了避免进程退出导致数据的永久丢失，需要定期将Redis中的数据以某种形式从内存保存到硬盘。当下次Redis重启时，利用持久化文件实现数据恢复。除此之外，为了进行灾难备份，可以将持久化文件拷贝到一个远程位置。
+Redis持久化分为RDB和AOF，前者将当前数据保存到硬盘，后者则是将执行的写命令保存到硬盘。
+RDB   RDB是一种快照存储持久化方式。具体来说就是将Redis某一时刻的内存数据保存到硬盘的文件当中，默认保存的文件名为dump.rdb。而在Redis服务器启动时，会加载dump.rdb文件的数据到内存当中恢复数据。
+ 触发机制  触发 RDB 持久化过程分为手动触发和自动触发。
+手动触发命令   save 命令   阻塞当前 Redis 进程，直到 RDB 过程完成为止（内存比较大的实例会造成长时间阻塞，线上环境不建议使用）
+  bgsave 命令   Redis 进程执行 fork 操作创建子进程，RDB 持久化过程由子进程负责，完成后自动结束。（阻塞只发生在 fork 阶段，时间很短）
+ bgsave 命令是针对 save 阻塞问题做的优化。
+除了执行命令手动触发之外，Redis 内部存在自动触发 RDB 的持久化机制，例如:
+ 使用 save 相关配置，如“save m n”。表示 m 秒内数据集存在 n 次修改时，自动触发 bgsave。 如果从节点执行全量复制操作，主节点自动执行 bgsave 生成 RDB 文件并发送给从节点。 默认情况下执行 shutdown 命令时，如果没有开启 AOF 持久化功能则自动执行 bgsave。  bgsave流程   执行 bgsave 命令，Redis 父进程判断当前是否存在正在执行的子进程，如 RDB/AOF 子进程，如果存在 bgsave 命令直接返回。 父进程执行 fork 操作创建子进程，fork操作过程中父进程会阻塞。 fork 完成后，bgsave 命令返回“Background saving started”信息并不再阻塞父进程，父进程可以继续响应其他命令。 子进程会共享一部分主进程的数据空间，并且把共享的数据置为read-only的状态，子进程创建 RDB 文件，根据父进程内存生成临时快照文件，完成后对原有文件进行原子替换。在持久化的过程中是避免不了有新的数据写入的，因为我们有一部分的数据是共享的，两个进程同时拥有一块数据，肯定会导致数据不一致的问题， 但是依赖于操作系统的fork机制，在修改的时候一定是修改部分内存页的数据，这个时候会触发对应内存页的copyonwrite的操作 进程发送信号给父进程表示完成，父进程更新信息。  配置文件  # 900s内至少达到一条写命令 save 900 1 # 300s内至少达至10条写命令 save 300 10 # 60s内至少达到10000条写命令 save 60 10000  RDB 文件的处理   保存  RDB 文件保存在 dir 配置指定的目录下，文件名通过 dbfilename 配置指定。可以通过执行 config set dir{newDir}和 config set dbfilename{newFileName}运行期动态执行，当下次运行时 RDB 文件会保存到新目录。 当遇到坏盘或磁盘写满等情况时，可以通过 config set dir{newDir}在线修改文件路径到可用的磁盘路径，之后执行 bgsave 进行磁盘切换，同样适用于 AOF 持久化文件。</description>
+    </item>
+    
+    <item>
+      <title>高可用</title>
+      <link>https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
+      <pubDate>Sun, 11 Apr 2021 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/</guid>
+      <description>常见使用方式  Redis 的几种常见使用方式包括：
+ 单机 主从 Sentinel（哨兵） Cluster 自研  各种使用方式的优缺点  单机  顾名思义，采用单个 Redis 节点部署架构，没有备用节点实时同步数据，不提供数据持久化和备份策略，适用于数据可靠性要求不高的纯缓存业务场景。
+优点   架构简单，部署方便。 高性价比：缓存使用时无需备用节点（单实例可用性可以用 supervisor 或 crontab 保证），当然为了满足业务的高可用性，也可以牺牲一个备用节点，但同时刻只有一个实例对外提供服务。 高性能。  缺点   不保证数据的可靠性。 在缓存使用，进程重启后，数据丢失，即使有备用的节点解决高可用性，但是仍然不能解决缓存预热问题，因此不适用于数据可靠性要求高的业务。 高性能受限于单核 CPU 的处理能力（Redis 是单线程机制），CPU 为主要瓶颈，所以适合操作命令简单，排序、计算较少的场景。也可以考虑用 Memcached 替代。  主从  采用主从部署结构，相较于单机而言最大的特点就是主从实例间数据实时同步，并且提供数据持久化和备份策略。
+主从实例部署在不同的物理服务器上，根据公司的基础环境配置，可以实现同时对外提供服务和读写分离策略。
+优点   高可靠性：采用双机主备架构，能够在主库出现故障时自动进行主备切换，从库提升为主库提供服务，保证服务平稳运行；另一方面，开启数据持久化功能和配置合理的备份策略，能有效的解决数据误操作和数据异常丢失的问题。 读写分离策略：从节点可以扩展主库节点的读能力，有效应对大并发量的读操作。  缺点   故障恢复复杂，如果没有 Redis HA 系统（需要开发），当主库节点出现故障时，需要手动将一个从节点晋升为主节点，同时需要通知业务方变更配置，并且需要让其他从库节点去复制新主库节点，整个过程需要人为干预，比较繁琐。 主库的写能力受到单机的限制，可以考虑分片。 主库的存储能力受到单机的限制，可以考虑 Pika。 原生复制的弊端在早期的版本中也会比较突出，如：Redis 复制中断后，Slave 会发起 psync，此时如果同步不成功，则会进行全量同步，主库执行全量备份的同时可能会造成毫秒或秒级的卡顿。又由于 COW 机制，导致极端情况下的主库内存溢出，程序异常退出或宕机；主库节点生成备份文件导致服务器磁盘 IO 和 CPU（压缩）资源消耗；发送数 GB 大小的备份文件导致服务器出口带宽暴增，阻塞请求，建议升级到最新版本。  Sentinel（哨兵）  Redis Sentinel 是社区版本推出的原生高可用解决方案，其部署架构主要包括两部分：Redis Sentinel 集群和 Redis 数据集群。</description>
+    </item>
+    
+    <item>
+      <title>过期策略</title>
+      <link>https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/</link>
+      <pubDate>Tue, 10 Nov 2020 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/</guid>
+      <description>Redis的过期策略以及内存淘汰机制  redis采用的是定期删除+惰性删除策略。
+为什么不用定时删除策略?
+定时删除,用一个定时器来负责监视key,过期则自动删除。虽然内存及时释放，但是十分消耗CPU资源。在大并发请求下，CPU要将时间应用在处理请求，而不是删除key，因此没有采用这一策略.
+定期删除+惰性删除是如何工作的呢?
+定期删除，redis默认每个100ms检查，是否有过期的key，有过期key则删除。需要说明的是，redis不是每个100ms将所有的key检查一次，而是随机抽取进行检查(如果每隔100ms,全部key进行检查，redis岂不是卡死)。因此，如果只采用定期删除策略，会导致很多key到时间没有删除。
+于是，惰性删除派上用场。也就是说在你获取某个key的时候，redis会检查一下，这个key如果设置了过期时间那么是否过期了？如果过期了此时就会删除。
+采用定期删除+惰性删除就没其他问题了么?
+不是的，如果定期删除没删除key。然后你也没即时去请求key，也就是说惰性删除也没生效。这样，redis的内存会越来越高。那么就应该采用内存淘汰机制。
+在redis.conf中有一行配置
+maxmemory-policy volatile-lru  该配置就是配内存淘汰策略的
+ noeviction：当内存使用超过配置的时候会返回错误，不会驱逐任何键 allkeys-lru：加入键的时候，如果过限，首先通过LRU算法驱逐最久没有使用的键 volatile-lru：加入键的时候如果过限，首先从设置了过期时间的键集合中驱逐最久没有使用的键 allkeys-random：加入键的时候如果过限，从所有key随机删除 volatile-random：加入键的时候如果过限，从过期键的集合中随机驱逐 volatile-ttl：从配置了过期时间的键中驱逐马上就要过期的键 volatile-lfu：从所有配置了过期时间的键中驱逐使用频率最少的键 allkeys-lfu：从所有键中驱逐使用频率最少的键  一般的经验规则:
+ 使用allkeys-lru策略：当预期请求符合一个幂次分布(二八法则等)，比如一部分的子集元素比其它其它元素被访问的更多时，可以选择这个策略。 使用allkeys-random：循环连续的访问所有的键时，或者预期请求分布平均（所有元素被访问的概率都差不多） 使用volatile-ttl：要采取这个策略，缓存对象的TTL值最好有差异  volatile-lru 和 volatile-random策略，当你想要使用单一的Redis实例来同时实现缓存淘汰和持久化一些经常使用的键集合时很有用。未设置过期时间的键进行持久化保存，设置了过期时间的键参与缓存淘汰。不过一般运行两个实例是解决这个问题的更好方法。
+为键设置过期时间也是需要消耗内存的，所以使用allkeys-lru这种策略更加节省空间，因为这种策略下可以不为键设置过期时间。
+LRU  Redis配置中和LRU有关的有三个：
+ maxmemory: 配置Redis存储数据时指定限制的内存大小，比如100m。当缓存消耗的内存超过这个数值时, 将触发数据淘汰。该数据配置为0时，表示缓存的数据量没有限制, 即LRU功能不生效。64位的系统默认值为0，32位的系统默认内存限制为3GB maxmemory_policy: 触发数据淘汰后的淘汰策略 maxmemory_samples: 随机采样的精度，也就是随即取出key的数目。该数值配置越大, 越接近于真实的LRU算法，但是数值越大，相应消耗也变高，对性能有一定影响，样本值默认为5。  我们知道，LRU算法需要一个双向链表来记录数据的最近被访问顺序，但是出于节省内存的考虑，Redis的LRU算法并非完整的实现。Redis并不会选择最久未被访问的键进行回收，相反它会尝试运行一个近似LRU的算法，通过对少量键进行取样，然后回收其中的最久未被访问的键。通过调整每次回收时的采样数量maxmemory-samples，可以实现调整算法的精度。
+根据Redis作者的说法，每个Redis Object可以挤出24 bits的空间，但24 bits是不够存储两个指针的，而存储一个低位时间戳是足够的，Redis Object以秒为单位存储了对象新建或者更新时的unix time，也就是LRU clock，24 bits数据要溢出的话需要194天，而缓存的数据更新非常频繁，已经足够了。
+Redis的键空间是放在一个哈希表中的，要从所有的键中选出一个最久未被访问的键，需要另外一个数据结构存储这些源信息，这显然不划算。最初，Redis只是随机的选3个key，然后从中淘汰，后来算法改进到了N个key的策略，默认是5个。
+Redis3.0之后又改善了算法的性能，会提供一个待淘汰候选key的pool，里面默认有16个key，按照空闲时间排好序。更新时从Redis键空间随机选择N个key，分别计算它们的空闲时间idle，key只会在pool不满或者空闲时间大于pool里最小的时，才会进入pool，然后从pool中选择空闲时间最大的key淘汰掉。
+真实LRU算法与近似LRU的算法可以通过下面的图像对比： 浅灰色带是已经被淘汰的对象，灰色带是没有被淘汰的对象，绿色带是新添加的对象。可以看出，maxmemory-samples值为5时Redis 3.0效果比Redis 2.8要好。使用10个采样大小的Redis 3.0的近似LRU算法已经非常接近理论的性能了。
+数据访问模式非常接近幂次分布时，也就是大部分的访问集中于部分键时，LRU近似算法会处理得很好。
+Redis为什么不使用原生LRU算法？
+ 原生LRU算法需要 双向链表 来管理数据，需要额外内存 数据访问时涉及数据移动，有性能损耗 Redis现有数据结构需要改造  LFU  在LFU算法中，可以为每个key维护一个计数器。每次key被访问的时候，计数器增大。计数器越大，可以约等于访问越频繁。</description>
+    </item>
+    
+    <item>
+      <title>源码实现</title>
+      <link>https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 10 Jan 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/</guid>
+      <description>Redis对象底层数据结构     编码常量 编码所对应的底层数据结构     REDIS_ENCODING_INT long 类型的整数   REDIS_ENCODING_EMBSTR embstr 编码的简单动态字符串   REDIS_ENCODING_RAW 简单动态字符串   REDIS_ENCODING_HT 字典   REDIS_ENCODING_LINKEDLIST 双端链表   REDIS_ENCODING_ZIPLIST 压缩列表   REDIS_ENCODING_INTSET 整数集合   REDIS_ENCODING_SKIPLIST 跳跃表    redis string类型转换   我们可能以为redis在内部存储string都是用sds的数据结构实现的，其实在整个redis的数据存储过程中为了提高性能，内部做了很多优化。整体选择顺序应该是：
+  整数，存储字符串长度小于21且能够转化为整数的字符串。
+  EmbeddedString，存储字符串长度小于39的字符串（REDIS_ENCODING_EMBSTR_SIZE_LIMIT）。
+  SDS，剩余情况使用sds进行存储。
+   embstr和sds的区别在于内存的申请和回收
+ embstr的创建只需分配一次内存，而raw为两次（一次为sds分配对象，另一次为redisObject分配对象，embstr省去了第一次）。相对地，释放内存的次数也由两次变为一次。 embstr的redisObject和sds放在一起，更好地利用缓存带来的优势 缺点：redis并未提供任何修改embstr的方式，即embstr是只读的形式。对embstr的修改实际上是先转换为raw再进行修改。  redis list数据结构   redis list数据结构底层采用压缩列表ziplist或linkedlist两种数据结构进行存储，首先以ziplist进行存储，在不满足ziplist的存储要求后转换为linkedlist列表。</description>
+    </item>
+    
+  </channel>
+</rss>

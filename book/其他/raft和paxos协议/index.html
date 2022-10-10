@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.c701ea1312889706f6946b830c951677ca6bbf457d70fa517f8d86ae951bd50a4db6a664549e3259333eaad1588e2d86dfa96b2684a240f29d0c6a00f2f19202.css" integrity="sha512-xwHqExKIlwb2lGuDDJUWd8prv0V9cPpRf42GrpUb1QpNtqZkVJ4yWTM&#43;qtFYji2G36lrJoSiQPKdDGoA8vGSAg==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title> | 开源到</title>
+<meta name="description" content="From：Paxos和Raft协议介绍
+Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
+ 1. 背景介绍  1.1 分布式事务  分布式事务指事务的操作位于不同的分布式系统节点上，需要保证事务的 AICD 特性。 分布式事务处理的难点是必须有一种方法可以知道事务在任何地方所做的所有动作，提交或回滚事务的决定必须产生统一的结果（全部提交或全部回滚）
+解决这种分布式一致性问题：其中比较著名的有二阶提交协议（Two Phase Commitment Protocol）、三阶提交协议（Tree Phase Commitment Protocol）和Paxos算法。
+1.2 二阶段提交  在分布式系统中，每个节点虽然可以知晓自己的操作时成功或者失败，却无法知道其他节点的操作的成功或失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点(称作参与者)的操作结果并最终指示这些节点是否要把操作结果进行真正的提交(比如将更新后的数据写入磁盘等等)。
+因此，二阶段提交的算法思路可以概括为： 参与者将操作成败通知协调者，再由协调者根据所有参与者的反馈情报决定各参与者是否要提交操作还是中止操作。 2PC顾名思义分为两个阶段，其实施思路可概括为：
+ 投票阶段（voting phase）：参与者将操作结果通知协调者； 提交阶段（commit phase）：收到参与者的通知后，协调者再向参与者发出通知，根据反馈情况决定各参与者是否要提交还是回滚；  2. Paxos协议  PAXOS可以用来解决分布式环境下，设置某一个值的问题。 分布式系统中有多个节点就会存在节点间通信的问题，Paxos是基于消息传递的通讯模型的。它的假设前提是，在分布式系统中进程之间的通信会出现丢失、延迟、重复等现象，但不会出现传错的现象。Paxos算法就是为了保证在这样的系统中进程间基于消息传递就某个值达成一致。
+2.1 角色  Paxos是第一个被证明的共识算法，原理基于两阶段提交并进行扩展。算法中将节点分为三种类型：
+ 倡议者proposer：提交一个提案，等待大家批准为结案，往往是客户端担任。提案信息包括提案编号和提议的value。 接受者acceptor：负责对提案进行投票，往往服务器担任。若提案获得多数Acceptors的接受，则称该提案被批准（chosen）。 学习者learner：被告知提案结果，只能“学习”被批准的提案。不参与投票过程。客户端和服务端都可担任。  每个节点在协议中可以担任多个角色。
+2.2 Paxos算法    segmentfault.com/a/119000000… www.cnblogs.com/hzmark/p/pa…   Paxos的特点：
+ 一个或多个节点可以提出提议 系统针对所有提案中的某个提案必须达成一致 最多只能对一个确定的提案达成一致 只要超过半数的节点存活且可互相通信，整个系统一定能达成一致状态  2.2.1 Paxos表决   首先proposers将value发送给Acceptors。 Acceptors对value进行接受（accept）。acceptor可以回应接受或拒绝。 一旦节点中的大多数回应接受，共识就能达成，接受的value成为正式的决议（称为“批准”决议）。  整个过程（一个事务或一个Round）分为两个阶段：">
+  <link rel="canonical" href="https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="">
+<meta property="og:description" content="From：Paxos和Raft协议介绍
+Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
+ 1. 背景介绍  1.1 分布式事务  分布式事务指事务的操作位于不同的分布式系统节点上，需要保证事务的 AICD 特性。 分布式事务处理的难点是必须有一种方法可以知道事务在任何地方所做的所有动作，提交或回滚事务的决定必须产生统一的结果（全部提交或全部回滚）
+解决这种分布式一致性问题：其中比较著名的有二阶提交协议（Two Phase Commitment Protocol）、三阶提交协议（Tree Phase Commitment Protocol）和Paxos算法。
+1.2 二阶段提交  在分布式系统中，每个节点虽然可以知晓自己的操作时成功或者失败，却无法知道其他节点的操作的成功或失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点(称作参与者)的操作结果并最终指示这些节点是否要把操作结果进行真正的提交(比如将更新后的数据写入磁盘等等)。
+因此，二阶段提交的算法思路可以概括为： 参与者将操作成败通知协调者，再由协调者根据所有参与者的反馈情报决定各参与者是否要提交操作还是中止操作。 2PC顾名思义分为两个阶段，其实施思路可概括为：
+ 投票阶段（voting phase）：参与者将操作结果通知协调者； 提交阶段（commit phase）：收到参与者的通知后，协调者再向参与者发出通知，根据反馈情况决定各参与者是否要提交还是回滚；  2. Paxos协议  PAXOS可以用来解决分布式环境下，设置某一个值的问题。 分布式系统中有多个节点就会存在节点间通信的问题，Paxos是基于消息传递的通讯模型的。它的假设前提是，在分布式系统中进程之间的通信会出现丢失、延迟、重复等现象，但不会出现传错的现象。Paxos算法就是为了保证在这样的系统中进程间基于消息传递就某个值达成一致。
+2.1 角色  Paxos是第一个被证明的共识算法，原理基于两阶段提交并进行扩展。算法中将节点分为三种类型：
+ 倡议者proposer：提交一个提案，等待大家批准为结案，往往是客户端担任。提案信息包括提案编号和提议的value。 接受者acceptor：负责对提案进行投票，往往服务器担任。若提案获得多数Acceptors的接受，则称该提案被批准（chosen）。 学习者learner：被告知提案结果，只能“学习”被批准的提案。不参与投票过程。客户端和服务端都可担任。  每个节点在协议中可以担任多个角色。
+2.2 Paxos算法    segmentfault.com/a/119000000… www.cnblogs.com/hzmark/p/pa…   Paxos的特点：
+ 一个或多个节点可以提出提议 系统针对所有提案中的某个提案必须达成一致 最多只能对一个确定的提案达成一致 只要超过半数的节点存活且可互相通信，整个系统一定能达成一致状态  2.2.1 Paxos表决   首先proposers将value发送给Acceptors。 Acceptors对value进行接受（accept）。acceptor可以回应接受或拒绝。 一旦节点中的大多数回应接受，共识就能达成，接受的value成为正式的决议（称为“批准”决议）。  整个过程（一个事务或一个Round）分为两个阶段：">
+<meta property="og:url" content="https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/">
+<meta property="og:site_name" content="开源到">
+
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/",
+      "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/",
+      "name": "",
+      "description": "",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "0001-01-01T00:00:00CET",
+      "dateModified": "0001-01-01T00:00:00CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/",
+          "url": "https://oscome.cn/book/",
+          "name": "Book"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
+          "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
+          "name": "% E5%85% B6% E4% Bb%96"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": ""
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="book single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">技术专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/book/readme/">知识合集</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-分布式事务">1.1 分布式事务</a></li>
+    <li><a href="#12-二阶段提交">1.2 二阶段提交</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-角色">2.1 角色</a></li>
+    <li><a href="#22--paxos算法">2.2  Paxos算法</a>
+      <ul>
+        <li><a href="#221-paxos表决">2.2.1 Paxos表决</a></li>
+        <li><a href="#222-决议的发布">2.2.2 决议的发布</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-paxos与2pc">2.3 Paxos与2PC</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-raft角色">3.1 Raft角色</a></li>
+    <li><a href="#32-raft算法">3.2 Raft算法</a>
+      <ul>
+        <li><a href="#321-leader-election">3.2.1 Leader Election</a></li>
+        <li><a href="#322-log-replication">3.2.2 Log Replication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-分布式事务">1.1 分布式事务</a></li>
+    <li><a href="#12-二阶段提交">1.2 二阶段提交</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-角色">2.1 角色</a></li>
+    <li><a href="#22--paxos算法">2.2  Paxos算法</a>
+      <ul>
+        <li><a href="#221-paxos表决">2.2.1 Paxos表决</a></li>
+        <li><a href="#222-决议的发布">2.2.2 决议的发布</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-paxos与2pc">2.3 Paxos与2PC</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-raft角色">3.1 Raft角色</a></li>
+    <li><a href="#32-raft算法">3.2 Raft算法</a>
+      <ul>
+        <li><a href="#321-leader-election">3.2.1 Leader Election</a></li>
+        <li><a href="#322-log-replication">3.2.2 Log Replication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/book/">Book</a></li>
+<li class="breadcrumb-item active" aria-current="page"></li>
+					</ol>
+				</nav>
+			
+			<h1></h1>
+			<time>0001-01-01, Monday</time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-分布式事务">1.1 分布式事务</a></li>
+    <li><a href="#12-二阶段提交">1.2 二阶段提交</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-角色">2.1 角色</a></li>
+    <li><a href="#22--paxos算法">2.2  Paxos算法</a>
+      <ul>
+        <li><a href="#221-paxos表决">2.2.1 Paxos表决</a></li>
+        <li><a href="#222-决议的发布">2.2.2 决议的发布</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-paxos与2pc">2.3 Paxos与2PC</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-raft角色">3.1 Raft角色</a></li>
+    <li><a href="#32-raft算法">3.2 Raft算法</a>
+      <ul>
+        <li><a href="#321-leader-election">3.2.1 Leader Election</a></li>
+        <li><a href="#322-log-replication">3.2.2 Log Replication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#11-分布式事务">1.1 分布式事务</a></li>
+    <li><a href="#12-二阶段提交">1.2 二阶段提交</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21-角色">2.1 角色</a></li>
+    <li><a href="#22--paxos算法">2.2  Paxos算法</a>
+      <ul>
+        <li><a href="#221-paxos表决">2.2.1 Paxos表决</a></li>
+        <li><a href="#222-决议的发布">2.2.2 决议的发布</a></li>
+      </ul>
+    </li>
+    <li><a href="#23-paxos与2pc">2.3 Paxos与2PC</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-raft角色">3.1 Raft角色</a></li>
+    <li><a href="#32-raft算法">3.2 Raft算法</a>
+      <ul>
+        <li><a href="#321-leader-election">3.2.1 Leader Election</a></li>
+        <li><a href="#322-log-replication">3.2.2 Log Replication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<p>From：<a href="https://juejin.cn/post/6844904118184574983">Paxos和Raft协议介绍</a></p>
+<h1 id="paxos和raft协议介绍">Paxos和Raft协议介绍 </h1>
+<blockquote>
+<p>文章来源: <a href="https://mp.weixin.qq.com/s/xNf8SBbxxMYGYoq8k0rXUA">陶老师运维笔记- 微信公众号</a></p>
+</blockquote>
+<h1 id="1-背景介绍">1. 背景介绍 </h1>
+<h2 id="11-分布式事务">1.1 分布式事务 </h2>
+<p>分布式事务指事务的操作位于不同的分布式系统节点上，需要保证事务的 AICD 特性。 分布式事务处理的难点是必须有一种方法可以知道事务在任何地方所做的所有动作，<strong>提交或回滚事务的决定必须产生统一的结果（全部提交或全部回滚）</strong></p>
+<p>解决这种分布式一致性问题：其中比较著名的有二阶提交协议（Two Phase Commitment Protocol）、三阶提交协议（Tree Phase Commitment Protocol）和Paxos算法。</p>
+<h2 id="12-二阶段提交">1.2 二阶段提交 </h2>
+<p>在分布式系统中，每个节点虽然可以知晓自己的操作时成功或者失败，却无法知道其他节点的操作的成功或失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点(称作参与者)的操作结果并最终指示这些节点是否要把操作结果进行真正的提交(比如将更新后的数据写入磁盘等等)。</p>
+<p>因此，二阶段提交的算法思路可以概括为： <strong>参与者将操作成败通知协调者，再由协调者根据所有参与者的反馈情报决定各参与者是否要提交操作还是中止操作。</strong> 2PC顾名思义分为两个阶段，其实施思路可概括为：</p>
+<ul>
+<li>投票阶段（voting phase）：参与者将操作结果通知协调者；</li>
+<li>提交阶段（commit phase）：收到参与者的通知后，协调者再向参与者发出通知，根据反馈情况决定各参与者是否要提交还是回滚；</li>
+</ul>
+<h1 id="2-paxos协议">2. Paxos协议 </h1>
+<p>PAXOS可以用来解决<strong>分布式环境下，设置某一个值的问题。</strong> 分布式系统中有多个节点就会存在节点间通信的问题，Paxos是基于消息传递的通讯模型的。它的<strong>假设前提</strong>是，在分布式系统中进程之间的通信会出现丢失、延迟、重复等现象，但不会出现传错的现象。<strong>Paxos算法就是为了保证在这样的系统中进程间基于消息传递就某个值达成一致。</strong></p>
+<h2 id="21-角色">2.1 角色 </h2>
+<p>Paxos是第一个被证明的共识算法，原理基于两阶段提交并进行扩展。算法中将节点分为三种类型：</p>
+<ul>
+<li>倡议者proposer：提交一个提案，等待大家批准为结案，往往是客户端担任。提案信息包括提案编号和提议的value。</li>
+<li>接受者acceptor：负责对提案进行投票，往往服务器担任。若提案获得多数Acceptors的接受，则称该提案被批准（chosen）。</li>
+<li>学习者learner：被告知提案结果，只能“学习”被批准的提案。不参与投票过程。客户端和服务端都可担任。</li>
+</ul>
+<p>每个节点在协议中可以担任多个角色。</p>
+<h2 id="22--paxos算法">2.2  Paxos算法 </h2>
+<blockquote>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000005717258">segmentfault.com/a/119000000…</a></li>
+<li><a href="https://www.cnblogs.com/hzmark/p/paxos.html">www.cnblogs.com/hzmark/p/pa…</a></li>
+</ul>
+</blockquote>
+<p><strong>Paxos的特点：</strong></p>
+<ul>
+<li>一个或多个节点可以提出提议</li>
+<li>系统针对所有提案中的某个提案必须达成一致</li>
+<li>最多只能对一个确定的提案达成一致</li>
+<li>只要超过半数的节点存活且可互相通信，整个系统一定能达成一致状态</li>
+</ul>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f07e67520" alt="Paxos基本算法"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f07853ddc" alt="Paxos表决过程"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f08b5906d" alt="Paxos表决过程"></p>
+<h3 id="221-paxos表决">2.2.1 Paxos表决 </h3>
+<ul>
+<li>首先proposers将value发送给Acceptors。</li>
+<li>Acceptors对value进行接受（accept）。acceptor可以回应接受或拒绝。</li>
+<li>一旦节点中的大多数回应接受，共识就能达成，接受的value成为正式的决议（称为“批准”决议）。</li>
+</ul>
+<p>整个过程（一个事务或一个Round）<strong>分为两个阶段：</strong></p>
+<ul>
+<li><strong>phase1（准备阶段）</strong> a) Proposer向超过半数（n/2+1）Acceptor发起prepare消息(发送编号) b)如果prepare符合协议规则Acceptor回复promise消息，否则拒绝</li>
+<li><strong>phase2（决议阶段或投票阶段）</strong> a) 如果超过半数Acceptor回复promise，Proposer向Acceptor发送accept消息(此时包含真实的值) b)Acceptor检查accept消息是否符合规则，消息符合则批准accept请求</li>
+</ul>
+<p>根据上述过程当一个proposer发现存在编号更大的提案时将终止提案。这意味着提出一个编号更大的提案会终止之前的提案过程。有可能陷入活锁，违背了Progress的要求。这种情况下的解决方案是选举出一个leader，仅允许leader提出提案。注意一个learner可能兼任proposer。</p>
+<h3 id="222-决议的发布">2.2.2 决议的发布 </h3>
+<p>一个显而易见的方法是当acceptors批准一个value时，将这个消息发送给所有learner。但是这个方法会导致消息量过大。可将accept消息发送给learners的一个子集，然后由这些learners去通知所有learners。</p>
+<p>但是由于消息传递的不确定性，可能会没有任何learner获得了决议批准的消息。当learners需要了解决议通过情况时，可以让一个proposer重新进行一次提案。</p>
+<h2 id="23-paxos与2pc">2.3 Paxos与2PC </h2>
+<p>在Paxos算法中，如果我们指定集群中同一时间只能有一个leader，并且要求所有节点都要投票呢？是的，我们就得到了2PC。<a href="http://research.microsoft.com/pubs/64636/tr-2003-96.pdf">2PC是Paxos的一个特例</a></p>
+<p>两个阶段分别是准备（prepare）和提交（commit）。准备阶段解决大家对哪个提案进行投票的问题，提交阶段解决确认最终值的问题。</p>
+<h1 id="3-raft协议">3. Raft协议 </h1>
+<blockquote>
+<ul>
+<li><a href="https://raft.github.io/raft.pdf">raft.github.io/raft.pdf</a></li>
+<li><a href="http://thesecretlivesofdata.com/raft/">thesecretlivesofdata.com/raft/</a></li>
+<li><a href="https://www.cnblogs.com/MaggieLXC/p/7512399.html">www.cnblogs.com/MaggieLXC/p…</a></li>
+</ul>
+</blockquote>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/17159191555bd9d5" alt="raft"></p>
+<h2 id="31-raft角色">3.1 Raft角色 </h2>
+<p>Raft算法是Paxos算法的一种简化实现。<strong>包括三种角色：leader，candidate和follower。</strong></p>
+<ul>
+<li>follower: 所有节点都以follower的状态开始，如果没有收到leader消息则会变成candidate状态。</li>
+<li>candidate: 会向其他节点拉选票，如果得到大部分的票则成为leader，这个过程是Leader选举。</li>
+<li>leader: 所有对系统的修改都会先经过leader。</li>
+</ul>
+<h2 id="32-raft算法">3.2 Raft算法 </h2>
+<p>Raft有两个基本过程：</p>
+<ul>
+<li><strong>Leader选举：</strong> 每个candidate随机经过一定时间都会提出选举方案，最近阶段中的票最多者被选为leader。</li>
+<li><strong>同步log：</strong> leader会找到系统中log（各种事件的发生记录）最新的记录，并强制所有的follow来刷新到这个记录。</li>
+</ul>
+<blockquote>
+<p><strong>Raft算法过程:</strong> 有三种状态：leader，candidate和follower。</p>
+<ol>
+<li>最开始都是follower状态.</li>
+<li>followers没有听到leader就变成candidate</li>
+<li>candidate then requests votes from other nodes</li>
+<li>nodes will reply with their vote</li>
+<li>Candidate becomes the leader if it gets votes from a majority of nodes</li>
+<li>This process is called Leader Election.</li>
+<li>All changes to the system now go through the leader.</li>
+<li>Each change is added as an entry in the node&rsquo;s log.</li>
+<li>This log entry is currently uncommitted so it won&rsquo;t update the node&rsquo;s value.</li>
+<li>To commit the entry the node first replicates it to the follower nodes&hellip;</li>
+<li>then the leader waits until a majority of nodes have written the entry.</li>
+<li>The entry is now committed on the leader node and the node state is &ldquo;5&rdquo;.</li>
+<li>The leader then notifies the followers that the entry is committed.</li>
+<li>The cluster has now come to consensus about the system state.</li>
+<li>This process is called Log Replication.</li>
+</ol>
+</blockquote>
+<h3 id="321-leader-election">3.2.1 Leader Election </h3>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f08fb7e30" alt="All our nodes start in the follower state."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f09576e35" alt="If followers don&amp;rsquo;t hear from a leader then they can become a candidate."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f339c17cf" alt="The candidate then requests votes from other nodes."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f491ce29c" alt="The candidate becomes the leader if it gets votes from a majority of nodes."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f4d8fce8c" alt="Leader Election"></p>
+<h3 id="322-log-replication">3.2.2 Log Replication </h3>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f407d2c48" alt="All changes to the system now go through the leader"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f4e7ced18" alt="All changes to the system now go through the leader"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f6cdd97b9" alt="Each change is added as an entry in the node&amp;rsquo;s log."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906f989ec3c1" alt="This log entry is currently uncommitted so it won&amp;rsquo;t update the node&amp;rsquo;s value."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906fa6c22aad" alt="To commit the entry the node first replicates it to the follower nodes&amp;hellip;"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906fb6b11fa3" alt="then the leader waits until a majority of nodes have written the entry."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906fba987040" alt="The entry is now committed on the leader node and the node state is"></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906fc66b6b9b" alt="The leader then notifies the followers that the entry is committed."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906fd0bb1914" alt="The cluster has now come to consensus about the system state."></p>
+<p><img class="lazyload blur-up radius shadow" src="https://user-gold-cdn.xitu.io/2020/4/8/1715906fcaa6a40e" alt="This process is called Log Replication."></p>
+
+			
+			
+<p class="zan my-3 text-center">
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+    <br>
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+</p>
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			
+			<script src="https://utteranc.es/client.js"
+repo="oscome/oscome.github.io"
+issue-term="og:title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/book/%E5%85%B6%E4%BB%96/git/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; 
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/%E5%85%B6%E4%BB%96/%E6%9E%B6%E6%9E%84/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.ada26c3e649226c1883dbefe362a804b30098fa864e24a774460676edc1c904bc5d5a570ee0177c23ac99ec826df10987bbd509a22c9bb7712ba6a20177f00ce.js" integrity="sha512-raJsPmSSJsGIPb7&#43;NiqASzAJj6hk4kp3RGBnbtwckEvF1aVw7gF3wjrJnsgm3xCYe71QmiLJu3cSumogF38Azg==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>
