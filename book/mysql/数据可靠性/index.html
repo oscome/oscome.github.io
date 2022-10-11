@@ -15,32 +15,28 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
-<meta name="description" content="面向对象的核心思想：对象，封装，可重用性，可扩展性。
-面向对象三要素：封装、继承、多态。
-面向对象五大原则：
- 单一职责原则SRP(减少耦合，提高复用性) 接口隔离原则ISP（定制化服务设计） 开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的） 替换原则LSP 依赖倒置原则IOC（核心是解耦）  常用设计模式   单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。 策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。 观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。 注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。 装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 DI  ">
-  <link rel="canonical" href="https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+  <title>数据可靠性 | 开源到</title>
+<meta name="description" content="MySQL是如何做到不丢数据">
+<link rel="canonical" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="">
-<meta property="og:description" content="面向对象的核心思想：对象，封装，可重用性，可扩展性。
-面向对象三要素：封装、继承、多态。
-面向对象五大原则：
- 单一职责原则SRP(减少耦合，提高复用性) 接口隔离原则ISP（定制化服务设计） 开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的） 替换原则LSP 依赖倒置原则IOC（核心是解耦）  常用设计模式   单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。 策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。 观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。 注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。 装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 DI  ">
-<meta property="og:url" content="https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+<meta property="og:title" content="数据可靠性">
+<meta property="og:description" content="MySQL是如何做到不丢数据">
+<meta property="og:url" content="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">
 <meta property="og:site_name" content="开源到">
-
+<meta property="article:published_time" content="2021-10-10T10:28:28+08:00">
+  <meta property="article:modified_time" content="2021-10-10T10:28:28+08:00">
+  
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="数据可靠性">
+<meta name="twitter:description" content="MySQL是如何做到不丢数据">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="">
+    <meta name="twitter:image:alt" content="数据可靠性">
 
 <script type="application/ld+json">
 {
@@ -77,32 +73,32 @@
       },
     {
       "@type": "WebPage",
-      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-      "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-      "name": "",
-      "description": "",
+      "@id": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/",
+      "url": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/",
+      "name": "数据可靠性",
+      "description": "MySQL是如何做到不丢数据",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "0001-01-01T00:00:00CET",
-      "dateModified": "0001-01-01T00:00:00CET",
+      "datePublished": "2021-10-10T10:28:28CET",
+      "dateModified": "2021-10-10T10:28:28CET",
       "breadcrumb": {
-        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/breadcrumb/1"
+        "@id": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/image/2"
+        "@id": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"]
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/breadcrumb/1",
+      "@id": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
@@ -127,15 +123,15 @@
         "position":  3 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
-          "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
-          "name": "% E5%85% B6% E4% Bb%96"
+          "@id": "https://oscome.cn/book/mysql/",
+          "url": "https://oscome.cn/book/mysql/",
+          "name": "Mysql"
           }
         },{
         "@type": "ListItem",
         "position":  4 ,
         "item": {
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+          "@id": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/"
           }
         }]
     },
@@ -145,10 +141,10 @@
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/image/2",
+          "@id": "https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": ""
+          "caption": "数据可靠性"
         }
       ]
     }
@@ -247,22 +243,20 @@
 
 </div>
 
-    <div class="wrap container-xxl" role="document">
-      <div class="content">
-        
-	<div class="row flex-xl-nowrap">
-		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
-			<nav class="docs-links" aria-label="Main navigation">
-				
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
 <ul class="list-unstyled collapsible-sidebar">
   
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="true">
           MySQL
         </button>
-        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+        <div class="collapse show" id="section-62a004b95946bb97541afa471dcca73a">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -277,7 +271,155 @@
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
+          Nginx
+        </button>
+        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">常用配置</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/">工作模式和进程模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">代理缓存</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/">动态负载</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/">优化</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="true">
+          MySQL
+        </button>
+        <div class="collapse show" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
               
             
               
@@ -407,11 +549,15 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#walwrite-ahead-loggin机制">WAL(Write-Ahead Loggin)机制</a></li>
+    <li><a href="#binlog的写入机制">binlog的写入机制</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li><a href="#redo-log">redo log</a></li>
+        <li><a href="#两阶段提交">两阶段提交</a></li>
       </ul>
     </li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#参考">参考：</a></li>
   </ul>
 </nav>
       </div>
@@ -422,11 +568,15 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#walwrite-ahead-loggin机制">WAL(Write-Ahead Loggin)机制</a></li>
+    <li><a href="#binlog的写入机制">binlog的写入机制</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li><a href="#redo-log">redo log</a></li>
+        <li><a href="#两阶段提交">两阶段提交</a></li>
       </ul>
     </li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#参考">参考：</a></li>
   </ul>
 </nav>
   </div>
@@ -437,12 +587,13 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 <li class="breadcrumb-item"><a href="/book/">Book</a></li>
-<li class="breadcrumb-item active" aria-current="page"></li>
+<li class="breadcrumb-item"><a href="/book/mysql/">MySQL</a></li>
+<li class="breadcrumb-item active" aria-current="page">数据可靠性</li>
 					</ol>
 				</nav>
 			
-			<h1></h1>
-			<time>0001-01-01, Monday</time>
+			<h1>数据可靠性</h1>
+			<time>2021-10-10, Sunday</time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				<div class="d-xl-none">
@@ -458,11 +609,15 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#walwrite-ahead-loggin机制">WAL(Write-Ahead Loggin)机制</a></li>
+    <li><a href="#binlog的写入机制">binlog的写入机制</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li><a href="#redo-log">redo log</a></li>
+        <li><a href="#两阶段提交">两阶段提交</a></li>
       </ul>
     </li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#参考">参考：</a></li>
   </ul>
 </nav>
       </div>
@@ -473,35 +628,76 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#walwrite-ahead-loggin机制">WAL(Write-Ahead Loggin)机制</a></li>
+    <li><a href="#binlog的写入机制">binlog的写入机制</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li><a href="#redo-log">redo log</a></li>
+        <li><a href="#两阶段提交">两阶段提交</a></li>
       </ul>
     </li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#参考">参考：</a></li>
   </ul>
 </nav>
   </div>
 
 			</nav>
-			<p>面向对象的核心思想：对象，封装，可重用性，可扩展性。</p>
-<p>面向对象三要素：封装、继承、多态。</p>
-<p>面向对象五大原则：</p>
-<ol>
-<li>单一职责原则SRP(减少耦合，提高复用性)</li>
-<li>接口隔离原则ISP（定制化服务设计）</li>
-<li>开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的）</li>
-<li>替换原则LSP</li>
-<li>依赖倒置原则IOC（核心是解耦）</li>
-</ol>
-<h3 id="常用设计模式">常用设计模式 </h3>
+			<h2 id="walwrite-ahead-loggin机制">WAL(Write-Ahead Loggin)机制 </h2>
+<p>WAL 是预写式日志, 关键点在于先写日志再写磁盘，也可以说是日志先行。</p>
+<p>MySQL在对数据页进行修改时, 通过将&quot;修改了什么&quot;这个操作记录在日志中, 而不必马上将更改内容刷新到磁盘上, 从而将随机写转换为顺序写, 提高了性能。</p>
+<p>这种机制一方面提高了MySQL的吞吐量，另一方面也实现了数据的可靠性。</p>
+<h2 id="binlog的写入机制">binlog的写入机制 </h2>
+<blockquote>
+<p>事务执行过程中，先把日志写到binlog cache，事务提交的时候，再把binlog cache写到binlog文件中。</p>
+</blockquote>
+<p>一个事务的binlog是不能被拆开的，因此不论这个事务多大，也要确保一次性写入。</p>
+<p>系统给binlog cache分配了一片内存，每个线程一个，参数 binlog_cache_size用于控制单个线程内binlog cache所占内存的大小。如果超过了这个参数规定的大小，就要暂存到磁盘。</p>
+<p>事务提交的时候，执行器把binlog cache里的完整事务写入到binlog中，并清空binlog cache。</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/mysql-binlog.png" alt="图片来自极客时间"></p>
+<p>可以看到，每个线程有自己binlog cache，但是共用同一份binlog文件。</p>
+<p>图中的write，指的就是指把日志写入到文件系统的page cache，并没有把数据持久化到磁盘，所以速度比较快。</p>
+<p>图中的fsync，才是将数据持久化到磁盘的操作。</p>
+<p>write 和fsync的时机，是由参数sync_binlog控制的：</p>
 <ul>
-<li>单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</li>
-<li>工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。</li>
-<li>策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。</li>
-<li>观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。</li>
-<li>注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。</li>
-<li>装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</li>
-<li>DI</li>
+<li>sync_binlog=0的时候，表示每次提交事务都只write，不fsync；</li>
+<li>sync_binlog=1的时候，表示每次提交事务都会执行fsync；</li>
+<li>sync_binlog=N(N&gt;1)的时候，表示每次提交事务都write，但累积N个事务后才fsync。</li>
+</ul>
+<p>因此，在出现IO瓶颈的场景里，将sync_binlog设置成一个比较大的值，可以提升性能。在实际的业务场景中，考虑到丢失日志量的可控性，一般不建议将这个参数设成0，比较常见的是将其设置为100~1000中的某个数值。</p>
+<p>但是，将sync_binlog设置为N，对应的风险是：如果主机发生异常重启，会丢失最近N个事务的binlog日志。</p>
+<h3 id="redo-log">redo log </h3>
+<p>先说说说redo log的三种状态：</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/mysql-redolog.png" alt="redo log"></p>
+<ul>
+<li>红色：存在redo log buffer中，物理上是在MySQL进程内存中</li>
+<li>黄色：写到磁盘(write)，但是没有持久化（fsync)，物理上是在文件系统的page cache里面</li>
+<li>绿色：持久化到磁盘，对应的是hard disk</li>
+</ul>
+<p>为了控制 redo log 的写入策略，InnoDB 提供了 innodb_flush_log_at_trx_commit 参数</p>
+<ul>
+<li>0，表示每次事务提交时都只是把 redo log 留在 redo log buffer 中 ;</li>
+<li>1，表示每次事务提交时都将 redo log 直接持久化到磁盘;</li>
+<li>2 ，表示每次事务提交时都只是把 redo log 写到 page cache。</li>
+</ul>
+<p>InnoDB 有一个后台线程，每隔 1 秒，就会把 redo log buffer 中的日志，调用 write 写 到文件系统的 page cache，然后调用 fsync 持久化到磁盘。</p>
+<p>实际上，除了后台线程每秒一次的轮询操作外，还有两种场景会让一个没有提交的事务的 redo log 写入到磁盘中。</p>
+<ol>
+<li>redo log buffer 占用的空间即将达到 innodb_log_buffer_size 一半的时 候，后台线程会主动写盘。注意，由于这个事务并没有提交，所以这个写盘动作只是 write，而没有调用 fsync，也就是只留在了文件系统的 page cache。</li>
+<li>并行的事务提交的时候，顺带将这个事务的 redo log buffer 持久化到磁 盘。假设一个事务 A 执行到一半，已经写了一些 redo log 到 buffer 中，这时候有另 外一个线程的事务 B 提交，如果 innodb_flush_log_at_trx_commit 设置的是 1，那么 按照这个参数的逻辑，事务 B 要把 redo log buffer 里的日志全部持久化到磁盘。这时 候，就会带上事务 A 在 redo log buffer 里的日志一起持久化到磁盘。</li>
+</ol>
+<p>既然MySQL能保证redo log和binlog能可靠性写入磁盘，那么在他们两者直接如何保证可靠转换的呢？</p>
+<h3 id="两阶段提交">两阶段提交 </h3>
+<p>redo log 先 prepare，再写 binlog，最后再把 redo log commit。利用这个两阶段提交机制，MySQL保证了redo log和binlog的可靠传输。</p>
+<p>一图胜千言：</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/mysql-wal.png" alt="持久化"></p>
+<h2 id="配置">配置 </h2>
+<ul>
+<li>innodb_flush_log_at_trx_commit=1。表示每次事务的redolog都直接持久化到磁盘，保证mysql重启后数据不丢失。</li>
+<li>sync_binlog=1。表示每次事务的binlog都直接持久化到磁盘，保证mysql重启后binlog记录是完整的。</li>
+</ul>
+<h2 id="参考">参考： </h2>
+<ul>
+<li><a href="https://time.geekbang.org/column/intro/139">MySQL实战45讲</a></li>
 </ul>
 
 			
@@ -522,10 +718,17 @@ crossorigin="anonymous"
 async>
 </script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/book/%E5%85%B6%E4%BB%96/%E6%9E%B6%E6%9E%84/">
+	<a href="/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; 
+					&larr; 代理缓存
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					源码实现 &rarr;
 				</div>
 			</div>
 		</a>

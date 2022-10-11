@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/</loc>
+      <lastmod>2019-03-15T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/</loc>
+      <lastmod>2019-02-10T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
+      <lastmod>2019-02-10T11:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/</loc>
+      <lastmod>2019-02-12T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/</loc>
+      <lastmod>2019-03-29T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/</loc>
+      <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/</loc>
+      <lastmod>2019-03-13T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/</loc>
+      <lastmod>2019-04-04T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    </urlset>

@@ -20,6 +20,62 @@ MySQL 的执行流程  大体来说，MySQL可以分为Server层和存储引擎�
     </item>
     
     <item>
+      <title>MySQL执行流程说明</title>
+      <link>https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/</guid>
+      <description>MySQL的执行流程示意图：
+大体来说，MySQL可以分为Server层和存储引擎层两部分。
+Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。
+而存储引擎层负责数据的存储和提取，常见的有InnoDB、MyISAM、Memory等多个存储引擎。现在最常用的存储引擎是InnoDB，从MySQL 5.5.5版本开始它成为了默认存储引擎。
+从图中不难看出，不同的存储引擎共用一个Server层，也就是从连接器到执行器的部分。
+我们依次看下每个组件的作用。
+连接器  连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令一般是这么写的：
+mysql -h $ip -P $port -u $user -p  输完命令之后，你就需要在交互对话里面输入密码。
+连接完成后，如果你没有后续的动作，这个连接就处于空闲状态，你可以在show processlist命令中看到它。
+如果用户名或密码不对，你就会收到一个&amp;quot;Access denied for user&amp;quot;的错误，然后客户端程序结束执行。 如果用户名密码认证通过，连接器会到权限表里面查出你拥有的权限。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限。
+这就意味着，一个用户成功建立连接后，即使你用管理员账号对这个用户的权限做了修改，也不会影响已经存在连接的权限。修改完成后，只有再新建的连接才会使用新的权限设置。
+客户端如果太长时间没动静，连接器就会自动将它断开。这个时间是由参数wait_timeout控制的，默认值是8小时。
+如果在连接被断开之后，客户端再次发送请求的话，就会收到一个错误提醒： Lost connection to MySQL server during query。这时候如果你要继续，就需要进行重连操作，然后再执行请求。
+连接注意点：   长连接是指连接成功后，如果客户端持续有请求，则一直使用同一个连接。 短连接则是指每次执行完很少的几次查询就断开连接，下次查询再重新建立一个。  建立连接的过程通常是比较复杂的，所以我建议你在使用中要尽量减少建立连接的动作，也就是尽量使用长连接。
+但是全部使用长连接后，你可能会发现，有些时候MySQL占用内存涨得特别快，这是因为MySQL在执行过程中临时使用的内存是管理在连接对象里面的。这些资源会在连接断开的时候才释放。所以如果长连接累积下来，可能导致内存占用太大，被系统强行杀掉（OOM），从现象看就是MySQL异常重启了。
+怎么解决这个问题呢？你可以考虑以下两种方案。
+ 定期主动断开长连接。使用一段时间，或者程序里面判断执行过一个占用内存的大查询后，断开连接，之后要查询再重连。 如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行 mysql_reset_connection来重新初始化连接资源。这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。  查询缓存  连接建立完成后，你就可以执行select语句了。执行逻辑就会来到第二步：查询缓存。
+MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。之前执行过的语句及其结果可能会以key-value对的形式，被直接缓存在内存中。key是查询的语句，value是查询的结果。如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。
+如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果会被存入查询缓存中。你可以看到，如果查询命中缓存，MySQL不需要执行后面的复杂操作，就可以直接返回结果，这个效率会很高。
+但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。
+查询缓存的失效非常频繁，只要有对一个表的更新，这个表上所有的查询缓存都会被清空。因此很可能你费劲地把结果存起来，还没使用呢，就被一个更新全清空了。对于更新压力大的数据库来说，查询缓存的命中率会非常低。除非你的业务就是有一张静态表，很长时间才会更新一次。比如，一个系统配置表，那这张表上的查询才适合使用查询缓存。
+好在MySQL也提供了这种“按需使用”的方式。你可以将参数query_cache_type设置成DEMAND，这样对于默认的SQL语句都不使用查询缓存。而对于你确定要使用查询缓存的语句，可以用SQL_CACHE显式指定，像下面这个语句一样：
+mysql&amp;gt; select SQL_CACHE * from T where ID=10；
+ 需要注意的是，MySQL 8.</description>
+    </item>
+    
+    <item>
+      <title>数据可靠性</title>
+      <link>https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/</link>
+      <pubDate>Sun, 10 Oct 2021 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/</guid>
+      <description>WAL(Write-Ahead Loggin)机制  WAL 是预写式日志, 关键点在于先写日志再写磁盘，也可以说是日志先行。
+MySQL在对数据页进行修改时, 通过将&amp;quot;修改了什么&amp;quot;这个操作记录在日志中, 而不必马上将更改内容刷新到磁盘上, 从而将随机写转换为顺序写, 提高了性能。
+这种机制一方面提高了MySQL的吞吐量，另一方面也实现了数据的可靠性。
+binlog的写入机制   事务执行过程中，先把日志写到binlog cache，事务提交的时候，再把binlog cache写到binlog文件中。
+ 一个事务的binlog是不能被拆开的，因此不论这个事务多大，也要确保一次性写入。
+系统给binlog cache分配了一片内存，每个线程一个，参数 binlog_cache_size用于控制单个线程内binlog cache所占内存的大小。如果超过了这个参数规定的大小，就要暂存到磁盘。
+事务提交的时候，执行器把binlog cache里的完整事务写入到binlog中，并清空binlog cache。
+可以看到，每个线程有自己binlog cache，但是共用同一份binlog文件。
+图中的write，指的就是指把日志写入到文件系统的page cache，并没有把数据持久化到磁盘，所以速度比较快。
+图中的fsync，才是将数据持久化到磁盘的操作。
+write 和fsync的时机，是由参数sync_binlog控制的：
+ sync_binlog=0的时候，表示每次提交事务都只write，不fsync； sync_binlog=1的时候，表示每次提交事务都会执行fsync； sync_binlog=N(N&amp;gt;1)的时候，表示每次提交事务都write，但累积N个事务后才fsync。  因此，在出现IO瓶颈的场景里，将sync_binlog设置成一个比较大的值，可以提升性能。在实际的业务场景中，考虑到丢失日志量的可控性，一般不建议将这个参数设成0，比较常见的是将其设置为100~1000中的某个数值。
+但是，将sync_binlog设置为N，对应的风险是：如果主机发生异常重启，会丢失最近N个事务的binlog日志。
+redo log  先说说说redo log的三种状态：
+ 红色：存在redo log buffer中，物理上是在MySQL进程内存中 黄色：写到磁盘(write)，但是没有持久化（fsync)，物理上是在文件系统的page cache里面 绿色：持久化到磁盘，对应的是hard disk  为了控制 redo log 的写入策略，InnoDB 提供了 innodb_flush_log_at_trx_commit 参数
+ 0，表示每次事务提交时都只是把 redo log 留在 redo log buffer 中 ; 1，表示每次事务提交时都将 redo log 直接持久化到磁盘; 2 ，表示每次事务提交时都只是把 redo log 写到 page cache。  InnoDB 有一个后台线程，每隔 1 秒，就会把 redo log buffer 中的日志，调用 write 写 到文件系统的 page cache，然后调用 fsync 持久化到磁盘。</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

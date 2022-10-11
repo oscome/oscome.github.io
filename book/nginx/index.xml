@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on </title>
+    <link>https://oscome.cn/book/nginx/</link>
+    <description>Recent content in Nginx on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 10 Oct 2022 10:28:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/book/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>添加lua模块</title>
+      <link>https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/</link>
+      <pubDate>Fri, 15 Mar 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/</guid>
+      <description>安装lua  wget http://luajit.org/download/LuaJIT-2.0.5.tar.gz tar -zxvf LuaJIT-2.0.5.tar.gz cd LuaJIT-2.0.5 make &amp;amp;&amp;amp; make install PREFIX=/usr/local/LuaJIT  etc/profile加入  # lua export LUAJIT_LIB=/usr/local/LuaJIT/lib export LUAJIT_INC=/usr/local/LuaJIT/include/luajit-2.0   source etc/profile
+ 下载ngx_devel_kit模块  wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz   NDK(nginx development kit)模块是一个拓展nginx服务器核心功能的模块，第三方模块开发可以基于它来快速实现。 NDK提供函数和宏处理一些基本任务， 减轻第三方模块开发的代码量
+ 下载lua-nginx-module模块   wget https://github.com/openresty/lua-nginx-module/archive/v0.10.9rc7.tar.gz  lua-nginx-module 模块使nginx中能直接运行lua
+查看原始编译   nginx -V
+ 如： configure arguments: --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module --with-http_v2_module  进入nginx原始目录：
+./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module --with-http_v2_module --add-module=/root/lua-nginx-module-0.</description>
+    </item>
+    
+    <item>
+      <title>常用配置</title>
+      <link>https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/</link>
+      <pubDate>Sun, 10 Feb 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/</guid>
+      <description>主模块  # 配置用户或者组，默认为nobody nobody。 user www www; #Nginx开启的worker进程数，建议为CPU的核数 worker_processes 2; #指定nginx进程运行文件存放地址 pid /nginx/pid/nginx.pid; #指定日志路径，级别。这个设置可以放入全局块、http块、server块，级别以此为：debug|info|notice|warn|error|crit|alert|emerg error_log log/error.log debug; #进程最大可打开文件数 worker_rlimit_nofile 65535; #可以在任意地方使用include指令实现配置文件的包含，类似于apache中的include方法，可减少主配置文件长度。 include vhosts/*.conf;  事件模块  events { #设置网路连接序列化，防止惊群现象发生，默认为on accept_mutex on; #默认: 500ms 如果一个进程没有互斥锁，它将延迟至少多长时间。默认情况下，延迟是500ms 。 accept_mutex_delay 100ms; #设置一个进程是否同时接受多个网络连接，默认为off multi_accept on; #事件驱动模型，select|poll|kqueue|epoll|resig|/dev/poll|eventport，不建议设置，nginx会自行选择 use epoll; #最大连接数，默认为512 worker_connections 1024; }  http部分  http { #文件扩展名与文件类型映射表 include mime.types; # 默认文件类型，默认为text/plain default_type application/octet-stream; #取消访问日志 access_log off; #允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。 sendfile on; #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。 sendfile_max_chunk 100k; #连接超时时间，默认为75s，可以在http，server，location块。 keepalive_timeout 65; #开启gzip资源压缩 gzip on; # 负载均衡 upstream blog { server 192.</description>
+    </item>
+    
+    <item>
+      <title>负载均衡</title>
+      <link>https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
+      <pubDate>Sun, 10 Feb 2019 11:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
+      <description>负载均衡策略    1.基于轮询的均衡策略(默认)： 每一个来自网络中的请求，轮流分配给内部的服务器，从1到N然后重新开始。此种负载均衡算法适合服务器组内部的服务器都具有相同的配置并且平均服务请求 相对均衡的情况。
+  2.基于加权轮询的均衡策略（weight）：根据服务器的不同处理能力，给每个服务器分配不同的权值，使其能够接受相应权值数的服务请求。例如:服务器A的权值被设计成1，B的权值是3，C的权值是6，则服务器A、B、C将分别接受到10%、30%、60%的服务请求。此种均衡算法能确保高性能的服务器得到更多的使用率，避免低性能的服务器负载过重。
+  3.基于ip-hash的均衡策略（ip_hash）： 我们都知道，每个请求的客户端都有相应的ip地址，该均衡策略中，nginx将会根据相应的hash函数，对每个请求的ip作为关键字，得到的hash值将会决定将请求分发给相应Server进行处理
+  4.基于最少连接数的均衡策略（least_conn）： 最少连接，也就是说nginx会判断后端集群服务器中哪个Server当前的 Active Connection 数是最少的，那么对于每个新进来的request,nginx将该request分发给对应的Server.
+  语法  语法: upstream name { ... } 默认值: — 上下文: http upstream 指令当中包含server指令 语法: server address [parameters]; 默认值: — 上下文: upstream 例子: upstream backend { server backend1.example.com:8081 weight=4 max_fails=2 fail_timeout=30s; server backend2.example.com:8080 weight=1; } server { location / { proxy_pass http://backend; } } 参数说明: weight=number 设定服务器的权重，默认是1，权重越大被访问机会越大，要根据机器的配置情况来配置 max_fails=number 设定Nginx与服务器通信的尝试失败的次数。在fail_timeout参数定义的时间段内，如果失败的次数达到此值，Nginx就认为服务器不可用。在下一个fail_timeout时间段，服务器不会再被尝试。失败的尝试次数默认是1。 可以通过指令proxy_next_upstream 和memcached_next_upstream来配置什么是失败的尝试。 默认配置时，http_404状态不被认为是失败的尝试。 fail_timeout=time 统计失败尝试次数的时间段。在这段时间中，服务器失败次数达到指定的尝试次数，服务器就被认为不可用。默认情况下，该超时时间是10秒。 backup 标记为备用服务器。当主服务器不可用以后，请求会被传给这些服务器，配置这个指令可以实现故障转移。 down 标记服务器永久不可用，可以跟ip_hash指令一起使用。  即便未设置诸多参数，默认情况下，当其中某个服务挂掉之后，nginx还是会把请求分发到正常的服务中去。但一般建议我们手动去设置。</description>
+    </item>
+    
+    <item>
+      <title>内嵌变量</title>
+      <link>https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Tue, 12 Feb 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/</guid>
+      <description>Nginx内嵌变量是非常常用的，记录下备查。
+Nginx内嵌变量由 ngx_http_core_module 模块支持，变量名与Apache服务器对应，这些变量可以表示客户端的请求头字段，诸如$http_user_agent、$http_cookie等等。 nginx也支持其他变量：
+   参数名称 说明     $arg_name 请求中的的参数名，即“?”后面的arg_name=arg_value形式的arg_name，如/index.php?www=www.13sai.com，可以用$arg_www就是www.13sai.com   $args 请求中的参数值   $binary_remote_addr 客户端地址的二进制形式, 固定长度为4个字节   $body_bytes_sent 传输给客户端的字节数，响应头不计算在内；这个变量和Apache的mod_log_config模块中的“%B”参数保持兼容   $bytes_sent 传输给客户端的字节数   $connection TCP连接的序列号   $connection_requests TCP连接当前的请求数量   $content_length “Content-Length” 请求头字段   $content_type “Content-Type” 请求头字段   $cookie_name cookie名称   $document_root 当前请求的文档根目录或别名   $document_uri 同 $uri   $host 优先级如下：HTTP请求行的主机名&amp;gt;”HOST”请求头字段&amp;gt;符合请求的服务器名   $hostname 主机名   $http_name 匹配任意请求头字段； 变量名中的后半部分“name”可以替换成任意请求头字段，如在配置文件中需要获取http请求头：“Accept-Language”，那么将“－”替换为下划线，大写字母替换为小写，形如：$http_accept_language即可。   $https 如果开启了SSL安全模式，值为“on”，否则为空字符串。   $is_args 如果请求中有参数，值为“?</description>
+    </item>
+    
+    <item>
+      <title>工作模式和进程模型</title>
+      <link>https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Fri, 29 Mar 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/</guid>
+      <description>工作模式   Nginx启动后，会产生一个master主进程，主进程执行一系列的工作后会产生一个或者多个工作进程worker 在客户端请求动态站点的过程中，Nginx服务器还涉及和后端服务器的通信。Nginx将接收到的Web请求通过代理转发到后端服务器，由后端服务器进行数据处理和组织; Nginx为了提高对请求的响应效率，降低网络压力，采用了缓存机制，将历史应答数据缓存到本地。保障对缓存文件的快速访问  进程模型  nginx的进程模型，可以由下图来表示：
+master进程  主要用来管理 worker 进程，master进程会接收来自外界发来的信号，再根据信号做不同的事情。所以我们要控制nginx，只需要通过kill向master进程发送信号就行了。
+具体包括以下主要功能:
+ 接收来自外界的信号 向各worker进程发送信号 监控worker进程的运行状态，当worker进程退出后(异常情况下)，会自动重新启动新的worker进程  重启说明（示例）  比如kill -HUP pid，则是告诉nginx，重启nginx，早期版本可以用这个信号来重启nginx，因为是从容地重启，因此服务是不中断的。（现在一般使用nginx -s reload）
+master进程在接收到HUP信号后，会先重新加载配置文件，然后再启动新的worker进程，并向所有老的worker进程发送信号，告诉他们可以光荣退休了。新的worker在启动后，就开始接收新的请求，而老的worker在收到来自master的信号后，就不再接收新的请求，并且在当前进程中的所有未处理完的请求处理完成后，再退出。
+ （master不需要处理网络事件，不负责业务的执行）
+ worker进程  主要任务是完成具体的任务逻辑。其主要关注点是与客户端或后端真实服务器(此时 worker 作为中间代理)之间的数据可读/可写等I/O交互事件。具体包括以下主要功能:
+ 接收客户端请求; 将请求依次送入各个功能模块进行过滤处理; 与后端服务器通信，接收后端服务器处理结果; 数据缓存proxy_cache模块 响应客户端请求  （一个请求，完全由worker进程来处理，而且只在一个worker进程中处理。）
+worker进程是如何处理请求的？  首先，worker进程之间是平等的，每个worker进程都是从master进程fork过来，在master进程里面，先建立好需要listen的socket（listenfd）之后，然后再fork出多个worker进程。每个worker进程，处理请求的机会也是一样的。当一个连接请求过来，每个进程都有可能处理这个连接，怎么做的呢？
+所有worker进程的listenfd会在新连接到来时变得可读，为保证只有一个进程处理该连接，所有worker进程在注册listenfd读事件前抢accept_mutex，抢到互斥锁的那个worker进程注册listenfd读事件，在读事件里调用accept接受该连接。
+(这避免了出现惊群效应)
+当一个worker进程在accept这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后断开连接，这样就是一个完整的请求就是这样的了。
+我们可以了解到一个请求，完全由worker进程来处理，且只在一个worker进程中处理。
+Nginx采用的IO多路复用模型   IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程，目前支持I/O多路复用的系统调用有 select ， poll ， epoll ，I/O多路复用就是通过一种机制，一个进程可以监视多个描述符(socket)，一旦某个描述符就绪(一般是读就绪或者写就绪)，能够通知程序进行相应的读 写操作。
+ select  基本原理  select 函数监视的文件描述符分3类，分别是writefds、readfds、和exceptfds。调用后select函数会阻塞，直到有描述符就绪（有数据 可读、可写、或者有except），或者超时（timeout指定等待时间，如果立即返回设为null即可），函数返回。当select函数返回后，可以通过遍历fdset，来找到就绪的描述符。</description>
+    </item>
+    
+    <item>
+      <title>代理缓存</title>
+      <link>https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/</guid>
+      <description>Nginx的缓存可以简单分成web缓存和代理缓存，本篇文章主要介绍代理缓存。
+web缓存  Nginx提供了expires、etag、if-modified-since指令来实现浏览器缓存控制。
+这个配置比较简单，一般可以缓存一些js、css等静态文件。
+对于这几个不想做过多说明，大家可以看两张图，简单理解下。
+代理缓存  代理缓存主要用到proxy模块中的proxy_cache。我们来看一个demo。
+upstream 13sai{ server 127.0.0.1:9501 weight=10; } #自定义缓存目录,缓存文件大小 proxy_cache_path /usr/local/etc/nginx/cache levels=1:2 keys_zone=sai_cache:10m max_size=200m inactive=10m use_temp_path=off; server { listen 80; server_name nginx-t.com; location / { proxy_next_upstream error http_503; proxy_pass http://13sai; #启用缓存sai_cache proxy_cache sai_cache; #定义如何生成缓存的键 proxy_cache_key $scheme$proxy_host$uri$is_args$args; #针对多种请求方法缓存，默认GET HEAD proxy_cache_methods GET HEAD POST; #为不同的响应状态码设置不同的缓存时间。 proxy_cache_valid 200 302 10m; proxy_cache_valid 404 1m; #设置响应被缓存的最小请求次数,最少2次才会缓存 proxy_cache_min_uses 1; #开启此功能时，对于相同的请求，同时只允许一个请求发往后端 proxy_cache_lock on; #为proxy_cache_lock指令设置锁的超时5s proxy_cache_lock_timeout 5s; #忽略服务器不缓存的要求 proxy_ignore_headers Cache-Control; } error_page 500 502 503 504 /50x.</description>
+    </item>
+    
+    <item>
+      <title>动态负载</title>
+      <link>https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/</link>
+      <pubDate>Wed, 13 Mar 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/</guid>
+      <description>如果Nginx遇到大流量和高负载，修改配置文件重启可能并不总是那么方便，因为恢复Nginx并重载配置会进一步增加系统负载，并很可能暂时降低性能。而一个个修改配置文件也是很容易出错和费时间的操作。
+这时候不妨试试consul+nginx-upsync-module实现Nginx的动态负载。
+nginx-upsync-module  nginx-upsync-module 提供了动态的负载均衡，它可以从consul或etcd同步upstreams，动态修改后端服务器属性（weight，max_fails，down…），而不需要重新加载nginx。这样我们通过它实现平滑伸缩，而不严重地影响性能。
+利用docker安装  我已经基于centos7构建了一个镜像 13sai/nginx-lua-upsync ，你可以使用下面的命令启动一个容器
+ docker run -itd &amp;ndash;name=nginx-upsync -p 8008:80 -p 9501:9501 -p 9502:9502 -p 9503:9503 -p 8500:8500 13sai/nginx-lua-upsync
+ 当然，你也可以不使用docker自行搭建，添加nginx-upsync-module模块可以参考nginx模块lua模块。
+ nginx-upsync-module的git地址  进入容器配置   docker exec -it nginx-upsync /bin/bash
+  cd /usr/local/nginx/conf
+  echo &amp;ldquo;server host.docker.internal:9501 weight=1 fail_timeout=10 max_fails=3;&amp;rdquo; &amp;raquo; servers.conf
+  vi nginx.conf
+ #nginx.conf 主要配置 ... upstream 13sai{ upsync 192.168.65.2:8500/v1/kv/upstreams/test-server upsync_timeout=6m upsync_interval=500ms upsync_type=consul strong_dependency=off; upsync_dump_path /usr/local/nginx/conf/servers.</description>
+    </item>
+    
+    <item>
+      <title>优化</title>
+      <link>https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 04 Apr 2019 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/</guid>
+      <description>工作进程个数  一般设置cpu的核心或者核心数x2
+如果不了解cpu的核数，可以top命令之后按1看出来，也可以查看/proc/cpuinfo文件 grep ^processor /proc/cpuinfo | wc -l
+[root@lx~]# vi/usr/local/nginx1.10/conf/nginx.conf worker_processes 4; [root@lx~]# /usr/local/nginx1.10/sbin/nginx-s reload [root@lx~]# ps -aux | grep nginx |grep -v grep root 9834 0.0 0.0 47556 1948 ? Ss 22:36 0:00 nginx: master processnginx www 10135 0.0 0.0 50088 2004 ? S 22:58 0:00 nginx: worker process www 10136 0.0 0.0 50088 2004 ? S 22:58 0:00 nginx: worker process www 10137 0.0 0.0 50088 2004 ?</description>
+    </item>
+    
+  </channel>
+</rss>

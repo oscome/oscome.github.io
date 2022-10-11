@@ -15,32 +15,28 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
-<meta name="description" content="面向对象的核心思想：对象，封装，可重用性，可扩展性。
-面向对象三要素：封装、继承、多态。
-面向对象五大原则：
- 单一职责原则SRP(减少耦合，提高复用性) 接口隔离原则ISP（定制化服务设计） 开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的） 替换原则LSP 依赖倒置原则IOC（核心是解耦）  常用设计模式   单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。 策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。 观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。 注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。 装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 DI  ">
-  <link rel="canonical" href="https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+  <title>负载均衡 | 开源到</title>
+<meta name="description" content="面试知识合集,Nginx 负载均衡">
+<link rel="canonical" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="">
-<meta property="og:description" content="面向对象的核心思想：对象，封装，可重用性，可扩展性。
-面向对象三要素：封装、继承、多态。
-面向对象五大原则：
- 单一职责原则SRP(减少耦合，提高复用性) 接口隔离原则ISP（定制化服务设计） 开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的） 替换原则LSP 依赖倒置原则IOC（核心是解耦）  常用设计模式   单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。 策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。 观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。 注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。 装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 DI  ">
-<meta property="og:url" content="https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+<meta property="og:title" content="负载均衡">
+<meta property="og:description" content="面试知识合集,Nginx 负载均衡">
+<meta property="og:url" content="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
 <meta property="og:site_name" content="开源到">
-
+<meta property="article:published_time" content="2019-02-10T11:28:28+08:00">
+  <meta property="article:modified_time" content="2019-02-10T11:28:28+08:00">
+  
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="负载均衡">
+<meta name="twitter:description" content="面试知识合集,Nginx 负载均衡">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="">
+    <meta name="twitter:image:alt" content="负载均衡">
 
 <script type="application/ld+json">
 {
@@ -77,32 +73,32 @@
       },
     {
       "@type": "WebPage",
-      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-      "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-      "name": "",
-      "description": "",
+      "@id": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/",
+      "url": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/",
+      "name": "负载均衡",
+      "description": "面试知识合集,Nginx 负载均衡",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "0001-01-01T00:00:00CET",
-      "dateModified": "0001-01-01T00:00:00CET",
+      "datePublished": "2019-02-10T11:28:28CET",
+      "dateModified": "2019-02-10T11:28:28CET",
       "breadcrumb": {
-        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/breadcrumb/1"
+        "@id": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/image/2"
+        "@id": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"]
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/breadcrumb/1",
+      "@id": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
@@ -127,15 +123,15 @@
         "position":  3 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
-          "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
-          "name": "% E5%85% B6% E4% Bb%96"
+          "@id": "https://oscome.cn/book/nginx/",
+          "url": "https://oscome.cn/book/nginx/",
+          "name": "Nginx"
           }
         },{
         "@type": "ListItem",
         "position":  4 ,
         "item": {
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+          "@id": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"
           }
         }]
     },
@@ -145,10 +141,10 @@
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/image/2",
+          "@id": "https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": ""
+          "caption": "负载均衡"
         }
       ]
     }
@@ -247,6 +243,152 @@
 
 </div>
 
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="true">
+          Nginx
+        </button>
+        <div class="collapse show" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">常用配置</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/">工作模式和进程模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">代理缓存</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/">动态负载</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/">优化</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
     <div class="wrap container-xxl" role="document">
       <div class="content">
         
@@ -338,10 +480,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="true">
           Nginx
         </button>
-        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+        <div class="collapse show" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -356,7 +498,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
               
             
               
@@ -407,9 +549,11 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#负载均衡策略">负载均衡策略</a></li>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#proxy_next_upstream-指令">proxy_next_upstream 指令</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -422,9 +566,11 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#负载均衡策略">负载均衡策略</a></li>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#proxy_next_upstream-指令">proxy_next_upstream 指令</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -437,12 +583,13 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 <li class="breadcrumb-item"><a href="/book/">Book</a></li>
-<li class="breadcrumb-item active" aria-current="page"></li>
+<li class="breadcrumb-item"><a href="/book/nginx/">Nginx</a></li>
+<li class="breadcrumb-item active" aria-current="page">负载均衡</li>
 					</ol>
 				</nav>
 			
-			<h1></h1>
-			<time>0001-01-01, Monday</time>
+			<h1>负载均衡</h1>
+			<time>2019-02-10, Sunday</time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				<div class="d-xl-none">
@@ -458,9 +605,11 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#负载均衡策略">负载均衡策略</a></li>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#proxy_next_upstream-指令">proxy_next_upstream 指令</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -473,9 +622,11 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#负载均衡策略">负载均衡策略</a></li>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#proxy_next_upstream-指令">proxy_next_upstream 指令</a>
       <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -483,26 +634,92 @@
   </div>
 
 			</nav>
-			<p>面向对象的核心思想：对象，封装，可重用性，可扩展性。</p>
-<p>面向对象三要素：封装、继承、多态。</p>
-<p>面向对象五大原则：</p>
-<ol>
-<li>单一职责原则SRP(减少耦合，提高复用性)</li>
-<li>接口隔离原则ISP（定制化服务设计）</li>
-<li>开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的）</li>
-<li>替换原则LSP</li>
-<li>依赖倒置原则IOC（核心是解耦）</li>
-</ol>
-<h3 id="常用设计模式">常用设计模式 </h3>
+			<h2 id="负载均衡策略">负载均衡策略 </h2>
 <ul>
-<li>单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</li>
-<li>工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。</li>
-<li>策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。</li>
-<li>观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。</li>
-<li>注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。</li>
-<li>装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</li>
-<li>DI</li>
+<li>
+<p>1.基于轮询的均衡策略(默认)：
+每一个来自网络中的请求，轮流分配给内部的服务器，从1到N然后重新开始。此种负载均衡算法适合服务器组内部的服务器都具有相同的配置并且平均服务请求 相对均衡的情况。</p>
+</li>
+<li>
+<p>2.基于加权轮询的均衡策略（weight）：根据服务器的不同处理能力，给每个服务器分配不同的权值，使其能够接受相应权值数的服务请求。例如:服务器A的权值被设计成1，B的权值是3，C的权值是6，则服务器A、B、C将分别接受到10%、30%、60%的服务请求。此种均衡算法能确保高性能的服务器得到更多的使用率，避免低性能的服务器负载过重。</p>
+</li>
+<li>
+<p>3.基于ip-hash的均衡策略（ip_hash）：
+我们都知道，每个请求的客户端都有相应的ip地址，该均衡策略中，nginx将会根据相应的hash函数，对每个请求的ip作为关键字，得到的hash值将会决定将请求分发给相应Server进行处理</p>
+</li>
+<li>
+<p>4.基于最少连接数的均衡策略（least_conn）：
+最少连接，也就是说nginx会判断后端集群服务器中哪个Server当前的 Active Connection 数是最少的，那么对于每个新进来的request,nginx将该request分发给对应的Server.</p>
+</li>
 </ul>
+<h2 id="语法">语法 </h2>
+<pre><code>语法: upstream name { ... } 
+默认值: —
+上下文: http
+
+
+upstream 指令当中包含server指令
+语法: server address [parameters]; 
+默认值: —
+上下文: upstream
+
+
+例子:
+upstream backend {
+    server backend1.example.com:8081 weight=4 max_fails=2 fail_timeout=30s; 
+    server backend2.example.com:8080 weight=1;
+}
+server { 
+    location / {
+        proxy_pass http://backend; 
+    }
+}
+
+
+参数说明:
+weight=number 设定服务器的权重，默认是1，权重越大被访问机会越大，要根据机器的配置情况来配置
+
+max_fails=number 设定Nginx与服务器通信的尝试失败的次数。在fail_timeout参数定义的时间段内，如果失败的次数达到此值，Nginx就认为服务器不可用。在下一个fail_timeout时间段，服务器不会再被尝试。失败的尝试次数默认是1。
+
+可以通过指令proxy_next_upstream 和memcached_next_upstream来配置什么是失败的尝试。 默认配置时，http_404状态不被认为是失败的尝试。 
+
+fail_timeout=time
+统计失败尝试次数的时间段。在这段时间中，服务器失败次数达到指定的尝试次数，服务器就被认为不可用。默认情况下，该超时时间是10秒。 
+
+backup
+标记为备用服务器。当主服务器不可用以后，请求会被传给这些服务器，配置这个指令可以实现故障转移。
+
+down 标记服务器永久不可用，可以跟ip_hash指令一起使用。
+</code></pre>
+<p>即便未设置诸多参数，默认情况下，当其中某个服务挂掉之后，nginx还是会把请求分发到正常的服务中去。但一般建议我们手动去设置。</p>
+<h2 id="proxy_next_upstream-指令">proxy_next_upstream 指令 </h2>
+<p>在nginx的配置文件中， proxy_next_upstream 项定义了什么情况下进行重试</p>
+<pre><code>语法: proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...; 
+默认值: proxy_next_upstream error timeout;
+上下文: http, server, location
+
+
+其中:
+error 表示和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现错误。 
+timeout 表示和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现超时。 
+invalid_header 表示后端服务器返回空响应或者非法响应头
+http_500 表示后端服务器返回的响应状态码为500
+non_idempotent 通常，如果请求已发送到上游服务器，则具有非等幂方法（POST、LOCK、PATCH）的请求不会传递到下一个服务器；启用此选项可显式允许重试此类请求；
+off 表示停止将请求发送给下一台后端服务器
+</code></pre>
+<p>注意下non_idempotent参数。</p>
+<h4 id="相关">相关 </h4>
+<pre><code>proxy_next_upstream_tries number:设置重试次数，默认0表示不限制，注意此重试次数指的是所有请求次数(包括第一次和之后的重试次数之和)。 
+
+proxy_next_upstream_timeout time: 设置重试最大超时时间，默认0表示不限制。
+即在 proxy_next_upstream_timeout 时间内允许 proxy_next_upstream_tries 次重试。如果超过了其中一个设置，则 Nginx 也会结束重试并返回客户 端响应(可能是错误码)。
+
+proxy_send_timeout 后端服务器数据回传时间(代理发送超时时间)
+
+proxy_read_timeout  连接成功后，后端服务器响应时间(代理接收超时时间) 
+
+proxy_connect_timeout nginx连接后端的超时时间，一般不超过75s
+</code></pre>
 
 			
 			
@@ -522,10 +739,17 @@ crossorigin="anonymous"
 async>
 </script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/book/%E5%85%B6%E4%BB%96/%E6%9E%B6%E6%9E%84/">
+	<a href="/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; 
+					&larr; MySQL执行流程说明
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					为什么能这么快 &rarr;
 				</div>
 			</div>
 		</a>

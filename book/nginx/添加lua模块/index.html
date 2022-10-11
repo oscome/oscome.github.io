@@ -15,32 +15,28 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
-<meta name="description" content="面向对象的核心思想：对象，封装，可重用性，可扩展性。
-面向对象三要素：封装、继承、多态。
-面向对象五大原则：
- 单一职责原则SRP(减少耦合，提高复用性) 接口隔离原则ISP（定制化服务设计） 开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的） 替换原则LSP 依赖倒置原则IOC（核心是解耦）  常用设计模式   单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。 策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。 观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。 注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。 装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 DI  ">
-  <link rel="canonical" href="https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+  <title>添加lua模块 | 开源到</title>
+<meta name="description" content="面试知识合集,Nginx添加lua模块">
+<link rel="canonical" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="">
-<meta property="og:description" content="面向对象的核心思想：对象，封装，可重用性，可扩展性。
-面向对象三要素：封装、继承、多态。
-面向对象五大原则：
- 单一职责原则SRP(减少耦合，提高复用性) 接口隔离原则ISP（定制化服务设计） 开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的） 替换原则LSP 依赖倒置原则IOC（核心是解耦）  常用设计模式   单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。 策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。 观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。 注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。 装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。 DI  ">
-<meta property="og:url" content="https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+<meta property="og:title" content="添加lua模块">
+<meta property="og:description" content="面试知识合集,Nginx添加lua模块">
+<meta property="og:url" content="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">
 <meta property="og:site_name" content="开源到">
-
+<meta property="article:published_time" content="2019-03-15T10:28:28+08:00">
+  <meta property="article:modified_time" content="2019-03-15T10:28:28+08:00">
+  
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="添加lua模块">
+<meta name="twitter:description" content="面试知识合集,Nginx添加lua模块">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="">
+    <meta name="twitter:image:alt" content="添加lua模块">
 
 <script type="application/ld+json">
 {
@@ -77,32 +73,32 @@
       },
     {
       "@type": "WebPage",
-      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-      "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/",
-      "name": "",
-      "description": "",
+      "@id": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/",
+      "url": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/",
+      "name": "添加lua模块",
+      "description": "面试知识合集,Nginx添加lua模块",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "0001-01-01T00:00:00CET",
-      "dateModified": "0001-01-01T00:00:00CET",
+      "datePublished": "2019-03-15T10:28:28CET",
+      "dateModified": "2019-03-15T10:28:28CET",
       "breadcrumb": {
-        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/breadcrumb/1"
+        "@id": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/image/2"
+        "@id": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"]
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/breadcrumb/1",
+      "@id": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
@@ -127,15 +123,15 @@
         "position":  3 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
-          "url": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/",
-          "name": "% E5%85% B6% E4% Bb%96"
+          "@id": "https://oscome.cn/book/nginx/",
+          "url": "https://oscome.cn/book/nginx/",
+          "name": "Nginx"
           }
         },{
         "@type": "ListItem",
         "position":  4 ,
         "item": {
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+          "@id": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/"
           }
         }]
     },
@@ -145,10 +141,10 @@
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "https://oscome.cn/book/%E5%85%B6%E4%BB%96/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#/schema/image/2",
+          "@id": "https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": ""
+          "caption": "添加lua模块"
         }
       ]
     }
@@ -247,6 +243,152 @@
 
 </div>
 
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="true">
+          Nginx
+        </button>
+        <div class="collapse show" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">常用配置</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/">工作模式和进程模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">代理缓存</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/">动态负载</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/">优化</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
     <div class="wrap container-xxl" role="document">
       <div class="content">
         
@@ -338,15 +480,15 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="true">
           Nginx
         </button>
-        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+        <div class="collapse show" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
               
             
               
@@ -407,11 +549,11 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
-      </ul>
-    </li>
+    <li><a href="#安装lua">安装lua</a></li>
+    <li><a href="#etcprofile加入">etc/profile加入</a></li>
+    <li><a href="#下载ngx_devel_kit模块">下载ngx_devel_kit模块</a></li>
+    <li><a href="#下载lua-nginx-module模块">下载lua-nginx-module模块</a></li>
+    <li><a href="#查看原始编译">查看原始编译</a></li>
   </ul>
 </nav>
       </div>
@@ -422,11 +564,11 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
-      </ul>
-    </li>
+    <li><a href="#安装lua">安装lua</a></li>
+    <li><a href="#etcprofile加入">etc/profile加入</a></li>
+    <li><a href="#下载ngx_devel_kit模块">下载ngx_devel_kit模块</a></li>
+    <li><a href="#下载lua-nginx-module模块">下载lua-nginx-module模块</a></li>
+    <li><a href="#查看原始编译">查看原始编译</a></li>
   </ul>
 </nav>
   </div>
@@ -437,12 +579,13 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 <li class="breadcrumb-item"><a href="/book/">Book</a></li>
-<li class="breadcrumb-item active" aria-current="page"></li>
+<li class="breadcrumb-item"><a href="/book/nginx/">Nginx</a></li>
+<li class="breadcrumb-item active" aria-current="page">添加lua模块</li>
 					</ol>
 				</nav>
 			
-			<h1></h1>
-			<time>0001-01-01, Monday</time>
+			<h1>添加lua模块</h1>
+			<time>2019-03-15, Friday</time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				<div class="d-xl-none">
@@ -458,11 +601,11 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
-      </ul>
-    </li>
+    <li><a href="#安装lua">安装lua</a></li>
+    <li><a href="#etcprofile加入">etc/profile加入</a></li>
+    <li><a href="#下载ngx_devel_kit模块">下载ngx_devel_kit模块</a></li>
+    <li><a href="#下载lua-nginx-module模块">下载lua-nginx-module模块</a></li>
+    <li><a href="#查看原始编译">查看原始编译</a></li>
   </ul>
 </nav>
       </div>
@@ -473,36 +616,86 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#常用设计模式">常用设计模式</a></li>
-      </ul>
-    </li>
+    <li><a href="#安装lua">安装lua</a></li>
+    <li><a href="#etcprofile加入">etc/profile加入</a></li>
+    <li><a href="#下载ngx_devel_kit模块">下载ngx_devel_kit模块</a></li>
+    <li><a href="#下载lua-nginx-module模块">下载lua-nginx-module模块</a></li>
+    <li><a href="#查看原始编译">查看原始编译</a></li>
   </ul>
 </nav>
   </div>
 
 			</nav>
-			<p>面向对象的核心思想：对象，封装，可重用性，可扩展性。</p>
-<p>面向对象三要素：封装、继承、多态。</p>
-<p>面向对象五大原则：</p>
-<ol>
-<li>单一职责原则SRP(减少耦合，提高复用性)</li>
-<li>接口隔离原则ISP（定制化服务设计）</li>
-<li>开放-封闭原则OCP（一个模块在扩展性方面应该是开放的，在更改性方面是封闭的）</li>
-<li>替换原则LSP</li>
-<li>依赖倒置原则IOC（核心是解耦）</li>
-</ol>
-<h3 id="常用设计模式">常用设计模式 </h3>
-<ul>
-<li>单例模式：确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</li>
-<li>工厂模式：把创建对象的过程封装起来，这样随时可以产生一个新的对象，减少代码之间耦合。</li>
-<li>策略模式：定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。</li>
-<li>观察者模式：（有时又被称为发布（publish ）-订阅（Subscribe）模式、模型-视图（View）模式、源-收听者(Listener)模式或从属者模式），在此种模式中，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。</li>
-<li>注册树模式：注册树模式也叫注册模式或注册器模式。注册树模式将对象实例注册到一棵全局的对象树上，需要的时候从对象树上获取即可。</li>
-<li>装饰器模式：允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</li>
-<li>DI</li>
-</ul>
+			<h2 id="安装lua">安装lua </h2>
+<pre><code>wget http://luajit.org/download/LuaJIT-2.0.5.tar.gz 
+tar -zxvf LuaJIT-2.0.5.tar.gz
+cd LuaJIT-2.0.5
+make &amp;&amp; make install PREFIX=/usr/local/LuaJIT
+</code></pre>
+<h2 id="etcprofile加入">etc/profile加入 </h2>
+<pre><code># lua
+export LUAJIT_LIB=/usr/local/LuaJIT/lib 
+export LUAJIT_INC=/usr/local/LuaJIT/include/luajit-2.0
+</code></pre>
+<blockquote>
+<p>source etc/profile</p>
+</blockquote>
+<h2 id="下载ngx_devel_kit模块">下载ngx_devel_kit模块 </h2>
+<pre><code>wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz
+</code></pre>
+<blockquote>
+<p>NDK(nginx development kit)模块是一个拓展nginx服务器核心功能的模块，第三方模块开发可以基于它来快速实现。 NDK提供函数和宏处理一些基本任务， 减轻第三方模块开发的代码量</p>
+</blockquote>
+<h2 id="下载lua-nginx-module模块">下载lua-nginx-module模块 </h2>
+<pre><code> wget https://github.com/openresty/lua-nginx-module/archive/v0.10.9rc7.tar.gz 
+</code></pre>
+<p>lua-nginx-module 模块使nginx中能直接运行lua</p>
+<h2 id="查看原始编译">查看原始编译 </h2>
+<blockquote>
+<p>nginx -V</p>
+</blockquote>
+<pre><code>如：
+configure arguments: --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module --with-http_v2_module
+</code></pre>
+<p>进入nginx原始目录：</p>
+<pre><code>./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module --with-http_v2_module --add-module=/root/lua-nginx-module-0.10.9rc7/ --add-module=/root/ngx_devel_kit-0.3.0
+</code></pre>
+<p>只make，不执行make install。</p>
+<p>编译报错应该就是lua环境变量不对。</p>
+<pre><code>nginx -V 命令报错
+./nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot open shared object file: No such file or directory
+
+解决：
+echo &quot;/usr/local/LuaJIT/lib&quot; &gt;&gt; /etc/ld.so.conf
+
+ldconfig
+
+</code></pre>
+<p>成功之后可以nginx -V查看，无报错即可。</p>
+<p>把原来的nginx备份为nginx_old</p>
+<p>cp objs/nginx到原来的nginx并覆盖。</p>
+<p>在编译目录执行</p>
+<blockquote>
+<p>make upgrade</p>
+</blockquote>
+<p><img class="lazyload blur-up radius shadow" src="https://cdn.learnku.com/uploads/images/201911/18/41489/SNDXytBYrH.png!large" alt="Nginx 添加 lua 模块"></p>
+<p>测试：</p>
+<pre><code>server{
+    ...
+    location /lua {
+        default_type 'text/html';
+        content_by_lua '
+                ngx.say(&quot;hello, lua!&quot;)
+        ';
+    }
+    ...
+}
+</code></pre>
+<p>浏览器打开：</p>
+<blockquote>
+<p>http://blog.13sai.com/lua</p>
+</blockquote>
+<p>可以看到hello, lua!</p>
 
 			
 			
@@ -522,10 +715,17 @@ crossorigin="anonymous"
 async>
 </script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/book/%E5%85%B6%E4%BB%96/%E6%9E%B6%E6%9E%84/">
+	<a href="/book/redis/%E5%9F%BA%E7%A1%80/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; 
+					&larr; 基础知识
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					常用配置 &rarr;
 				</div>
 			</div>
 		</a>

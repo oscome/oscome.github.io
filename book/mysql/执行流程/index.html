@@ -15,17 +15,63 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>源码实现 | 开源到</title>
-<meta name="description" content="Redis源码实现">
-<link rel="canonical" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">
+  <title>MySQL执行流程说明 | 开源到</title>
+<meta name="description" content="MySQL的执行流程示意图：
+大体来说，MySQL可以分为Server层和存储引擎层两部分。
+Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。
+而存储引擎层负责数据的存储和提取，常见的有InnoDB、MyISAM、Memory等多个存储引擎。现在最常用的存储引擎是InnoDB，从MySQL 5.5.5版本开始它成为了默认存储引擎。
+从图中不难看出，不同的存储引擎共用一个Server层，也就是从连接器到执行器的部分。
+我们依次看下每个组件的作用。
+连接器  连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令一般是这么写的：
+mysql -h $ip -P $port -u $user -p  输完命令之后，你就需要在交互对话里面输入密码。
+连接完成后，如果你没有后续的动作，这个连接就处于空闲状态，你可以在show processlist命令中看到它。
+如果用户名或密码不对，你就会收到一个&amp;quot;Access denied for user&amp;quot;的错误，然后客户端程序结束执行。 如果用户名密码认证通过，连接器会到权限表里面查出你拥有的权限。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限。
+这就意味着，一个用户成功建立连接后，即使你用管理员账号对这个用户的权限做了修改，也不会影响已经存在连接的权限。修改完成后，只有再新建的连接才会使用新的权限设置。
+客户端如果太长时间没动静，连接器就会自动将它断开。这个时间是由参数wait_timeout控制的，默认值是8小时。
+如果在连接被断开之后，客户端再次发送请求的话，就会收到一个错误提醒： Lost connection to MySQL server during query。这时候如果你要继续，就需要进行重连操作，然后再执行请求。
+连接注意点：   长连接是指连接成功后，如果客户端持续有请求，则一直使用同一个连接。 短连接则是指每次执行完很少的几次查询就断开连接，下次查询再重新建立一个。  建立连接的过程通常是比较复杂的，所以我建议你在使用中要尽量减少建立连接的动作，也就是尽量使用长连接。
+但是全部使用长连接后，你可能会发现，有些时候MySQL占用内存涨得特别快，这是因为MySQL在执行过程中临时使用的内存是管理在连接对象里面的。这些资源会在连接断开的时候才释放。所以如果长连接累积下来，可能导致内存占用太大，被系统强行杀掉（OOM），从现象看就是MySQL异常重启了。
+怎么解决这个问题呢？你可以考虑以下两种方案。
+ 定期主动断开长连接。使用一段时间，或者程序里面判断执行过一个占用内存的大查询后，断开连接，之后要查询再重连。 如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行 mysql_reset_connection来重新初始化连接资源。这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。  查询缓存  连接建立完成后，你就可以执行select语句了。执行逻辑就会来到第二步：查询缓存。
+MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。之前执行过的语句及其结果可能会以key-value对的形式，被直接缓存在内存中。key是查询的语句，value是查询的结果。如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。
+如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果会被存入查询缓存中。你可以看到，如果查询命中缓存，MySQL不需要执行后面的复杂操作，就可以直接返回结果，这个效率会很高。
+但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。
+查询缓存的失效非常频繁，只要有对一个表的更新，这个表上所有的查询缓存都会被清空。因此很可能你费劲地把结果存起来，还没使用呢，就被一个更新全清空了。对于更新压力大的数据库来说，查询缓存的命中率会非常低。除非你的业务就是有一张静态表，很长时间才会更新一次。比如，一个系统配置表，那这张表上的查询才适合使用查询缓存。
+好在MySQL也提供了这种“按需使用”的方式。你可以将参数query_cache_type设置成DEMAND，这样对于默认的SQL语句都不使用查询缓存。而对于你确定要使用查询缓存的语句，可以用SQL_CACHE显式指定，像下面这个语句一样：
+mysql&amp;gt; select SQL_CACHE * from T where ID=10；
+ 需要注意的是，MySQL 8.">
+  <link rel="canonical" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="源码实现">
-<meta property="og:description" content="Redis源码实现">
-<meta property="og:url" content="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">
+<meta property="og:title" content="MySQL执行流程说明">
+<meta property="og:description" content="MySQL的执行流程示意图：
+大体来说，MySQL可以分为Server层和存储引擎层两部分。
+Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。
+而存储引擎层负责数据的存储和提取，常见的有InnoDB、MyISAM、Memory等多个存储引擎。现在最常用的存储引擎是InnoDB，从MySQL 5.5.5版本开始它成为了默认存储引擎。
+从图中不难看出，不同的存储引擎共用一个Server层，也就是从连接器到执行器的部分。
+我们依次看下每个组件的作用。
+连接器  连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令一般是这么写的：
+mysql -h $ip -P $port -u $user -p  输完命令之后，你就需要在交互对话里面输入密码。
+连接完成后，如果你没有后续的动作，这个连接就处于空闲状态，你可以在show processlist命令中看到它。
+如果用户名或密码不对，你就会收到一个&quot;Access denied for user&quot;的错误，然后客户端程序结束执行。 如果用户名密码认证通过，连接器会到权限表里面查出你拥有的权限。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限。
+这就意味着，一个用户成功建立连接后，即使你用管理员账号对这个用户的权限做了修改，也不会影响已经存在连接的权限。修改完成后，只有再新建的连接才会使用新的权限设置。
+客户端如果太长时间没动静，连接器就会自动将它断开。这个时间是由参数wait_timeout控制的，默认值是8小时。
+如果在连接被断开之后，客户端再次发送请求的话，就会收到一个错误提醒： Lost connection to MySQL server during query。这时候如果你要继续，就需要进行重连操作，然后再执行请求。
+连接注意点：   长连接是指连接成功后，如果客户端持续有请求，则一直使用同一个连接。 短连接则是指每次执行完很少的几次查询就断开连接，下次查询再重新建立一个。  建立连接的过程通常是比较复杂的，所以我建议你在使用中要尽量减少建立连接的动作，也就是尽量使用长连接。
+但是全部使用长连接后，你可能会发现，有些时候MySQL占用内存涨得特别快，这是因为MySQL在执行过程中临时使用的内存是管理在连接对象里面的。这些资源会在连接断开的时候才释放。所以如果长连接累积下来，可能导致内存占用太大，被系统强行杀掉（OOM），从现象看就是MySQL异常重启了。
+怎么解决这个问题呢？你可以考虑以下两种方案。
+ 定期主动断开长连接。使用一段时间，或者程序里面判断执行过一个占用内存的大查询后，断开连接，之后要查询再重连。 如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行 mysql_reset_connection来重新初始化连接资源。这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。  查询缓存  连接建立完成后，你就可以执行select语句了。执行逻辑就会来到第二步：查询缓存。
+MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。之前执行过的语句及其结果可能会以key-value对的形式，被直接缓存在内存中。key是查询的语句，value是查询的结果。如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。
+如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果会被存入查询缓存中。你可以看到，如果查询命中缓存，MySQL不需要执行后面的复杂操作，就可以直接返回结果，这个效率会很高。
+但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。
+查询缓存的失效非常频繁，只要有对一个表的更新，这个表上所有的查询缓存都会被清空。因此很可能你费劲地把结果存起来，还没使用呢，就被一个更新全清空了。对于更新压力大的数据库来说，查询缓存的命中率会非常低。除非你的业务就是有一张静态表，很长时间才会更新一次。比如，一个系统配置表，那这张表上的查询才适合使用查询缓存。
+好在MySQL也提供了这种“按需使用”的方式。你可以将参数query_cache_type设置成DEMAND，这样对于默认的SQL语句都不使用查询缓存。而对于你确定要使用查询缓存的语句，可以用SQL_CACHE显式指定，像下面这个语句一样：
+mysql&gt; select SQL_CACHE * from T where ID=10；
+ 需要注意的是，MySQL 8.">
+<meta property="og:url" content="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
 <meta property="og:site_name" content="开源到">
-<meta property="article:published_time" content="2022-01-10T10:28:28+08:00">
-  <meta property="article:modified_time" content="2022-01-10T10:28:28+08:00">
+<meta property="article:published_time" content="2022-10-10T10:28:28+08:00">
+  <meta property="article:modified_time" content="2022-10-10T10:28:28+08:00">
   
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
@@ -33,10 +79,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="源码实现">
-<meta name="twitter:description" content="Redis源码实现">
+<meta name="twitter:title" content="MySQL执行流程说明">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="源码实现">
+    <meta name="twitter:image:alt" content="MySQL执行流程说明">
 
 <script type="application/ld+json">
 {
@@ -73,32 +119,32 @@
       },
     {
       "@type": "WebPage",
-      "@id": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/",
-      "url": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/",
-      "name": "源码实现",
-      "description": "Redis源码实现",
+      "@id": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/",
+      "url": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/",
+      "name": "MySQL执行流程说明",
+      "description": "",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "2022-01-10T10:28:28CET",
-      "dateModified": "2022-01-10T10:28:28CET",
+      "datePublished": "2022-10-10T10:28:28CET",
+      "dateModified": "2022-10-10T10:28:28CET",
       "breadcrumb": {
-        "@id": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/#/schema/breadcrumb/1"
+        "@id": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/#/schema/image/2"
+        "@id": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/"]
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/#/schema/breadcrumb/1",
+      "@id": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
@@ -123,15 +169,15 @@
         "position":  3 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/book/redis/",
-          "url": "https://oscome.cn/book/redis/",
-          "name": "Redis"
+          "@id": "https://oscome.cn/book/mysql/",
+          "url": "https://oscome.cn/book/mysql/",
+          "name": "Mysql"
           }
         },{
         "@type": "ListItem",
         "position":  4 ,
         "item": {
-          "@id": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/"
+          "@id": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"
           }
         }]
     },
@@ -141,10 +187,10 @@
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/#/schema/image/2",
+          "@id": "https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": "源码实现"
+          "caption": "MySQL执行流程说明"
         }
       ]
     }
@@ -253,10 +299,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="true">
           MySQL
         </button>
-        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+        <div class="collapse show" id="section-62a004b95946bb97541afa471dcca73a">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -266,7 +312,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
               
             
               
@@ -285,10 +331,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="true">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
           Redis
         </button>
-        <div class="collapse show" id="section-e111446745a1825b862f8727ae63bce4">
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -323,7 +369,7 @@
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
               
             
           </ul>
@@ -401,10 +447,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="true">
           MySQL
         </button>
-        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+        <div class="collapse show" id="section-62a004b95946bb97541afa471dcca73a">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -414,7 +460,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
               
             
               
@@ -433,10 +479,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="true">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
           Redis
         </button>
-        <div class="collapse show" id="section-e111446745a1825b862f8727ae63bce4">
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -471,7 +517,7 @@
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
               
             
           </ul>
@@ -549,13 +595,15 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#redis对象底层数据结构">Redis对象底层数据结构</a></li>
-    <li><a href="#redis-string类型转换">redis string类型转换</a></li>
-    <li><a href="#redis-list数据结构">redis list数据结构</a></li>
-    <li><a href="#redis-hash底层存储结构">redis hash底层存储结构</a></li>
-    <li><a href="#redis-set底层存储">redis set底层存储</a></li>
-    <li><a href="#zset底层存储结构">zset底层存储结构</a></li>
-    <li><a href="#redis为何要定义字符串为sds">Redis为何要定义字符串为SDS</a></li>
+    <li>
+      <ul>
+        <li><a href="#连接器">连接器</a></li>
+        <li><a href="#查询缓存">查询缓存</a></li>
+        <li><a href="#分析器">分析器</a></li>
+        <li><a href="#优化器">优化器</a></li>
+        <li><a href="#执行器">执行器</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
       </div>
@@ -566,13 +614,15 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#redis对象底层数据结构">Redis对象底层数据结构</a></li>
-    <li><a href="#redis-string类型转换">redis string类型转换</a></li>
-    <li><a href="#redis-list数据结构">redis list数据结构</a></li>
-    <li><a href="#redis-hash底层存储结构">redis hash底层存储结构</a></li>
-    <li><a href="#redis-set底层存储">redis set底层存储</a></li>
-    <li><a href="#zset底层存储结构">zset底层存储结构</a></li>
-    <li><a href="#redis为何要定义字符串为sds">Redis为何要定义字符串为SDS</a></li>
+    <li>
+      <ul>
+        <li><a href="#连接器">连接器</a></li>
+        <li><a href="#查询缓存">查询缓存</a></li>
+        <li><a href="#分析器">分析器</a></li>
+        <li><a href="#优化器">优化器</a></li>
+        <li><a href="#执行器">执行器</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -583,13 +633,13 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 <li class="breadcrumb-item"><a href="/book/">Book</a></li>
-<li class="breadcrumb-item"><a href="/book/redis/">Redis</a></li>
-<li class="breadcrumb-item active" aria-current="page">源码实现</li>
+<li class="breadcrumb-item"><a href="/book/mysql/">MySQL</a></li>
+<li class="breadcrumb-item active" aria-current="page">MySQL执行流程说明</li>
 					</ol>
 				</nav>
 			
-			<h1>源码实现</h1>
-			<time>2022-01-10, Monday</time>
+			<h1>MySQL执行流程说明</h1>
+			<time>2022-10-10, Monday</time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				<div class="d-xl-none">
@@ -605,13 +655,15 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#redis对象底层数据结构">Redis对象底层数据结构</a></li>
-    <li><a href="#redis-string类型转换">redis string类型转换</a></li>
-    <li><a href="#redis-list数据结构">redis list数据结构</a></li>
-    <li><a href="#redis-hash底层存储结构">redis hash底层存储结构</a></li>
-    <li><a href="#redis-set底层存储">redis set底层存储</a></li>
-    <li><a href="#zset底层存储结构">zset底层存储结构</a></li>
-    <li><a href="#redis为何要定义字符串为sds">Redis为何要定义字符串为SDS</a></li>
+    <li>
+      <ul>
+        <li><a href="#连接器">连接器</a></li>
+        <li><a href="#查询缓存">查询缓存</a></li>
+        <li><a href="#分析器">分析器</a></li>
+        <li><a href="#优化器">优化器</a></li>
+        <li><a href="#执行器">执行器</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
       </div>
@@ -622,140 +674,90 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#redis对象底层数据结构">Redis对象底层数据结构</a></li>
-    <li><a href="#redis-string类型转换">redis string类型转换</a></li>
-    <li><a href="#redis-list数据结构">redis list数据结构</a></li>
-    <li><a href="#redis-hash底层存储结构">redis hash底层存储结构</a></li>
-    <li><a href="#redis-set底层存储">redis set底层存储</a></li>
-    <li><a href="#zset底层存储结构">zset底层存储结构</a></li>
-    <li><a href="#redis为何要定义字符串为sds">Redis为何要定义字符串为SDS</a></li>
+    <li>
+      <ul>
+        <li><a href="#连接器">连接器</a></li>
+        <li><a href="#查询缓存">查询缓存</a></li>
+        <li><a href="#分析器">分析器</a></li>
+        <li><a href="#优化器">优化器</a></li>
+        <li><a href="#执行器">执行器</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 
 			</nav>
-			<h2 id="redis对象底层数据结构">Redis对象底层数据结构 </h2>
-<table>
-<thead>
-<tr>
-<th>编码常量</th>
-<th>编码所对应的底层数据结构</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>REDIS_ENCODING_INT</td>
-<td>long 类型的整数</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_EMBSTR</td>
-<td>embstr 编码的简单动态字符串</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_RAW</td>
-<td>简单动态字符串</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_HT</td>
-<td>字典</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_LINKEDLIST</td>
-<td>双端链表</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_ZIPLIST</td>
-<td>压缩列表</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_INTSET</td>
-<td>整数集合</td>
-</tr>
-<tr>
-<td>REDIS_ENCODING_SKIPLIST</td>
-<td>跳跃表</td>
-</tr>
-</tbody>
-</table>
-<h2 id="redis-string类型转换">redis string类型转换 </h2>
-<p> 我们可能以为redis在内部存储string都是用sds的数据结构实现的，其实在整个redis的数据存储过程中为了提高性能，内部做了很多优化。整体选择顺序应该是：</p>
-<ul>
-<li>
-<p>整数，存储字符串长度小于21且能够转化为整数的字符串。</p>
-</li>
-<li>
-<p>EmbeddedString，存储字符串长度小于39的字符串（REDIS_ENCODING_EMBSTR_SIZE_LIMIT）。</p>
-</li>
-<li>
-<p>SDS，剩余情况使用sds进行存储。</p>
-</li>
-</ul>
-<p> <strong>embstr和sds的区别在于内存的申请和回收</strong></p>
-<ul>
-<li>embstr的创建只需分配一次内存，而raw为两次（一次为sds分配对象，另一次为redisObject分配对象，embstr省去了第一次）。相对地，释放内存的次数也由两次变为一次。</li>
-<li>embstr的redisObject和sds放在一起，更好地利用缓存带来的优势</li>
-<li>缺点：redis并未提供任何修改embstr的方式，即embstr是只读的形式。对embstr的修改实际上是先转换为raw再进行修改。</li>
-</ul>
-<h2 id="redis-list数据结构">redis list数据结构 </h2>
-<p> redis list数据结构底层采用压缩列表ziplist或linkedlist两种数据结构进行存储，首先以ziplist进行存储，在不满足ziplist的存储要求后转换为linkedlist列表。</p>
-<p>当列表对象同时满足以下两个条件时，列表对象使用ziplist进行存储，否则用linkedlist存储。</p>
-<ul>
-<li>列表对象保存的所有字符串元素的长度小于64字节</li>
-<li>列表对象保存的元素数量小于512个。</li>
-</ul>
-<h2 id="redis-hash底层存储结构">redis hash底层存储结构 </h2>
-<p>redis的哈希对象的底层存储可以使用ziplist（压缩列表）和hashtable。当hash对象可以同时满足一下两个条件时，哈希对象使用ziplist编码。</p>
-<ul>
-<li>哈希对象保存的所有键值对的键和值的字符串长度都小于64字节</li>
-<li>哈希对象保存的键值对数量小于512个</li>
-</ul>
-<blockquote>
-<p>redis的hash架构就是标准的hashtab的结构，通过挂链解决冲突问题。</p>
-</blockquote>
-<h2 id="redis-set底层存储">redis set底层存储 </h2>
-<p>redis的集合对象set的底层存储结构特别神奇，底层使用了intset和hashtable两种数据结构存储的，intset我们可以理解为数组，hashtable就是普通的哈希表（key为set的值，value为null）。是不是觉得用hashtable存储set是一件很神奇的事情。</p>
-<p> set的底层存储intset和hashtable是存在编码转换的，使用<strong>intset</strong>存储必须满足下面两个条件，否则使用hashtable，条件如下：</p>
-<ul>
-<li>结合对象保存的所有元素都是整数值</li>
-<li>集合对象保存的元素数量不超过512个</li>
-</ul>
-<h2 id="zset底层存储结构">zset底层存储结构 </h2>
-<p> zset底层的存储结构包括ziplist或skiplist，在同时满足以下两个条件的时候使用ziplist，其他时候使用skiplist，两个条件如下：</p>
-<ul>
-<li>有序集合保存的元素数量小于128个</li>
-<li>有序集合保存的所有元素的长度小于64字节</li>
-</ul>
-<p>当ziplist作为zset的底层存储结构时候，每个集合元素使用两个紧挨在一起的压缩列表节点来保存，第一个节点保存元素的成员，第二个元素保存元素的分值。</p>
-<p>当skiplist作为zset的底层存储结构的时候，使用skiplist按序保存元素及分值，使用dict来保存元素和分值的映射关系。</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/160fb0f73841">redis string底层数据结构</a></li>
-<li><a href="https://www.jianshu.com/p/c2ede9707e26">redis list底层数据结构</a></li>
-<li><a href="https://www.jianshu.com/p/8299aea62ab8">redis hash底层数据结构</a></li>
-<li><a href="https://www.jianshu.com/p/28138a5371d0">redis set底层数据结构</a></li>
-<li><a href="https://www.jianshu.com/p/fb7547369655">redis zset底层数据结构</a></li>
-</ul>
-<h2 id="redis为何要定义字符串为sds">Redis为何要定义字符串为SDS </h2>
-<p>Redis是底层使用的是C语言，在C语言中没有字符串这种数据类型，字符串大都是通过字符数组实现的，但是使用字符数组有以下不足：</p>
-<ol>
-<li>字符数组的长度都是固定，容易发生空指针异常</li>
-<li>获取字符数组的长度的时候需要遍历数组，时间复杂度高</li>
-<li>字符数组长度发生改变之后需要重新分配内存</li>
-<li>使用\0表示结尾，在存储二进制会出现问题。</li>
-</ol>
-<pre><code class="language-C">//动态字符串，数组的长度是可变的。
-struct sdshdr {
-    unsigned int len;//记录当前串的长度。
-    unsigned int free;//记录剩余的有效长度。
-    char buf[];//真正的字符串位置。
-};
+			<p>MySQL的执行流程示意图：</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/mysql-server.png" alt="sql执行流程"></p>
+<p>大体来说，MySQL可以分为Server层和存储引擎层两部分。</p>
+<p>Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p>
+<p>而存储引擎层负责数据的存储和提取，常见的有InnoDB、MyISAM、Memory等多个存储引擎。现在最常用的存储引擎是InnoDB，从MySQL 5.5.5版本开始它成为了默认存储引擎。</p>
+<p>从图中不难看出，不同的存储引擎共用一个Server层，也就是从连接器到执行器的部分。</p>
+<p>我们依次看下每个组件的作用。</p>
+<h3 id="连接器">连接器 </h3>
+<p>连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令一般是这么写的：</p>
+<pre><code>mysql -h $ip -P $port -u $user -p
 </code></pre>
-<p>Redis就自己实现了SDS来解决上面的问题，SDS相对C字符串数组的优点：</p>
+<p>输完命令之后，你就需要在交互对话里面输入密码。</p>
+<p>连接完成后，如果你没有后续的动作，这个连接就处于空闲状态，你可以在<code>show processlist</code>命令中看到它。</p>
+<p>如果用户名或密码不对，你就会收到一个&quot;Access denied for user&quot;的错误，然后客户端程序结束执行。
+如果用户名密码认证通过，连接器会到权限表里面查出你拥有的权限。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限。</p>
+<p>这就意味着，一个用户成功建立连接后，即使你用管理员账号对这个用户的权限做了修改，也不会影响已经存在连接的权限。修改完成后，只有再新建的连接才会使用新的权限设置。</p>
+<p>客户端如果太长时间没动静，连接器就会自动将它断开。这个时间是由参数wait_timeout控制的，默认值是8小时。</p>
+<p>如果在连接被断开之后，客户端再次发送请求的话，就会收到一个错误提醒： Lost connection to MySQL server during query。这时候如果你要继续，就需要进行重连操作，然后再执行请求。</p>
+<h5 id="连接注意点">连接注意点： </h5>
 <ul>
-<li>长度达到一定标准会有相应的扩容（小于1M，free增加len，大于1M，每次增加1M），从而解决内存溢出的问题。</li>
-<li>在SDS的内部定义了字符串的长度，使用时可以直接获取，复杂度O(1)，解决获取长度时间复杂度高的问题。</li>
-<li>SDS是空间预分配，惰性释放内存的，从而减少分配内存的次数</li>
-<li>SDS根据长度判断结束的位置，从而解决二进制不安全的问题。</li>
+<li>长连接是指连接成功后，如果客户端持续有请求，则一直使用同一个连接。</li>
+<li>短连接则是指每次执行完很少的几次查询就断开连接，下次查询再重新建立一个。</li>
 </ul>
+<p>建立连接的过程通常是比较复杂的，所以我建议你在使用中要尽量减少建立连接的动作，也就是尽量使用长连接。</p>
+<p>但是全部使用长连接后，你可能会发现，有些时候MySQL占用内存涨得特别快，这是因为MySQL在执行过程中临时使用的内存是管理在连接对象里面的。这些资源会在连接断开的时候才释放。所以如果长连接累积下来，可能导致内存占用太大，被系统强行杀掉（OOM），从现象看就是MySQL异常重启了。</p>
+<p>怎么解决这个问题呢？你可以考虑以下两种方案。</p>
+<ol>
+<li>定期主动断开长连接。使用一段时间，或者程序里面判断执行过一个占用内存的大查询后，断开连接，之后要查询再重连。</li>
+<li>如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行 mysql_reset_connection来重新初始化连接资源。这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。</li>
+</ol>
+<h3 id="查询缓存">查询缓存 </h3>
+<p>连接建立完成后，你就可以执行select语句了。执行逻辑就会来到第二步：查询缓存。</p>
+<p>MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。之前执行过的语句及其结果可能会以key-value对的形式，被直接缓存在内存中。key是查询的语句，value是查询的结果。如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。</p>
+<p>如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果会被存入查询缓存中。你可以看到，如果查询命中缓存，MySQL不需要执行后面的复杂操作，就可以直接返回结果，这个效率会很高。</p>
+<p>但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。</p>
+<p>查询缓存的失效非常频繁，只要有对一个表的更新，这个表上所有的查询缓存都会被清空。因此很可能你费劲地把结果存起来，还没使用呢，就被一个更新全清空了。对于更新压力大的数据库来说，查询缓存的命中率会非常低。除非你的业务就是有一张静态表，很长时间才会更新一次。比如，一个系统配置表，那这张表上的查询才适合使用查询缓存。</p>
+<p>好在MySQL也提供了这种“按需使用”的方式。你可以将参数query_cache_type设置成DEMAND，这样对于默认的SQL语句都不使用查询缓存。而对于你确定要使用查询缓存的语句，可以用SQL_CACHE显式指定，像下面这个语句一样：</p>
+<p>mysql&gt; select SQL_CACHE * from T where ID=10；</p>
+<blockquote>
+<p>需要注意的是，MySQL 8.0版本直接将查询缓存的整块功能删掉了，也就是说8.0开始彻底没有这个功能了。</p>
+</blockquote>
+<h3 id="分析器">分析器 </h3>
+<p>如果没有命中查询缓存，就要开始真正执行语句了。首先，MySQL需要知道你要做什么，因此需要对SQL语句做解析。</p>
+<p>分析器先会做“词法分析”。你输入的是由多个字符串和空格组成的一条SQL语句，MySQL需要识别出里面的字符串分别是什么，代表什么。</p>
+<p>MySQL从你输入的&quot;select&quot;这个关键字识别出来，这是一个查询语句。它也要把字符串“T”识别成“表名T”，把字符串“ID”识别成“列ID”。</p>
+<p>做完了这些识别以后，就要做“语法分析”。根据词法分析的结果，语法分析器会根据语法规则，判断你输入的这个SQL语句是否满足MySQL语法。</p>
+<p>如果你的语句不对，就会收到“You have an error in your SQL syntax”的错误提醒，比如下面这个语句select少打了开头的字母“s”。</p>
+<pre><code>mysql&gt; elect * from t where id=1;
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect * from t where ID=1' at line 1
+</code></pre>
+<p>一般语法错误会提示第一个出现错误的位置，所以你要关注的是紧接“use near”的内容。</p>
+<h3 id="优化器">优化器 </h3>
+<p>经过了分析器，MySQL就知道你要做什么了。在开始执行之前，还要先经过优化器的处理。</p>
+<p>优化器是在表里面有多个索引的时候，决定使用哪个索引；或者在一个语句有多表关联（join）的时候，决定各个表的连接顺序。</p>
+<p>优化器阶段完成后，这个语句的执行方案就确定下来了，然后进入执行器阶段。如果你还有一些疑问，比如优化器是怎么选择索引的，有没有可能选择错等等，没关系，我会在后面的文章中单独展开说明优化器的内容。</p>
+<h3 id="执行器">执行器 </h3>
+<p>MySQL通过分析器知道了你要做什么，通过优化器知道了该怎么做，于是就进入了执行器阶段，开始执行语句。</p>
+<p>开始执行的时候，要先判断一下你对这个表T有没有执行查询的权限，如果没有，就会返回没有权限的错误，如下所示(在工程实现上，如果命中查询缓存，会在查询缓存返回结果的时候，做权限验证。查询也会在优化器之前调用precheck验证权限)。</p>
+<pre><code>mysql&gt; select * from T where ID=10;
+
+ERROR 1142 (42000): SELECT command denied to user 'b'@'localhost' for table 'T'
+</code></pre>
+<p>如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去使用这个引擎提供的接口。</p>
+<p>比如我们这个例子中的表T中，ID字段没有索引，那么执行器的执行流程是这样的：</p>
+<p>调用InnoDB引擎接口取这个表的第一行，判断ID值是不是10，如果不是则跳过，如果是则将这行存在结果集中；</p>
+<p>调用引擎接口取“下一行”，重复相同的判断逻辑，直到取到这个表的最后一行。</p>
+<p>执行器将上述遍历过程中所有满足条件的行组成的记录集作为结果集返回给客户端。</p>
+<p>至此，这个语句就执行完成了。</p>
+<p>对于有索引的表，执行的逻辑也差不多。第一次调用的是“取满足条件的第一行”这个接口，之后循环取“满足条件的下一行”这个接口，这些接口都是引擎中已经定义好的。</p>
 
 			
 			
@@ -775,17 +777,17 @@ crossorigin="anonymous"
 async>
 </script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">
+	<a href="/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; 数据可靠性
+					&larr; 常用配置
 				</div>
 			</div>
 		</a>
-	<a class="ms-auto" href="/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/">
+	<a class="ms-auto" href="/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					动态负载 &rarr;
+					负载均衡 &rarr;
 				</div>
 			</div>
 		</a>
