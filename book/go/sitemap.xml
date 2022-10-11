@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    <url>
+      <loc>https://oscome.cn/book/go/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</loc>
+      <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/</loc>
+      <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/go/gc/</loc>
+      <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    </urlset>

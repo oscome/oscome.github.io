@@ -3,6 +3,20 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://oscome.cn/book/go/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/linux/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/book/readme/</loc>
     <lastmod>2022-10-10T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -122,6 +136,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/go/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/topic/godaily/cast/</loc>
     <lastmod>2022-09-26T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -131,6 +152,13 @@
   <url>
     <loc>https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
     <lastmod>2019-02-10T11:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/linux/%E4%BA%94%E5%A4%A7io%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2018-10-09T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -192,6 +220,27 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/linux/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/linux/%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84%E5%92%8C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/topic/godaily/logrus/</loc>
     <lastmod>2022-09-29T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -208,6 +257,13 @@
   <url>
     <loc>https://oscome.cn/docs/tool/</loc>
     <lastmod>2022-09-06T08:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/go/gc/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

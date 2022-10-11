@@ -15,17 +15,17 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>内嵌变量 | 开源到</title>
-<meta name="description" content="面试知识合集,Nginx内嵌变量">
-<link rel="canonical" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">
+  <title>goroutine原理 | 开源到</title>
+<meta name="description" content="面试知识合集，goroutine原理，go 协程原">
+<link rel="canonical" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内嵌变量">
-<meta property="og:description" content="面试知识合集,Nginx内嵌变量">
-<meta property="og:url" content="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">
+<meta property="og:title" content="goroutine原理">
+<meta property="og:description" content="面试知识合集，goroutine原理，go 协程原">
+<meta property="og:url" content="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">
 <meta property="og:site_name" content="开源到">
-<meta property="article:published_time" content="2019-02-12T10:28:28+08:00">
-  <meta property="article:modified_time" content="2019-02-12T10:28:28+08:00">
+<meta property="article:published_time" content="2022-10-10T10:28:28+08:00">
+  <meta property="article:modified_time" content="2022-10-10T10:28:28+08:00">
   
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
@@ -33,10 +33,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
 <meta name="twitter:creator" content="@henkverlinde">
-<meta name="twitter:title" content="内嵌变量">
-<meta name="twitter:description" content="面试知识合集,Nginx内嵌变量">
+<meta name="twitter:title" content="goroutine原理">
+<meta name="twitter:description" content="面试知识合集，goroutine原理，go 协程原">
 <meta name="twitter:image" content="https://oscome.cn/oscome.png">
-    <meta name="twitter:image:alt" content="内嵌变量">
+    <meta name="twitter:image:alt" content="goroutine原理">
 
 <script type="application/ld+json">
 {
@@ -73,32 +73,32 @@
       },
     {
       "@type": "WebPage",
-      "@id": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/",
-      "url": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/",
-      "name": "内嵌变量",
-      "description": "面试知识合集,Nginx内嵌变量",
+      "@id": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/",
+      "url": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/",
+      "name": "goroutine原理",
+      "description": "面试知识合集，goroutine原理，go 协程原",
       "isPartOf": {
         "@id": "https://oscome.cn/#/schema/website/1"
       },
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "2019-02-12T10:28:28CET",
-      "dateModified": "2019-02-12T10:28:28CET",
+      "datePublished": "2022-10-10T10:28:28CET",
+      "dateModified": "2022-10-10T10:28:28CET",
       "breadcrumb": {
-        "@id": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/#/schema/breadcrumb/1"
+        "@id": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/#/schema/breadcrumb/1"
       },
       "primaryImageOfPage": {
-        "@id": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/#/schema/image/2"
+        "@id": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/#/schema/image/2"
       },
       "inLanguage": "zh-CN",
       "potentialAction": [{
-        "@type": "ReadAction", "target": ["https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/"]
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/"]
       }]
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/#/schema/breadcrumb/1",
+      "@id": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/#/schema/breadcrumb/1",
       "name": "Breadcrumbs",
       "itemListElement": [{
         "@type": "ListItem",
@@ -123,15 +123,15 @@
         "position":  3 ,
         "item": {
           "@type": "WebPage",
-          "@id": "https://oscome.cn/book/nginx/",
-          "url": "https://oscome.cn/book/nginx/",
-          "name": "Nginx"
+          "@id": "https://oscome.cn/book/go/",
+          "url": "https://oscome.cn/book/go/",
+          "name": "Go"
           }
         },{
         "@type": "ListItem",
         "position":  4 ,
         "item": {
-          "@id": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/"
+          "@id": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/"
           }
         }]
     },
@@ -141,10 +141,10 @@
       "@graph": [
         {
           "@type": "ImageObject",
-          "@id": "https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/#/schema/image/2",
+          "@id": "https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/#/schema/image/2",
           "url": "https://oscome.cn/oscome.png",
           "contentUrl": "https://oscome.cn/oscome.png",
-          "caption": "内嵌变量"
+          "caption": "goroutine原理"
         }
       ]
     }
@@ -253,10 +253,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-34d1f91fb2e514b8576fab1a75a89a6b" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-34d1f91fb2e514b8576fab1a75a89a6b" aria-expanded="true">
           go
         </button>
-        <div class="collapse" id="section-34d1f91fb2e514b8576fab1a75a89a6b">
+        <div class="collapse show" id="section-34d1f91fb2e514b8576fab1a75a89a6b">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -266,7 +266,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">goroutine原理</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">goroutine原理</a></li>
               
             
               
@@ -386,10 +386,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="true">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
           Nginx
         </button>
-        <div class="collapse show" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -409,7 +409,7 @@
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
               
             
               
@@ -455,10 +455,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-34d1f91fb2e514b8576fab1a75a89a6b" aria-expanded="false">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-34d1f91fb2e514b8576fab1a75a89a6b" aria-expanded="true">
           go
         </button>
-        <div class="collapse" id="section-34d1f91fb2e514b8576fab1a75a89a6b">
+        <div class="collapse show" id="section-34d1f91fb2e514b8576fab1a75a89a6b">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -468,7 +468,7 @@
             
               
                 
-                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">goroutine原理</a></li>
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">goroutine原理</a></li>
               
             
               
@@ -588,10 +588,10 @@
     
       
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="true">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
           Nginx
         </button>
-        <div class="collapse show" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             
               
@@ -611,7 +611,7 @@
             
               
                 
-                <li><a class="docs-link rounded active" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
               
             
               
@@ -644,228 +644,256 @@
 			</nav>
 		</div>
 		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
-			
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#调度原理">调度原理</a></li>
+    <li><a href="#系统监控">系统监控</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#拓展">拓展</a>
+      <ul>
+        <li><a href="#线程实现模型">线程实现模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#调度原理">调度原理</a></li>
+    <li><a href="#系统监控">系统监控</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#拓展">拓展</a>
+      <ul>
+        <li><a href="#线程实现模型">线程实现模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+  </div>
+
 		</nav>
 		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
 		<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 <li class="breadcrumb-item"><a href="/book/">Book</a></li>
-<li class="breadcrumb-item"><a href="/book/nginx/">Nginx</a></li>
-<li class="breadcrumb-item active" aria-current="page">内嵌变量</li>
+<li class="breadcrumb-item"><a href="/book/go/">go</a></li>
+<li class="breadcrumb-item active" aria-current="page">goroutine原理</li>
 					</ol>
 				</nav>
 			
-			<h1>内嵌变量</h1>
-			<time>2019-02-12, Tuesday</time>
+			<h1>goroutine原理</h1>
+			<time>2022-10-10, Monday</time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
-				
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#调度原理">调度原理</a></li>
+    <li><a href="#系统监控">系统监控</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#拓展">拓展</a>
+      <ul>
+        <li><a href="#线程实现模型">线程实现模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#调度原理">调度原理</a></li>
+    <li><a href="#系统监控">系统监控</a>
+      <ul>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#拓展">拓展</a>
+      <ul>
+        <li><a href="#线程实现模型">线程实现模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+  </div>
+
 			</nav>
-			<p>Nginx内嵌变量是非常常用的，记录下备查。</p>
-<p>Nginx内嵌变量由 <code>ngx_http_core_module</code> 模块支持，变量名与Apache服务器对应，这些变量可以表示客户端的请求头字段，诸如<code>$http_user_agent</code>、<code>$http_cookie</code>等等。 nginx也支持其他变量：</p>
+			<h2 id="简介">简介 </h2>
+<p>Rob Pike说，<strong>Goroutine是一个与其他goroutines 并发运行在同一地址空间的Go函数或方法。一个运行的程序由一个或更多个goroutine组成。它与线程、协程、进程等不同。它是一个goroutine</strong>。</p>
+<ul>
+<li>goroutine 通过通道来通信，而协程通过让出和恢复操作来通信</li>
+<li>goroutine 通过 Golang 的调度器进行调度，而协程通过程序本身调度</li>
+</ul>
+<h2 id="调度原理">调度原理 </h2>
+<p>goroutine 调度器的线程模型为两级线程模型。有关两级线程模型的介绍，可以看文章最后。</p>
+<p>我们来看下Golang实现的两级线程模型是怎样的，如果你了解一些 go 底层，应该听说 GMP 模型：</p>
+<ul>
+<li><strong>M</strong>：代表内核级的线程</li>
+<li><strong>P</strong>：全程Processor，代表运行Go协程所需要的资源（上下文环境）</li>
+<li><strong>G</strong>：代表Go协程</li>
+</ul>
+<p>M，P，G数据结构如下：</p>
 <table>
 <thead>
 <tr>
-<th>参数名称</th>
-<th>说明</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">作用范围</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>$arg_name</td>
-<td>请求中的的参数名，即“?”后面的arg_name=arg_value形式的arg_name，如/index.php?www=www.13sai.com，可以用$arg_www就是www.13sai.com</td>
+<td style="text-align:left">全局M列表</td>
+<td style="text-align:left">Go的运行时</td>
+<td style="text-align:left">存放所有M的单向链表</td>
 </tr>
 <tr>
-<td>$args</td>
-<td>请求中的参数值</td>
+<td style="text-align:left">全局P列表</td>
+<td style="text-align:left">Go的运行时</td>
+<td style="text-align:left">存放所有P的数组</td>
 </tr>
 <tr>
-<td>$binary_remote_addr</td>
-<td>客户端地址的二进制形式, 固定长度为4个字节</td>
+<td style="text-align:left">全局G列表</td>
+<td style="text-align:left">Go的运行时</td>
+<td style="text-align:left">存放所有G的切片</td>
 </tr>
 <tr>
-<td>$body_bytes_sent</td>
-<td>传输给客户端的字节数，响应头不计算在内；这个变量和Apache的mod_log_config模块中的“%B”参数保持兼容</td>
+<td style="text-align:left">调度器的空闲M列表</td>
+<td style="text-align:left">调度器</td>
+<td style="text-align:left">存放空闲M的单向链表</td>
 </tr>
 <tr>
-<td>$bytes_sent</td>
-<td>传输给客户端的字节数</td>
+<td style="text-align:left">调度器的空闲P列表</td>
+<td style="text-align:left">调度器</td>
+<td style="text-align:left">存放空闲P的单向链表</td>
 </tr>
 <tr>
-<td>$connection</td>
-<td>TCP连接的序列号</td>
+<td style="text-align:left">调度器的自由G列表</td>
+<td style="text-align:left">调度器</td>
+<td style="text-align:left">存放自由G的单向链表（有两个）</td>
 </tr>
 <tr>
-<td>$connection_requests</td>
-<td>TCP连接当前的请求数量</td>
+<td style="text-align:left">调度器的可运行G队列</td>
+<td style="text-align:left">调度器</td>
+<td style="text-align:left">存放可运行G的队列</td>
 </tr>
 <tr>
-<td>$content_length</td>
-<td>“Content-Length” 请求头字段</td>
+<td style="text-align:left">P的自由G列表</td>
+<td style="text-align:left">本地P</td>
+<td style="text-align:left">存放当前P中自由G的单向链表</td>
 </tr>
 <tr>
-<td>$content_type</td>
-<td>“Content-Type” 请求头字段</td>
-</tr>
-<tr>
-<td>$cookie_name</td>
-<td>cookie名称</td>
-</tr>
-<tr>
-<td>$document_root</td>
-<td>当前请求的文档根目录或别名</td>
-</tr>
-<tr>
-<td>$document_uri</td>
-<td>同 $uri</td>
-</tr>
-<tr>
-<td>$host</td>
-<td>优先级如下：HTTP请求行的主机名&gt;”HOST”请求头字段&gt;符合请求的服务器名</td>
-</tr>
-<tr>
-<td>$hostname</td>
-<td>主机名</td>
-</tr>
-<tr>
-<td>$http_name</td>
-<td>匹配任意请求头字段； 变量名中的后半部分“name”可以替换成任意请求头字段，如在配置文件中需要获取http请求头：“Accept-Language”，那么将“－”替换为下划线，大写字母替换为小写，形如：$http_accept_language即可。</td>
-</tr>
-<tr>
-<td>$https</td>
-<td>如果开启了SSL安全模式，值为“on”，否则为空字符串。</td>
-</tr>
-<tr>
-<td>$is_args</td>
-<td>如果请求中有参数，值为“?”，否则为空字符串。</td>
-</tr>
-<tr>
-<td>$limit_rate</td>
-<td>用于设置响应的速度限制，详见 limit_rate。</td>
-</tr>
-<tr>
-<td>$msec</td>
-<td>当前的Unix时间戳 (1.3.9, 1.2.6)</td>
-</tr>
-<tr>
-<td>$nginx_version</td>
-<td>nginx版本</td>
-</tr>
-<tr>
-<td>$pid</td>
-<td>工作进程的PID</td>
-</tr>
-<tr>
-<td>$pipe</td>
-<td>如果请求来自管道通信，值为“p”，否则为“.” (1.3.12, 1.2.7)</td>
-</tr>
-<tr>
-<td>$proxy_protocol_addr</td>
-<td>获取代理访问服务器的客户端地址，如果是直接访问，该值为空字符串。(1.5.12)</td>
-</tr>
-<tr>
-<td>$query_string</td>
-<td>同 $args，然而 $query_string是只读的不会改变</td>
-</tr>
-<tr>
-<td>$realpath_root</td>
-<td>当前请求的文档根目录或别名的真实路径，会将所有符号连接转换为真实路径。</td>
-</tr>
-<tr>
-<td>$remote_addr</td>
-<td>客户端地址</td>
-</tr>
-<tr>
-<td>$remote_port</td>
-<td>客户端端口</td>
-</tr>
-<tr>
-<td>$remote_user</td>
-<td>用于HTTP基础认证服务的用户名</td>
-</tr>
-<tr>
-<td>$request</td>
-<td>代表客户端的请求地址</td>
-</tr>
-<tr>
-<td>$request_body</td>
-<td>客户端的请求主体,此变量可在location中使用，将请求主体通过proxy_pass, fastcgi_pass, uwsgi_pass, 和 scgi_pass传递给下一级的代理服务器。</td>
-</tr>
-<tr>
-<td>$request_body_file</td>
-<td>请求正文的临时文件名。处理完成时，临时文件将被删除。 如果希望总是将请求正文写入文件，需要开启client_body_in_file_only。 如果在被代理的请求或FastCGI请求中传递临时文件名，就应该禁止传递请求正文本身。 使用proxy_pass_request_body off指令 和fastcgi_pass_request_body off指令 分别禁止在代理和FastCGI中传递请求正文。</td>
-</tr>
-<tr>
-<td>$request_completion</td>
-<td>如果请求成功，值为”OK”，如果请求未完成或者请求不是一个范围请求的最后一部分，则为空。</td>
-</tr>
-<tr>
-<td>$request_filename</td>
-<td>当前连接请求的文件路径，由root或alias指令与URI请求生成。</td>
-</tr>
-<tr>
-<td>$request_length</td>
-<td>请求的长度 (包括请求的地址, http请求头和请求主体)</td>
-</tr>
-<tr>
-<td>$request_method</td>
-<td>HTTP请求方法，通常为“GET”或“POST”</td>
-</tr>
-<tr>
-<td>$request_time</td>
-<td>处理客户端请求使用的时间; 从读取客户端的第一个字节开始计时。</td>
-</tr>
-<tr>
-<td>$request_uri</td>
-<td>这个变量等于包含一些客户端请求参数的原始URI，它无法修改，请查看$uri更改或重写URI，不包含主机名，例如：”/sai/test.php?arg=www”。</td>
-</tr>
-<tr>
-<td>$scheme</td>
-<td>请求使用的Web协议, “http” 或 “https”</td>
-</tr>
-<tr>
-<td>$sent_http_name</td>
-<td>可以设置任意http响应头字段； 变量名中的后半部分“name”可以替换成任意响应头字段，如需要设置响应头Content-length，那么将“－”替换为下划线，大写字母替换为小写，形如：$sent_http_content_length 4096即可。</td>
-</tr>
-<tr>
-<td>$server_addr</td>
-<td>服务器端地址，需要注意的是：为了避免访问linux系统内核，应将ip地址提前设置在配置文件中。</td>
-</tr>
-<tr>
-<td>$server_name</td>
-<td>服务器名</td>
-</tr>
-<tr>
-<td>$server_port</td>
-<td>服务器端口</td>
-</tr>
-<tr>
-<td>$server_protocol</td>
-<td>服务器的HTTP版本, 通常为 “HTTP/1.0” 或 “HTTP/1.1”</td>
-</tr>
-<tr>
-<td>$status</td>
-<td>HTTP响应代码</td>
-</tr>
-<tr>
-<td>$time_iso8601</td>
-<td>服务器时间的ISO 8610格式</td>
-</tr>
-<tr>
-<td>$time_local</td>
-<td>服务器时间（LOG Format 格式） ，nginx处理完成打印日志的时间，不是请求发出的时间</td>
-</tr>
-<tr>
-<td>$uri</td>
-<td>请求中的当前URI(不带请求参数，参数位于$args)，可以不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改，$uri不包含主机名，如”/foo/bar.html”。</td>
+<td style="text-align:left">P的可运行G队列</td>
+<td style="text-align:left">本地P</td>
+<td style="text-align:left">存放当前P中可运行G的队列</td>
 </tr>
 </tbody>
 </table>
-<p>apache服务器变量可看<a href="https://blog.csdn.net/litwhy/article/details/70893084">[备忘] apache服务端变量</a></p>
-<p>参考：</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/go-gmp.png" alt="GMP"></p>
+<p>从上往下：</p>
 <ul>
-<li><a href="http://tengine.taobao.org/nginx_docs/cn/docs/http/ngx_http_core_module.html#variables">中文文档</a></li>
+<li>M和内核线程之间是一对一的，一个M在其生命周期中，只会和一个内核线程关联，因此不会出现对内核线程的频繁切换；Golang的运行时执行系统监控和垃圾回收等任务时候会导致创建M，M空闲时不会被销毁，而是放到一个<code>调度器的空闲M列表</code>中，等待与P关联，M默认数量为10000</li>
+<li>P 和 M 是多对多的关系，P 和 G 是一对多的关系，他们的关联是易变的，由Golang的调度器完成调度；Golang的运行时按规则调度，让P和不同的M建立或断开关联，使得P中的G能够及时获得运行时机</li>
+<li>P 的数量默认为CPU总核心数，最大为256，当 P 没有可运行的G时候（ P 的可运行 G 队列为空），P会被放到<code>调度器的空闲P列表</code>中，等待 M 与它关联；P 可能会被销毁，如运行时用runtime.GOMAXPROCS把P的数量从32降到16时，剩余16个会被销毁，它们原来的 G 会先转到调度器<code>可运行的G队列</code>和<code>自由G列表</code></li>
+<li>每个 P 中有<code>可运行的G队列</code>（如图中最下面的那行G）和<code>自由G列表</code>（图中未画出来），当 G 的代码执行完后，该G不会被销毁，而是被放到<code>P的自由G列表</code>或<code>调度器的自由G列表</code>。如果程序新建了Go协程，调度器会在自由G列表中取一个G，然后把Go协程的函数赋值到G中（如果自由G列表为空，就创建一个G）；可见Golang调度器在调度时很大程度复用了M，P，G</li>
+<li>在Go程序初始化后，调度器首先进行一轮调度，此时用M去搜索可运行的G。其中我们的main函数也是一个G，找到可运行的G后就执行它，至于去哪找，可以从<code>本地P的可运行的G队列</code>找、从<code>调度器的可运行的G队列</code>找、从<code>其他P的可运行的G队列</code>找，还有其他的</li>
+<li><code>P的可运行G队列</code>最大只能存放长度为256的G，当队列满后，调度器会把一半的G转到<code>调度器的可运行G队列</code>。</li>
+</ul>
+<h2 id="系统监控">系统监控 </h2>
+<p>我们都知道耗时较长的某个 Go 协程并非一直运行，当Go协程很多时候，它不能一直执行下去，也需要把执行机会留给其他的 G 。此时Golang运行时的系统监控就起作用了。</p>
+<p>一般情况，当 G 运行时间超过10ms后，该 G 就会被系统告知需要停止了，让其他G运行。（这里情况比较复杂，并不能确保每个G都能被公平执行）</p>
+<p>以下情况该 G 不需要停止</p>
+<ul>
+<li>P 的可运行 G 队列为空（没有其他G可运行）</li>
+<li>有空闲的 M 在寻找可运行的G（没有其他G可运行）</li>
+<li>空闲的P（还有P闲着）</li>
+</ul>
+<h3 id="总结">总结 </h3>
+<p>Golang以两级线程实现模型，自己实现goruntine和调度器，优势在于并行和非常低的资源使用。</p>
+<p>主要体现在：</p>
+<ul>
+<li>内存消耗方面（每个Go协程占的内存远小于线程占的内存）</li>
+<li>切换(调度)开销方面</li>
+<li>线程切换涉及模式切换(从用户态切换到内核态)</li>
+</ul>
+<p>此外，Go协程执行任务完成的顺序并不都是按我们预期的那样（程序不加以控制的情况下），特别在一些耗时较长的任务中。且每个Go协程执行的时间也不是绝对公平的。</p>
+<h2 id="拓展">拓展 </h2>
+<h3 id="线程实现模型">线程实现模型 </h3>
+<p>线程实现模型主要分为：<code>用户级线程模型</code>，<code>内核级线程模型</code>和<code>两级线程模型</code>。他们的区别在于线程与内核线程之间的对应关系。</p>
+<p>以下我们将分析这三种线程实现模型的特点：</p>
+<h4 id="用户级线程模型">用户级线程模型 </h4>
+<ul>
+<li>多对一关系：用户级线程模型为多对一关系。即，一个进程中的所有线程对应一个内核线程；</li>
+<li>处理速度快、移植性强；线程的创建、调度、同步等操作由应用程序来处理，不需要让CPU从用户态切换到内核态。所以用户级线程模型在速度快，且移植性强；</li>
+<li>并非真正的并发运行，如果线程IO操作过程中被阻塞，那么用户空间的其他线程都会被阻塞，因为这些线程无法被内核调度。</li>
+</ul>
+<p><img class="lazyload blur-up radius shadow" src="/images/go-gmp-n21.png" alt="多对一"></p>
+<h4 id="内核级线程模型">内核级线程模型 </h4>
+<ul>
+<li>一对一关系，内核级线程模型为一对一关系，一个用户线程对应一个内核线程；</li>
+<li>资源消耗较大，速度较慢，进程对线程的创建、终止、切换和同步都必须通过内核提供的系统调用来完成，对内核的调度的调度器造成很大的负担；</li>
+<li>真正的并发运行，用户线程和内核线程是一对一的关系，线程由内核来管理和调度。当某一线程阻塞时候，不会影响到其他线程。</li>
+</ul>
+<p><img class="lazyload blur-up radius shadow" src="/images/go-gmp-121.png" alt="一对一"></p>
+<h4 id="两级线程模型">两级线程模型 </h4>
+<ul>
+<li>多对多的关系：两级线程模型是集前面两种模型的优点而设计的，是多对多的关系；</li>
+<li>资源消耗较小，速度较快，是真正的并发运行，两级线程模型中，一个进程对应多个内核线程，进程中的线程由程序管理和调度并通过映射关系映射到内核线程上。这样即便有线程阻塞后，也不会影响到其他线程；</li>
+<li>实现复杂度大：用户线程与内核线程的映射关系需要程序来实现，实现的复杂度大。幸运的是，Golang为我们实现了两级线程模型，这使得它在处理并发问题上更有优势。</li>
+</ul>
+<p><img class="lazyload blur-up radius shadow" src="/images/go-gmp-n2n.png" alt="多对多"></p>
+<h2 id="参考">参考 </h2>
+<ul>
+<li><a href="https://www.cnblogs.com/FireworksEasyCool/p/11508806.html">弄懂goroutine调度原理</a></li>
+<li><a href="https://www.cnblogs.com/FireworksEasyCool/p/11508342.html">线程实现模型</a></li>
 </ul>
 
 			
@@ -886,17 +914,17 @@ crossorigin="anonymous"
 async>
 </script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">
+	<a href="/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; 为什么能这么快
+					&larr; 内嵌变量
 				</div>
 			</div>
 		</a>
-	<a class="ms-auto" href="/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">
+	<a class="ms-auto" href="/book/linux/%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84%E5%92%8C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					goroutine原理 &rarr;
+					文件句柄和文件描述符 &rarr;
 				</div>
 			</div>
 		</a>
