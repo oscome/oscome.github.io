@@ -83,5 +83,23 @@ Infinity 新标签页  标签页，自由添加网站图标，云端高清壁纸
  后续有其他好用的谷歌插件，再开一期分享。你有什么好的推荐，不妨评论区分享给大家。</description>
     </item>
     
+    <item>
+      <title>效率工具 uTools</title>
+      <link>https://oscome.cn/docs/tool/utool/</link>
+      <pubDate>Wed, 12 Oct 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/tool/utool/</guid>
+      <description>简介  uTools 是一个插件式工具集合。安装之后，可以省去装其他很多应用，拥有丰富的插件市场，甚至连编程文档都有，十分强大。
+官网  https://u.tools/
+功能介绍  默认快捷键是 alt+space。可以自定义，出现是这么个样子的。
+一个简洁的导航栏。
+翻译  不用再去网页上翻译了，uTools帮你聚合了。（可能是谷歌翻译退出，所以没有了）
+文档  超级面板  长按右键即可打开，其实就是个快捷菜单，可以省去打字的时间。
+可以根据插件的关键字添加到超级面板，快速打开，这是我常用的插件。
+超级面板还可以支持语音，但如果是日常开发，可能没那么大用处。
+其他  插件很丰富，就不一一介绍了。
+ 个人还是比较推荐的，而且目前是免费无广告。更多介绍 https://u.tools/</description>
+    </item>
+    
   </channel>
 </rss>

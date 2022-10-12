@@ -842,7 +842,7 @@
 </table>
 <p>从下往上看：</p>
 <ul>
-<li>M 和内核线程之间是一对一的，一个 M 在其生命周期中，只会和一个内核线程关联，因此不会出现对内核线程的频繁切换；Go 的运行时执行系统监控和垃圾回收等任务时候会导致创建 M ，M 空闲时不会被销毁，而是放到一个<code>调度器的空闲M列表</code>中，等待与 P 关联，M 默认数量为10000</li>
+<li>M 和内核线程之间是一对一关系，一个 M 在其生命周期中，只会和一个内核线程关联，因此不会出现对内核线程的频繁切换；Go 的运行时执行系统监控和垃圾回收等任务时候会导致创建 M ，M 空闲时不会被销毁，而是放到一个<code>调度器的空闲M列表</code>中，等待与 P 关联，M 默认数量为10000</li>
 <li>P 和 M 是多对多的关系，P 和 G 是一对多的关系，他们的关联是易变的，由Go的调度器完成调度；Go的运行时按规则调度，让 P 和不同的 M 建立或断开关联，使得 P 中的 G 能够及时获得运行时机</li>
 <li>P 的数量默认为 CPU 总核心数，最大为256，当 P 没有可运行的 G 的时候（ P 的可运行 G 队列为空），P会被放到<code>调度器的空闲P列表</code>中，等待 M 与它关联；P 可能会被销毁，如运行时用runtime.GOMAXPROCS把P的数量从32降到16时，剩余16个会被销毁，它们原来的 G 会先转到调度器<code>可运行的G队列</code>和<code>自由G列表</code></li>
 <li>每个 P 中有<code>可运行的G队列</code>（如图中最下面的那行G）和<code>自由G列表</code>（图中未画出来），当 G 的代码执行完后，该G不会被销毁，而是被放到<code>P的自由G列表</code>或<code>调度器的自由G列表</code>。如果程序新建了Go协程，调度器会在自由G列表中取一个G，然后把Go协程的函数赋值到G中（如果自由G列表为空，就创建一个G）；可见Go调度器在调度时很大程度复用了M，P，G</li>
@@ -962,7 +962,7 @@ async>
 <script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
   <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
   <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
-  <script src="https://oscome.cn/index.min.ada26c3e649226c1883dbefe362a804b30098fa864e24a774460676edc1c904bc5d5a570ee0177c23ac99ec826df10987bbd509a22c9bb7712ba6a20177f00ce.js" integrity="sha512-raJsPmSSJsGIPb7&#43;NiqASzAJj6hk4kp3RGBnbtwckEvF1aVw7gF3wjrJnsgm3xCYe71QmiLJu3cSumogF38Azg==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.b8d4bc5877f2796b07f2b03e073c28c85c57acc1d2cc1059078a87a323f607b78ce6724f171db1c5597d7e8b521503c60e4af7c884d936c602e5424bd0e19d53.js" integrity="sha512-uNS8WHfyeWsH8rA&#43;BzwoyFxXrMHSzBBZB4qHoyP2B7eM5nJPFx2xxVl9fotSFQPGDkr3yITZNsYC5UJL0OGdUw==" crossorigin="anonymous" defer></script>
   
     
     <script>
