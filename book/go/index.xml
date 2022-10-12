@@ -29,11 +29,11 @@ PS：</description>
       <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
       
       <guid>https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/</guid>
-      <description>简介  Rob Pike说，Goroutine是一个与其他goroutines 并发运行在同一地址空间的Go函数或方法。一个运行的程序由一个或更多个goroutine组成。它与线程、协程、进程等不同。它是一个goroutine。
- goroutine 通过通道来通信，而协程通过让出和恢复操作来通信 goroutine 通过 Golang 的调度器进行调度，而协程通过程序本身调度  调度原理  goroutine 调度器的线程模型为两级线程模型。有关两级线程模型的介绍，可以看文章最后。
-我们来看下Golang实现的两级线程模型是怎样的，如果你了解一些 go 底层，应该听说 GMP 模型：
- M：代表内核级的线程 P：全程Processor，代表运行Go协程所需要的资源（上下文环境） G：代表Go协程  M，P，G数据结构如下：
-   名称 作用范围 描述     全局M列表 Go的运行时 存放所有M的单向链表   全局P列表 Go的运行时 存放所有P的数组   全局G列表 Go的运行时 存放所有G的切片   调度器的空闲M列表 调度器 存放空闲M的单向链表   调度器的空闲P列表 调度器 存放空闲P的单向链表   调度器的自由G列表 调度器 存放自由G的单向链表（有两个）   调度器的可运行G队列 调度器 存放可运行G的队列   P的自由G列表 本地P 存放当前P中自由G的单向链表   P的可运行G队列 本地P 存放当前P中可运行G的队列    从上往下：</description>
+      <description>Rob Pike说，Goroutine是一个与其他 goroutine 并发运行在同一地址空间的Go函数或方法。一个运行的程序由一个或更多个goroutine组成。它与线程、协程、进程等不同。它是一个goroutine。
+ goroutine VS 协程   goroutine 通过通道来通信，而协程通过让出和恢复操作来通信 goroutine 通过 Go 的调度器进行调度，而协程通过程序本身调度  调度原理  goroutine 调度器的线程模型为两级线程模型。(有关两级线程模型的介绍，可以看文章拓展部分)
+Go 实现的两级线程模型，也就是 GMP 模型：
+ M：内核级的线程 P：全程Processor，代表运行Go协程所需要的资源（上下文环境） G：goroutine  其数据结构如下：
+   名称 作用范围 描述     全局M列表 Go的运行时 存放所有M的单向链表   全局P列表 Go的运行时 存放所有P的数组   全局G列表 Go的运行时 存放所有G的切片   调度器的空闲M列表 调度器 存放空闲M的单向链表   调度器的空闲P列表 调度器 存放空闲P的单向链表   调度器的自由G列表 调度器 存放自由G的单向链表（有两个）   调度器的可运行G队列 调度器 存放可运行G的队列   P的自由G列表 本地P 存放当前P中自由G的单向链表   P的可运行G队列 本地P 存放当前P中可运行G的队列    从下往上看：</description>
     </item>
     
     <item>

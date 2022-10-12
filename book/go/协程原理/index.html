@@ -657,7 +657,7 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a></li>
+    <li><a href="#goroutine-vs-协程">goroutine VS 协程</a></li>
     <li><a href="#调度原理">调度原理</a></li>
     <li><a href="#系统监控">系统监控</a>
       <ul>
@@ -680,7 +680,7 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a></li>
+    <li><a href="#goroutine-vs-协程">goroutine VS 协程</a></li>
     <li><a href="#调度原理">调度原理</a></li>
     <li><a href="#系统监控">系统监控</a>
       <ul>
@@ -725,7 +725,7 @@
       <div class="page-links">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a></li>
+    <li><a href="#goroutine-vs-协程">goroutine VS 协程</a></li>
     <li><a href="#调度原理">调度原理</a></li>
     <li><a href="#系统监控">系统监控</a>
       <ul>
@@ -748,7 +748,7 @@
   <h3>目录</h3>
   <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a></li>
+    <li><a href="#goroutine-vs-协程">goroutine VS 协程</a></li>
     <li><a href="#调度原理">调度原理</a></li>
     <li><a href="#系统监控">系统监控</a>
       <ul>
@@ -766,21 +766,24 @@
   </div>
 
 			</nav>
-			<h2 id="简介">简介 </h2>
-<p>Rob Pike说，<strong>Goroutine是一个与其他goroutines 并发运行在同一地址空间的Go函数或方法。一个运行的程序由一个或更多个goroutine组成。它与线程、协程、进程等不同。它是一个goroutine</strong>。</p>
+			<blockquote>
+<p>Rob Pike说，<strong>Goroutine是一个与其他 goroutine 并发运行在同一地址空间的Go函数或方法。一个运行的程序由一个或更多个goroutine组成。它与线程、协程、进程等不同。它是一个goroutine</strong>。</p>
+</blockquote>
+<h2 id="goroutine-vs-协程">goroutine VS 协程 </h2>
 <ul>
 <li>goroutine 通过通道来通信，而协程通过让出和恢复操作来通信</li>
-<li>goroutine 通过 Golang 的调度器进行调度，而协程通过程序本身调度</li>
+<li>goroutine 通过 Go 的调度器进行调度，而协程通过程序本身调度</li>
 </ul>
 <h2 id="调度原理">调度原理 </h2>
-<p>goroutine 调度器的线程模型为两级线程模型。有关两级线程模型的介绍，可以看文章最后。</p>
-<p>我们来看下Golang实现的两级线程模型是怎样的，如果你了解一些 go 底层，应该听说 GMP 模型：</p>
+<p>goroutine 调度器的线程模型为两级线程模型。(有关两级线程模型的介绍，可以看文章拓展部分)</p>
+<p>Go 实现的两级线程模型，也就是 GMP 模型：</p>
 <ul>
-<li><strong>M</strong>：代表内核级的线程</li>
-<li><strong>P</strong>：全程Processor，代表运行Go协程所需要的资源（上下文环境）</li>
-<li><strong>G</strong>：代表Go协程</li>
+<li>M：内核级的线程</li>
+<li>P：全程Processor，代表运行Go协程所需要的资源（上下文环境）</li>
+<li>G：goroutine</li>
 </ul>
-<p>M，P，G数据结构如下：</p>
+<p><img class="lazyload blur-up radius shadow" src="/images/go-gmp.png" alt="GMP"></p>
+<p>其数据结构如下：</p>
 <table>
 <thead>
 <tr>
@@ -837,18 +840,17 @@
 </tr>
 </tbody>
 </table>
-<p><img class="lazyload blur-up radius shadow" src="/images/go-gmp.png" alt="GMP"></p>
-<p>从上往下：</p>
+<p>从下往上看：</p>
 <ul>
-<li>M和内核线程之间是一对一的，一个M在其生命周期中，只会和一个内核线程关联，因此不会出现对内核线程的频繁切换；Golang的运行时执行系统监控和垃圾回收等任务时候会导致创建M，M空闲时不会被销毁，而是放到一个<code>调度器的空闲M列表</code>中，等待与P关联，M默认数量为10000</li>
-<li>P 和 M 是多对多的关系，P 和 G 是一对多的关系，他们的关联是易变的，由Golang的调度器完成调度；Golang的运行时按规则调度，让P和不同的M建立或断开关联，使得P中的G能够及时获得运行时机</li>
-<li>P 的数量默认为CPU总核心数，最大为256，当 P 没有可运行的G时候（ P 的可运行 G 队列为空），P会被放到<code>调度器的空闲P列表</code>中，等待 M 与它关联；P 可能会被销毁，如运行时用runtime.GOMAXPROCS把P的数量从32降到16时，剩余16个会被销毁，它们原来的 G 会先转到调度器<code>可运行的G队列</code>和<code>自由G列表</code></li>
-<li>每个 P 中有<code>可运行的G队列</code>（如图中最下面的那行G）和<code>自由G列表</code>（图中未画出来），当 G 的代码执行完后，该G不会被销毁，而是被放到<code>P的自由G列表</code>或<code>调度器的自由G列表</code>。如果程序新建了Go协程，调度器会在自由G列表中取一个G，然后把Go协程的函数赋值到G中（如果自由G列表为空，就创建一个G）；可见Golang调度器在调度时很大程度复用了M，P，G</li>
+<li>M 和内核线程之间是一对一的，一个 M 在其生命周期中，只会和一个内核线程关联，因此不会出现对内核线程的频繁切换；Go 的运行时执行系统监控和垃圾回收等任务时候会导致创建 M ，M 空闲时不会被销毁，而是放到一个<code>调度器的空闲M列表</code>中，等待与 P 关联，M 默认数量为10000</li>
+<li>P 和 M 是多对多的关系，P 和 G 是一对多的关系，他们的关联是易变的，由Go的调度器完成调度；Go的运行时按规则调度，让 P 和不同的 M 建立或断开关联，使得 P 中的 G 能够及时获得运行时机</li>
+<li>P 的数量默认为 CPU 总核心数，最大为256，当 P 没有可运行的 G 的时候（ P 的可运行 G 队列为空），P会被放到<code>调度器的空闲P列表</code>中，等待 M 与它关联；P 可能会被销毁，如运行时用runtime.GOMAXPROCS把P的数量从32降到16时，剩余16个会被销毁，它们原来的 G 会先转到调度器<code>可运行的G队列</code>和<code>自由G列表</code></li>
+<li>每个 P 中有<code>可运行的G队列</code>（如图中最下面的那行G）和<code>自由G列表</code>（图中未画出来），当 G 的代码执行完后，该G不会被销毁，而是被放到<code>P的自由G列表</code>或<code>调度器的自由G列表</code>。如果程序新建了Go协程，调度器会在自由G列表中取一个G，然后把Go协程的函数赋值到G中（如果自由G列表为空，就创建一个G）；可见Go调度器在调度时很大程度复用了M，P，G</li>
 <li>在Go程序初始化后，调度器首先进行一轮调度，此时用M去搜索可运行的G。其中我们的main函数也是一个G，找到可运行的G后就执行它，至于去哪找，可以从<code>本地P的可运行的G队列</code>找、从<code>调度器的可运行的G队列</code>找、从<code>其他P的可运行的G队列</code>找，还有其他的</li>
 <li><code>P的可运行G队列</code>最大只能存放长度为256的G，当队列满后，调度器会把一半的G转到<code>调度器的可运行G队列</code>。</li>
 </ul>
 <h2 id="系统监控">系统监控 </h2>
-<p>我们都知道耗时较长的某个 Go 协程并非一直运行，当Go协程很多时候，它不能一直执行下去，也需要把执行机会留给其他的 G 。此时Golang运行时的系统监控就起作用了。</p>
+<p>我们都知道耗时较长的某个 Go 协程并非一直运行，当Go协程很多时候，它不能一直执行下去，也需要把执行机会留给其他的 G 。此时Go运行时的系统监控就起作用了。</p>
 <p>一般情况，当 G 运行时间超过10ms后，该 G 就会被系统告知需要停止了，让其他G运行。（这里情况比较复杂，并不能确保每个G都能被公平执行）</p>
 <p>以下情况该 G 不需要停止</p>
 <ul>
@@ -857,7 +859,7 @@
 <li>空闲的P（还有P闲着）</li>
 </ul>
 <h3 id="总结">总结 </h3>
-<p>Golang以两级线程实现模型，自己实现goruntine和调度器，优势在于并行和非常低的资源使用。</p>
+<p>Go以两级线程实现模型，自己实现goruntine和调度器，优势在于并行和非常低的资源使用。</p>
 <p>主要体现在：</p>
 <ul>
 <li>内存消耗方面（每个Go协程占的内存远小于线程占的内存）</li>
@@ -887,7 +889,7 @@
 <ul>
 <li>多对多的关系：两级线程模型是集前面两种模型的优点而设计的，是多对多的关系；</li>
 <li>资源消耗较小，速度较快，是真正的并发运行，两级线程模型中，一个进程对应多个内核线程，进程中的线程由程序管理和调度并通过映射关系映射到内核线程上。这样即便有线程阻塞后，也不会影响到其他线程；</li>
-<li>实现复杂度大：用户线程与内核线程的映射关系需要程序来实现，实现的复杂度大。幸运的是，Golang为我们实现了两级线程模型，这使得它在处理并发问题上更有优势。</li>
+<li>实现复杂度大：用户线程与内核线程的映射关系需要程序来实现，实现的复杂度大。幸运的是，Go为我们实现了两级线程模型，这使得它在处理并发问题上更有优势。</li>
 </ul>
 <p><img class="lazyload blur-up radius shadow" src="/images/go-gmp-n2n.png" alt="多对多"></p>
 <h2 id="参考">参考 </h2>
