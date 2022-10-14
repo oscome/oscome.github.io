@@ -1,0 +1,1150 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-500.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="https://oscome.cn/fonts/vendor/jost/jost-v4-latin-700.woff2" type="font/woff2" crossorigin>
+
+  <script>(()=>{var b=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=localStorage.getItem("theme");b&&a===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),b&&a==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),a==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+<script>(()=>{Object.keys(localStorage).forEach(function(a){/^global-alert-/.test(a)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script>
+  <link rel="stylesheet" href="https://oscome.cn/main.c701ea1312889706f6946b830c951677ca6bbf457d70fa517f8d86ae951bd50a4db6a664549e3259333eaad1588e2d86dfa96b2684a240f29d0c6a00f2f19202.css" integrity="sha512-xwHqExKIlwb2lGuDDJUWd8prv0V9cPpRf42GrpUb1QpNtqZkVJ4yWTM&#43;qtFYji2G36lrJoSiQPKdDGoA8vGSAg==" crossorigin="anonymous">
+<noscript><style>img.lazyload { display: none; }</style></noscript>
+  <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <title>面试题 | 开源到</title>
+<meta name="description" content="面试题">
+<link rel="canonical" href="https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题">
+<meta property="og:description" content="面试题">
+<meta property="og:url" content="https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+<meta property="og:site_name" content="开源到">
+<meta property="article:published_time" content="2022-10-12T10:28:28+08:00">
+  <meta property="article:modified_time" content="2022-10-12T10:28:28+08:00">
+  
+  <meta property="og:image" content="https://oscome.cn/oscome.png"/>
+      <meta property="og:image:alt" content="开源到">
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getdoks">
+<meta name="twitter:creator" content="@henkverlinde">
+<meta name="twitter:title" content="面试题">
+<meta name="twitter:description" content="面试题">
+<meta name="twitter:image" content="https://oscome.cn/oscome.png">
+    <meta name="twitter:image:alt" content="面试题">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+        "@id": "https://oscome.cn/#/schema/person/1",
+      "name": "oscome",
+      "url": "https://oscome.cn/",
+      "sameAs": [
+        "1"
+        , "1"
+        , "https://github.com/oscome"
+        ],
+      "image": {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/#/schema/image/1",
+          "url": "https://oscome.cn/oscome.png",
+          "width":  1280 ,
+          "height":  640 ,
+          "caption": "oscome"
+        }
+      },
+    {
+      "@type": "WebSite",
+      "@id": "https://oscome.cn/#/schema/website/1",
+      "url": "https://oscome.cn/",
+      "name": "开源到",
+      "description": "分享开源项目，技术资讯",
+      "publisher": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        }
+      },
+    {
+      "@type": "WebPage",
+      "@id": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/",
+      "url": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/",
+      "name": "面试题",
+      "description": "面试题",
+      "isPartOf": {
+        "@id": "https://oscome.cn/#/schema/website/1"
+      },
+      "about": {
+          "@id": "https://oscome.cn/#/schema/person/1"
+        },
+      "datePublished": "2022-10-12T10:28:28CET",
+      "dateModified": "2022-10-12T10:28:28CET",
+      "breadcrumb": {
+        "@id": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/#/schema/image/2"
+      },
+      "inLanguage": "zh-CN",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/",
+          "url": "https://oscome.cn/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/",
+          "url": "https://oscome.cn/book/",
+          "name": "Book"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://oscome.cn/book/go/",
+          "url": "https://oscome.cn/book/go/",
+          "name": "Go"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  4 ,
+        "item": {
+          "@id": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/"
+          }
+        }]
+    },
+
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/#/schema/image/2",
+          "url": "https://oscome.cn/oscome.png",
+          "contentUrl": "https://oscome.cn/oscome.png",
+          "caption": "面试题"
+        }
+      ]
+    }
+
+  ]
+}
+</script>
+
+  <meta name="theme-color" content="#fff">
+<link rel="icon" href="https://oscome.cn/favicon.ico" sizes="any">
+
+  
+
+</head>
+
+  <body class="book single">
+    <div id="announcement" data-id="global-alert-988f19399d2d8c762a27fb4634a360b7" class="alert alert-primary alert-dismissible fade show text-lg-center" role="alert">
+    网站目前处于初期建设中，不定期更新，感谢您的支持
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="sticky-top">
+<div class="header-bar"></div>
+
+<header class="navbar navbar-expand-lg navbar-light doks-navbar">
+  <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+
+    <a class="navbar-brand order-0" href="/" aria-label="开源到">
+      开源到
+    </a>
+
+    <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
+      <div class="header-bar d-lg-none"></div>
+      <div class="offcanvas-header d-lg-none">
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
+      </div>
+      <div class="offcanvas-body p-4 p-lg-0">
+        <ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto">
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/topic/">技术专栏</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/book/readme/">知识合集</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/tool/">工具箱</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/docs/">软件扩展</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="/about/">关于</a>
+              </li>
+            
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2">
+          <input id="search" class="form-control is-search" type="search" placeholder="搜索..." aria-label="搜索..." autocomplete="off">
+          <div id="suggestions" class="shadow bg-white rounded d-none"></div>
+        </form>
+        <hr class="text-black-50 my-4 d-lg-none">
+        <ul class="nav flex-column flex-lg-row">
+          <li class="nav-item">
+              <a class="nav-link social-link" target="_blank" href="https://github.com/oscome"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><small class="ms-2 d-lg-none">GitHub</small></a>
+            </li>
+          </ul>
+
+        <hr class="text-black-50 my-4 d-lg-none">
+        <button id="mode" class="btn btn-link" type="button" aria-label="Toggle user interface mode">
+          <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+          <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        </button>
+        </div>
+    </div>
+  </nav>
+</header>
+
+
+</div>
+
+
+<div class="container-xxl">
+  <aside class="doks-sidebar">
+    <nav id="doks-docs-nav" class="collapse d-lg-none" aria-label="Tertiary navigation">
+      
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-34d1f91fb2e514b8576fab1a75a89a6b" aria-expanded="true">
+          go
+        </button>
+        <div class="collapse show" id="section-34d1f91fb2e514b8576fab1a75a89a6b">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/">进程线程协程</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">goroutine原理</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/gc/">gc垃圾回收</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-2fec392304a5c23ac138da22847f9b7c" aria-expanded="false">
+          PHP
+        </button>
+        <div class="collapse" id="section-2fec392304a5c23ac138da22847f9b7c">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/">类型与运算符</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/php-fpm/">fpm</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">生命周期</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-edc9f0a5a5d57797bf68e37364743831" aria-expanded="false">
+          Linux
+        </button>
+        <div class="collapse" id="section-edc9f0a5a5d57797bf68e37364743831">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/linux/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">常见命令</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/linux/%E4%BA%94%E5%A4%A7io%E6%A8%A1%E5%9E%8B/">五大IO模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/linux/%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84%E5%92%8C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/">文件句柄和文件描述符</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
+          Nginx
+        </button>
+        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">常用配置</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/">工作模式和进程模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">代理缓存</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/">动态负载</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/">优化</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-7ddbe15c845fa27a2bab496183042ca6" aria-expanded="false">
+          网络
+        </button>
+        <div class="collapse" id="section-7ddbe15c845fa27a2bab496183042ca6">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/http%E7%8A%B6%E6%80%81%E7%A0%81/">http状态码</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/osi%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE/">OSI七层网络协议</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/tcp/">tcp 三次握手和四次挥手</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/tcp%E5%92%8Cudp/">tcp、udp对比</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-bfd47ab5b430c23c83ea0d7b87b6e244" aria-expanded="false">
+          k8s
+        </button>
+        <div class="collapse" id="section-bfd47ab5b430c23c83ea0d7b87b6e244">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/kubernetes/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+    </nav>
+  </aside>
+</div>
+
+    <div class="wrap container-xxl" role="document">
+      <div class="content">
+        
+	<div class="row flex-xl-nowrap">
+		<div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block">
+			<nav class="docs-links" aria-label="Main navigation">
+				
+<ul class="list-unstyled collapsible-sidebar">
+  
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-34d1f91fb2e514b8576fab1a75a89a6b" aria-expanded="true">
+          go
+        </button>
+        <div class="collapse show" id="section-34d1f91fb2e514b8576fab1a75a89a6b">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/">进程线程协程</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">goroutine原理</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/go/gc/">gc垃圾回收</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded active" href="https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-2fec392304a5c23ac138da22847f9b7c" aria-expanded="false">
+          PHP
+        </button>
+        <div class="collapse" id="section-2fec392304a5c23ac138da22847f9b7c">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/">类型与运算符</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/php-fpm/">fpm</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">生命周期</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/php/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62a004b95946bb97541afa471dcca73a" aria-expanded="false">
+          MySQL
+        </button>
+        <div class="collapse" id="section-62a004b95946bb97541afa471dcca73a">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">MySQL执行流程说明</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E6%95%B0%E6%8D%AE%E5%8F%AF%E9%9D%A0%E6%80%A7/">数据可靠性</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/"></a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-e111446745a1825b862f8727ae63bce4" aria-expanded="false">
+          Redis
+        </button>
+        <div class="collapse" id="section-e111446745a1825b862f8727ae63bce4">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E7%BC%93%E5%AD%98/">缓存知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E5%9F%BA%E7%A1%80/">基础知识</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/redis%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB/">为什么能这么快</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">过期策略</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/redis/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/">源码实现</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-edc9f0a5a5d57797bf68e37364743831" aria-expanded="false">
+          Linux
+        </button>
+        <div class="collapse" id="section-edc9f0a5a5d57797bf68e37364743831">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/linux/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">常见命令</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/linux/%E4%BA%94%E5%A4%A7io%E6%A8%A1%E5%9E%8B/">五大IO模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/linux/%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84%E5%92%8C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/">文件句柄和文件描述符</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-62e0b5b350c9e3d2c19aa801d9442ba9" aria-expanded="false">
+          Nginx
+        </button>
+        <div class="collapse" id="section-62e0b5b350c9e3d2c19aa801d9442ba9">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E6%B7%BB%E5%8A%A0lua%E6%A8%A1%E5%9D%97/">添加lua模块</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0/">常用配置</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">内嵌变量</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B/">工作模式和进程模型</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">代理缓存</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E5%8A%A8%E6%80%81%E8%B4%9F%E8%BD%BD/">动态负载</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/nginx/%E4%BC%98%E5%8C%96/">优化</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-7ddbe15c845fa27a2bab496183042ca6" aria-expanded="false">
+          网络
+        </button>
+        <div class="collapse" id="section-7ddbe15c845fa27a2bab496183042ca6">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/http%E7%8A%B6%E6%80%81%E7%A0%81/">http状态码</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/osi%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE/">OSI七层网络协议</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/tcp/">tcp 三次握手和四次挥手</a></li>
+              
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/%E7%BD%91%E7%BB%9C/tcp%E5%92%8Cudp/">tcp、udp对比</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#section-bfd47ab5b430c23c83ea0d7b87b6e244" aria-expanded="false">
+          k8s
+        </button>
+        <div class="collapse" id="section-bfd47ab5b430c23c83ea0d7b87b6e244">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            
+              
+                
+                <li><a class="docs-link rounded" href="https://oscome.cn/book/kubernetes/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></li>
+              
+            
+          </ul>
+        </div>
+      </li>
+    
+  
+</ul>
+
+			</nav>
+		</div>
+		<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+			<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#-和--的区别">= 和 := 的区别</a></li>
+        <li><a href="#指针的作用">指针的作用</a></li>
+        <li><a href="#go-有异常类型吗">Go 有异常类型吗？</a></li>
+        <li><a href="#什么是-goroutine">什么是 Goroutine</a></li>
+        <li><a href="#defer-的执行顺序">defer 的执行顺序</a></li>
+        <li><a href="#go-语言-tag-的用处">Go 语言 tag 的用处？</a></li>
+        <li><a href="#new和make的区别">new和make的区别</a></li>
+        <li><a href="#init函数的特性">init函数的特性</a></li>
+        <li><a href="#通道特性">通道特性</a></li>
+        <li><a href="#数组与切片的区别">数组与切片的区别？</a></li>
+        <li><a href="#解释以下命令的作用">解释以下命令的作用？</a></li>
+        <li><a href="#go-语言的局部变量分配在栈上还是堆上">Go 语言的局部变量分配在栈上还是堆上？</a></li>
+        <li><a href="#go语言中的引用类型包含哪些">go语言中的引用类型包含哪些？</a></li>
+        <li><a href="#go语言中指针运算有哪些">go语言中指针运算有哪些？</a></li>
+        <li><a href="#什么是协程泄露goroutine-leak">什么是协程泄露(Goroutine Leak)？</a></li>
+        <li><a href="#说说进程线程协程之间的区别">说说进程、线程、协程之间的区别</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#-和--的区别">= 和 := 的区别</a></li>
+        <li><a href="#指针的作用">指针的作用</a></li>
+        <li><a href="#go-有异常类型吗">Go 有异常类型吗？</a></li>
+        <li><a href="#什么是-goroutine">什么是 Goroutine</a></li>
+        <li><a href="#defer-的执行顺序">defer 的执行顺序</a></li>
+        <li><a href="#go-语言-tag-的用处">Go 语言 tag 的用处？</a></li>
+        <li><a href="#new和make的区别">new和make的区别</a></li>
+        <li><a href="#init函数的特性">init函数的特性</a></li>
+        <li><a href="#通道特性">通道特性</a></li>
+        <li><a href="#数组与切片的区别">数组与切片的区别？</a></li>
+        <li><a href="#解释以下命令的作用">解释以下命令的作用？</a></li>
+        <li><a href="#go-语言的局部变量分配在栈上还是堆上">Go 语言的局部变量分配在栈上还是堆上？</a></li>
+        <li><a href="#go语言中的引用类型包含哪些">go语言中的引用类型包含哪些？</a></li>
+        <li><a href="#go语言中指针运算有哪些">go语言中指针运算有哪些？</a></li>
+        <li><a href="#什么是协程泄露goroutine-leak">什么是协程泄露(Goroutine Leak)？</a></li>
+        <li><a href="#说说进程线程协程之间的区别">说说进程、线程、协程之间的区别</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+		</nav>
+		<main class="docs-content col-lg-11 col-xl-9 mx-xl-auto">
+		<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/book/">Book</a></li>
+<li class="breadcrumb-item"><a href="/book/go/">go</a></li>
+<li class="breadcrumb-item active" aria-current="page">面试题</li>
+					</ol>
+				</nav>
+			
+			<h1>面试题</h1>
+			<time>2022-10-12, Wednesday</time>
+			<p class="lead"></p>
+			<nav class="d-xl-none" aria-label="Quaternary navigation">
+				<div class="d-xl-none">
+  <button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#onThisPage" aria-controls="doks-docs-nav" aria-expanded="false" aria-label="Toggle On this page navigation">
+    <span>目录</span>
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+    </span>
+  </button>
+  <div class="collapse" id="onThisPage">
+    <div class="card card-body mt-3 py-1">
+      <div class="page-links">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#-和--的区别">= 和 := 的区别</a></li>
+        <li><a href="#指针的作用">指针的作用</a></li>
+        <li><a href="#go-有异常类型吗">Go 有异常类型吗？</a></li>
+        <li><a href="#什么是-goroutine">什么是 Goroutine</a></li>
+        <li><a href="#defer-的执行顺序">defer 的执行顺序</a></li>
+        <li><a href="#go-语言-tag-的用处">Go 语言 tag 的用处？</a></li>
+        <li><a href="#new和make的区别">new和make的区别</a></li>
+        <li><a href="#init函数的特性">init函数的特性</a></li>
+        <li><a href="#通道特性">通道特性</a></li>
+        <li><a href="#数组与切片的区别">数组与切片的区别？</a></li>
+        <li><a href="#解释以下命令的作用">解释以下命令的作用？</a></li>
+        <li><a href="#go-语言的局部变量分配在栈上还是堆上">Go 语言的局部变量分配在栈上还是堆上？</a></li>
+        <li><a href="#go语言中的引用类型包含哪些">go语言中的引用类型包含哪些？</a></li>
+        <li><a href="#go语言中指针运算有哪些">go语言中指针运算有哪些？</a></li>
+        <li><a href="#什么是协程泄露goroutine-leak">什么是协程泄露(Goroutine Leak)？</a></li>
+        <li><a href="#说说进程线程协程之间的区别">说说进程、线程、协程之间的区别</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-links d-none d-xl-block">
+  <h3>目录</h3>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#-和--的区别">= 和 := 的区别</a></li>
+        <li><a href="#指针的作用">指针的作用</a></li>
+        <li><a href="#go-有异常类型吗">Go 有异常类型吗？</a></li>
+        <li><a href="#什么是-goroutine">什么是 Goroutine</a></li>
+        <li><a href="#defer-的执行顺序">defer 的执行顺序</a></li>
+        <li><a href="#go-语言-tag-的用处">Go 语言 tag 的用处？</a></li>
+        <li><a href="#new和make的区别">new和make的区别</a></li>
+        <li><a href="#init函数的特性">init函数的特性</a></li>
+        <li><a href="#通道特性">通道特性</a></li>
+        <li><a href="#数组与切片的区别">数组与切片的区别？</a></li>
+        <li><a href="#解释以下命令的作用">解释以下命令的作用？</a></li>
+        <li><a href="#go-语言的局部变量分配在栈上还是堆上">Go 语言的局部变量分配在栈上还是堆上？</a></li>
+        <li><a href="#go语言中的引用类型包含哪些">go语言中的引用类型包含哪些？</a></li>
+        <li><a href="#go语言中指针运算有哪些">go语言中指针运算有哪些？</a></li>
+        <li><a href="#什么是协程泄露goroutine-leak">什么是协程泄露(Goroutine Leak)？</a></li>
+        <li><a href="#说说进程线程协程之间的区别">说说进程、线程、协程之间的区别</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+			</nav>
+			<h3 id="-和--的区别">= 和 := 的区别 </h3>
+<p>前者赋值，后者声明+赋值。</p>
+<h3 id="指针的作用">指针的作用 </h3>
+<p>指针用来保存变量的地址。</p>
+<h3 id="go-有异常类型吗">Go 有异常类型吗？ </h3>
+<p>Go 没有异常类型，只有错误类型（Error），通常使用返回值来表示异常状态。</p>
+<h3 id="什么是-goroutine">什么是 Goroutine </h3>
+<p>Goroutine 是与其他函数或方法同时运行的函数或方法。 Goroutines 可以被认为是轻量级的线程。 与线程相比，创建 Goroutine 的开销很小。 Go应用程序同时运行数千个 Goroutine 是非常常见的做法。</p>
+<h3 id="defer-的执行顺序">defer 的执行顺序 </h3>
+<p>多个 defer 语句，遵从后进先出(Last In First Out，LIFO)的原则，最后声明的 defer 语句，最先得到执行。
+defer 在 return 语句之后执行，但在函数退出之前，defer 可以修改返回值。</p>
+<h3 id="go-语言-tag-的用处">Go 语言 tag 的用处？ </h3>
+<p>tag 可以理解为 struct 字段的注解，可以用来定义字段的一个或多个属性。框架/工具可以通过反射获取到某个字段定义的属性，采取相应的处理方式。tag 丰富了代码的语义，增强了灵活性。</p>
+<h3 id="new和make的区别">new和make的区别 </h3>
+<p>new的作用是初始化一个指向类型的指针(*T)</p>
+<p>new函数是内建函数，函数定义：func new(Type) *Type</p>
+<p>使用new函数来分配空间。传递给<code>new</code> 函数的是一个类型，不是一个值。返回值是指向这个新分配的零值的指针。</p>
+<p>make 的作用是为 slice，map 或 chan 初始化并返回引用(T)。</p>
+<p>make函数是内建函数，函数定义：func make(Type, size IntegerType) Type</p>
+<ul>
+<li>第一个参数是一个类型，第二个参数是长度</li>
+<li>返回值是一个类型</li>
+</ul>
+<p><code>make(T, args)</code>函数的目的与<code>new(T)</code>不同。它仅仅用于创建 Slice, Map 和 Channel，并且返回类型是 T（不是T*）的一个初始化的（不是零值）的实例。</p>
+<h3 id="init函数的特性">init函数的特性 </h3>
+<ul>
+<li>init 函数在main函数前执行，不能被其他函数调用</li>
+<li>init 函数没有输入参数、返回值</li>
+<li>每个包可以有一个或多个init函数</li>
+<li>同一个包的init执行顺序，golang没有明确定义，编程时注意不要依赖这个执行顺序</li>
+<li>不同包的init函数的执行顺序依照包导入的依赖关系决定执行顺序</li>
+<li>import –&gt; const –&gt; var –&gt; init() –&gt; main()</li>
+</ul>
+<h3 id="通道特性">通道特性 </h3>
+<ul>
+<li>对于同一个通道，发送操作之间是互斥的，接收操作之间也是互斥的（并发安全）</li>
+<li>发送操作和接收操作中对元素值的处理都是不可分割的。</li>
+<li>发送操作在完全完成之前会被阻塞，接收操作也是一样。</li>
+<li>对于缓冲通道：如果通道已满，那么对它的所有发送操作都会被阻塞，直到通道中有元素值被接收走；如果通道已空，那么对它的所有接收操作都会被阻塞，直到通道中有新的元素值出现。</li>
+<li>对于非缓冲通道：无论是发送操作还是接收操作，一开始执行就会被阻塞，直到配对的操作也开始执行，才会继续传递。</li>
+</ul>
+<p>注意点：</p>
+<p>关闭通道要在发送方关闭，关闭后如果channel内还有元素，并不会对接下来的接收产生影响
+单向通道最主要的用途就是约束其他代码的行为
+通过函数的参数类型或者返回值类型来限制（Go的语法糖）。</p>
+<h3 id="数组与切片的区别">数组与切片的区别？ </h3>
+<h4 id="数组">数组 </h4>
+<p>数组是具有固定长度且拥有零个或者多个相同数据类型元素的序列。 数组的长度是数组类型的一部分，所以[3]int 和 [4]int 是两种不同的数组类型。</p>
+<p>数组需要指定大小，不指定也会根据初始化的自动推算出大小，不可改变 ;</p>
+<p>数组是值传递;</p>
+<p>数组是内置(build-in)类型,是一组同类型数据的集合，它是值类型，通过从0开始的下标索引访问元素值。在初始化后长度是固定的，无法修改其长度。当作为方法的参数传入时将复制一份数组而不是引用同一指针。数组的长度也是其类型的一部分，通过内置函数len(array)获取其长度。</p>
+<p>数组定义：</p>
+<pre><code>var array [10]int
+var array = [5]int{1,2,3,4,5}
+</code></pre>
+<h4 id="切片">切片 </h4>
+<p>切片表示一个拥有相同类型元素的可变长度的序列。 切片是一种轻量级的数据结构，它有三个属性：指针、长度和容量。</p>
+<p>切片不需要指定大小;切片是地址传递;切片可以通过数组来初始化，也可以通过内置函数make()初始化 .初始化时len=cap,在追加元素时如果容量cap不足时将按len的2倍扩容；</p>
+<p>切片定义：</p>
+<pre><code>var slice []type = make([]type, len)
+</code></pre>
+<h3 id="解释以下命令的作用">解释以下命令的作用？ </h3>
+<pre><code>go env: #用于查看go的环境变量
+go run: #用于编译并运行go源码文件
+go build: #用于编译源码文件、代码包、依赖包
+go get: #用于动态获取远程代码包
+go install: #用于编译go文件，并将编译结构安装到bin、pkg目录
+go clean: #用于清理工作目录，删除编译和安装遗留的目标文件
+go version: #用于查看go的版本信息
+</code></pre>
+<h3 id="go-语言的局部变量分配在栈上还是堆上">Go 语言的局部变量分配在栈上还是堆上？ </h3>
+<p>由编译器决定。Go 语言编译器会自动决定把一个变量放在栈还是放在堆，编译器会做逃逸分析(escape analysis)，当发现变量的作用域没有超出函数范围，就可以在栈上，反之则必须分配在堆上。</p>
+<h3 id="go语言中的引用类型包含哪些">go语言中的引用类型包含哪些？ </h3>
+<p>切片(slice)、字典(map)、通道（channel）、接口（interface）</p>
+<h3 id="go语言中指针运算有哪些">go语言中指针运算有哪些？ </h3>
+<p>可以通过“&amp;”取指针的地址，可以通过“*”取指针指向的数据</p>
+<h3 id="什么是协程泄露goroutine-leak">什么是协程泄露(Goroutine Leak)？ </h3>
+<p>协程泄露是指协程创建后，长时间得不到释放，并且还在不断地创建新的协程，最终导致内存耗尽，程序崩溃。常见的导致协程泄露的场景有以下几种：</p>
+<ul>
+<li>缺少接收器，导致发送阻塞</li>
+<li>缺少发送器，导致接收阻塞</li>
+<li>死锁(dead lock)</li>
+<li>无限循环(infinite loops)</li>
+</ul>
+<h3 id="说说进程线程协程之间的区别">说说进程、线程、协程之间的区别 </h3>
+<p>进程是资源的分配和调度的一个独立单元，而线程是CPU调度的基本单元；同一个进程中可以包括多个线程；进程结束后它拥有的所有线程都将销毁，而线程的结束不会影响同个进程中的其他线程的结束。</p>
+<p>线程共享整个进程的资源（寄存器、堆栈、上下文），一个进程至少包括一个线程；进程的创建调用fork或者vfork，而线程的创建调用pthread_create；线程中执行时一般都要进行同步和互斥，因为他们共享同一进程的所有资源。</p>
+<p>进程是资源分配的单位，而线程是操作系统调度的单位。</p>
+<p>进程切换需要的资源很最大，效率很低;线程切换需要的资源一般，效率一般;协程切换任务资源很小，效率高。</p>
+<p>多进程、多线程根据cpu核数不一样可能是并行的 也可能是并发的。协程的本质就是使用当前进程在不同的函数代码中切换执行，可以理解为并行。 协程是一个用户层面的概念，不同协程的模型实现可能是单线程，也可能是多线程。</p>
+<p>进程拥有自己独立的堆和栈，既不共享堆，亦不共享栈，进程由操作系统调度。（全局变量保存在堆中，局部变量及函数保存在栈中）</p>
+<p>线程拥有自己独立的栈和共享的堆，共享堆，不共享栈，线程亦由操作系统调度(标准线程是这样的)。</p>
+<p>协程和线程一样共享堆，不共享栈，协程由程序员在协程的代码里显示调度。</p>
+<p>一个应用程序一般对应一个进程，一个进程一般有一个主线程，还有若干个辅助线程，线程之间是平行运行的，在线程里面可以开启协程，让程序在特定的时间内运行。</p>
+<p>协程和线程的区别是：协程避免了无意义的调度，由此可以提高性能，但也因此，程序员必须自己承担调度的责任，同时，协程也失去了标准线程使用多CPU的能力。</p>
+<h3 id="参考">参考 </h3>
+<ul>
+<li><a target="_blank" href="https://geektutu.com/post/qa-golang.html">Go 语言笔试面试题汇总</a></li>
+</ul>
+
+			
+			
+<p class="zan my-3 text-center">
+    关注和赞赏都是对小欧莫大的支持！ 🤝 🤝 🤝 
+    <br>
+    <img class="shadow radius ls-is-cached lazyloaded my-3" src="/images/png.png" alt="个人微信">
+</p>
+			<div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between">
+				</div>
+			
+			<script src="https://utteranc.es/client.js"
+repo="oscome/oscome.github.io"
+issue-term="og:title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+			<div class="docs-navigation d-flex justify-content-between">
+	<a href="/book/redis/%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E5%92%8C%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					&larr; 过期策略
+				</div>
+			</div>
+		</a>
+	<a class="ms-auto" href="/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/">
+			<div class="card my-1">
+				<div class="card-body py-2">
+					代理缓存 &rarr;
+				</div>
+			</div>
+		</a>
+	</div>
+
+
+		</main>
+	</div>
+
+      </div>
+    </div>
+    
+    
+    <footer class="footer text-muted">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-lg-8 order-last order-lg-first">
+        <ul class="list-inline">
+          <li class="list-inline-item">Powered by <a class="text-muted" target="_blank" href="https://www.netlify.com/">Netlify</a>, <a class="text-muted" target="_blank" href="https://gohugo.io/">Hugo</a>, and <a class="text-muted" target="_blank" href="https://getdoks.org/">Doks</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-8 order-first order-lg-last text-lg-end">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/about/">about oscome.cn</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"><img src="https://visitor-badge.glitch.me/badge?page_id=oscome.cn"></p>
+</footer>
+    
+
+<script src="/js/bootstrap.min.59a80fa260e34d89050015bc89bd0aa4a9100c5f682f0985267b8c5f43fd3eeb0f0f35e599719e4365cab74cc94c1c6e3b86765558a1b0e1232fe7006ec406f0.js" integrity="sha512-WagPomDjTYkFABW8ib0KpKkQDF9oLwmFJnuMX0P9PusPDzXlmXGeQ2XKt0zJTBxuO4Z2VVihsOEjL&#43;cAbsQG8A==" crossorigin="anonymous" defer></script>
+  <script src="/js/highlight.min.89250826fa63dcaae701bcc047754dce975705c550db6495ddf1f3163ee679654c04aec1a17f54e875a4d44fb47c2cf66b3fbe18a881f9f803c3aca3cc3fec06.js" integrity="sha512-iSUIJvpj3KrnAbzAR3VNzpdXBcVQ22SV3fHzFj7meWVMBK7BoX9U6HWk1E&#43;0fCz2az&#43;&#43;GKiB&#43;fgDw6yjzD/sBg==" crossorigin="anonymous" defer></script>
+  <script src="/main.min.94460db4fcedbb2b38ddd60d8364c688857f743ea79c5050ec4d1a185e8a31f017a770055bcadcb8f84e1001ee3b1a1a1501210a1e5a657627619a8578d9e2a7.js" integrity="sha512-lEYNtPztuys43dYNg2TGiIV/dD6nnFBQ7E0aGF6KMfAXp3AFW8rcuPhOEAHuOxoaFQEhCh5aZXYnYZqFeNnipw==" crossorigin="anonymous" defer></script>
+  <script src="https://oscome.cn/index.min.0265666fdb60ec8d093f481724c802056d88112c90d5c05a9240a5506e769d5db433c32c4eacae47a3de7eeee5961dec9be798852609386522c0b4983781503e.js" integrity="sha512-AmVmb9tg7I0JP0gXJMgCBW2IESyQ1cBakkClUG52nV20M8MsTqyuR6Pefu7llh3sm&#43;eYhSYJOGUiwLSYN4FQPg==" crossorigin="anonymous" defer></script>
+  
+    
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?92fdd30dcf9794ea4e8cba07c7df8eb1";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+  </body>
+</html>

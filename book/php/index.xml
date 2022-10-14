@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PHP on </title>
+    <link>https://oscome.cn/book/php/</link>
+    <description>Recent content in PHP on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 10 Oct 2022 10:28:28 +0800</lastBuildDate><atom:link href="https://oscome.cn/book/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>类型与运算符</title>
+      <link>https://oscome.cn/book/php/%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/php/%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <description>原始数据类型  四种标量类型：
+ boolean（布尔型） integer（整型） float（浮点型，也称作 double) string（字符串）  三种复合类型：
+ array（数组） object（对象） callable（可调用）  最后是两种特殊类型：
+ resource（资源） NULL（无类型）  为了确保代码的易读性，本手册还介绍了一些伪类型：
+ mixed（混合类型） number（数字类型） callback（回调类型，又称为 callable） array|object（数组 | 对象类型） void （无类型）  运算符优先级     结合方向 运算符 附加信息     无 clone new clone 和 new   左 [ array()   右 ** 算术运算符   右 ++ &amp;ndash; ~ (int) (float) (string) (array) (object) (bool) @ 类型和递增／递减   无 instanceof 类型   右 !</description>
+    </item>
+    
+    <item>
+      <title>fpm</title>
+      <link>https://oscome.cn/book/php/php-fpm/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/php/php-fpm/</guid>
+      <description>PHP-FPM(PHP FastCGI Process Manager)：PHP FastCGI 进程管理器，用于管理PHP 进程池的软件，用于接受web服务器的请求。
+主要配置说明：
+[www] user = www #进程的发起用户和用户组，用户user是必须设置，group不是,nobody 任意用户 group = www listen = [::]:9000 #监听ip和端口，[::] 代表任意ip chdir = /app #在程序启动时将会改变到指定的位置(这个是相对路径，相对当前路径或chroot后的“/”目录)　pm = dynamic #选择进程池管理器如何控制子进程的数量 static：　对于子进程的开启数路给定一个锁定的值(pm.max_children) dynamic:　子进程的数目为动态的，它的数目基于下面的指令的值(以下为dynamic适用参数) pm.max_children = 16 #同一时刻能够存货的最大子进程的数量，static的制定数量 pm.start_servers = 4 #在启动时启动的子进程数量 pm.min_spare_servers = 2 #处于空闲&amp;quot;idle&amp;quot;状态的最小子进程，如果空闲进程数量小于这个值，那么相应的子进程会被创建 pm.max_spare_servers = 16 #最大空闲子进程数量，空闲子进程数量超过这个值，那么相应的子进程会被杀掉。 catch_workers_output = Yes #将worker的标准输出和错误输出重定向到主要的错误日志记录中，如果没有设置，根据FastCGI的指定，将会被重定向到/dev/null上  pm的三种模式区别   pm=static：始终保持固定数量的worker进程数，由pm.max_children决定，不会动态扩容。  配置项要求：pm.max_children&amp;gt; 0 必须配置，且只有这一个参数生效
+优缺点：如果配置成static，只需要考虑max_children的数量，数量取决于cpu的个数和应用的响应时间，运行后省去了创建worker的时间。
+pm=dynamic：php-fpm启动时，会初始启动一些worker，初始启动worker数决定于pm.max_children的值。在运行过程中动态调整worker数量，worker的数量受限于pm.max_children配置，同时受限全局配置process.max。  1秒定时器作用，检查空闲worker数量，按照一定策略动态调整worker数量，增加或减少。增加时，worker最大数量&amp;lt;=max_children· &amp;lt;=全局process.max；减少时，只有idle &amp;gt;pm.max_spare_servers时才会关闭一个空闲worker。
+优点：动态扩容，不浪费系统资源 缺点：如果所有worker都在工作，新的请求到来只能等待master在1秒定时器内再新建一个worker，这时可能最长等待1s</description>
+    </item>
+    
+    <item>
+      <title>生命周期</title>
+      <link>https://oscome.cn/book/php/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/php/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <description>PHP的源码构成   SAPI（PHP的应用接口层） main（主要代码，输入/输出，web通信以及PHP框架的初始化操作等） ZendVM（PHP解析器的主要实现，代码的解释和执行，核心部分） Extension（可分为PHP和Zend扩展）  生命周期   模块初始化（PHP框架，Zend引擎的初始化操作） 请求初始化（对于FPM而言，是在worker进程accept一个请求并读取/解析完请求数据后的一个阶段） 执行脚本阶段（PHP代码的编译、执行，PHP脚本经历从源代码到抽象语法树再到opline指令，opline指令也就是Zend引擎可识别的执行指令） 请求关闭阶段（flush输出内容，发送HTTP应答header头，清理全局变量、关闭编译器、关闭执行器等，resgister_shutdown_function也是在此执行） 模块关闭阶段（SAPI关闭时执行）  根据不同SAPI的实现，会有一些差别。比如命令行模式，每执行一次脚本都要经历这五个阶段；而FastCGI模式下，只在启动时执行一次模块初始化，然后请求只经历请求初始化，执行脚本和请求关闭几个阶段。
+参考  PHP生命周期与结构体系</description>
+    </item>
+    
+    <item>
+      <title>面试题</title>
+      <link>https://oscome.cn/book/php/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Mon, 10 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/php/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>语句include和require的区别是什么？  require是无条件包含，也就是如果一个流程里加入require，无论条件成立与否都会先执行require，当文件不存在或者无法打开的时候，会提示错误，并且会终止程序执行
+include有返回值，而require没有(可能因为如此require的速度比include快)，如果被包含的文件不存在的化，那么会提示一个错误，但是程序会继续执行下去
+PHP的基本变量类型  四种标量类型：boolean （布尔型）、integer （整型）、float （浮点型, 也称作 double)、string （字符串）
+两种复合类型：array （数组）、object （对象）
+最后是两种特殊类型：resource（资源）、NULL（NULL）
+表单中get和post提交方式的区别   get是显式的，数据从url中可以看到，传输的数据量小，安全性低； post是隐式的，传送的数据量较大，安全性较高。  SESSION 与 COOKIE的区别是什么？   SESSION存储在服务器端，COOKIE保存在客户端。 Session比较安全，cookie用某些手段可以修改，不安全。 单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。 Session可以依赖于cookie进行传递。禁用cookie后，session还可以使用，在存储session的文件中，生成sessionID，通过get传参的方式将sessionID传到要实现session共享的页面，读取sessionID，从而从session中获取数据。  isset() 和 empty() 区别  isset 判断变量是否存在，可以传入多个变量，若其中一个变量不存在则返回假，empty 判断变量是否为空为假，只可传一个变量，如果为空为假则返回真。
+函数内部 static 和 global 关键字的作用  static 是静态变量，在局部函数中存在且只初始化一次，使用过后再次使用会使用上次执行的结果；作为计数，程序内部缓存，单例模式中都有用到。
+global 关键字，引用全局变量，wordpress 中大量用到，如面向过程开发。
+static 静态方法，是类的成员方法，但不需要实例化类可直接使用
+$GLOBAL 在函数内使用具有全局作用域的变量，如 $GLOBAL [&amp;lsquo;a&amp;rsquo;]
+常见的php的预定义变量有哪些？  $GLOBALS — 引用全局作用域中可用的全部变量 $_SERVER — 服务器和执行环境信息 $_GET — HTTP GET 变量 $_POST — HTTP POST 变量 $_FILES — HTTP 文件上传变量 $_REQUEST — HTTP Request 变量 $_SESSION — Session 变量 $_ENV — 环境变量 $_COOKIE — HTTP Cookies  常用的魔术方法有哪些？举例说明  __construct() 实例化类时自动调用。 __destruct() 类对象使用结束时自动调用。 __set() 在给未定义的属性赋值的时候调用。 __get() 调用未定义的属性时候调用。 __isset() 使用isset()或empty()函数时候会调用。 __unset() 使用unset()时候会调用。 __sleep() 使用serialize序列化时候调用。 __wakeup() 使用unserialize反序列化的时候调用。 __call() 调用一个不存在的方法的时候调用。 __callStatic()调用一个不存在的静态方法是调用。 __toString() 把对象转换成字符串的时候会调用。比如 echo。 __invoke() 当尝试把对象当方法调用时调用。 __set_state() 当使用var_export()函数时候调用。接受一个数组参数。 __clone() 当使用clone复制一个对象时候调用。  谈谈对MVC的认识?</description>
+    </item>
+    
+  </channel>
+</rss>

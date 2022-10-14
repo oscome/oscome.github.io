@@ -21,4 +21,11 @@
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
     </url>
+    
+    <url>
+      <loc>https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+      <lastmod>2022-10-12T10:28:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
     </urlset>

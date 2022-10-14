@@ -10,7 +10,28 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/%E7%BD%91%E7%BB%9C/http%E7%8A%B6%E6%80%81%E7%A0%81/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/kubernetes/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/book/linux/%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/php/%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
     <lastmod>2022-10-10T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -136,7 +157,28 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/php/php-fpm/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/book/mysql/%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/%E7%BD%91%E7%BB%9C/osi%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/php/</loc>
     <lastmod>2022-10-10T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -178,6 +220,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/%E7%BD%91%E7%BB%9C/tcp/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/topic/godaily/viper/</loc>
     <lastmod>2022-09-27T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -213,6 +262,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/%E7%BD%91%E7%BB%9C/tcp%E5%92%8Cudp/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/topic/godaily/urfavecli/</loc>
     <lastmod>2022-09-28T10:48:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -242,6 +298,13 @@
   
   <url>
     <loc>https://oscome.cn/book/linux/%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84%E5%92%8C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/php/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
     <lastmod>2022-10-10T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -304,6 +367,13 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/book/redis/%E9%AB%98%E5%8F%AF%E7%94%A8/</loc>
     <lastmod>2021-04-11T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -325,7 +395,28 @@
   </url>
   
   <url>
+    <loc>https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2022-10-12T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/kubernetes/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://oscome.cn/book/nginx/%E4%BB%A3%E7%90%86%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2022-10-10T10:28:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://oscome.cn/book/php/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2022-10-10T10:28:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

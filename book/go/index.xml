@@ -55,5 +55,24 @@ Go如何减短这个过程呢？标记-清除(mark and sweep)算法包含两部�
 GC流程   Sweep Termination: 对未清扫的span进行清扫, 只有上一轮的GC的清扫工作完成才可以开始新一轮的GC Mark: 扫描所有根对象, 和根对象可以到达的所有对象, 标记它们不被回收 Mark Termination: 完成标记工作, 重新扫描部分根对象(要求STW) Sweep: 按标记结果清扫span  目前整个GC流程会进行两次STW(Stop The World), 第一次是Mark阶段的开始, 第二次是Mark Termination阶段.</description>
     </item>
     
+    <item>
+      <title>面试题</title>
+      <link>https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Wed, 12 Oct 2022 10:28:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/book/go/%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>= 和 := 的区别  前者赋值，后者声明+赋值。
+指针的作用  指针用来保存变量的地址。
+Go 有异常类型吗？  Go 没有异常类型，只有错误类型（Error），通常使用返回值来表示异常状态。
+什么是 Goroutine  Goroutine 是与其他函数或方法同时运行的函数或方法。 Goroutines 可以被认为是轻量级的线程。 与线程相比，创建 Goroutine 的开销很小。 Go应用程序同时运行数千个 Goroutine 是非常常见的做法。
+defer 的执行顺序  多个 defer 语句，遵从后进先出(Last In First Out，LIFO)的原则，最后声明的 defer 语句，最先得到执行。 defer 在 return 语句之后执行，但在函数退出之前，defer 可以修改返回值。
+Go 语言 tag 的用处？  tag 可以理解为 struct 字段的注解，可以用来定义字段的一个或多个属性。框架/工具可以通过反射获取到某个字段定义的属性，采取相应的处理方式。tag 丰富了代码的语义，增强了灵活性。
+new和make的区别  new的作用是初始化一个指向类型的指针(*T)
+new函数是内建函数，函数定义：func new(Type) *Type
+使用new函数来分配空间。传递给new 函数的是一个类型，不是一个值。返回值是指向这个新分配的零值的指针。
+make 的作用是为 slice，map 或 chan 初始化并返回引用(T)。
+make函数是内建函数，函数定义：func make(Type, size IntegerType) Type</description>
+    </item>
+    
   </channel>
 </rss>
