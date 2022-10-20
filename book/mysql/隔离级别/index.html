@@ -24,8 +24,8 @@
 <meta property="og:description" content="面试知识合集，MySQL 隔离级别">
 <meta property="og:url" content="https://oscome.cn/book/mysql/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
 <meta property="og:site_name" content="开源到">
-<meta property="article:published_time" content="2021-10-10T10:28:28+08:00">
-  <meta property="article:modified_time" content="2021-10-10T10:28:28+08:00">
+<meta property="article:published_time" content="2022-10-20T10:28:28+08:00">
+  <meta property="article:modified_time" content="2022-10-20T10:28:28+08:00">
   
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
       <meta property="og:image:alt" content="开源到">
@@ -83,8 +83,8 @@
       "about": {
           "@id": "https://oscome.cn/#/schema/person/1"
         },
-      "datePublished": "2021-10-10T10:28:28CET",
-      "dateModified": "2021-10-10T10:28:28CET",
+      "datePublished": "2022-10-20T10:28:28CET",
+      "dateModified": "2022-10-20T10:28:28CET",
       "breadcrumb": {
         "@id": "https://oscome.cn/book/mysql/%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/#/schema/breadcrumb/1"
       },
@@ -917,7 +917,7 @@
 				</nav>
 			
 			<h1>隔离级别</h1>
-			<time>2021-10-10, Sunday</time>
+			<time>2022-10-20, Thursday</time>
 			<p class="lead"></p>
 			<nav class="d-xl-none" aria-label="Quaternary navigation">
 				<div class="d-xl-none">
@@ -966,42 +966,22 @@
   </div>
 
 			</nav>
-			<h3 id="事务隔离级别">事务隔离级别 </h3>
-<table>
-<thead>
-<tr>
-<th>事务隔离级别</th>
-<th>实现方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>读未提交（RU）</td>
-<td>事务对当前被读取的数据不加锁；事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加行级共享锁，直到事务结束才释放。</td>
-</tr>
-<tr>
-<td>读提交（RC）</td>
-<td>事务对当前被读取的数据加行级共享锁（当读到时才加锁），一旦读完该行，立即释放该行级共享锁；事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加行级排他锁，直到事务结束才释放。</td>
-</tr>
-<tr>
-<td>可重复读（RR）</td>
-<td>事务在读取某数据的瞬间（就是开始读取的瞬间），必须先对其加行级共享锁，直到事务结束才释放；事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加行级排他锁，直到事务结束才释放。</td>
-</tr>
-<tr>
-<td>串行化（S）</td>
-<td>事务在读取数据时，必须先对其加表级共享锁 ，直到事务结束才释放；事务在更新数据时，必须先对其加表级排他锁 ，直到事务结束才释放。</td>
-</tr>
-</tbody>
-</table>
+			<p>MySQL 隔离级别是比较基础的知识，也是面试经常考察的知识点。</p>
+<h3 id="事务隔离级别">事务隔离级别 </h3>
+<p>事务隔离级别包括：读未提交（read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（serializable ）。</p>
+<p>读未提交：一个事务还没提交时，它做的变更就能被别的事务看到。
+读提交：一个事务提交之后，它做的变更才会被其他事务看到。
+可重复读：一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。
+串行化：对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行。</p>
 <h3 id="不可重复读幻读脏读">不可重复读、幻读、脏读 </h3>
 <blockquote>
 <p>脏读：当一个事务正在访问数据，并且对数据进行了修改，而这种修改尚未提交，此时，另一个事务也访问这个数据，然后使用了这个数据。</p>
 </blockquote>
 <blockquote>
-<p>不可重复读：前后多次读取一行，数据内容不一致，针对其他事务的update和delete操作。为了解决这个问题，使用行共享锁，锁定到事务结束（也就是RR级别，当然MySQL使用MVCC在RC级别就解决了这个问题）</p>
+<p>不可重复读：前后多次读取一行，数据内容不一致，针对其他事务的update和delete操作。为了解决这个问题，使用行共享锁，锁定到事务结束（也就是可重复读级别，当然MySQL使用MVCC在读提交级别就解决了这个问题）</p>
 </blockquote>
 <blockquote>
-<p>幻读：当同一个查询在不同时间生成不同的行集合时就是出现了幻读，针对的是其他事务的insert操作，为了解决这个问题，锁定整个表到事务结束（也就是S级别，当然MySQL在RR级别使用间隙锁就可以解决这个问题）</p>
+<p>幻读：当同一个查询在不同时间生成不同的行集合时就是出现了幻读，针对的是其他事务的insert操作，为了解决这个问题，锁定整个表到事务结束（也就是串行化级别，当然MySQL在RR级别使用间隙锁就可以解决这个问题）</p>
 </blockquote>
 <table>
 <thead>
@@ -1054,12 +1034,12 @@
 <h4 id="隐藏字段">隐藏字段 </h4>
 <p>InnoDB 内部为每一行数据添加了三个字段：</p>
 <ul>
-<li>一个 6 字节DB_TRX_ID字段：指示插入或更新行的最后一个事务的事务标识符。（删除在内部被视为更新，其中行中的特殊位设置为将其标记为已删除）</li>
-<li>一个 7 字节的DB_ROLL_PTR字段：称为滚动指针。滚动指针指向 undo log 记录。如果行已更新，undo log记录包含在更新之前重建行内容所需的信息。</li>
+<li>一个 6 字节DB_TRX_ID字段：插入或更新行的最后一个事务的事务标识符。（删除在内部被视为更新，其中行中的特殊位设置为将其标记为已删除）</li>
+<li>一个 7 字节的DB_ROLL_PTR字段：滚动指针，指向 undo log 记录。如果行已更新，undo log记录包含在更新之前重建行内容所需的信息。</li>
 <li>一个 6 字节的DB_ROW_ID字段：包含一个行 ID，行 ID 随着新行的插入而单调增加。如果 InnoDB 自动生成聚集索引，则索引包含这个行 ID 值。否则，该 DB_ROW_ID 列不会出现在任何索引中。</li>
 </ul>
 <h4 id="read-view">Read View </h4>
-<p>在事务执行快照读的时候生成。需要注意的是，“读未提及”级别下，没有Read View。“读已提交”级别下，会在 每个SQL开始执行的时候 创建Read View。“可重复读”级别下，会在 每个事务开始的时候创建Read View。“串行化”级别下，直接加锁避免并发问题。</p>
+<p>Read View 在事务执行快照读的时候生成。需要注意的是，“读已提交”级别下，会在 每个SQL开始执行的时候 创建Read View。“可重复读”级别下，会在 每个事务开始的时候创建Read View。“串行化”级别下，直接加锁避免并发问题。“读未提及”级别下，没有Read View。</p>
 <p>Read View 遵循一个可见性算法，主要是将要被修改的数据的最新记录中的DB_TRX_ID（即当前事务ID）取出来，与系统当前其他活跃事务的ID去对比（由Read View维护），如果DB_TRX_ID跟Read View的属性做比较，不符合可见性，那就通过DB_ROLL_PTR回滚指针去取出Undo Log中的DB_TRX_ID再比较，即遍历链表的DB_TRX_ID（从链首到链尾，即从最近的一次修改查起），直到找到满足特定条件的DB_TRX_ID, 那么这个DB_TRX_ID所在的旧记录就是当前事务能看见的最新老版本。</p>
 <p>Read View 的三个全局属性：</p>
 <ul>
@@ -1100,17 +1080,17 @@ crossorigin="anonymous"
 async>
 </script>
 			<div class="docs-navigation d-flex justify-content-between">
-	<a href="/book/%E7%BD%91%E7%BB%9C/tcp%E5%92%8Cudp/">
+	<a href="/book/nginx/%E5%86%85%E5%B5%8C%E5%8F%98%E9%87%8F/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; tcp、udp对比
+					&larr; 内嵌变量
 				</div>
 			</div>
 		</a>
-	<a class="ms-auto" href="/book/go/%E5%8D%8F%E7%A8%8B%E5%8E%9F%E7%90%86/">
+	<a class="ms-auto" href="/book/%E7%BD%91%E7%BB%9C/tcp%E5%92%8Cudp/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					goroutine原理 &rarr;
+					tcp、udp对比 &rarr;
 				</div>
 			</div>
 		</a>
