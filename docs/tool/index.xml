@@ -84,6 +84,28 @@ Infinity 新标签页  标签页，自由添加网站图标，云端高清壁纸
     </item>
     
     <item>
+      <title>图片二维码</title>
+      <link>https://oscome.cn/docs/tool/image/</link>
+      <pubDate>Tue, 25 Oct 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/tool/image/</guid>
+      <description>如果你需要写文章、写blog、运营公众号，那么这几个网站值得收藏一下，都是免费使用哦！
+草料二维码   https://cli.im/
+ 小欧的公众号相关二维码图片几乎都是在这个网站生成的，其中有很多免费模版，登录后还可以保存模板，非常好用。
+此外，草料还支持文本、网址、图片、名片生成，甚至音视频生成（有时限人数限制）。
+比如比较常用的公众号相关二维码生成：
+tinypng   https://tinypng.com/
+ 直接选择图片就能压缩啦！
+背景消除   https://www.remove.bg/zh
+ 看看下面的效果，原图应该能看出来，就是上面 tinypng 的截图，背景是我随便选的一个，不要在意。截图元素较多，所以消除的并不怎么样，但一般的图片绰绰有余了。
+iloveimg   https://www.iloveimg.com/zh-cn
+ 支持压缩、调整大小、裁剪、水印等。
+下面是小欧使用html转图片功能生成的图片，网页是 开源到 oscome.cn 的首页。
+ico   http://www.ico51.cn/
+ 有注意到网站上面的 ico 图标吗？你可以通过这个网站生成。</description>
+    </item>
+    
+    <item>
       <title>效率工具 uTools</title>
       <link>https://oscome.cn/docs/tool/utool/</link>
       <pubDate>Wed, 12 Oct 2022 08:48:28 +0800</pubDate>
@@ -99,6 +121,28 @@ Infinity 新标签页  标签页，自由添加网站图标，云端高清壁纸
 超级面板还可以支持语音，但如果是日常开发，可能没那么大用处。
 其他  插件很丰富，就不一一介绍了。
  个人还是比较推荐的，难能可贵的是免费无广告，且支持mac、windows、linux，开发团队用心了。更多介绍： https://u.tools/</description>
+    </item>
+    
+    <item>
+      <title>web工具箱</title>
+      <link>https://oscome.cn/docs/tool/portable/</link>
+      <pubDate>Tue, 25 Oct 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/tool/portable/</guid>
+      <description>推荐几个在线工具，都是工具大集合，值得收藏哦！【收藏前点个赞呗 😄 】
+在线工具   https://tool.lu/c/text/
+ 超级工具箱，包含文本处理、图片处理、开发等工具。
+比如图像类，图片压缩、格式转化、二维码生成，ico 图标制作等。
+比如开发类，正则测试工具、代码压缩、时间戳转换、国内包镜像、加密解密等。
+自己探索吧！
+bejson   https://www.bejson.com/
+ 记得早期收藏的时候，只有 json 相关数据处理，现在越来越丰富了。
+1024 程序员开发工具箱   https://1024tools.com/
+ 主要是解密加密、json 处理这一方面的工具。
+站长工具   https://tool.chinaz.com/
+ 算是 chinaz 的子网站，seo、ip等查询工具，独立站长可以收藏一下。 oktools   https://oktools.net/
+ 也是一个偏开发人员的工具箱，值得称赞的是，站长开源了项目源码。
+ 以上几个在线工具箱都是小欧日常工作使用过的，如果你有其他推荐，欢迎在评论区留言分享给大家吧！</description>
     </item>
     
   </channel>

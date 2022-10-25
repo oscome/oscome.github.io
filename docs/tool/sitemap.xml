@@ -30,8 +30,22 @@
     </url>
     
     <url>
+      <loc>https://oscome.cn/docs/tool/image/</loc>
+      <lastmod>2022-10-25T08:48:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
       <loc>https://oscome.cn/docs/tool/utool/</loc>
       <lastmod>2022-10-12T08:48:28+08:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+    
+    <url>
+      <loc>https://oscome.cn/docs/tool/portable/</loc>
+      <lastmod>2022-10-25T08:48:28+08:00</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
     </url>
