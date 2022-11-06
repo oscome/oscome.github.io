@@ -9,7 +9,7 @@
     <item>
       <title>说明</title>
       <link>https://oscome.cn/docs/tool/tool/</link>
-      <pubDate>Mon, 26 Sep 2022 08:48:28 +0800</pubDate>
+      <pubDate>Thu, 01 Sep 2022 08:48:28 +0800</pubDate>
       
       <guid>https://oscome.cn/docs/tool/tool/</guid>
       <description>小欧在学习与工作中使用过的软件、工具推荐，观点来源于使用感受，如果你觉得不对，或者用什么不足的，欢迎指出讨论。</description>
@@ -143,6 +143,26 @@ bejson   https://www.bejson.com/
  算是 chinaz 的子网站，seo、ip等查询工具，独立站长可以收藏一下。 oktools   https://oktools.net/
  也是一个偏开发人员的工具箱，值得称赞的是，站长开源了项目源码。
  以上几个在线工具箱都是小欧日常工作使用过的，如果你有其他推荐，欢迎在评论区留言分享给大家吧！</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>https://oscome.cn/docs/tool/regex/</link>
+      <pubDate>Sun, 06 Nov 2022 08:48:28 +0800</pubDate>
+      
+      <guid>https://oscome.cn/docs/tool/regex/</guid>
+      <description>正则表达式在开发中应该是必不可少的，小欧经常会使用到，下面几个网站推荐给你，可以更好地帮助你学习、测试、寻找正则表达式，甚至根据正则显示出图像，非常好用，值得收藏。
+regexper   地址： https://regexper.com/
+ regexper 可以将你的正则表达式用图示的形式展示出来，非常好用，如果怕你对某个正则语法不理解，使用这个让正则一目了然。
+regex101   地址: https://regex101.com/
+ 支持多个主流语言的写法，可以测试，https://regex101.com/library 更有大量的案例可以搜索使用。
+regexr   地址： https://regexr.com/
+ 可以测试正则的网站，RegEx Reference 里有语法参考。可以登录保存自己常用的正则表达式。
+regexlearn   地址： https://regexlearn.com/zh-cn/learn
+ 通过一个个实例学习正则语法，适合新手学习。
+ihateregex   地址： https://ihateregex.io/
+ 可以搜索到很多常用的正则。
+总结  正则学习起来并不难，但写得好用又优雅并不简单哦！收藏起来，提升效率。</description>
     </item>
     
   </channel>
