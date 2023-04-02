@@ -15,7 +15,7 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
+  <title> | OSCOME</title>
 <meta name="description" content="概念  4个区  git之所以令人费解，主要是它相比于svn等等传统的版本管理工具，多引入了一个暂存区(Stage)的概念，就因为多了这一个概念，而使很多人疑惑。其实，在初学者来说，每个区具体怎么工作的，我们完全不需要关心，而只要知道有这么4个区就够了：
  工作区(Working Area) 暂存区(Stage) 本地仓库(Local Repository) 远程仓库(Remote Repository)  5种状态  以上4个区，进入每一个区成功之后会产生一个状态，再加上最初始的一个状态，一共是5种状态。以下我们把这5种状态分别命名为：
  未修改(Origin) 已修改(Modified) 已暂存(Staged) 已提交(Committed) 已推送(Pushed)  检查修改  已修改，未暂存  git diff  已暂存，未提交  git diff --cached  已提交，未推送  git diff master origin/master  撤销修改  了解清楚如何检查各种修改之后，我们开始尝试各种撤销操作。
@@ -35,10 +35,10 @@ git checkout .  或者
 git reset --hard  恢复已暂存，未提交  你已经执行了git add .，但还没有执行git commit -m &quot;comment&quot;。这时候你意识到了错误，想要撤销，你可以执行：
 git reset git checkout .">
 <meta property="og:url" content="https://oscome.cn/book/%E5%85%B6%E4%BB%96/git/">
-<meta property="og:site_name" content="开源到">
+<meta property="og:site_name" content="OSCOME">
 
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
-      <meta property="og:image:alt" content="开源到">
+      <meta property="og:image:alt" content="OSCOME">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
@@ -75,7 +75,7 @@ git reset git checkout .">
       "@type": "WebSite",
       "@id": "https://oscome.cn/#/schema/website/1",
       "url": "https://oscome.cn/",
-      "name": "开源到",
+      "name": "OSCOME",
       "description": "分享开源项目，技术资讯",
       "publisher": {
           "@id": "https://oscome.cn/#/schema/person/1"
@@ -182,8 +182,8 @@ git reset git checkout .">
 <header class="navbar navbar-expand-lg navbar-light doks-navbar">
   <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
 
-    <a class="navbar-brand order-0" href="/" aria-label="开源到">
-      开源到
+    <a class="navbar-brand order-0" href="/" aria-label="OSCOME">
+      OSCOME
     </a>
 
     <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
@@ -192,7 +192,7 @@ git reset git checkout .">
     <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
       <div class="header-bar d-lg-none"></div>
       <div class="offcanvas-header d-lg-none">
-        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">OSCOME</a></h2>
         <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
       </div>
       <div class="offcanvas-body p-4 p-lg-0">
@@ -209,6 +209,11 @@ git reset git checkout .">
           
               <li class="nav-item">
                 <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="https://github.oscome.cn/">技术博客</a>
               </li>
             
           

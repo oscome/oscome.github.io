@@ -15,7 +15,7 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
+  <title> | OSCOME</title>
 <meta name="description" content="From：Paxos和Raft协议介绍
 Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
  1. 背景介绍  1.1 分布式事务  分布式事务指事务的操作位于不同的分布式系统节点上，需要保证事务的 AICD 特性。 分布式事务处理的难点是必须有一种方法可以知道事务在任何地方所做的所有动作，提交或回滚事务的决定必须产生统一的结果（全部提交或全部回滚）
@@ -43,10 +43,10 @@ Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
 2.2 Paxos算法    segmentfault.com/a/119000000… www.cnblogs.com/hzmark/p/pa…   Paxos的特点：
  一个或多个节点可以提出提议 系统针对所有提案中的某个提案必须达成一致 最多只能对一个确定的提案达成一致 只要超过半数的节点存活且可互相通信，整个系统一定能达成一致状态  2.2.1 Paxos表决   首先proposers将value发送给Acceptors。 Acceptors对value进行接受（accept）。acceptor可以回应接受或拒绝。 一旦节点中的大多数回应接受，共识就能达成，接受的value成为正式的决议（称为“批准”决议）。  整个过程（一个事务或一个Round）分为两个阶段：">
 <meta property="og:url" content="https://oscome.cn/book/%E5%85%B6%E4%BB%96/raft%E5%92%8Cpaxos%E5%8D%8F%E8%AE%AE/">
-<meta property="og:site_name" content="开源到">
+<meta property="og:site_name" content="OSCOME">
 
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
-      <meta property="og:image:alt" content="开源到">
+      <meta property="og:image:alt" content="OSCOME">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
@@ -83,7 +83,7 @@ Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
       "@type": "WebSite",
       "@id": "https://oscome.cn/#/schema/website/1",
       "url": "https://oscome.cn/",
-      "name": "开源到",
+      "name": "OSCOME",
       "description": "分享开源项目，技术资讯",
       "publisher": {
           "@id": "https://oscome.cn/#/schema/person/1"
@@ -190,8 +190,8 @@ Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
 <header class="navbar navbar-expand-lg navbar-light doks-navbar">
   <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
 
-    <a class="navbar-brand order-0" href="/" aria-label="开源到">
-      开源到
+    <a class="navbar-brand order-0" href="/" aria-label="OSCOME">
+      OSCOME
     </a>
 
     <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
@@ -200,7 +200,7 @@ Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
     <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
       <div class="header-bar d-lg-none"></div>
       <div class="offcanvas-header d-lg-none">
-        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">OSCOME</a></h2>
         <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
       </div>
       <div class="offcanvas-body p-4 p-lg-0">
@@ -217,6 +217,11 @@ Paxos和Raft协议介绍   文章来源: 陶老师运维笔记- 微信公众号
           
               <li class="nav-item">
                 <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="https://github.oscome.cn/">技术博客</a>
               </li>
             
           

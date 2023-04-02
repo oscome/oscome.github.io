@@ -15,7 +15,7 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
+  <title> | OSCOME</title>
 <meta name="description" content="安装  // 下载，注意下载对应的系统版本，否则安装会报错 wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz // 解压即可，无需编译安装 tar -zxvf mongodb-linux-x86_64-rhel70-4.4.1.tgz mv mongodb-linux-x86_64-rhel70-4.4.1 /usr/local/mongodb  启动服务  新建mongodb.conf（版本可能不一样，略有不同）
 dbpath = /data/mongodb/data #数据文件存放目录 logpath = /data/mongodb/log/mongodb.log #日志文件存放目录 port = 27000 #端口 fork = true #以守护程序的方式启用，即在后台运行 bind_ip=127.0.0.1 cd /usr/local/mongodb/ // 启动服务 bin/mongod -f ./mongodb.conf  新增用户  设置密码
 use admin; db.createUser({user:&amp;quot;root&amp;quot;,pwd:&amp;quot;666888&amp;quot;,roles:[&amp;quot;userAdminAnyDatabase&amp;quot;]}); use test; db.createUser({ user: &amp;quot;test&amp;quot;, pwd: &amp;quot;123456&amp;quot;, roles: [{role: &amp;quot;readWrite&amp;quot;,db: &amp;quot;hotel&amp;quot;}] }) db.createUser( { user: &amp;quot;admin&amp;quot;, pwd: &amp;quot;5176567&amp;quot;, roles: [{role: &amp;quot;userAdminAnyDatabase&amp;quot;, db: &amp;quot;admin&amp;quot;}] } )  role的说明">
@@ -27,10 +27,10 @@ use admin; db.createUser({user:&amp;quot;root&amp;quot;,pwd:&amp;quot;666888&amp
 dbpath = /data/mongodb/data #数据文件存放目录 logpath = /data/mongodb/log/mongodb.log #日志文件存放目录 port = 27000 #端口 fork = true #以守护程序的方式启用，即在后台运行 bind_ip=127.0.0.1 cd /usr/local/mongodb/ // 启动服务 bin/mongod -f ./mongodb.conf  新增用户  设置密码
 use admin; db.createUser({user:&quot;root&quot;,pwd:&quot;666888&quot;,roles:[&quot;userAdminAnyDatabase&quot;]}); use test; db.createUser({ user: &quot;test&quot;, pwd: &quot;123456&quot;, roles: [{role: &quot;readWrite&quot;,db: &quot;hotel&quot;}] }) db.createUser( { user: &quot;admin&quot;, pwd: &quot;5176567&quot;, roles: [{role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot;}] } )  role的说明">
 <meta property="og:url" content="https://oscome.cn/book/nosql/mongodb/%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
-<meta property="og:site_name" content="开源到">
+<meta property="og:site_name" content="OSCOME">
 
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
-      <meta property="og:image:alt" content="开源到">
+      <meta property="og:image:alt" content="OSCOME">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
@@ -67,7 +67,7 @@ use admin; db.createUser({user:&quot;root&quot;,pwd:&quot;666888&quot;,roles:[&q
       "@type": "WebSite",
       "@id": "https://oscome.cn/#/schema/website/1",
       "url": "https://oscome.cn/",
-      "name": "开源到",
+      "name": "OSCOME",
       "description": "分享开源项目，技术资讯",
       "publisher": {
           "@id": "https://oscome.cn/#/schema/person/1"
@@ -183,8 +183,8 @@ use admin; db.createUser({user:&quot;root&quot;,pwd:&quot;666888&quot;,roles:[&q
 <header class="navbar navbar-expand-lg navbar-light doks-navbar">
   <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
 
-    <a class="navbar-brand order-0" href="/" aria-label="开源到">
-      开源到
+    <a class="navbar-brand order-0" href="/" aria-label="OSCOME">
+      OSCOME
     </a>
 
     <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
@@ -193,7 +193,7 @@ use admin; db.createUser({user:&quot;root&quot;,pwd:&quot;666888&quot;,roles:[&q
     <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
       <div class="header-bar d-lg-none"></div>
       <div class="offcanvas-header d-lg-none">
-        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">OSCOME</a></h2>
         <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
       </div>
       <div class="offcanvas-body p-4 p-lg-0">
@@ -210,6 +210,11 @@ use admin; db.createUser({user:&quot;root&quot;,pwd:&quot;666888&quot;,roles:[&q
           
               <li class="nav-item">
                 <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="https://github.oscome.cn/">技术博客</a>
               </li>
             
           

@@ -15,7 +15,7 @@
   <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title> | 开源到</title>
+  <title> | OSCOME</title>
 <meta name="description" content="MySQL性能与可用性分析  日志   重做日志（redo log）：确保事务的持久性。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启mysql服务的时候，根据redo log进行重做，从而达到事务的持久性这一特性。 回滚日志（undo log）：保存了事务发生之前的数据的一个版本，可以用于回滚，同时可以提供多版本并发控制下的读（MVCC），即非锁定读 二进制日志，归档日志（binlog）：用于复制和备份，在主从复制中，从库利用主库上的binlog进行重播，实现主从同步。 也可基于时间点做数据库的的还原。 其他还有常见的慢日志、查询日志、错误日志  我们主要看一下前面3个日志，来理解MySQL是如何利用这些日志和一些特殊的机制保证可用性的。
 redo log 重做日志  在MySQL里，如果每一次的更新操作都需要写进磁盘，然后磁盘也要找到对应的那条记录，然后再更新，整个过程IO成本、查找成本都很高。为了解决这个问题，MySQL的设计者就用了WAL技术，WAL的全称是Write-Ahead Logging，它的关键点就是先写日志，再写磁盘。
 WAL(Write-Ahead Loggin)机制   在MySQL里，如果每一次的更新操作都需要写进磁盘，然后磁盘也要找到对应的那条记录，然后再更新。整个过程IO成本、查找成本都很高。为了解决这个问题，MySQL的设计者就用了WAL技术，WAL的全称是Write-Ahead Logging，它的关键点就是先写日志，再写磁盘。
@@ -43,10 +43,10 @@ redo log的三种状态：
  红色：存在redo log buffer中，物理上是在MySQL进程内存中 黄色：写到磁盘(write)，但是没有持久化（fsync)，物理上是在文件系统的page cache里面 绿色：持久化到磁盘，对应的是hard disk  为了控制 redo log 的写入策略，InnoDB 提供了 innodb_flush_log_at_trx_commit 参 数，它有三种可能取值:
  0，表示每次事务提交时都只是把 redo log 留在 redo log buffer 中 ; 1，表示每次事务提交时都将 redo log 直接持久化到磁盘; 2 ，表示每次事务提交时都只是把 redo log 写到 page cache。  InnoDB 有一个后台线程，每隔 1 秒，就会把 redo log buffer 中的日志，调用 write 写 到文件系统的 page cache，然后调用 fsync 持久化到磁盘。">
 <meta property="og:url" content="https://oscome.cn/book/mysql/%E9%AB%98%E5%8F%AF%E7%94%A8/">
-<meta property="og:site_name" content="开源到">
+<meta property="og:site_name" content="OSCOME">
 
   <meta property="og:image" content="https://oscome.cn/oscome.png"/>
-      <meta property="og:image:alt" content="开源到">
+      <meta property="og:image:alt" content="OSCOME">
     
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getdoks">
@@ -83,7 +83,7 @@ redo log的三种状态：
       "@type": "WebSite",
       "@id": "https://oscome.cn/#/schema/website/1",
       "url": "https://oscome.cn/",
-      "name": "开源到",
+      "name": "OSCOME",
       "description": "分享开源项目，技术资讯",
       "publisher": {
           "@id": "https://oscome.cn/#/schema/person/1"
@@ -190,8 +190,8 @@ redo log的三种状态：
 <header class="navbar navbar-expand-lg navbar-light doks-navbar">
   <nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation">
 
-    <a class="navbar-brand order-0" href="/" aria-label="开源到">
-      开源到
+    <a class="navbar-brand order-0" href="/" aria-label="OSCOME">
+      OSCOME
     </a>
 
     <button class="btn btn-menu order-2 d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu">
@@ -200,7 +200,7 @@ redo log的三种状态：
     <div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true" aria-labelledby="offcanvasDoksLabel">
       <div class="header-bar d-lg-none"></div>
       <div class="offcanvas-header d-lg-none">
-        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">开源到</a></h2>
+        <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel"><a class="text-dark" href="/">OSCOME</a></h2>
         <button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas" aria-label="Close main menu"></button>
       </div>
       <div class="offcanvas-body p-4 p-lg-0">
@@ -217,6 +217,11 @@ redo log的三种状态：
           
               <li class="nav-item">
                 <a class="nav-link ps-0 py-1" href="/project/">项目推荐</a>
+              </li>
+            
+          
+              <li class="nav-item">
+                <a class="nav-link ps-0 py-1" href="https://github.oscome.cn/">技术博客</a>
               </li>
             
           
